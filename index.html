@@ -27,6 +27,7 @@
             overflow-x: hidden;
         }
 
+        /* --- HEADER (Nav Bar) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -38,39 +39,43 @@
         nav a { 
             color: #fff; text-decoration: none; font-size: 13px; 
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
         }
+        nav a:hover { opacity: 0.7; }
 
+        /* --- SECTION BASE --- */
         section {
-            height: 100vh;
+            height: 100vh; 
             width: 100%;
             position: relative;
-            display: flex;
+            display: flex; 
             align-items: center;
             padding: 0 10%;
             scroll-snap-align: start;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
+        /* Darkening overlay for readability */
         section::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.45); z-index: 1;
+            background: rgba(0,0,0,0.55); z-index: 1;
         }
 
-        .content { position: relative; z-index: 2; max-width: 800px; }
+        .content { position: relative; z-index: 2; max-width: 850px; }
 
         h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
-        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; text-transform: uppercase; letter-spacing: -1px; }
+        h1 { font-size: 58px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; text-transform: uppercase; letter-spacing: -1px; }
         
-        /* THE SMALL DESCRIPTION STYLE */
         .description { 
             font-size: 19px; 
-            margin-bottom: 35px; 
+            margin-bottom: 40px; 
             font-weight: 300; 
             opacity: 0.85; 
             line-height: 1.6; 
-            max-width: 600px;
+            max-width: 650px;
         }
 
         .btn {
@@ -87,11 +92,23 @@
         }
         .btn:hover { background: #fff; color: #000; }
 
-        #hero { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072'); }
-        #contracts { background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&q=80&w=2071'); }
-        #engine { background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426'); }
+        /* --- BACKGROUND IMAGES --- */
+        /* Hero Header: High-precision geometric corporate architecture */
+        #hero { 
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'); 
+        }
+        
+        /* Contracts: Sharp concrete and glass structure */
+        #contracts { 
+            background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2071&auto=format&fit=crop'); 
+        }
+        
+        /* Engine: Futuristic minimalist interior */
+        #engine { 
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'); 
+        }
 
-        .stats-grid { display: flex; gap: 60px; margin-top: 40px; }
+        .stats-grid { display: flex; gap: 60px; margin-top: 50px; }
         .stat-val { font-size: 45px; font-weight: 900; display: block; }
         .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
 
@@ -104,7 +121,9 @@
 <body>
 
     <header>
-        <div class="logo"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo"></div>
+        <div class="logo">
+            <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo">
+        </div>
         <nav>
             <ul>
                 <li><a href="#">Products</a></li>
@@ -120,30 +139,31 @@
         <div class="content">
             <h2>Deterministic Decision Automation</h2>
             <h1>The Operating System <br>for Banking Decisions</h1>
-            <p class="description">Bridging the gap between expert intuition and regulatory compliance with the world's most advanced auditable AI engine.</p>
+            <p class="description">Bridging the gap between expert intuition and regulatory compliance with a transparent AI engine designed for high-stakes financial institutions.</p>
             <a href="#" class="btn">Explore The Engine</a>
         </div>
     </section>
 
-    <!-- SECTION 2: CONTRACTS -->
+    <!-- SECTION 2: CONTRACTS FOCUS -->
     <section id="contracts">
         <div class="content">
-            <h2>Reliability</h2>
+            <h2>Financial Infrastructure</h2>
             <h1>Engineering trust for finance allows better contracts.</h1>
-            <p class="description">Move beyond black-box uncertainty. We provide the mathematical traceability required to deploy complex financial instruments with total confidence.</p>
+            <p class="description">Unlock complex financial instruments with absolute confidence. Our technology provides the mathematical traceability required to remove uncertainty from every contract.</p>
             <div class="stats-grid">
                 <div><span class="stat-val">0%</span><span class="stat-label">Hallucination Risk</span></div>
                 <div><span class="stat-val">100%</span><span class="stat-label">Audit Traceability</span></div>
+                <div><span class="stat-val">90%</span><span class="stat-label">Faster Execution</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THE TECHNOLOGY -->
+    <!-- SECTION 3: THE ENGINE -->
     <section id="engine">
         <div class="content">
             <h2>Proprietary Logic</h2>
-            <h1>Deterministic Output</h1>
-            <p class="description">Our Glass Box Engine digitizes expert judgment into auditable code, ensuring every decision is mathematically linked back to human expertise.</p>
+            <h1>The Glass Box Engine</h1>
+            <p class="description">We digitize expert judgment into deterministic, auditable code. Every decision is mathematically linked back to human expertise, ensuring 100% explainability.</p>
             <a href="#" class="btn">View Technical Specs</a>
         </div>
 
