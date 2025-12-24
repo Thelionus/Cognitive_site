@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: Added Meta Description -->
+    <meta name="description" content="Cognitive Banking provides deterministic, auditable AI decision engines for regulated financial institutions. OSFI & SOC2 Compliant.">
+    <title>Products | Cognitive Banking - The Institutional Suite</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CORE STYLES (MATCHING INDEX) --- */
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --max-width: 1400px;
+            --header-height: 72px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- UNIFIED HEADER (MATCHING INDEX EXACTLY) --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
+            background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); height: var(--header-height); 
+        }
+        .real-logo { height: 35px; width: auto; display: block; }
+        
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover, nav a.active { color: white; }
+
+        .btn-primary {
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+            transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
+        }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Mobile Hamburger Styles */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; transition: 0.3s; }
+        .mobile-only { display: none; }
+
+        /* --- HERO & STATS --- */
+        .hero-small {
+            padding: 10rem 5% 4rem; text-align: center; border-bottom: 1px solid var(--border-color);
+            margin-top: var(--header-height);
+        }
+        .hero-small h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: -0.02em; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: #020617; border-bottom: 1px solid var(--border-color); }
+        .stat-box { padding: 3rem 1rem; text-align: center; border-right: 1px solid var(--border-color); }
+        .stat-box:last-child { border-right: none; }
+        .stat-box .number { font-size: 2.5rem; font-weight: 800; color: white; display: block; }
+        .stat-box .label { font-family: 'JetBrains Mono', monospace; color: var(--primary-accent); font-size: 0.75rem; text-transform: uppercase; margin-top: 0.5rem; }
+
+        /* --- PRODUCT SECTIONS --- */
+        section { padding: 8rem 5%; border-bottom: 1px solid var(--border-color); }
+        .container { max-width: var(--max-width); margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+        .product-image {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;
+            overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .product-image img { width: 100%; height: auto; display: block; }
+
+        .api-link { color: var(--primary-accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .api-link:hover { border-bottom-color: var(--primary-accent); }
+
+        /* --- MODAL STYLES (MATCHING INDEX) --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: #0F172A; border: 1px solid #1E293B;
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8; cursor: pointer; }
+        .form-input { width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B; color: white; border-radius: 4px; margin-top: 0.5rem; }
+
+        /* --- FOOTER (MATCHING INDEX) --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s; }
+
+        /* --- RESPONSIVE MOBILE FIXES --- */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #0F172A; padding: 100px 10% 0; transition: 0.4s;
+                border-left: 1px solid var(--border-color);
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            
+            #desktop-cta { display: none; }
+            .mobile-only { display: block; }
+
+            .hero-small h1 { font-size: 2.5rem; }
+            .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+            .grid-2 > div:nth-child(2) { order: -1; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-box:nth-child(even) { border-right: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Header -->
+    <header>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+            </a>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-only"><button onclick="openModal()" class="btn-primary">Strategy Session</button></li>
+            </ul>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button onclick="openModal()" class="btn-primary" id="desktop-cta">Strategy Session</button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero-small">
+        <div class="container">
+            <span class="mono">The Institutional Suite</span>
+            <h1>The Cognitive Stack</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 1.5rem auto 0; font-size: 1.1rem;">
+                A unified architecture for auditable automation. From signal perception to deterministic execution.
+            </p>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <span class="number">75%</span>
+            <span class="label">Productivity Increase</span>
+        </div>
+        <div class="stat-box">
+            <span class="number">30%</span>
+            <span class="label">Cost Reduction</span>
+        </div>
+        <div class="stat-box">
+            <span class="number">2x</span>
+            <span class="label">Loan Volume Capacity</span>
+        </div>
+        <div class="stat-box">
+            <span class="number">98%</span>
+            <span class="label">Error Reduction</span>
+        </div>
+    </div>
+
+    <!-- LAYER 1: ENGINE -->
+    <section>
+        <div class="container">
+            <div class="grid-2">
+                <div>
+                    <span class="mono">Layer 1: Execution</span>
+                    <h2>Cognitive Engine</h2>
+                    <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">The Decision Workflow.</p>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">The Glass Box Engine pre-trains decision systems by compiling human expertise into deterministic, repeatable, and fully traceable logic.</p>
+                    <a href="business-banker.html" class="btn-primary" style="text-decoration:none;">Technical Briefing</a>
+                </div>
+                <div class="product-image" style="border-color: var(--action-blue);">
+                    <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" alt="Cognitive Engine">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYER 2: FOUNDRY -->
+    <section style="background: #020617;">
+        <div class="container">
+            <div class="grid-2">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/x8fMv2Zz/Agent-Capture.png" alt="Cognitive Foundry">
+                </div>
+                <div>
+                    <span class="mono">Layer 2: Compilation</span>
+                    <h2>Cognitive Foundry</h2>
+                    <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">Expert Knowledge Capture.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                        Expert judgment is digitized through advanced protocols based on Cognitive Task Analysis (CTA), transforming implicit reasoning into explicit decision structures.
+                    </p>
+                    <p style="margin-bottom: 2rem;">
+                        <!-- LINK FIXED: Matches clean filename and added ./ for direct folder reference -->
+                        <a href="./Cognitive-Engine-Technical-Briefing.pdf" target="_blank" class="api-link">
+                            <span style="margin-right: 8px;">&#128196;</span> Download System Documentation Here
+                        </a>
+                    </p>
+                    <div style="margin-bottom: 1.5rem; border-left: 2px solid var(--primary-accent); padding-left: 1.5rem;">
+                        <strong style="color: white;">Encapsulated Brains</strong><br>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">We have already encapsulated thousands of hours of cognitive analysis, translating expert knowledge into production-ready logic blocks.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYER 3: WORKBENCH -->
+    <section>
+        <div class="container">
+            <div class="grid-2">
+                <div>
+                    <span class="mono">Layer 3: Perception</span>
+                    <h2>AI Workbench</h2>
+                    <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">Document Understanding.</p>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                        Generative AI functions exclusively as a perception layer—interpreting documents and signals—while the Cognitive Engine maintains exclusive decision-making authority.
+                    </p>
+                    <button onclick="openModal()" class="btn-primary">Request Demo</button>
+                </div>
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/Jz6cvdRg/imapge.jpg" alt="AI Workbench">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">Cognitive was founded in 1995. We specialize in deterministic AI for mission-critical banking.</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="success.html" class="footer-link">Case Studies</a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 style="text-align:center; color:white;">Strategy Session</h3>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <input type="text" id="g-name" class="form-input" placeholder="Full Name" required>
+                <input type="email" id="g-email" class="form-input" placeholder="Work Email" required>
+                <input type="text" id="g-org" class="form-input" placeholder="Organization" required>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:1.5rem;">Continue &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

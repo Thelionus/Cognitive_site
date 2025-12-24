@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Banking | Deterministic Decision Automation</title>
+    <title>Cognitive Banking | Engineering Trust</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --accent: #22C55E;
             --white: #ffffff;
-            --glass: rgba(0, 0, 0, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,13 +22,11 @@
             font-family: 'Inter', sans-serif;
             color: var(--white);
             background-color: #000;
-            /* SpaceX Scroll Snap Logic */
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
             overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -41,11 +38,8 @@
         nav a { 
             color: #fff; text-decoration: none; font-size: 13px; 
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            transition: opacity 0.3s;
         }
-        nav a:hover { opacity: 0.7; border-bottom: 2px solid #fff; padding-bottom: 5px; }
 
-        /* --- SECTION BASE --- */
         section {
             height: 100vh;
             width: 100%;
@@ -56,29 +50,32 @@
             scroll-snap-align: start;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
         }
 
-        /* Dark overlay for readability */
         section::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: 1;
+            background: rgba(0,0,0,0.45); z-index: 1;
         }
 
-        .content {
-            position: relative;
-            z-index: 2;
+        .content { position: relative; z-index: 2; max-width: 800px; }
+
+        h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
+        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; text-transform: uppercase; letter-spacing: -1px; }
+        
+        /* THE SMALL DESCRIPTION STYLE */
+        .description { 
+            font-size: 19px; 
+            margin-bottom: 35px; 
+            font-weight: 300; 
+            opacity: 0.85; 
+            line-height: 1.6; 
             max-width: 600px;
         }
 
-        h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; color: var(--accent); }
-        h1 { font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; }
-        p { font-size: 18px; margin-bottom: 30px; font-weight: 300; opacity: 0.9; line-height: 1.5; }
-
         .btn {
             display: inline-block;
-            padding: 15px 50px;
+            padding: 16px 55px;
             border: 2px solid #fff;
             color: #fff;
             text-decoration: none;
@@ -86,45 +83,31 @@
             text-transform: uppercase;
             font-size: 13px;
             letter-spacing: 1px;
-            transition: background 0.3s, color 0.3s;
+            transition: 0.3s;
         }
         .btn:hover { background: #fff; color: #000; }
 
-        /* --- BACKGROUND IMAGES --- */
         #hero { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072'); }
-        #stats { background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070'); }
-        #engine { background-image: url('https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1932'); }
-        #trust { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070'); }
+        #contracts { background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&q=80&w=2071'); }
+        #engine { background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426'); }
 
-        /* --- CUSTOM SECTION STYLES --- */
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
-        .stat-val { font-size: 60px; font-weight: 900; display: block; line-height: 1; }
-        .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
+        .stats-grid { display: flex; gap: 60px; margin-top: 40px; }
+        .stat-val { font-size: 45px; font-weight: 900; display: block; }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
 
-        .logo-bar {
-            display: flex; gap: 40px; align-items: center; margin-top: 50px; flex-wrap: wrap;
-        }
-        .logo-bar img { height: 25px; filter: brightness(0) invert(1); opacity: 0.7; }
-
-        /* --- FOOTER (In last section) --- */
         .footer-nav {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 20px; font-size: 11px; text-transform: uppercase; z-index: 10;
+            display: flex; gap: 25px; font-size: 11px; text-transform: uppercase; z-index: 10; opacity: 0.5;
         }
-        .footer-nav a { color: #aaa; text-decoration: none; }
-
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo">
-        </div>
+        <div class="logo"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo"></div>
         <nav>
             <ul>
                 <li><a href="#">Products</a></li>
-                <li><a href="#">Success Stories</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Insights</a></li>
                 <li><a href="#">Contact</a></li>
@@ -135,65 +118,40 @@
     <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
-            <h2>OSFI & EU AI ACT COMPLIANT</h2>
-            <h1>Deterministic Decision Automation</h1>
-            <a href="#" class="btn">The Glass Box Engine</a>
+            <h2>Deterministic Decision Automation</h2>
+            <h1>The Operating System <br>for Banking Decisions</h1>
+            <p class="description">Bridging the gap between expert intuition and regulatory compliance with the world's most advanced auditable AI engine.</p>
+            <a href="#" class="btn">Explore The Engine</a>
         </div>
     </section>
 
-    <!-- SECTION 2: STATS -->
-    <section id="stats">
-        <div class="content" style="max-width: 800px;">
+    <!-- SECTION 2: CONTRACTS -->
+    <section id="contracts">
+        <div class="content">
             <h2>Reliability</h2>
-            <h1>Engineering Trust in Finance</h1>
+            <h1>Engineering trust for finance allows better contracts.</h1>
+            <p class="description">Move beyond black-box uncertainty. We provide the mathematical traceability required to deploy complex financial instruments with total confidence.</p>
             <div class="stats-grid">
-                <div>
-                    <span class="stat-val">90%</span>
-                    <span class="stat-label">Faster Decisions</span>
-                </div>
-                <div>
-                    <span class="stat-val">0%</span>
-                    <span class="stat-label">Hallucination Risk</span>
-                </div>
-                <div>
-                    <span class="stat-val">100%</span>
-                    <span class="stat-label">Audit Traceability</span>
-                </div>
+                <div><span class="stat-val">0%</span><span class="stat-label">Hallucination Risk</span></div>
+                <div><span class="stat-val">100%</span><span class="stat-label">Audit Traceability</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THE ENGINE -->
+    <!-- SECTION 3: THE TECHNOLOGY -->
     <section id="engine">
         <div class="content">
-            <h2>Proprietary Technology</h2>
-            <h1>The Cognitive Engine</h1>
-            <p>Digitizing expert judgment through Cognitive Task Analysis (CTA). Transforming implicit reasoning into explicit, deterministic code for regulated environments.</p>
-            <a href="#" class="btn">Learn More</a>
-        </div>
-    </section>
-
-    <!-- SECTION 4: TRUSTED -->
-    <section id="trust">
-        <div class="content" style="max-width: 900px;">
-            <h2>Global Infrastructure</h2>
-            <h1>Trusted by Tier-1 Banks</h1>
-            <div class="logo-bar">
-                <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC"> 
-                <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank">
-                <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins">
-                <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD">
-            </div>
-            <div style="margin-top: 50px;">
-                <a href="#" class="btn">Book a Briefing</a>
-            </div>
+            <h2>Proprietary Logic</h2>
+            <h1>Deterministic Output</h1>
+            <p class="description">Our Glass Box Engine digitizes expert judgment into auditable code, ensuring every decision is mathematically linked back to human expertise.</p>
+            <a href="#" class="btn">View Technical Specs</a>
         </div>
 
         <div class="footer-nav">
             <span>&copy; 2025 Cognitive Group</span>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
         </div>
     </section>
 
