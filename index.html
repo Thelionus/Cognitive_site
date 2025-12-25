@@ -15,7 +15,7 @@
             --accent: #22C55E;
             --white: #ffffff;
             
-            /* Footer Specific Variables (Imported) */
+            /* Footer Specific Variables */
             --bg-dark: #050A14;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
@@ -59,7 +59,6 @@
             display: flex; 
             align-items: center;
             padding: 0 10%;
-            /* This ensures the images snap into place */
             scroll-snap-align: start;
             background-size: cover;
             background-position: center;
@@ -102,24 +101,35 @@
         .btn:hover { background: #fff; color: #000; }
 
         /* --- BACKGROUND IMAGES --- */
-        #hero { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'); }
-        #contracts { background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2071&auto=format&fit=crop'); }
-        #engine { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'); }
+        
+        /* Hero Header: UPDATED to Manhattan Skyline (Dark Corporate) */
+        #hero { 
+            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); 
+        }
+        
+        /* Contracts: Sharp concrete and glass structure */
+        #contracts { 
+            background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2071&auto=format&fit=crop'); 
+        }
+        
+        /* Engine: Futuristic minimalist interior */
+        #engine { 
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'); 
+        }
 
         .stats-grid { display: flex; gap: 60px; margin-top: 50px; }
         .stat-val { font-size: 45px; font-weight: 900; display: block; }
         .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
 
-        /* --- FOOTER STYLES (Merged) --- */
+        /* --- FOOTER STYLES --- */
         footer { 
-            /* This property allows the scroll to snap to the footer naturally */
             scroll-snap-align: start; 
             padding: 5rem 10%; 
             background: var(--bg-dark); 
             border-top: 1px solid var(--border-color); 
             position: relative;
             z-index: 2;
-            min-height: 50vh; /* Ensures it feels substantial */
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -176,7 +186,7 @@
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO -->
+    <!-- SECTION 1: HERO (UPDATED IMAGE) -->
     <section id="hero">
         <div class="content">
             <h2>BUSINESS BANKER</h2>
@@ -208,7 +218,6 @@
             <p class="description">Generative AI functions exclusively as a perception layer interpreting documents and signals while the engine maintains exclusive decision-making authority.</p>
             <a href="#" class="btn">View Technical Specs</a>
         </div>
-        <!-- Removed the old small footer-nav from here -->
     </section>
 
     <!-- NEW FOOTER -->
