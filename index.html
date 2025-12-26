@@ -28,15 +28,17 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body, html {
-            height: 100%;
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* FIXED: Removed scroll-snap logic for smooth scrolling */
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             background-color: var(--bg-body);
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            width: 100%;
         }
 
         /* --- HEADER --- */
@@ -79,13 +81,13 @@
 
         /* --- SECTIONS COMMON --- */
         section {
+            /* Changed to min-height to allow natural scrolling */
             min-height: 100vh; 
             width: 100%;
             position: relative;
             display: flex; 
             align-items: center;
-            padding: 0 10%;
-            scroll-snap-align: start;
+            padding: 120px 10%; /* More breathing room top/bottom */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -226,10 +228,10 @@
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
 
-            section { padding: 0 5%; text-align: left !important; justify-content: flex-start !important; }
+            section { padding: 80px 5%; text-align: left !important; justify-content: flex-start !important; }
             section::after { background: var(--overlay-mobile); }
             
-            .content { padding-top: 80px; }
+            .content { padding-top: 20px; }
             h1 { font-size: 38px; }
             
             .logo-strip { margin-top: 40px; padding-bottom: 40px;}
@@ -259,13 +261,11 @@
 
         <nav id="nav-menu">
             <ul>
-                <!-- Corrected Link: Pointing to product.html (Singular) -->
                 <li><a href="product.html" onclick="closeMenu()">Products</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- Strategy Session Button -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
@@ -279,8 +279,8 @@
             <p class="description">
                 Empowering financial institutions to execute rapid, reliable decisions with regulatory-grade compliance. Reduce processing time by 90% while ensuring strict adherence to risk protocols.
             </p>
-            <!-- CTA links to product.html -->
-            <a href="product.html" class="btn">Discover the Platform</a>
+            <!-- CTA links to product.html with transparent style -->
+            <a href="product.html" class="btn btn-outline">Discover the Platform</a>
 
             <div class="logo-strip">
                 <span class="logo-label">Trusted Infrastructure For Tier-1 Banks</span>
@@ -304,6 +304,7 @@
                 Black-box AI is not an option for regulated banking. Our engine pre-trains decision systems by compiling expert human judgment into deterministic, fully traceable logic.
             </p>
             
+            <!-- Linked to foundry.html -->
             <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
 
             <div class="stats-grid">
@@ -331,7 +332,8 @@
             <p class="description">
                 Unifying Front, Middle, and Back office operations. Intelligent agents analyze complex documents to digitize the entire credit lifecycle without replacing human oversight.
             </p>
-            <a href="workbench.html" class="btn">View Infrastructure Specs</a>
+            <!-- Fixed: Added 'btn-outline' class to make it transparent -->
+            <a href="workbench.html" class="btn btn-outline">View Infrastructure Specs</a>
         </div>
     </section>
 
