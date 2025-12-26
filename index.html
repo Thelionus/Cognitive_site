@@ -48,12 +48,28 @@
         
         .logo img { height: 26px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        
         nav a { 
             color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
+
+        /* Strategy Session Button Style */
+        .btn-header {
+            background-color: #FFFFFF;
+            color: #020617 !important; /* Force dark text */
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            text-transform: none !important; 
+            letter-spacing: 0.5px;
+        }
+        .btn-header:hover {
+            background-color: var(--accent);
+            color: #FFFFFF !important;
+        }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
@@ -119,10 +135,10 @@
 
         /* --- SPECIFIC SECTIONS --- */
         
-        /* HERO: Adjusted background-position to show eyes */
+        /* HERO */
         #hero { 
             background-image: url('https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png'); 
-            background-position: center top; /* Focus on face */
+            background-position: center top; 
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
@@ -161,6 +177,32 @@
         .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
+        /* --- MODAL --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
+        }
+        .close-modal:hover { color: white; }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .form-input {
+            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
+            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
+        }
+        .form-input:focus { border-color: var(--accent); }
+        .modal-btn {
+            width: 100%; padding: 14px; background: var(--accent); color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
+        }
+
         /* --- MOBILE --- */
         @media (max-width: 968px) {
             .hamburger { display: block; }
@@ -168,10 +210,10 @@
                 position: fixed; left: -100%; top: 0; 
                 flex-direction: column; background-color: var(--bg-body); 
                 width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999;
+                transition: 0.3s; z-index: 999; display: flex;
             }
             nav.active { left: 0; }
-            nav ul { flex-direction: column; gap: 30px; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
 
             section { padding: 0 5%; text-align: left !important; justify-content: flex-start !important; }
@@ -188,7 +230,6 @@
             
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
             
-            /* Ensure face is visible on mobile too */
             #hero { background-position: center top; }
         }
     </style>
@@ -197,7 +238,7 @@
 
     <header>
         <div class="logo">
-            <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger">
@@ -208,10 +249,14 @@
 
         <nav>
             <ul>
-                <li><a href="#" onclick="closeMenu()">Solutions</a></li>
-                <li><a href="#" onclick="closeMenu()">Platform</a></li>
-                <li><a href="#" onclick="closeMenu()">Company</a></li>
-                <li><a href="#" onclick="closeMenu()">Contact</a></li>
+                <!-- Corrected Links & Button -->
+                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <!-- Strategy Session Button -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
     </header>
@@ -224,14 +269,15 @@
             <p class="description">
                 Empowering financial institutions to execute rapid, reliable decisions with regulatory-grade compliance. Reduce processing time by 90% while ensuring strict adherence to risk protocols.
             </p>
-            <a href="#" class="btn">Discover the Workflow</a>
+            <a href="workflow.html" class="btn">Discover the Workflow</a>
 
             <div class="logo-strip">
                 <span class="logo-label">Trusted Infrastructure For Tier-1 Banks</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
-                    <div class="client-logo">TD BANK</div>
+                    <div class="client-logo">BNC</div>
+                    <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
                 </div>
             </div>
@@ -247,7 +293,7 @@
                 Black-box AI is not an option for regulated banking. Our engine pre-trains decision systems by compiling expert human judgment into deterministic, fully traceable logic.
             </p>
             
-            <a href="#" class="btn btn-outline">Explore Compliance Logic</a>
+            <a href="foundry.html" class="btn btn-outline">Explore the Foundry</a>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -274,7 +320,7 @@
             <p class="description">
                 Unifying Front, Middle, and Back office operations. Intelligent agents analyze complex documents to digitize the entire credit lifecycle without replacing human oversight.
             </p>
-            <a href="#" class="btn">View Infrastructure Specs</a>
+            <a href="workbench.html" class="btn">View Infrastructure Specs</a>
         </div>
     </section>
 
@@ -289,9 +335,9 @@
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="#" class="footer-link">Regulatory Research</a>
-                <a href="#" class="footer-link">The "Glass Box" Methodology</a>
-                <a href="#" class="footer-link">Regional Case Studies (Africa/EU)</a>
+                <a href="blog.html" class="footer-link">Regulatory Research</a>
+                <a href="foundry.html" class="footer-link">The "Glass Box" Methodology</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
                 <h4 class="footer-h4">Global Headquarters</h4>
@@ -307,6 +353,31 @@
         </div>
     </footer>
 
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="logo-label" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                
+                <label class="form-label">Work Email</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                
+                <label class="form-label">Organization</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
         const hamburger = document.querySelector(".hamburger");
         const nav = document.querySelector("nav");
@@ -319,6 +390,21 @@
         function closeMenu() {
             hamburger.classList.remove("active");
             nav.classList.remove("active");
+        }
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
         }
     </script>
 

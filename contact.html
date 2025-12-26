@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Cognitive Banking</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* DARK EXECUTIVE THEME */
+            --bg-body: #020617;     
+            --text-main: #FFFFFF;   
+            --text-muted: #94A3B8;  
+            --accent: #22C55E;      
+            
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo img { height: 26px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav a { 
+            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 600; transition: 0.3s;
+        }
+        nav a:hover { color: var(--text-main); }
+        
+        /* Active Link */
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+        /* Strategy Session Button */
+        .btn-header {
+            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
+            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        /* --- HERO --- */
+        .hero-small {
+            padding: 180px 10% 80px; text-align: center;
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero-small h1 { 
+            font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px;
+        }
+        
+        .mono-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px;
+        }
+
+        /* --- CONTACT CARDS --- */
+        section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        
+        .contact-card {
+            background: var(--card-bg); border: var(--card-border); padding: 30px;
+            border-radius: 6px; transition: 0.3s;
+        }
+        .contact-card:hover { border-color: var(--accent); background: rgba(34, 197, 94, 0.05); }
+
+        .map-frame {
+            width: 100%; height: 250px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px; filter: grayscale(100%) invert(90%) contrast(1.2); opacity: 0.8; transition: 0.3s;
+        }
+        .contact-card:hover .map-frame { filter: grayscale(0%) invert(0%); opacity: 1; }
+
+        h3 { font-size: 20px; color: white; margin-bottom: 15px; font-weight: 700; }
+        p { color: var(--text-muted); font-size: 15px; margin-bottom: 5px; line-height: 1.6; }
+        
+        .email-link { 
+            color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; 
+            margin-top: 15px; display: inline-block;
+        }
+        .email-link:hover { text-decoration: underline; }
+
+        /* --- TESTIMONIAL --- */
+        .testimonial-section { 
+            background: rgba(255,255,255,0.02); padding: 8rem 10%; text-align: center; 
+        }
+        .quote { 
+            font-size: 28px; font-weight: 300; color: white; max-width: 900px; 
+            margin: 0 auto 40px; font-style: italic; line-height: 1.4;
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            padding: 6rem 10%; background: var(--bg-body); 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+        }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
+        }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .form-input {
+            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
+            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
+        }
+        .form-input:focus { border-color: var(--accent); }
+        .modal-btn {
+            width: 100%; padding: 14px; background: var(--accent); color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
+        }
+
+        /* MOBILE */
+        @media (max-width: 968px) {
+            .hamburger { display: block; }
+            nav {
+                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
+                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
+            }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            
+            .hero-small { padding-top: 120px; }
+            h1 { font-size: 36px; }
+            .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+        </div>
+        
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" class="active-link" onclick="closeMenu()">Contact</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-small">
+        <div class="container">
+            <span class="mono-tag">Global Presence</span>
+            <h1>Connect with our Strategists.</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0; font-size: 18px;">
+                Operating across North America, Europe, and Global Emerging Markets.
+            </p>
+        </div>
+    </div>
+
+    <!-- LOCATIONS -->
+    <section>
+        <div class="container">
+            <div class="grid-2">
+                
+                <!-- Montreal HQ -->
+                <div class="contact-card">
+                    <iframe class="map-frame" 
+                        src="https://maps.google.com/maps?q=1155%20Rene-Levesque%20Blvd%20West%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        frameborder="0" scrolling="no">
+                    </iframe>
+                    <h3>Montréal (HQ)</h3>
+                    <p>1155 René-Lévesque Blvd West #2500</p>
+                    <p>Montréal, QC H3B 2K4, Canada</p>
+                    <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                </div>
+
+                <!-- Montreal Innovation Lab -->
+                <div class="contact-card">
+                    <iframe class="map-frame" 
+                        src="https://maps.google.com/maps?q=87%20Rue%20Prince%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        frameborder="0" scrolling="no">
+                    </iframe>
+                    <h3>Montréal (Innovation Lab)</h3>
+                    <p>87 Rue Prince, 4th floor</p>
+                    <p>Montréal, QC H3C 2M7, Canada</p>
+                    <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                </div>
+
+                <!-- San Francisco -->
+                <div class="contact-card">
+                    <iframe class="map-frame" 
+                        src="https://maps.google.com/maps?q=1390%20Market%20St%20San%20Francisco&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        frameborder="0" scrolling="no">
+                    </iframe>
+                    <h3>San Francisco</h3>
+                    <p>1390 Market St, Suite 200</p>
+                    <p>San Francisco, CA 94102, USA</p>
+                    <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                </div>
+
+                <!-- Dallas -->
+                <div class="contact-card">
+                    <iframe class="map-frame" 
+                        src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        frameborder="0" scrolling="no">
+                    </iframe>
+                    <h3>Dallas Area</h3>
+                    <p>109 Main Street</p>
+                    <p>Lewisville, Texas 75057, USA</p>
+                    <p style="color: white; font-weight: 600; margin-top: 10px;">+1 (214) 298-8019</p>
+                    <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <div class="testimonial-section">
+        <div class="container">
+            <span class="mono-tag">The Institutional Verdict</span>
+            <p class="quote">
+                “Cognitive takes us to a new depth in the way they are able to reference the design and develop the strategy. They are the only ones I’m aware of that can do this.”
+            </p>
+            <div>
+                <strong style="color: white; font-size: 18px; display:block; margin-bottom: 5px;">Martin Stevens</strong>
+                <span style="color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px;">ROYAL BANK OF CANADA (RBC)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Our Heritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking and global regulated industries.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Institutional Links</h4>
+                <a href="workflow.html" class="footer-link">The Cognitive Suite</a>
+                <a href="success.html" class="footer-link">Success Stories</a>
+                <a href="about.html" class="footer-link">Our History</a>
+                <a href="blog.html" class="footer-link">Knowledge Base</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                
+                <label class="form-label">Work Email</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                
+                <label class="form-label">Organization</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>
