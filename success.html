@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Monospace for tags -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -139,7 +138,7 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL STYLES --- */
+        /* --- MODAL --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
@@ -153,20 +152,16 @@
         .close-modal {
             position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
         }
-        .close-modal:hover { color: white; }
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; uppercase; letter-spacing: 1px; }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; font-family: 'Manrope', sans-serif;
+            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
         .form-input:focus { border-color: var(--accent); }
         .modal-btn {
             width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;
-            margin-top: 10px; transition: 0.3s;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
         }
-        .modal-btn:hover { background: #fff; }
 
         /* MOBILE */
         @media (max-width: 968px) {
@@ -202,7 +197,6 @@
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- Header Button triggers Modal -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
@@ -214,6 +208,14 @@
             <span class="mono-tag">Global Impact</span>
             <h1>Mission Critical Deployments</h1>
             <p class="hero-lead">From Tier-1 Financial Institutions to high-growth Emerging Markets.</p>
+            
+            <!-- NEW CLIENT LINK -->
+            <div style="margin-top: 2rem;">
+                <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
+                    View our global client list 
+                </a>
+            </div>
+            
         </div>
     </div>
 
@@ -348,20 +350,21 @@
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking and global regulated industries.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="#" class="footer-link">Regulatory Research</a>
-                <a href="#" class="footer-link">The Cognitive Suite</a>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
-                <p style="color: var(--text-muted);">
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br>
-                    <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
@@ -370,28 +373,25 @@
         </div>
     </footer>
 
-    <!-- GLOBAL BOOKING MODAL -->
+    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag">Strategy Session</span>
-                <h3 style="margin-top: 0.5rem; color: white; font-size: 24px;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Work Email</label>
-                    <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Organization</label>
-                    <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                </div>
+                <label class="form-label">Full Name</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                
+                <label class="form-label">Work Email</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                
+                <label class="form-label">Organization</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                
                 <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
             </form>
         </div>
@@ -406,11 +406,6 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
