@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -21,6 +22,8 @@
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
             --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -116,8 +119,11 @@
         .btn-outline {
             background: transparent; color: var(--text-main);
             border: 1px solid rgba(255,255,255,0.3);
+            display: inline-block; padding: 18px 45px;
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            border-radius: 4px; transition: all 0.3s ease;
         }
-        .btn:hover { 
+        .btn:hover, .btn-outline:hover { 
             transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent);
         }
 
@@ -163,7 +169,7 @@
         
         .stat-item { text-align: inherit; }
         .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
-        .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; }
+        .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
 
         /* --- FOOTER --- */
         footer { 
@@ -201,6 +207,10 @@
         .modal-btn {
             width: 100%; padding: 14px; background: var(--accent); color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
+        }
+        .mono-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 2px;
         }
 
         /* --- MOBILE --- */
@@ -241,16 +251,16 @@
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
-        <div class="hamburger">
+        <div class="hamburger" id="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
 
-        <nav>
+        <nav id="nav-menu">
             <ul>
-                <!-- Corrected Links & Button -->
-                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
+                <!-- Corrected Link: Pointing to product.html (Singular) -->
+                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
@@ -269,7 +279,8 @@
             <p class="description">
                 Empowering financial institutions to execute rapid, reliable decisions with regulatory-grade compliance. Reduce processing time by 90% while ensuring strict adherence to risk protocols.
             </p>
-            <a href="workflow.html" class="btn">Discover the Workflow</a>
+            <!-- CTA links to product.html -->
+            <a href="product.html" class="btn">Discover the Platform</a>
 
             <div class="logo-strip">
                 <span class="logo-label">Trusted Infrastructure For Tier-1 Banks</span>
@@ -293,7 +304,7 @@
                 Black-box AI is not an option for regulated banking. Our engine pre-trains decision systems by compiling expert human judgment into deterministic, fully traceable logic.
             </p>
             
-            <a href="foundry.html" class="btn btn-outline">Explore the Foundry</a>
+            <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -336,7 +347,7 @@
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
                 <a href="blog.html" class="footer-link">Regulatory Research</a>
-                <a href="foundry.html" class="footer-link">The "Glass Box" Methodology</a>
+                <a href="product.html" class="footer-link">The Cognitive Suite</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
@@ -358,7 +369,7 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="logo-label" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
                 <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
@@ -379,18 +390,13 @@
 
     <!-- SCRIPTS -->
     <script>
-        const hamburger = document.querySelector(".hamburger");
-        const nav = document.querySelector("nav");
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            nav.classList.toggle("active");
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
-
-        function closeMenu() {
-            hamburger.classList.remove("active");
-            nav.classList.remove("active");
-        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
@@ -402,6 +408,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
+            // Redirect to Cal.com
             const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
             window.open(url, '_blank');
             closeModal();
