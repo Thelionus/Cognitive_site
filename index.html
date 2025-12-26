@@ -3,53 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Banking | Engineering Trust</title>
+    <title>Cognitive Banking | Premium Decision Engines</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Original Variables */
-            --accent: #22C55E;
-            --white: #ffffff;
+            /* DARK THEME VARIABLES */
+            --bg-body: #020617;     /* Deepest Slate/Black */
+            --text-main: #FFFFFF;   /* Pure White */
+            --text-muted: #94A3B8;  /* Muted Grey for description */
+            --accent: #22C55E;      /* Vibrant Green (remains for trust/success) */
             
-            /* Footer Specific Variables */
-            --bg-dark: #050A14;
-            --text-muted: #94A3B8;
-            --border-color: #1E293B;
+            /* Dark Overlays to ensure White text pops */
+            /* Standard overlay for left-aligned text */
+            --overlay-dark: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.2) 100%);
+            
+            /* Reverse gradient for Right-Aligned sections */
+            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.3) 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
             height: 100%;
-            font-family: 'Inter', sans-serif;
-            color: var(--white);
-            background-color: #000;
-            /* Scroll Snap Settings */
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- HEADER (Nav Bar) --- */
+        /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 50px; z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .logo img { height: 22px; width: auto; }
-        nav ul { display: flex; gap: 30px; list-style: none; }
+        
+        /* Updated Logo Styles for Image */
+        .logo { 
+            display: flex; align-items: center; 
+        }
+        .logo img { 
+            height: 28px; /* Adjusted height for optimal visibility */
+            width: auto; 
+            display: block;
+        }
+
+        nav ul { display: flex; gap: 40px; list-style: none; }
         nav a { 
-            color: #fff; text-decoration: none; font-size: 13px; 
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s;
+            color: var(--text-muted); text-decoration: none; font-size: 14px; 
+            font-weight: 600; transition: 0.3s;
         }
-        nav a:hover { opacity: 0.7; }
+        nav a:hover { color: var(--text-main); }
 
         /* --- SECTIONS --- */
         section {
@@ -65,108 +79,111 @@
             background-repeat: no-repeat;
         }
 
-        /* Darkening overlay for readability */
-        section::after {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.55); z-index: 1;
+        .content { position: relative; z-index: 2; max-width: 650px; }
+
+        /* Typography */
+        h2 { 
+            font-size: 13px; text-transform: uppercase; letter-spacing: 2px; 
+            margin-bottom: 20px; color: var(--accent); font-weight: 700; 
+            background: rgba(34, 197, 94, 0.1); display: inline-block;
+            padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);
         }
-
-        .content { position: relative; z-index: 2; max-width: 850px; }
-
-        h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
-        h1 { font-size: 58px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; text-transform: uppercase; letter-spacing: -1px; }
+        
+        h1 { 
+            font-size: 52px; font-weight: 800; line-height: 1.15; 
+            margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
         
         .description { 
-            font-size: 19px; 
-            margin-bottom: 40px; 
-            font-weight: 300; 
-            opacity: 0.85; 
-            line-height: 1.6; 
-            max-width: 650px;
+            font-size: 18px; 
+            margin-bottom: 35px; 
+            font-weight: 400; 
+            color: var(--text-muted);
+            line-height: 1.7; 
         }
 
+        /* Buttons */
         .btn {
             display: inline-block;
-            padding: 16px 55px;
-            border: 2px solid #fff;
-            color: #fff;
+            padding: 18px 45px;
+            background: var(--text-main);
+            color: var(--bg-body);
             text-decoration: none;
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            transition: 0.3s;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
-        .btn:hover { background: #fff; color: #000; }
-
-        /* --- BACKGROUND IMAGES --- */
         
-        /* Hero Header: UPDATED to Manhattan Skyline (Dark Corporate) */
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* --- SECTION IMAGES --- */
+        
+        /* HERO: Manhattan/Skyline Image */
         #hero { 
-            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); 
+            background-image: url('https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png'); 
         }
-        
-        /* Contracts: Sharp concrete and glass structure */
-        #contracts { 
-            background-image: url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2071&auto=format&fit=crop'); 
-        }
-        
-        /* Engine: Futuristic minimalist interior */
-        #engine { 
-            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'); 
-        }
+        #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        .stats-grid { display: flex; gap: 60px; margin-top: 50px; }
-        .stat-val { font-size: 45px; font-weight: 900; display: block; }
-        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
+        /* FOUNDRY: Right Aligned Structure */
+        #foundry { 
+            background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
+            justify-content: flex-end; 
+            text-align: right;
+        }
+        #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
+        #foundry .content { margin-left: auto; }
 
-        /* --- FOOTER STYLES --- */
+        /* WORKBENCH: Futuristic Tech */
+        #workbench { 
+            background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); 
+        }
+        #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+
+
+        /* Stats Grid */
+        .stats-grid { 
+            display: flex; gap: 40px; margin-top: 40px; 
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; 
+        }
+        #foundry .stats-grid { justify-content: flex-end; }
+        
+        .stat-val { font-size: 32px; font-weight: 800; display: block; color: var(--text-main); }
+        .stat-label { font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; }
+
+        /* --- FOOTER --- */
         footer { 
             scroll-snap-align: start; 
-            padding: 5rem 10%; 
-            background: var(--bg-dark); 
-            border-top: 1px solid var(--border-color); 
-            position: relative;
-            z-index: 2;
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 6rem 10%; 
+            background: var(--bg-body); 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            position: relative; z-index: 2;
         }
-
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;}
-        
-        .footer-link { 
-            color: var(--text-muted); 
-            text-decoration: none; 
-            display: block; 
-            margin-bottom: 0.8rem; 
-            font-size: 0.9rem; 
-            transition: color 0.3s; 
-        }
+        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px;}
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .footer-link:hover { color: var(--accent); }
-        
-        .footer-p {
-            font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);
-        }
-
-        .copyright {
-            text-align: center; 
-            border-top: 1px solid var(--border-color); 
-            padding-top: 2rem; 
-            margin-top: 4rem; 
-            color: var(--text-muted); 
-            font-size: 0.8rem;
-        }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
         @media (max-width: 968px) {
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            section { padding: 0 5%; }
-            h1 { font-size: 40px; }
-            .stats-grid { gap: 30px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            section { padding: 0 5%; justify-content: flex-start !important; text-align: left !important; }
+            section::after { background: rgba(2, 6, 23, 0.9); } 
+            h1 { font-size: 36px; }
+            .stats-grid { justify-content: flex-start !important; flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -174,74 +191,83 @@
 
     <header>
         <div class="logo">
-            <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo">
+            <!-- LOGO RESTORED HERE -->
+            <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Insights</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Platform</a></li>
+                <li><a href="#">Company</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO (UPDATED IMAGE) -->
+    <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
-            <h2>BUSINESS BANKER</h2>
-            <h1>The Operating System <br>for Banking Decisions</h1>
-            <p class="description">A fully digital decision workflow reducing processing time by 80%+ while delivering regulatory grade transparency through an auditable AI engine.</p>
-            <a href="#" class="btn">Explore The Engine</a>
+            <h2>Business Banker</h2>
+            <h1>Secure Credit <br>Decision Workflow</h1>
+            <p class="description">
+                Empowering financial institutions to execute rapid, reliable decisions with regulatory-grade compliance. Reduce processing time while ensuring strict adherence to risk protocols.
+            </p>
+            <a href="#" class="btn">Discover the Workflow</a>
         </div>
     </section>
 
-    <!-- SECTION 2: CONTRACTS FOCUS -->
-    <section id="contracts">
+    <!-- SECTION 2: FOUNDRY -->
+    <section id="foundry">
         <div class="content">
-            <h2>Proprietary Logic</h2>
+            <h2>Regulatory Compliance & Risk</h2>
             <h1>Cognitive Foundry</h1>
-            <p class="description">Expert judgment is digitized through advanced protocols, transforming implicit reasoning into explicit decision structures.</p>
+            <p class="description">
+                Built on decades of research in credit risk. Our deterministic logic ensures adherence to Basel III/IV and adapts to specific regional frameworks (West & Central Africa).
+            </p>
+            
+            <a href="#" class="btn btn-outline">Explore Compliance Logic</a>
+
             <div class="stats-grid">
-                <div><span class="stat-val">0%</span><span class="stat-label">Hallucination Risk</span></div>
                 <div><span class="stat-val">100%</span><span class="stat-label">Audit Traceability</span></div>
-                <div><span class="stat-val">90%</span><span class="stat-label">Faster Execution</span></div>
+                <div><span class="stat-val">Basel IV</span><span class="stat-label">Ready</span></div>
+                <div><span class="stat-val">Risk-Free</span><span class="stat-label">Deterministic Logic</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THE ENGINE -->
-    <section id="engine">
+    <!-- SECTION 3: WORKBENCH -->
+    <section id="workbench">
         <div class="content">
-            <h2>Orchestration Layer</h2>
+            <h2>Orchestration Infrastructure</h2>
             <h1>AI Workbench</h1>
-            <p class="description">Generative AI functions exclusively as a perception layer interpreting documents and signals while the engine maintains exclusive decision-making authority.</p>
-            <a href="#" class="btn">View Technical Specs</a>
+            <p class="description">
+                Unifying Front, Middle, and Back office operations. Intelligent agents analyze complex documents to digitize the entire credit lifecycle without replacing human oversight.
+            </p>
+            <a href="#" class="btn">View Infrastructure Specs</a>
         </div>
     </section>
 
-    <!-- NEW FOOTER -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">About Us</h4>
-                <p class="footer-p">
-                    Cognitive was founded in 1995 by CRIM. We specialize in deterministic AI for mission-critical banking and regulated industries.
+                <h4 class="footer-h4">Our Heritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="#" class="footer-link">Research & Knowledge Base</a>
+                <a href="#" class="footer-link">Regulatory Research</a>
                 <a href="#" class="footer-link">The Cognitive Suite</a>
-                <a href="#" class="footer-link">Case Study Archive</a>
+                <a href="#" class="footer-link">Regional Case Studies (Africa/EU)</a>
             </div>
             <div>
                 <h4 class="footer-h4">Global Headquarters</h4>
-                <p class="footer-p">
-                    1155 René-Lévesque Blvd West #2500<br>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    1155 René-Lévesque Blvd West<br>
                     Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--accent); font-weight: 600;">+1 (415) 493-8559</span>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
