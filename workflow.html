@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Engine | Commercial Loan Origination</title>
+    <title>Cognitive Engine | Core-Integrated CLOS</title>
     
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* --- CSS RESET & THEME --- */
         :root {
-            /* DARK EXECUTIVE THEME - Matches Home Page */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.8) 45%, rgba(2,6,23,0.2) 100%);
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -29,11 +31,13 @@
             color: var(--text-main);
             background-color: var(--bg-body);
             scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* --- FIXED HEADER (Identical to Index) --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -41,22 +45,20 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
-        
-        /* Active Link Style */
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
+        /* Button Style */
         .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
+            background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
             cursor: pointer;
         }
@@ -65,136 +67,87 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- MODAL STYLES --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .close-modal:hover { color: white; }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
-
-        /* --- PRODUCT HERO --- */
+        /* --- HERO --- */
         .product-hero {
-            padding: 180px 10% 80px 10%;
-            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1), transparent 40%);
+            padding: 200px 10% 100px;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05), transparent 40%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-align: left;
         }
         
-        .label {
-            font-size: 12px; text-transform: uppercase; letter-spacing: 2px; 
-            color: var(--accent); font-weight: 700; margin-bottom: 20px; display: block;
+        .mono-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px;
         }
 
-        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1.5px; color: white; }
         
         .hero-lead { 
             font-size: 20px; line-height: 1.6; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; 
         }
 
         /* --- SECTIONS --- */
-        section { padding: 80px 10%; border-top: 1px solid rgba(255,255,255,0.05); }
+        section { padding: 100px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        h2 { font-size: 32px; margin-bottom: 40px; font-weight: 700; letter-spacing: -0.5px; }
+        h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; color: white; letter-spacing: -1px; }
+        
+        .section-desc { font-size: 16px; color: var(--text-muted); max-width: 600px; margin-bottom: 50px; line-height: 1.7; }
 
-        /* --- WORKFLOW CARDS --- */
-        .process-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px;
+        /* --- INTEGRATION GRID --- */
+        .integration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        
+        .tech-list { list-style: none; margin-top: 30px; }
+        .tech-list li { 
+            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); 
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .tech-title { font-weight: 700; color: white; font-size: 18px; }
+        .tech-sub { color: #94A3B8; font-size: 14px; }
+
+        .core-badge { 
+            background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 4px; 
+            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: white; border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .process-card {
-            background: var(--card-bg); border: var(--card-border); padding: 40px 30px;
-            position: relative; transition: 0.3s;
+        /* --- FEATURE CARDS --- */
+        .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card {
+            background: var(--card-bg); border: var(--card-border); padding: 30px; border-radius: 4px;
         }
-        .process-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        
-        .step-num { font-size: 40px; font-weight: 800; color: rgba(255,255,255,0.1); position: absolute; top: 20px; right: 20px; }
-        
-        .process-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: white; }
-        .process-desc { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
-
-        /* --- CAPABILITIES GRID --- */
-        .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        
-        .feature-item { padding-left: 20px; border-left: 2px solid var(--accent); }
-        .feature-title { font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px; }
-        .feature-desc { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
-
-        /* --- INFRASTRUCTURE (Technical) --- */
-        .tech-section { background: rgba(0,0,0,0.3); }
-        
-        /* Diagram Image */
-        .arch-diagram {
-            width: 100%; max-width: 1000px; height: auto;
-            border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
-            margin: 0 0 50px 0; display: block;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        
-        .tech-card { 
-            background: #0F172A; padding: 25px; border-radius: 4px; 
-            border: 1px solid rgba(255,255,255,0.05); 
-        }
-        .tech-head { color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-        .tech-body { color: white; font-size: 14px; }
-
-        /* --- INTEGRATIONS --- */
-        .integration-logos {
-            display: flex; gap: 50px; opacity: 0.6; margin-top: 20px; align-items: center;
-        }
-        .logo-text { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.5px; }
+        .feature-icon { color: var(--accent); font-size: 24px; margin-bottom: 20px; display: block; }
+        .f-title { font-weight: 700; color: white; font-size: 18px; margin-bottom: 10px; }
+        .f-desc { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
         /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* MOBILE MENU & RESPONSIVENESS */
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; }
+        .form-input:focus { border-color: var(--accent); }
+
+        /* MOBILE */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; 
-                flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            nav a { font-size: 20px; }
-
-            .product-hero { padding-top: 120px; }
-            h1 { font-size: 36px; }
-            .process-grid, .grid-2x2, .tech-grid { grid-template-columns: 1fr; }
-            .integration-logos { flex-wrap: wrap; gap: 30px; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .product-hero { padding-top: 150px; }
+            h1 { font-size: 38px; }
+            .integration-grid { grid-template-columns: 1fr; gap: 40px; }
+            .cards-3 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -206,11 +159,12 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" class="active-link" onclick="closeMenu()">Product</a></li>
+                <li><a href="product.html" class="active-link" onclick="closeMenu()">Products</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <li class="lang-item"><a href="fr/workflow.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
@@ -218,121 +172,99 @@
 
     <!-- PRODUCT HERO -->
     <div class="product-hero">
-        <span class="label">Cognitive Engine CLOS</span>
-        <h1>Faster Decisions. Lower Cost. <br>Stronger Governance.</h1>
+        <span class="mono-tag">Cognitive Engine CLOS</span>
+        <h1>Legacy Core Overlay.</h1>
         <p class="hero-lead">
-            A next-generation Commercial Loan Origination System (CLOS) designed to accelerate lending, reduce operational friction, and embed expert credit judgment directly into automated workflows.
+            Don't rip and replace. Augment. <br>
+            A bi-directional decision layer that sits on top of your existing FIS, Temenos, or Oracle backbone to modernize commercial lending without the "big bang" risk.
         </p>
-        <div class="grid-2x2">
-            <div>
-                <h3 style="color:white; margin-bottom:10px;">Speed to Market</h3>
-                <p style="color:var(--text-muted);">Implementation in <span style="color:var(--accent); font-weight:700;">6–8 weeks</span> (vs. 6–12 months legacy) using iterative configuration.</p>
-            </div>
-            <div>
-                <h3 style="color:white; margin-bottom:10px;">Regulatory Alignment</h3>
-                <p style="color:var(--text-muted);">Risk models aligned with <span style="color:var(--accent); font-weight:700;">Basel III/IV</span> standards, supporting PD, LGD, EAD, and RWA calculations.</p>
-            </div>
-        </div>
     </div>
 
-    <!-- THE PROCESS WORKFLOW -->
+    <!-- SECTION 1: THE INTEGRATION -->
     <section>
-        <span class="label">Standard Decision Model</span>
-        <h2>The Origination Workflow</h2>
-        <div class="process-grid">
-            <!-- Step 1 -->
-            <div class="process-card">
-                <span class="step-num">01</span>
-                <h3 class="process-title">Origination</h3>
-                <p class="process-desc">
-                    Account managers initiate onboarding, structure facilities, and draft term sheets. Client prospects are profiled with full entity mapping and dynamic profile capture.
+        <div class="integration-grid">
+            <div>
+                <span class="mono-tag">The Architecture</span>
+                <h2>Legacy Compatibility</h2>
+                <p class="section-desc">
+                    Your core ledger is the system of record. We are the system of intelligence. Data flows seamlessly between Cognitive Engine and your legacy stack.
                 </p>
+                <div style="display:flex; gap:10px; margin-bottom:30px; flex-wrap:wrap;">
+                    <span class="core-badge">FIS / Systematics</span>
+                    <span class="core-badge">Temenos T24</span>
+                    <span class="core-badge">Oracle Flexcube</span>
+                    <span class="core-badge">SAP Banking</span>
+                </div>
             </div>
-            <!-- Step 2 -->
-            <div class="process-card">
-                <span class="step-num">02</span>
-                <h3 class="process-title">Adjudication</h3>
-                <p class="process-desc">
-                    Credit analysts perform financial spreading and risk assessment. AI assists with anomaly detection and pre-computed risk ratios for faster decisioning.
-                </p>
-            </div>
-            <!-- Step 3 -->
-            <div class="process-card">
-                <span class="step-num">03</span>
-                <h3 class="process-title">Operations</h3>
-                <p class="process-desc">
-                    Legal and operations teams finalize documentation, ensure regulatory compliance, and manage disbursement and post-funding obligations.
-                </p>
+            <div>
+                <ul class="tech-list">
+                    <li>
+                        <div>
+                            <div class="tech-title">Bi-Directional Sync</div>
+                            <div class="tech-sub">Read/Write capability via API wrappers</div>
+                        </div>
+                        <div style="color:var(--accent);">✓</div>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="tech-title">No Double Entry</div>
+                            <div class="tech-sub">Data entered in Workbench pushes to Core</div>
+                        </div>
+                        <div style="color:var(--accent);">✓</div>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="tech-title">State Management</div>
+                            <div class="tech-sub">Loan status updates reflect instantly in ledger</div>
+                        </div>
+                        <div style="color:var(--accent);">✓</div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- CORE CAPABILITIES -->
-    <section>
-        <h2>Core Capabilities & Business Impact</h2>
-        <div class="grid-2x2">
-            <div class="feature-item">
-                <div class="feature-title">Extreme Configurability</div>
-                <div class="feature-desc">Fully no-code configuration of products, workflows, and risk models. Credit policies can be adapted in real time without development cycles.</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-title">Integrated AI Automation</div>
-                <div class="feature-desc">Native automation for document analysis (PDFs/Financials) and spreading. Cognitive engines replicate expert reasoning with full traceability.</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-title">Dynamic Profiles</div>
-                <div class="feature-desc">Capture multiple legal entities, trade names, and ownership structures in a single view—essential for complex corporate clients.</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-title">Scalable Architecture</div>
-                <div class="feature-desc">A single-instance platform scaling seamlessly from micro-loans to large syndicated facilities.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TECH SPECS WITH IMAGE -->
-    <section class="tech-section">
-        <span class="label">Infrastructure</span>
-        <h2>Secure Cloud Architecture</h2>
-        <p style="color:var(--text-muted); margin-bottom: 40px; max-width:600px;">
-            Cognitive Engine is built on a robust, auto-scaling AWS infrastructure designed for high availability and bank-grade security.
+    <!-- SECTION 2: AI AUTOMATION -->
+    <section style="background: rgba(255,255,255,0.02);">
+        <span class="mono-tag">Automated Operations</span>
+        <h2>Integrated AI Automation</h2>
+        <p class="section-desc">
+            We don't just route workflow tasks; we perform them. Intelligent agents handle the heavy lifting of credit analysis.
         </p>
-        
-        <!-- DIAGRAM IMAGE -->
-        <img src="https://i.postimg.cc/3NPpgK6V/Chat-GPT-Image-Dec-26-2025-03-38-06-PM.png" alt="Secure Cloud Architecture Diagram" class="arch-diagram">
-
-        <div class="tech-grid">
-            <div class="tech-card">
-                <div class="tech-head">VPC Isolation</div>
-                <div class="tech-body">Private subnets for data persistence and secure isolation.</div>
+        <div class="cards-3">
+            <div class="feature-card">
+                <span class="feature-icon">❖</span>
+                <div class="f-title">Auto-Spreading</div>
+                <p class="f-desc">Ingests PDF financial statements and tax returns, mapping them directly to your credit template. No manual data entry.</p>
             </div>
-            <div class="tech-card">
-                <div class="tech-head">Auto-Scaling</div>
-                <div class="tech-body">ECS Clusters that adapt automatically to load spikes.</div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <div class="f-title">Covenant Monitoring</div>
+                <p class="f-desc">Automatically checks quarterly reporting against credit agreement logic. Flags breaches instantly.</p>
             </div>
-            <div class="tech-card">
-                <div class="tech-head">Resilience</div>
-                <div class="tech-body">Multi-AZ RDS deployment for zero-downtime redundancy.</div>
-            </div>
-            <div class="tech-card">
-                <div class="tech-head">Defense</div>
-                <div class="tech-body">WAF Rules and Route 53 protection against threats.</div>
+            <div class="feature-card">
+                <span class="feature-icon">🛡</span>
+                <div class="f-title">Entity Mapping</div>
+                <p class="f-desc">Dynamically maps complex ownership structures and cross-collateralization across multiple legal entities.</p>
             </div>
         </div>
     </section>
 
-    <!-- INTEGRATIONS -->
+    <!-- SECTION 3: DEPLOYMENT -->
     <section>
-        <span class="label">Open Ecosystem</span>
-        <h2>Seamless Integrations</h2>
-        <p style="color:var(--text-muted); margin-bottom: 30px;">
-            API-driven and open by design. Bi-directional synchronization with major bureaus and core banking platforms.
+        <span class="mono-tag">Implementation Strategy</span>
+        <h2>Zero-Disruption Deployment</h2>
+        <p class="section-desc">
+            We reject the "Big Bang" implementation model. We deploy iteratively, product by product, ensuring your operations never go dark.
         </p>
-        <div class="integration-logos">
-            <div class="logo-text">FISERV</div>
-            <div class="logo-text">ORACLE</div>
-            <div class="logo-text">TEMENOS</div>
-            <div class="logo-text">EQUIFAX</div>
+        <div class="integration-grid">
+            <img src="https://i.postimg.cc/3NPpgK6V/Chat-GPT-Image-Dec-26-2025-03-38-06-PM.png" style="width:100%; border:1px solid rgba(255,255,255,0.1); border-radius:4px;" alt="Secure Architecture">
+            <div>
+                <h3 style="color:white; font-size:18px; margin-bottom:15px;">Secure Cloud Infrastructure</h3>
+                <p class="f-desc" style="margin-bottom:20px;">
+                    Built on AWS Private Link. We establish a secure tunnel to your on-premise data center. Data is encrypted in transit and at rest.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -342,19 +274,20 @@
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="#" class="footer-link">Regulatory Research</a>
-                <a href="#" class="footer-link">The Cognitive Suite</a>
+                <h4 class="footer-h4">Platform Components</h4>
+                <a href="workbench.html" class="footer-link">The Inputs (Workbench)</a>
+                <a href="foundry.html" class="footer-link">The Brain (Foundry)</a>
+                <a href="workflow.html" class="footer-link">The Execution (Engine)</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br>
+                    1155 René-Lévesque Blvd West<br>
+                    Montréal, QC<br>
                     <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
                 </p>
             </div>
@@ -367,28 +300,20 @@
     <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="label" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px;">Book a Briefing</h3>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
+                <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
+                <input type="text" id="g-org" class="form-input" required placeholder="Organization">
+                <button type="submit" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continue to Calendar &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -413,8 +338,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
-            window.open(url, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
             closeModal();
         }
     </script>

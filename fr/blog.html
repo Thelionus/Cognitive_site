@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights & White Papers | Cognitive Banking</title>
+    <title>Insights | Cognitive Banking</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,14 +36,18 @@
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
         
         .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 11px;
-            color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
-            display: block; margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 10px;
         }
 
-        /* --- FIXED HEADER (90px STANDARD) --- */
+        /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 90px;
+            position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -51,20 +55,19 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 30px; width: auto; display: block; }
+        .logo img { height: 26px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        
+        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
+        /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
+            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
             cursor: pointer;
         }
@@ -157,7 +160,6 @@
         }
 
         @media (max-width: 968px) {
-            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
@@ -165,9 +167,8 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            nav a { font-size: 20px; }
             
-            .hero-small { padding-top: 150px; }
+            .hero-small { padding-top: 120px; }
             h1 { font-size: 36px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
@@ -175,7 +176,6 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -187,12 +187,11 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
+                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/blog.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
@@ -201,10 +200,10 @@
     <!-- HERO: List View -->
     <div id="hero-list" class="hero-small">
         <div class="container">
-            <span class="mono-tag">Executive Briefings</span>
-            <h1>Strategic Intelligence</h1>
+            <span class="mono-tag">Knowledge Base</span>
+            <h1>Latest Insights & Research.</h1>
             <p style="color: var(--text-muted); margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 18px;">
-                Actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety.
+                Deep dives into cognitive engineering, deterministic AI safety, and industrial case studies.
             </p>
         </div>
     </div>
@@ -212,7 +211,7 @@
     <!-- HERO: Detail View -->
     <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
         <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <a href="blog.html" class="back-link">&larr; BACK TO BRIEFINGS</a>
+            <a href="blog.html" class="back-link">&larr; BACK TO INSIGHTS</a>
             <span class="mono-tag" id="detail-category" style="color: var(--accent);">Category</span>
             <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Article Title</h1>
             <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
@@ -242,7 +241,7 @@
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
+                <a href="workflow.html" class="footer-link">The Cognitive Suite</a>
                 <a href="about.html" class="footer-link">Our History</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
@@ -281,7 +280,6 @@
         </div>
     </div>
 
-    <!-- DATA SCRIPT -->
     <script src="blog_data.js"></script>
     <script>
         const hamburger = document.getElementById('hamburger');
@@ -299,7 +297,8 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
             closeModal();
         }
 
@@ -310,7 +309,7 @@
         const detailHeroEl = document.getElementById('hero-detail');
 
         if (typeof blogPosts === 'undefined') {
-            gridEl.innerHTML = "<h3 style='color:white;'>Loading Intelligence...</h3>";
+            gridEl.innerHTML = "<h3 style='color:white;'>Error: blog_data.js not found.</h3>";
         } else {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
@@ -334,7 +333,7 @@
                             <span class="mono-tag">${post.category}</span>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
-                            <a href="blog.html?id=${post.id}" class="read-btn">Read White Paper &rarr;</a>
+                            <a href="blog.html?id=${post.id}" class="read-btn">Read Article &rarr;</a>
                         </div>`;
                     gridEl.innerHTML += cardHTML;
                 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cognitive Suite | Unified Banking Intelligence</title>
+    <title>The Cognitive Platform | Closed-Loop Architecture</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,11 +30,13 @@
             color: var(--text-main);
             background-color: var(--bg-body);
             scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* --- FIXED HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -42,11 +44,11 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
@@ -54,7 +56,7 @@
 
         /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
+            background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
             cursor: pointer;
         }
@@ -65,14 +67,14 @@
 
         /* --- HERO --- */
         .page-hero {
-            padding: 180px 10% 80px; text-align: center;
-            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 60%);
+            padding: 200px 10% 120px; text-align: center;
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.08), transparent 60%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .page-hero h1 { 
-            font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; line-height: 1.1;
+            font-size: 64px; font-weight: 800; letter-spacing: -2px; margin-bottom: 25px; line-height: 1.1;
         }
-        .hero-lead { font-size: 20px; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .hero-lead { font-size: 20px; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.6; }
         
         .mono-tag {
             font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
@@ -80,81 +82,64 @@
         }
 
         /* --- SECTIONS --- */
-        section { padding: 80px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        section { padding: 100px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         
-        .section-tag { color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 15px; }
+        /* Alternating backgrounds for flow */
+        section:nth-child(odd) { background: rgba(255,255,255,0.02); }
         
-        h2 { font-size: 42px; margin-bottom: 20px; font-weight: 700; color: white; letter-spacing: -1px; }
-        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 16px; }
+        .section-tag { 
+            color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; 
+            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; 
+        }
+        
+        h2 { font-size: 42px; margin-bottom: 10px; font-weight: 700; color: white; letter-spacing: -1px; }
+        h3 { font-size: 18px; color: #94A3B8; margin-bottom: 25px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+        
+        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; font-size: 16px; max-width: 500px; }
 
-        /* GRIDS & CARDS */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         
-        .product-img {
-            width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3); transition: 0.3s;
+        .product-img { 
+            width: 100%; border-radius: 4px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 25px 60px -15px rgba(0,0,0,0.5); 
+            transition: 0.3s; 
         }
-        .product-img:hover { border-color: var(--accent); transform: scale(1.01); }
 
-        .btn-primary {
-            display: inline-block; padding: 16px 32px; background: var(--accent); color: #000;
-            font-weight: 700; text-decoration: none; border-radius: 4px; margin-top: 20px; font-size: 14px;
-            transition: 0.3s;
+        .btn-arrow {
+            color: var(--accent); font-weight: 700; text-decoration: none; font-size: 15px;
+            display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
         }
-        .btn-primary:hover { background: #fff; }
-        
-        .btn-outline {
-            display: inline-block; padding: 16px 32px; background: transparent; color: #fff;
-            border: 1px solid rgba(255,255,255,0.3); font-weight: 700; text-decoration: none; border-radius: 4px; margin-top: 20px; font-size: 14px;
-            transition: 0.3s;
-        }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-arrow:hover { color: #fff; gap: 12px; }
 
         /* --- FOOTER --- */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
-        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
         /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; margin-bottom: 20px; outline:none; }
         .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
 
         /* MOBILE */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
-            nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            
-            .page-hero { padding-top: 120px; }
-            h1 { font-size: 42px; }
-            h2 { font-size: 32px; }
-            .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .grid-2 > div:nth-child(2) { order: -1; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center; }
+            .page-hero { padding-top: 150px; padding-bottom: 80px; }
+            .page-hero h1 { font-size: 42px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+            /* Reorder mobile so image is always top of section */
+            .grid-2 > div:first-child { order: 2; }
+            .grid-2 > img { order: 1; }
+            /* Except for alternating layouts */
+            .reverse-mobile > div:first-child { order: 2; }
+            .reverse-mobile > img { order: 1; }
         }
     </style>
 </head>
@@ -171,143 +156,144 @@
 
         <nav id="nav-menu">
             <ul>
-                <!-- Corrected: Link points to product.html (Singular) -->
                 <li><a href="product.html" class="active-link" onclick="closeMenu()">Products</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <li class="lang-item"><a href="fr/product.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="page-hero">
         <div class="container">
-            <span class="mono-tag">The Institutional Suite</span>
-            <h1>Unified Decision Architecture.</h1>
+            <span class="mono-tag">Unified Infrastructure</span>
+            <h1>The Cognitive Platform</h1>
             <p class="hero-lead">
-                Three layers of deterministic intelligence working in unison to automate high-stakes banking decisions without hallucination risk.
+                Don't buy components. Deploy a closed-loop system. <br>
+                From raw document ingestion to final audit trail, one secure pipeline.
             </p>
         </div>
     </div>
 
-    <!-- LAYER 1: EXECUTION (Workflow/Engine) -->
+    <!-- LAYER 1: INPUTS (Formerly Workbench) -->
+    <!-- Reordered to Logical Flow: Input -> Process -> Execution -->
     <section>
         <div class="grid-2">
             <div>
-                <span class="section-tag">Layer 01: Decision Workflow</span>
-                <h2>Cognitive Engine</h2>
-                <h3 style="font-size: 20px; color: var(--accent); margin-bottom: 20px;">The Master System</h3>
+                <span class="section-tag">Step 01: The Inputs</span>
+                <h2>Intelligent Perception</h2>
+                <h3>Powered by AI Workbench</h3>
                 <p>
-                    A next-generation Commercial Loan Origination System (CLOS) designed to accelerate lending and reduce operational friction.
+                    The "eyes" of the platform. We replace manual data entry with autonomous agents that ingest, classify, and structure complex financial documents before they ever reach the decision engine.
                 </p>
-                <p>
-                    While we customize instances like <strong>Business Banker</strong> for specific verticals, the Cognitive Engine is the master framework that handles data routing, decision execution, and regulatory adherence.
-                </p>
-                <a href="workflow.html" class="btn-primary">View Workflow Specs &rarr;</a>
+                <a href="workbench.html" class="btn-arrow">View Perception Specs &rarr;</a>
             </div>
-            <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" class="product-img" alt="Cognitive Engine">
+            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
         </div>
     </section>
 
-    <!-- LAYER 2: LOGIC (Foundry) -->
-    <section style="background: rgba(255,255,255,0.02);">
-        <div class="grid-2">
-            <img src="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png" class="product-img" alt="Cognitive Foundry">
+    <!-- LAYER 2: BRAIN (Formerly Foundry) -->
+    <section>
+        <div class="grid-2 reverse-mobile">
+            <img src="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png" class="product-img" alt="Cognitive Foundry Logic">
             <div>
-                <span class="section-tag">Layer 02: Intelligence</span>
-                <h2>Cognitive Foundry</h2>
-                <h3 style="font-size: 20px; color: var(--accent); margin-bottom: 20px;">Expertise Library & Reinforcement</h3>
+                <span class="section-tag">Step 02: The Brain</span>
+                <h2>Deterministic Logic</h2>
+                <h3>Powered by Cognitive Foundry</h3>
                 <p>
-                    This is where human expertise becomes code. The Foundry is a library of captured intelligence—10 years of deep cognitive analysis formalized into deterministic logic.
+                    The "mind" of the platform. Unlike generative models that guess, the Foundry uses pre-compiled expert judgment to enforce strict credit policies. 0% hallucination. 100% auditability.
                 </p>
-                <p>
-                    It features <strong>Real-Time Reinforcement</strong>: allowing us to capture expert reasoning on-the-fly to update and refine decision models instantly without code deployment cycles.
-                </p>
-                <a href="foundry.html" class="btn-outline">Explore Compliance Logic &rarr;</a>
+                <a href="foundry.html" class="btn-arrow">Explore Logic Core &rarr;</a>
             </div>
         </div>
     </section> 
 
-    <!-- LAYER 3: PERCEPTION (Workbench) -->
+    <!-- LAYER 3: EXECUTION (Formerly Engine) -->
     <section>
         <div class="grid-2">
             <div>
-                <span class="section-tag">Layer 03: Perception</span>
-                <h2>AI Workbench</h2>
-                <h3 style="font-size: 20px; color: var(--accent); margin-bottom: 20px;">The "Glue" of the System</h3>
+                <span class="section-tag">Step 03: The Execution</span>
+                <h2>Decision Workflow</h2>
+                <h3>Powered by Cognitive Engine</h3>
                 <p>
-                    The Workbench acts as the unifying glue for the entire platform. It handles the "Perception"—interpreting documents, signals, and unstructured data.
+                    The "hands" of the platform. The final orchestration layer that executes the credit decision, manages the approval hierarchy, and writes the immutable record to your core banking system.
                 </p>
-                <p>
-                    It observes, structures, and validates evidence, feeding clean data into the Engine. It ensures that Front, Middle, and Back office operations are seamlessly connected through intelligent data orchestration.
-                </p>
-                <a href="workbench.html" class="btn-primary">View Agent Specs &rarr;</a>
+                <a href="workflow.html" class="btn-arrow">View Execution Architecture &rarr;</a>
             </div>
-            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench">
+            <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" class="product-img" alt="Cognitive Engine Interface">
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
-                <p class="footer-link">Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking.</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                    Founded in 1995. We build the deterministic infrastructure that powers the world's most secure banks.
+                </p>
             </div>
             <div>
-                <h4 class="footer-h4">Product Links</h4>
-                <a href="workflow.html" class="footer-link">Cognitive Engine</a>
-                <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
-                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <h4 class="footer-h4">Platform Components</h4>
+                <a href="workbench.html" style="color: var(--text-muted); text-decoration: none; display:block; margin-bottom:8px; font-size: 14px;">The Inputs (Workbench)</a>
+                <a href="foundry.html" style="color: var(--text-muted); text-decoration: none; display:block; margin-bottom:8px; font-size: 14px;">The Brain (Foundry)</a>
+                <a href="workflow.html" style="color: var(--text-muted); text-decoration: none; display:block; font-size: 14px;">The Execution (Engine)</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
-                <p class="footer-link">info@cognitivegroup.com</p>
+                <p style="color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West<br>
+                    Montréal, QC<br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none;">info@cognitivegroup.com</a>
+                </p>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
-        </div>
+        <div class="copyright">&copy; 2025 Cognitive Group. All Rights Reserved.</div>
     </footer>
 
     <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <h3 style="color: white; font-size: 24px;">Book a Briefing</h3>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
+                <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
+                <input type="text" id="g-org" class="form-input" required placeholder="Organization">
+                <button type="submit" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continue to Calendar &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        
+        hamburger.addEventListener('click', () => { 
+            hamburger.classList.toggle('active'); 
+            navMenu.classList.toggle('active'); 
         });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
-        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+        
+        // Close modal when clicking outside
+        window.onclick = function(e) {
+            if (e.target == gModal) {
+                closeModal();
+            }
+        }
 
         function handleGlobalSubmit(e) {
             e.preventDefault();

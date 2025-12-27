@@ -18,29 +18,23 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            /* Overlays */
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
-            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
-            --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
-
-        body {
+        body, html {
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             background-color: var(--bg-body);
-            overflow-x: hidden;
-            width: 100%;
+            scroll-behavior: smooth;
         }
 
-        /* --- FIXED HEADER (EXECUTIVE SIZE) --- */
+        /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 90px;
+            position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -48,50 +42,34 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 30px; width: auto; display: block; }
+        .logo img { height: 26px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
+        
+        /* Active Link */
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* --- ACTIVE LINK STYLE (Green Underline) --- */
-        nav a.active-link {
-            color: var(--text-main);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
-        }
-
-        /* Strategy Session Button Style */
+        /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF;
-            color: #020617 !important;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 700 !important;
-            text-transform: none !important; 
-            letter-spacing: 0.5px;
-            border-bottom: none !important; /* Prevent underline on button */
-            padding-bottom: 12px !important;
+            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
+            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
+            cursor: pointer;
         }
-        .btn-header:hover {
-            background-color: var(--accent);
-            color: #FFFFFF !important;
-        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- PAGE SPECIFIC STYLES --- */
-        
-        /* Hero Banner */
+        /* --- HERO --- */
         .hero-banner {
             position: relative; width: 100%; height: 500px; 
-            padding-top: 90px;
+            padding-top: 80px; /* Header spacing */
             display: flex; align-items: center; justify-content: center;
             background-image: url('https://i.imghippo.com/files/hBJ5329Dsg.png');
             background-size: cover; background-position: center;
@@ -108,23 +86,23 @@
             text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
         }
 
-        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); letter-spacing: -1.5px; }
-        .hero-lead { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
+        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        .hero-lead { font-size: 18px; color: var(--text-muted); }
 
-        /* Content Sections */
-        .main-section { padding: 6rem 5%; }
+        /* --- CASE STUDIES GRID --- */
+        section { padding: 6rem 5%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 40px; }
 
         .category-header {
             display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 40px;
         }
-        .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; letter-spacing: -0.5px; }
+        .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; }
         .category-badge {
             margin-left: 20px; background: rgba(34, 197, 94, 0.1); color: var(--accent);
             padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* Cards */
+        /* CARDS */
         .case-card {
             background: var(--card-bg); border: var(--card-border); border-radius: 4px;
             overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
@@ -152,11 +130,11 @@
 
         /* --- FOOTER --- */
         footer { 
-            padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
-            position: relative; z-index: 2; display: flex; flex-direction: column;
+            padding: 6rem 10%; background: var(--bg-body); 
+            border-top: 1px solid rgba(255,255,255,0.1); 
         }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
@@ -171,58 +149,54 @@
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
             position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
+        }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
+        .form-input:focus { border-color: var(--accent); }
         .modal-btn {
             width: 100%; padding: 14px; background: var(--accent); color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
         }
 
-        /* --- MOBILE --- */
+        /* MOBILE */
         @media (max-width: 968px) {
-            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999; display: flex;
+                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
             }
             nav.active { left: 0; }
-            nav ul { flex-direction: column; gap: 30px; }
-            nav a { font-size: 20px; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
             
             .hero-banner { height: 400px; }
-            h1 { font-size: 38px; }
+            h1 { font-size: 36px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html">Products</a></li>
-                <!-- APPLIED ACTIVE CLASS HERE -->
-                <li><a href="success.html" class="active-link">Success Stories</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="blog.html">Insights</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <!-- Language Toggle -->
-                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
             </ul>
         </nav>
@@ -241,11 +215,12 @@
                     View our global client list 
                 </a>
             </div>
+            
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
-    <section class="main-section">
+    <section>
         
         <!-- GROUP 1: ENTERPRISE -->
         <div class="category-header">
@@ -375,21 +350,21 @@
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking and global regulated industries.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Regulatory Research</a>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
-                <h4 class="footer-h4">Global Headquarters</h4>
-                <p style="color: var(--text-muted); line-height: 1.6;">
-                    1155 René-Lévesque Blvd West<br>
+                <h4 class="footer-h4">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
                     Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
@@ -401,15 +376,22 @@
     <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
-            <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <h3 style="color: white; font-size: 24px;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Connect with an architect to discuss your decision workflow.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
-                <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
-                <input type="text" id="g-org" class="form-input" required placeholder="Organization">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                
+                <label class="form-label">Work Email</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                
+                <label class="form-label">Organization</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                
                 <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
             </form>
         </div>
@@ -417,20 +399,17 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Hamburger
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // Modal
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
-        
-        // Close on clicking outside
         window.onclick = function(e) { if (e.target == gModal) closeModal(); }
 
         function handleGlobalSubmit(e) {
@@ -438,7 +417,9 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            // Redirect to Cal.com
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
             closeModal();
         }
     </script>

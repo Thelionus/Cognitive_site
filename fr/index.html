@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Banking | Secure Decision Infrastructure</title>
+    <title>Cognitive Banking | Flux de décision de crédit sécurisés</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,10 +40,9 @@
             width: 100%;
         }
 
-        /* --- STANDARDIZED HEADER (Matches Product & Workflow) --- */
+        /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; 
-            height: 90px;
+            position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -51,33 +50,21 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { 
-            height: 30px;
-            width: auto; display: block; 
-        }
+        .logo img { height: 26px; width: auto; display: block; }
 
-        nav ul { 
-            display: flex; 
-            gap: 40px;
-            list-style: none; align-items: center; 
-        }
+        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; 
-            font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
-        
-        /* Added for consistency with other pages */
-        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button Style */
+        /* Style bouton Session Stratégique */
         .btn-header {
             background-color: #FFFFFF;
-            color: #020617 !important; /* Force dark text */
-            padding: 12px 24px;
+            color: #020617 !important; 
+            padding: 10px 20px;
             border-radius: 4px;
             font-weight: 700 !important;
             text-transform: none !important; 
@@ -98,7 +85,7 @@
             position: relative;
             display: flex; 
             align-items: center;
-            padding: 120px 10%; /* Keeps content safe below 90px header */
+            padding: 120px 10%; 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -186,7 +173,7 @@
 
         /* --- FOOTER --- */
         footer { 
-            scroll-snap-align: start; padding: 6rem 10%; min-height: 60vh;
+            padding: 6rem 10%; min-height: 60vh;
             background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
             position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center;
         }
@@ -228,7 +215,6 @@
 
         /* --- MOBILE --- */
         @media (max-width: 968px) {
-            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; 
@@ -260,7 +246,6 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -274,13 +259,14 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
-                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
-                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+                <li><a href="product.html">Produits</a></li>
+                <li><a href="success.html">Études de cas</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="blog.html">Perspectives</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- Switcher vers Anglais -->
+                <li class="lang-item"><a href="../index.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Session stratégique</a></li>
             </ul>
         </nav>
     </header>
@@ -288,15 +274,15 @@
     <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
-            <h2>Basel IV Compliant Infrastructure</h2>
-            <h1>0% Hallucination <br>Risk</h1>
+            <h2>Services aux Entreprises</h2>
+            <h1>Flux de Décision <br>Crédit Sécurisés</h1>
             <p class="description">
-                The only deterministic AI engine trusted by Tier-1 banks. We replace "black box" probability with fully traceable, audit-ready logic paths. No model drift. No regulatory exposure.
+                Permettre aux institutions financières d'exécuter des décisions rapides et fiables avec une conformité de niveau réglementaire. Réduisez le temps de traitement de 90 % tout en garantissant le respect strict des protocoles de risque.
             </p>
-            <a href="product.html" class="btn btn-outline">View Platform Architecture</a>
+            <a href="product.html" class="btn btn-outline">Découvrir la Plateforme</a>
 
             <div class="logo-strip">
-                <span class="logo-label">Core Infrastructure For Tier-1 Banks</span>
+                <span class="logo-label">Infrastructure de confiance pour banques de rang 1</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
@@ -311,26 +297,26 @@
     <!-- SECTION 2: FOUNDRY -->
     <section id="foundry">
         <div class="content">
-            <h2>"Glass Box" Logic Model</h2>
+            <h2>Modèle Logique "Boîte de Verre"</h2>
             <h1>Cognitive Foundry</h1>
             <p class="description">
-                Black-box AI is not an option for regulated banking. Our engine pre-trains decision systems by compiling expert human judgment into deterministic code, ensuring 100% explainability.
+                L'IA "boîte noire" n'est pas une option pour le secteur bancaire réglementé. Notre moteur pré-entraîne les systèmes de décision en compilant le jugement humain expert en une logique déterministe et entièrement traçable.
             </p>
             
-            <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
+            <a href="foundry.html" class="btn btn-outline">Explorer la Logique de Conformité</a>
 
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-val">0%</span>
-                    <span class="stat-label">Black Box Risk</span>
+                    <span class="stat-label">Risque d'Hallucination</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-val">100%</span>
-                    <span class="stat-label">Audit Traceability</span>
+                    <span class="stat-label">Traçabilité d'Audit</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-val">Tier-1</span>
-                    <span class="stat-label">Validated</span>
+                    <span class="stat-val">Bâle IV</span>
+                    <span class="stat-label">Conforme</span>
                 </div>
             </div>
         </div>
@@ -339,12 +325,12 @@
     <!-- SECTION 3: WORKBENCH -->
     <section id="workbench">
         <div class="content">
-            <h2>Orchestration Infrastructure</h2>
+            <h2>Infrastructure d'Orchestration</h2>
             <h1>AI Workbench</h1>
             <p class="description">
-                Unifying Front, Middle, and Back office operations. Intelligent agents digitize the entire credit lifecycle without replacing human oversight or compromising security protocols.
+                Unification des opérations Front, Middle et Back office. Des agents intelligents analysent des documents complexes pour numériser l'ensemble du cycle de crédit sans remplacer la supervision humaine.
             </p>
-            <a href="workbench.html" class="btn btn-outline">View Infrastructure Specs</a>
+            <a href="workbench.html" class="btn btn-outline">Spécifications de l'Infrastructure</a>
         </div>
     </section>
 
@@ -352,73 +338,57 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et les réglementations bancaires strictes.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Regulatory Research</a>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
             </div>
             <div>
-                <h4 class="footer-h4">Global Headquarters</h4>
+                <h4 class="footer-h4">Siège Mondial</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    1155 René-Lévesque Blvd West<br>
+                    1155 René-Lévesque Blvd Ouest<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
+    <!-- MODAL DE RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver une Séance</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Présentez-vous brièvement et nous vous redirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Tremblay">
                 
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'Institution">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn">Continuer vers le Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
     <!-- SCRIPTS -->
     <script>
-        // Check for Africa
-        const africanCountries = [
-            'SN', 'CI', 'NG', 'GH', 'BJ', 'BF', 'TG', 'ML', 'NE', 'CM', 'MA', 'DZ', 'TN'
-        ];
-
-        fetch('https://ipapi.co/json/')
-            .then(response => response.json())
-            .then(data => {
-                if (africanCountries.includes(data.country_code)) {
-                    if (!window.location.href.includes('index-africa.html')) {
-                        window.location.replace('index-africa.html');
-                    }
-                }
-            })
-            .catch(error => console.error('Geo-routing error:', error));
-
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
@@ -426,11 +396,6 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-        
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
