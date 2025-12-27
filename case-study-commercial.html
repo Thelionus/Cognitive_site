@@ -33,9 +33,10 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* --- STANDARDIZED HEADER (Matches Index) --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; 
+            height: 90px; /* Standard 90px */
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -43,11 +44,21 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { 
+            height: 30px; /* Standard 30px */
+            width: auto; display: block; 
+        }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { 
+            display: flex; 
+            gap: 40px; /* Standard 40px */
+            list-style: none; align-items: center; 
+        }
+        
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; 
+            font-size: 14px; /* Standard 14px */
+            text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
@@ -55,8 +66,13 @@
 
         /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
+            background-color: #FFFFFF; 
+            color: #020617 !important; 
+            padding: 12px 24px; /* Standard Padding */
+            border-radius: 4px; 
+            font-weight: 700 !important; 
+            text-transform: none !important; 
+            letter-spacing: 0.5px;
             cursor: pointer;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
@@ -161,6 +177,7 @@
 
         /* MOBILE */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
@@ -168,6 +185,7 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav a { font-size: 20px; }
             
             .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
@@ -177,6 +195,7 @@
 </head>
 <body>
 
+    <!-- NAV (UPDATED TO MATCH INDEX) -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -188,12 +207,15 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
+                <!-- Active Link set for Success Stories -->
                 <li><a href="success.html" class="active-link" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+                <!-- Added Language Link -->
+                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
             </ul>
         </nav>
     </header>
@@ -347,6 +369,11 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
