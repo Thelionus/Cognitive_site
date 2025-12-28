@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cognitive Platform | Closed-Loop Architecture</title>
+    <title>Commercial Credit, Reinvented | Cognitive Platform</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,13 +12,10 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
-            
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -54,7 +51,6 @@
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
@@ -67,61 +63,218 @@
 
         /* --- HERO --- */
         .page-hero {
-            padding: 200px 10% 120px; text-align: center;
-            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.08), transparent 60%);
+            padding: 200px 10% 100px; text-align: center;
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .page-hero h1 { 
-            font-size: 64px; font-weight: 800; letter-spacing: -2px; margin-bottom: 25px; line-height: 1.1;
+            font-size: 72px; font-weight: 800; letter-spacing: -3px; margin-bottom: 30px; line-height: 1.05;
         }
-        .hero-lead { font-size: 20px; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.6; }
+        .page-hero h1 span {
+            background: linear-gradient(135deg, #22C55E 0%, #4ADE80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-lead { font-size: 22px; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.5; }
         
         .mono-tag {
             font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px;
+            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 25px;
+        }
+
+        /* --- MANIFESTO --- */
+        .manifesto {
+            padding: 100px 10%;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(34, 197, 94, 0.08) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .manifesto-text {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--text-main);
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+        .manifesto-text strong {
+            font-weight: 800;
+        }
+        .manifesto-text em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 700;
+        }
+        .manifesto-sub {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- SECTIONS --- */
-        section { padding: 100px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        /* Alternating backgrounds for flow */
-        section:nth-child(odd) { background: rgba(255,255,255,0.02); }
+        section { padding: 120px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        section:nth-child(odd) { background: rgba(255,255,255,0.015); }
         
         .section-tag { 
             color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; 
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; 
+            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 20px;
+            font-weight: 700;
         }
         
-        h2 { font-size: 42px; margin-bottom: 10px; font-weight: 700; color: white; letter-spacing: -1px; }
-        h3 { font-size: 18px; color: #94A3B8; margin-bottom: 25px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { font-size: 48px; margin-bottom: 15px; font-weight: 800; color: white; letter-spacing: -1.5px; line-height: 1.1; }
+        h3 { font-size: 16px; color: var(--accent); margin-bottom: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
-        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; font-size: 16px; max-width: 500px; }
+        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 17px; max-width: 520px; }
+        p strong { color: var(--text-main); }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
         
         .product-img { 
-            width: 100%; border-radius: 4px; 
+            width: 100%; border-radius: 8px; 
             border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 25px 60px -15px rgba(0,0,0,0.5); 
-            transition: 0.3s; 
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6); 
+            transition: 0.4s; 
+        }
+        .product-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 50px 100px -20px rgba(34, 197, 94, 0.2);
         }
 
         .btn-arrow {
             color: var(--accent); font-weight: 700; text-decoration: none; font-size: 15px;
-            display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
+            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+            margin-top: 15px;
+            padding: 12px 0;
+            border-bottom: 2px solid transparent;
         }
-        .btn-arrow:hover { color: #fff; gap: 12px; }
+        .btn-arrow:hover { color: #fff; gap: 15px; border-bottom-color: var(--accent); }
+
+        /* Feature Pills */
+        .feature-pills {
+            display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0;
+        }
+        .pill {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Big Statement */
+        .big-statement {
+            background: var(--card-bg);
+            border: var(--card-border);
+            border-radius: 8px;
+            padding: 50px;
+            margin: 50px 0 0;
+            text-align: center;
+        }
+        .big-statement p {
+            max-width: 100%;
+            font-size: 20px;
+            margin: 0 auto;
+            color: var(--text-main);
+        }
+
+        /* Consensus Diagram */
+        .consensus-flow {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 12px;
+            padding: 50px;
+            margin-top: 50px;
+        }
+        .consensus-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .consensus-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        .consensus-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .consensus-box.highlight {
+            border-color: var(--accent);
+            background: rgba(34, 197, 94, 0.15);
+        }
+        .consensus-arrow {
+            color: var(--accent);
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .consensus-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 80px;
+            margin: 50px 0;
+        }
+        .stat-item {
+            text-align: left;
+        }
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* --- FOOTER --- */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
-        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display:block; margin-bottom:10px; font-size: 14px; transition: 0.2s; }
+        .footer-link:hover { color: white; }
+        .copyright { 
+            text-align: center; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            padding-top: 2rem; 
+            margin-top: 4rem; 
+            color: #475569; 
+            font-size: 0.8rem; 
+        }
+        .copyright a { color: #64748B; text-decoration: none; }
+        .copyright a:hover { color: var(--accent); }
 
         /* --- MODAL --- */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
-        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; margin-bottom: 20px; outline:none; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 50px; border-radius: 12px; width: 100%; max-width: 480px; position: relative; }
+        .form-input { width: 100%; padding: 14px 16px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; margin-bottom: 20px; outline:none; font-family: 'Manrope', sans-serif; font-size: 15px; }
         .form-input:focus { border-color: var(--accent); }
 
         /* MOBILE */
@@ -132,14 +285,18 @@
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center; }
             .page-hero { padding-top: 150px; padding-bottom: 80px; }
-            .page-hero h1 { font-size: 42px; }
+            .page-hero h1 { font-size: 42px; letter-spacing: -1.5px; }
+            .manifesto-text { font-size: 22px; }
             .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
-            /* Reorder mobile so image is always top of section */
             .grid-2 > div:first-child { order: 2; }
             .grid-2 > img { order: 1; }
-            /* Except for alternating layouts */
             .reverse-mobile > div:first-child { order: 2; }
             .reverse-mobile > img { order: 1; }
+            .consensus-grid { grid-template-columns: 1fr; }
+            .consensus-arrow { transform: rotate(90deg); }
+            .stats-row { flex-direction: column; gap: 30px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 36px; }
         }
     </style>
 </head>
@@ -162,110 +319,217 @@
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/product.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Request Demo</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- HERO -->
     <div class="page-hero">
         <div class="container">
-            <span class="mono-tag">Unified Infrastructure</span>
-            <h1>The Cognitive Platform</h1>
+            <span class="mono-tag">The Next Evolution</span>
+            <h1>Commercial Credit,<br><span>Reinvented.</span></h1>
             <p class="hero-lead">
-                Don't buy components. Deploy a closed-loop system. <br>
-                From raw document ingestion to final audit trail, one secure pipeline.
+                Three modules. Radical simplicity. Absolute certainty.<br>
+                This is what happens when AI finally works for regulated finance.
             </p>
         </div>
     </div>
 
-    <!-- LAYER 1: INPUTS (Formerly Workbench) -->
-    <!-- Reordered to Logical Flow: Input -> Process -> Execution -->
+    <!-- MANIFESTO -->
+    <div class="manifesto">
+        <p class="manifesto-text">
+            Your competitors are paralyzed by <strong>hallucination risk</strong>.<br>
+            You won't be. We built the only AI platform where<br>
+            Tier-1 banks <em>trust the output</em>.
+        </p>
+        <p class="manifesto-sub">
+            No black boxes. No probability guessing. No "it depends."<br>
+            Just deterministic decisions that survive any audit.
+        </p>
+    </div>
+
+    <!-- MODULE 1: COGNITIVE CORE -->
     <section>
         <div class="grid-2">
             <div>
-                <span class="section-tag">Step 01: The Inputs</span>
-                <h2>Intelligent Perception</h2>
-                <h3>Powered by AI Workbench</h3>
+                <span class="section-tag">Module 01</span>
+                <h2>Cognitive Core</h2>
+                <h3>Loan Origination — Simplified to the Extreme</h3>
                 <p>
-                    The "eyes" of the platform. We replace manual data entry with autonomous agents that ingest, classify, and structure complex financial documents before they ever reach the decision engine.
+                    <strong>100% no-code.</strong> Your credit team builds workflows, not your IT department. Application intake to disbursement — one unified system.
                 </p>
-                <a href="workbench.html" class="btn-arrow">View Perception Specs &rarr;</a>
+                <p>
+                    We train your people once. Then we step back. You own it completely.
+                </p>
+                <p>
+                    This is what "enterprise software" should have been all along.
+                </p>
+                <div class="feature-pills">
+                    <span class="pill">Zero IT Dependency</span>
+                    <span class="pill">Deploy in Weeks</span>
+                    <span class="pill">Full Audit Trail</span>
+                </div>
+                <a href="core.html" class="btn-arrow">Explore Cognitive Core &rarr;</a>
             </div>
-            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
+            <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" class="product-img" alt="Cognitive Core Interface">
         </div>
     </section>
 
-    <!-- LAYER 2: BRAIN (Formerly Foundry) -->
+    <!-- MODULE 2: AI WORKBENCH -->
     <section>
         <div class="grid-2 reverse-mobile">
-            <img src="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png" class="product-img" alt="Cognitive Foundry Logic">
+            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
             <div>
-                <span class="section-tag">Step 02: The Brain</span>
-                <h2>Deterministic Logic</h2>
-                <h3>Powered by Cognitive Foundry</h3>
+                <span class="section-tag">Module 02</span>
+                <h2>AI Workbench</h2>
+                <h3>The End of AI Hallucination</h3>
                 <p>
-                    The "mind" of the platform. Unlike generative models that guess, the Foundry uses pre-compiled expert judgment to enforce strict credit policies. 0% hallucination. 100% auditability.
+                    <strong>Multiple agents. One truth.</strong> We run the same document through independent AI models. Claude. GPT-4. Gemini. Mistral.
                 </p>
-                <a href="foundry.html" class="btn-arrow">Explore Logic Core &rarr;</a>
+                <p>
+                    Our multiplexer compares outputs using strict JSON schemas. Apple to apple. Field by field.
+                </p>
+                <p>
+                    <strong>If they agree</strong> — statistically validated extraction.<br>
+                    <strong>If they diverge</strong> — instant human escalation.
+                </p>
+                <p>
+                    No silent failures. No hidden errors. Every discrepancy surfaces.
+                </p>
+                <div class="feature-pills">
+                    <span class="pill">Multi-Agent Consensus</span>
+                    <span class="pill">Human-in-the-Loop</span>
+                    <span class="pill">0% Hallucination Risk</span>
+                </div>
+                <a href="workbench.html" class="btn-arrow">See the Architecture &rarr;</a>
             </div>
+        </div>
+
+        <!-- Consensus Flow Diagram -->
+        <div class="consensus-flow" style="max-width: 950px; margin: 80px auto 0;">
+            <div class="consensus-title">Consensus Validation Engine</div>
+            <div class="consensus-grid">
+                <div class="consensus-box">
+                    <div style="font-size: 15px; color: white; font-weight: 700;">Agent A</div>
+                    <div class="consensus-label">Claude / GPT-4</div>
+                </div>
+                <div class="consensus-arrow">→</div>
+                <div class="consensus-box highlight">
+                    <div style="font-size: 15px; color: white; font-weight: 700;">Multiplexer</div>
+                    <div class="consensus-label">JSON Comparison</div>
+                </div>
+                <div class="consensus-arrow">→</div>
+                <div class="consensus-box">
+                    <div style="font-size: 15px; color: white; font-weight: 700;">Validated Output</div>
+                    <div class="consensus-label">or Human Review</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <div class="consensus-box" style="display: inline-block;">
+                    <div style="font-size: 15px; color: white; font-weight: 700;">Agent B</div>
+                    <div class="consensus-label">Gemini / Mistral</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="big-statement">
+            <p><strong>Other vendors hide their uncertainty.</strong><br>We surface it — so your supervisors can act.</p>
         </div>
     </section> 
 
-    <!-- LAYER 3: EXECUTION (Formerly Engine) -->
+    <!-- MODULE 3: COGNITIVE FOUNDRY -->
     <section>
         <div class="grid-2">
             <div>
-                <span class="section-tag">Step 03: The Execution</span>
-                <h2>Decision Workflow</h2>
-                <h3>Powered by Cognitive Engine</h3>
+                <span class="section-tag">Module 03</span>
+                <h2>Cognitive Foundry</h2>
+                <h3>30 Years of Expertise. Captured Forever.</h3>
                 <p>
-                    The "hands" of the platform. The final orchestration layer that executes the credit decision, manages the approval hierarchy, and writes the immutable record to your core banking system.
+                    <strong>Your best credit officer retires in 18 months.</strong> Their judgment, edge cases, and intuition — do they walk out the door?
                 </p>
-                <a href="workflow.html" class="btn-arrow">View Execution Architecture &rarr;</a>
+                <p>
+                    Not anymore. We've captured <strong>1,000+ hours of Cognitive Task Analysis</strong> from senior analysts. Their reasoning is now encapsulated in specialized agents.
+                </p>
+                <p>
+                    <strong>New:</strong> Automated think-aloud capture. Agents prompt experts to reason out loud. We transcribe, structure, and encode that knowledge — automatically.
+                </p>
+                <p>
+                    This is institutional memory that actually persists.
+                </p>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">1,000+</div>
+                        <div class="stat-label">Hours of CTA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Years Encoded</div>
+                    </div>
+                </div>
+
+                <div class="feature-pills">
+                    <span class="pill">Cognitive Task Analysis</span>
+                    <span class="pill">Think-Aloud Capture</span>
+                    <span class="pill">Expert Agents</span>
+                </div>
+                <a href="foundry.html" class="btn-arrow">Discover the Foundry &rarr;</a>
             </div>
-            <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" class="product-img" alt="Cognitive Engine Interface">
+            <img src="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png" class="product-img" alt="Cognitive Foundry Logic">
+        </div>
+
+        <div class="big-statement">
+            <p><strong>Legacy systems store transactions.</strong><br>We store judgment.</p>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                    Founded in 1995. We build the deterministic infrastructure that powers the world's most secure banks.
+                <h4 class="footer-h4">The Standard for Commercial Credit</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    Cognitive builds deterministic AI infrastructure for the world's most regulated financial institutions. Founded 1995. Montréal.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Platform Components</h4>
-                <a href="workbench.html" style="color: var(--text-muted); text-decoration: none; display:block; margin-bottom:8px; font-size: 14px;">The Inputs (Workbench)</a>
-                <a href="foundry.html" style="color: var(--text-muted); text-decoration: none; display:block; margin-bottom:8px; font-size: 14px;">The Brain (Foundry)</a>
-                <a href="workflow.html" style="color: var(--text-muted); text-decoration: none; display:block; font-size: 14px;">The Execution (Engine)</a>
+                <h4 class="footer-h4">Platform</h4>
+                <a href="core.html" class="footer-link">Cognitive Core</a>
+                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
+                <a href="success.html" class="footer-link">Client Results</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
-                <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West<br>
-                    Montréal, QC<br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none;">info@cognitivegroup.com</a>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">
+                    1155 René-Lévesque Blvd W.<br>
+                    Suite 2500<br>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
-        <div class="copyright">&copy; 2025 Cognitive Group. All Rights Reserved.</div>
+        <div class="copyright">
+            &copy; 2025 Cognitive Group Inc. All rights reserved.<br>
+            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="security.html">Security</a>
+        </div>
     </footer>
 
     <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
-            <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px;">Book a Briefing</h3>
+            <span onclick="closeModal()" style="position:absolute; top:20px; right:25px; color:#94A3B8; cursor:pointer; font-size:28px; line-height:1;">&times;</span>
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:15px;">Executive Briefing</span>
+                <h3 style="color: white; font-size: 26px; margin: 0; letter-spacing: -0.5px;">See It In Action</h3>
+                <p style="font-size: 15px; color: #94A3B8; margin-top:12px;">30 minutes. No slides. Live platform demo.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
                 <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
-                <input type="text" id="g-org" class="form-input" required placeholder="Organization">
-                <button type="submit" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank / Institution">
+                <button type="submit" style="width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">Book Your Demo &rarr;</button>
             </form>
         </div>
     </div>
@@ -288,11 +552,8 @@
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
         
-        // Close modal when clicking outside
         window.onclick = function(e) {
-            if (e.target == gModal) {
-                closeModal();
-            }
+            if (e.target == gModal) closeModal();
         }
 
         function handleGlobalSubmit(e) {
@@ -300,7 +561,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`, '_blank');
             closeModal();
         }
     </script>
