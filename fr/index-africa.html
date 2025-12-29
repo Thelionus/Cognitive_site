@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Banking | West Africa Hub</title>
+    <title>Cognitive Banking | Pôle Afrique de l'Ouest</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,13 +12,12 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* THÈME EXÉCUTIF SOMBRE */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            /* MATCHING INDEX.HTML OVERLAYS */
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
             --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
@@ -39,10 +38,10 @@
             scroll-behavior: smooth;
         }
 
-        /* --- UPDATED HEADER (Matches Index) --- */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; 
-            height: 90px; /* Increased to match Index */
+            height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -51,19 +50,19 @@
         }
         
         .logo img { 
-            height: 30px; /* Updated from 26px to 30px */
+            height: 30px;
             width: auto; display: block; 
         }
 
         nav ul { 
             display: flex; 
-            gap: 40px; /* Increased gap */
+            gap: 40px;
             list-style: none; align-items: center; 
         }
         
         nav a { 
             color: var(--text-muted); text-decoration: none; 
-            font-size: 14px; /* Updated font size */
+            font-size: 14px;
             text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
@@ -71,11 +70,10 @@
         
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session / System Audit Button Style */
         .btn-header {
             background-color: #FFFFFF;
-            color: #020617 !important; /* Force dark text */
-            padding: 12px 24px; /* Larger padding */
+            color: #020617 !important;
+            padding: 12px 24px;
             border-radius: 4px;
             font-weight: 700 !important;
             text-transform: none !important; 
@@ -153,14 +151,12 @@
 
         /* --- SPECIFIC SECTIONS --- */
         
-        /* HERO */
         #hero { 
             background-image: url('https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png'); 
             background-position: center top; 
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* FOUNDRY */
         #foundry { 
             background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
             justify-content: flex-end; text-align: right;
@@ -168,7 +164,6 @@
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
-        /* WORKBENCH */
         #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
@@ -225,9 +220,9 @@
             text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* --- MOBILE UPDATED --- */
+        /* --- MOBILE --- */
         @media (max-width: 968px) {
-            header { height: 80px; } /* Matches Index Mobile Height */
+            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; 
@@ -259,10 +254,10 @@
 </head>
 <body>
 
-    <!-- UPDATED HEADER: EXACT MATCH TO INDEX.HTML -->
+    <!-- HEADER (Dans /fr/) -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -273,35 +268,36 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- LIEN LANGUE : Retour vers la version EN à la racine -->
+                <li class="lang-item"><a href="../index-africa.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO (AFRICA CONTENT) -->
+    <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
-            <h2>West Africa Hub</h2>
-            <h1>Leapfrog Legacy <br>Banking Systems</h1>
+            <h2>Pôle Afrique de l'Ouest</h2>
+            <h1>Surpassez les systèmes <br>bancaires traditionnels</h1>
             <p class="description">
-                Deploying deterministic AI to bridge the informal economy and institutional banking. From Dakar to Abidjan, we power secure, rapid credit decisions for the emerging market.
+                Déploiement de l'IA déterministe pour faire le pont entre l'économie informelle et la banque institutionnelle. De Dakar à Abidjan, nous propulsons des décisions de crédit rapides et sécurisées pour les marchés émergents.
             </p>
-            <a href="product.html" class="btn">Discover the Workflow</a>
+            <a href="product.html" class="btn">Découvrir le flux</a>
 
             <div class="logo-strip">
-                <span class="logo-label">Trusted Regional Partners</span>
+                <span class="logo-label">Partenaires Régionaux de Confiance</span>
                 <div class="logo-grid">
                     <div class="client-logo">BNDE</div>
                     <div class="client-logo">ALRAHMA</div>
                     <div class="client-logo">BSIC</div>
                     <div class="client-logo">BOA</div>
-                    <div class="client-logo">CK-GUINEE</div>
+                    <div class="client-logo">CK-GUINÉE</div>
                 </div>
             </div>
         </div>
@@ -310,18 +306,18 @@
     <!-- SECTION 2: FOUNDRY -->
     <section id="foundry">
         <div class="content">
-            <h2>Regional Compliance (OHADA)</h2>
+            <h2>Conformité Régionale (OHADA)</h2>
             <h1>Cognitive Foundry</h1>
             <p class="description">
-                Pre-trained on West African credit policies. Our logic engine digitizes informal proxies and ensures strict adherence to BCEAO and OHADA regulations.
+                Pré-entraîné sur les politiques de crédit ouest-africaines. Notre moteur de logique numérise les indicateurs informels et garantit le respect strict des réglementations de la BCEAO et de l'OHADA.
             </p>
             
-            <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
+            <a href="foundry.html" class="btn btn-outline">Explorer la logique de conformité</a>
 
             <div class="stats-grid">
                 <div class="stat-item"><span class="stat-val">0%</span><span class="stat-label">Hallucination</span></div>
-                <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Traceability</span></div>
-                <div class="stat-item"><span class="stat-val">OHADA</span><span class="stat-label">Compliant</span></div>
+                <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Traçabilité</span></div>
+                <div class="stat-item"><span class="stat-val">OHADA</span><span class="stat-label">Conforme</span></div>
             </div>
         </div>
     </section>
@@ -329,41 +325,41 @@
     <!-- SECTION 3: WORKBENCH -->
     <section id="workbench">
         <div class="content">
-            <h2>Orchestration Infrastructure</h2>
+            <h2>Infrastructure d'Orchestration</h2>
             <h1>AI Workbench</h1>
             <p class="description">
-                Unifying Front and Back office operations. Our agents handle bilingual (French/English) documents and unstructured informal ledgers typical of the region.
+                Unification des opérations Front et Back office. Nos agents traitent les documents bilingues (Français/Anglais) et les grands livres informels non structurés typiques de la région.
             </p>
-            <a href="workbench.html" class="btn">View Specifications</a>
+            <a href="workbench.html" class="btn">Voir les spécifications</a>
         </div>
     </section>
 
-    <!-- FOOTER (AFRICA FOCUS) -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking, with a strategic focus on West African financial inclusion.
+                    Fondée en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques, avec un accent stratégique sur l'inclusion financière en Afrique de l'Ouest.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Regulatory Research</a>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Regional Case Studies</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="success.html" class="footer-link">Études de Cas Régionales</a>
             </div>
             <div>
-                <h4 class="footer-h4">West Africa Hub</h4>
+                <h4 class="footer-h4">Pôle Afrique de l'Ouest</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
                     104 Sicap Baobab Pavilion 840<br>
-                    Dakar, Senegal<br><br>
+                    Dakar, Sénégal<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
@@ -372,19 +368,18 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <!-- Updated Label to match the header Button context if needed, or keeping Strategy Session -->
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
             </form>
         </div>
     </div>
