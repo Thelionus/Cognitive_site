@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Financial Capture | Cognitive Banking</title>
+    <title>Étude de Cas : Saisie Financière | Cognitive Banking</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* THÈME EXÉCUTIF SOMBRE */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
@@ -35,7 +35,8 @@
 
         /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; 
+            height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -43,22 +44,23 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; 
+            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+            background-color: #FFFFFF; color: #020617 !important; 
+            padding: 12px 24px; border-radius: 4px; 
+            font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
@@ -158,22 +160,17 @@
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
             position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
         .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
 
         /* MOBILE */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
@@ -181,7 +178,7 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            
+            nav a { font-size: 20px; }
             .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -190,9 +187,10 @@
 </head>
 <body>
 
+    <!-- NAV (VERSION FRANÇAISE) -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -201,35 +199,37 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
-                <li><a href="success.html" class="active-link" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+                <!-- Lien de langue vers la version anglaise (répertoire parent) -->
+                <li class="lang-item"><a href="../case-study-financial-capture.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- HERO -->
     <div class="case-hero">
-        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; BACK TO SUCCESS STORIES</a>
-        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Global Solution | Multi-Continent Deployment</div>
-        <h1>Deterministic Spreading.</h1>
-        <p class="hero-lead">Replacing manual financial spreading with <strong>Deterministic Agents</strong> that read, reclassify, and validate data with zero math hallucinations.</p>
+        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; RETOUR AUX RÉALISATIONS</a>
+        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Solution Globale | Déploiement Multi-Continent</div>
+        <h1>Saisie Financière Déterministe.</h1>
+        <p class="hero-lead">Remplacez la saisie manuelle par des <strong>Agents Déterministes</strong> qui lisent, reclassent et valident les données sans aucune hallucination mathématique.</p>
         
         <div class="metrics-grid">
             <div class="metric">
                 <h4>98%</h4>
-                <span>Time Reduction</span>
+                <span>Réduction du temps</span>
             </div>
             <div class="metric">
                 <h4>0.0%</h4>
-                <span>Calculation Drift</span>
+                <span>Écart de calcul</span>
             </div>
             <div class="metric">
                 <h4>100%</h4>
-                <span>Bilingual Traceability</span>
+                <span>Traçabilité bilingue</span>
             </div>
         </div>
     </div>
@@ -237,87 +237,87 @@
     <!-- CONTENT -->
     <div class="content-container">
         <article>
-            <span class="mono-tag">01 | The Global Context</span>
-            <h2>The Chaos of Financial Formats</h2>
-            <p>Commercial banks rely on standardized financial "spreading" to feed credit risk models. However, the source documents vary wildly—from structured Canadian T2 tax returns to informal, handwritten micro-ledgers in West Africa.</p>
-            <p>We successfully deployed the <strong>Cognitive Engine</strong> across three distinct financial environments:</p>
+            <span class="mono-tag">01 | Le Contexte Global</span>
+            <h2>Le Chaos des Formats Financiers</h2>
+            <p>Les banques commerciales s'appuient sur une saisie financière standardisée pour alimenter les modèles de risque. Cependant, les documents sources varient énormément : des déclarations de revenus T2 canadiennes structurées aux registres manuscrits informels d'Afrique de l'Ouest.</p>
+            <p>Nous avons déployé avec succès le <strong>Moteur Cognitive</strong> dans trois environnements financiers distincts :</p>
             <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem; list-style: disc; line-height:1.7;">
-                <li><strong>DUCA Financial (Canada):</strong> Bilingual English/French T2 returns and Notices of Assessment.</li>
-                <li><strong>Alrahma (Micro-Credit):</strong> Informal, non-standardized ledgers from unbanked entrepreneurs.</li>
-                <li><strong>BSIC (Benin):</strong> OHADA-compliant records across diverse regional accounting standards.</li>
+                <li><strong>DUCA Financial (Canada) :</strong> Déclarations T2 bilingues (Anglais/Français) et avis de cotisation.</li>
+                <li><strong>Alrahma (Micro-Crédit) :</strong> Grands livres informels et non standardisés d'entrepreneurs non bancarisés.</li>
+                <li><strong>BSIC (Bénin) :</strong> Dossiers conformes à l'OHADA selon divers standards comptables régionaux.</li>
             </ul>
 
-            <span class="mono-tag">02 | The Solution</span>
-            <h2>Cognition for Reasoning. Math for Math.</h2>
-            <p>Our breakthrough was separating the workflow: <strong>Generative AI for reasoning and reclassification, and Deterministic engines for calculation.</strong> This ensures 100% accuracy in financial ratios.</p>
+            <span class="mono-tag">02 | La Solution</span>
+            <h2>La cognition pour le raisonnement. Le calcul pour les chiffres.</h2>
+            <p>Notre percée réside dans la séparation du flux : <strong>l'IA générative pour le raisonnement et le reclassement, et des moteurs déterministes pour le calcul.</strong> Cela garantit une précision de 100 % dans les ratios financiers.</p>
             
             <ul class="step-list">
                 <li>
-                    <strong style="color: white; font-size: 18px;">Lossless Ingestion</strong><br>
-                    The Engine captures the statement exactly as presented. If a client provides 40 unique line items, we ingest all 40. No initial assumptions.
+                    <strong style="color: white; font-size: 18px;">Ingestion sans perte</strong><br>
+                    Le moteur capture l'état financier exactement comme il est présenté. Si un client fournit 40 lignes uniques, nous ingérons les 40. Aucune hypothèse initiale.
                 </li>
                 <li>
-                    <strong style="color: white; font-size: 18px;">Cognitive Reclassification</strong><br>
-                    Specialized agents perform expert-level mapping via the Foundry. They combine equivalent items (e.g., Cash + ST Reserves) based on specific bank policy.
+                    <strong style="color: white; font-size: 18px;">Reclassement Cognitif</strong><br>
+                    Des agents spécialisés effectuent un mappage expert via la Foundry. Ils regroupent les éléments équivalents (ex: Encaisse + Réserves CT) selon la politique spécifique de la banque.
                 </li>
                 <li>
-                    <strong style="color: white; font-size: 18px;">Cross-Agent Validation</strong><br>
-                    Multiple agents perform the tasks independently and cross-check outcomes, flagging only the low-confidence outliers for human review.
+                    <strong style="color: white; font-size: 18px;">Validation Inter-Agents</strong><br>
+                    Plusieurs agents effectuent les tâches indépendamment et comparent les résultats, signalant uniquement les anomalies à faible confiance pour révision humaine.
                 </li>
                 <li>
-                    <strong style="color: white; font-size: 18px;">The Deterministic Math Guard</strong><br>
-                    We never ask an LLM to do math. Once data is standardized, a traditional calculation engine computes Leverage, EBITDA, and Liquidity ratios.
+                    <strong style="color: white; font-size: 18px;">Garde-fou Mathématique</strong><br>
+                    Nous ne demandons jamais à un LLM de faire des maths. Une fois les données standardisées, un moteur de calcul traditionnel calcule les ratios de levier, de BAIIA et de liquidité.
                 </li>
                 <li>
-                    <strong style="color: white; font-size: 18px;">Audit-Ready Spreading</strong><br>
-                    Every reclassified dollar is linked back to the original pixel in the source PDF for regulatory auditability.
+                    <strong style="color: white; font-size: 18px;">Saisie Prête pour l'Audit</strong><br>
+                    Chaque dollar reclassé est lié directement au pixel d'origine dans le PDF source pour une audibilité réglementaire totale.
                 </li>
             </ul>
 
             <div class="glass-box">
-                <h3>The "Glass Box" Edge</h3>
-                <p style="margin-bottom: 0; color: var(--text-muted);">This is not simple OCR. This is the <strong>industrialization of financial expertise</strong>. We captured how senior analysts think about risk reclassification and Formalized it into a machine-speed workflow.</p>
+                <h3>L'Avantage "Glass Box"</h3>
+                <p style="margin-bottom: 0; color: var(--text-muted);">Il ne s'agit pas d'un simple OCR. C'est l'<strong>industrialisation de l'expertise financière</strong>. Nous avons capturé la logique de réflexion des analystes seniors et l'avons formalisée en un flux à vitesse machine.</p>
             </div>
         </article>
 
         <!-- SIDEBAR -->
         <aside>
             <div class="info-card">
-                <div class="info-title">Deployed Institutions</div>
+                <div class="info-title">Institutions Déployées</div>
                 <ul style="list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.6;">
                     <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
                         <strong style="color: white; display: block;">DUCA Financial</strong>
-                        <span style="color: var(--accent);">Canada (Tier-2 Credit Union)</span>
+                        <span style="color: var(--accent);">Canada (Coopérative de crédit)</span>
                     </li>
                     <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
                         <strong style="color: white; display: block;">Alrahma</strong>
-                        <span style="color: var(--accent);">West Africa (Micro-Credit)</span>
+                        <span style="color: var(--accent);">Afrique de l'Ouest (Micro-Crédit)</span>
                     </li>
                     <li style="margin-bottom: 1.5rem;">
-                        <strong style="color: white; display: block;">BSIC Benin</strong>
-                        <span style="color: var(--accent);">Regional Commercial Banking</span>
+                        <strong style="color: white; display: block;">BSIC Bénin</strong>
+                        <span style="color: var(--accent);">Banque Commerciale Régionale</span>
                     </li>
                 </ul>
             </div>
 
             <div class="info-card">
-                <div class="info-title">Suite Deployed</div>
+                <div class="info-title">Suite Déployée</div>
                 <ul style="font-size: 14px; list-style: none; margin: 0; color: white; padding: 0;">
-                    <li style="margin-bottom: 8px;"><strong>• Cognitive Engine</strong></li>
+                    <li style="margin-bottom: 8px;"><strong>• Moteur Cognitive</strong></li>
                     <li style="margin-bottom: 8px;"><strong>• Cognitive Foundry</strong></li>
-                    <li style="margin-bottom: 8px; color: var(--text-muted);">• Audit-Trail Logger</li>
-                    <li style="color: var(--text-muted);">• Bilingual OCR Layer</li>
+                    <li style="margin-bottom: 8px; color: var(--text-muted);">• Journal d'audit (Audit-Trail)</li>
+                    <li style="color: var(--text-muted);">• Couche OCR Bilingue</li>
                 </ul>
             </div>
 
             <div class="info-card" style="border-color: var(--accent); background: rgba(34, 197, 94, 0.05);">
-                <div class="info-title" style="color: var(--accent);">The Moat</div>
+                <div class="info-title" style="color: var(--accent);">Le Fossé Technologique</div>
                 <p style="font-size: 14px; font-style: italic; color: white;">
-                    "We use GenAI to understand the document context, but we use hard-coded math engines for the numbers. Trust is built on calculation, not probability."
+                    "Nous utilisons l'IA générative pour comprendre le contexte du document, mais nous utilisons des moteurs mathématiques codés pour les chiffres. La confiance repose sur le calcul, pas sur la probabilité."
                 </p>
             </div>
 
-            <button onclick="openModal()" class="btn-primary">Request Technical Briefing</button>
+            <button onclick="openModal()" class="btn-primary">Demander un Briefing Technique</button>
         </aside>
     </div>
 
@@ -325,52 +325,51 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking. Founded in 1995 by CRIM, our expertise is built on decades of cognitive engineering.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée en 1995, notre expertise repose sur des décennies d'ingénierie cognitive.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="products.html" class="footer-link">The Cognitive Suite</a>
-                <a href="blog.html" class="footer-link">Research & Insights</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="products.html" class="footer-link">La Suite Cognitive</a>
+                <a href="blog.html" class="footer-link">Recherche & Insights</a>
+                <a href="success.html" class="footer-link">Archives des Études de Cas</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
+                    1155 boul. René-Lévesque Ouest #2500<br>
                     Montréal, QC H3B 2K4, Canada<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
+    <!-- MODAL RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
                 
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'institution">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
             </form>
         </div>
     </div>
@@ -385,6 +384,11 @@
             navMenu.classList.toggle('active');
         });
 
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -395,7 +399,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organisation: " + org)}`;
             window.open(url, '_blank');
             closeModal();
         }

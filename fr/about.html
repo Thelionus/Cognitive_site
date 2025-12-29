@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Cognitive Banking</title>
+    <title>À Propos | Banque Cognitive</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,8 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            /* Overlays */
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -31,11 +32,12 @@
             background-color: var(--bg-body);
             scroll-behavior: smooth;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* --- HEADER --- */
+        /* --- FIXED HEADER (EXECUTIVE SIZE - 90px) --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -43,26 +45,39 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
-        
-        /* Active Link */
-        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
-        .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+        /* --- ACTIVE LINK STYLE (Green Underline) --- */
+        nav a.active-link {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
         }
-        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        /* Strategy Session Button Style */
+        .btn-header {
+            background-color: #FFFFFF;
+            color: #020617 !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            text-transform: none !important; 
+            letter-spacing: 0.5px;
+            border-bottom: none !important;
+        }
+        .btn-header:hover {
+            background-color: var(--accent);
+            color: #FFFFFF !important;
+        }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
@@ -146,7 +161,7 @@
             border-top: 1px solid rgba(255,255,255,0.1); 
         }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
@@ -177,6 +192,7 @@
 
         /* MOBILE */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
@@ -184,8 +200,9 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav a { font-size: 20px; }
             
-            .hero-small { padding-top: 120px; }
+            .hero-small { padding-top: 140px; }
             h1 { font-size: 36px; }
             .grid-2, .team-grid, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
             .photo-wrapper { height: 350px; }
@@ -201,17 +218,22 @@
         </div>
         
         <div class="hamburger" id="hamburger">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" class="active-link" onclick="closeMenu()">About Us</a></li>
-                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
-                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+                <!-- Internal FR Links -->
+                <li><a href="product.html">Produits</a></li>
+                <li><a href="success.html">Références</a></li>
+                <li><a href="about.html" class="active-link">À Propos</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- Language Toggle: Points back to root (English) About page -->
+                <li class="lang-item"><a href="../about.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
@@ -219,8 +241,8 @@
     <!-- HERO -->
     <div class="hero-small">
         <div class="container">
-            <span class="mono-tag">Our Origins</span>
-            <h1>Engineering Simplicity <br>from Complexity.</h1>
+            <span class="mono-tag">Nos Origines</span>
+            <h1>L'Ingénierie de la Simplicité <br>au cœur de la Complexité.</h1>
         </div>
     </div>
 
@@ -229,38 +251,38 @@
         <div class="container">
             <div class="grid-2">
                 <div>
-                    <span class="mono-tag">The Pedigree</span>
-                    <h3>Born from Deep Research</h3>
-                    <p>The Cognitive Group, headquartered in Montreal, was founded in 1995 as a specialized spinoff of the Computer Research Institute of Montreal (CRIM).</p>
-                    <p>Leveraging decades of proprietary <strong>cognitive analysis</strong> capturing expert reasoning not present in public datasets or large language models, we partnered with the <strong>Royal Bank of Canada</strong> for over a decade to optimize high-stakes loan origination. This institutional discipline is embedded in the core of our deterministic AI engine.</p>
+                    <span class="mono-tag">Notre ADN</span>
+                    <h3>Né de la Recherche Fondamentale</h3>
+                    <p>Le Groupe Cognitive, dont le siège est à Montréal, a été fondé en tant qu'essaimage spécialisé du Centre de Recherche Informatique de Montréal (CRIM).</p>
+                    <p>Tirant parti de décennies d'<strong>analyse cognitive</strong> propriétaire capturant un raisonnement expert absent des données publiques ou des grands modèles de langage, nous avons collaboré avec la <strong>Banque Royale du Canada</strong> pour optimiser l'octroi de prêts à forts enjeux. Cette discipline institutionnelle est ancrée au cœur de notre moteur d'IA déterministe.</p>
                     
                     <div style="margin-top: 30px; padding: 25px; border-left: 3px solid var(--accent); background: rgba(34, 197, 94, 0.05); border-radius: 0 4px 4px 0;">
-                        <span class="mono-tag" style="margin-bottom: 10px;">Strategic Scale</span>
-                        <p style="margin: 0; font-size: 15px; color: white;">Our alliance with <strong>CGI</strong> allows us to combine the agility of a deep-tech lab with the global delivery assurance required by Tier-1 institutions.</p>
+                        <span class="mono-tag" style="margin-bottom: 10px;">Échelle Stratégique</span>
+                        <p style="margin: 0; font-size: 15px; color: white;">Notre alliance avec <strong>CGI</strong> nous permet d'allier l'agilité d'un laboratoire 'deep-tech' à l'assurance de livraison mondiale exigée par les institutions de premier rang.</p>
                     </div>
                 </div>
                 
                 <div>
                     <div class="info-card">
                         <div class="card-header">
-                            <h3 style="margin:0; font-size:16px;">Institutional Profile</h3>
+                            <h3 style="margin:0; font-size:16px;">Profil Institutionnel</h3>
                         </div>
                         <div class="card-body">
                             <div class="stat-row">
-                                <span class="stat-label">ESTABLISHED</span>
-                                <span class="stat-value">1995 (CRIM Spinoff)</span>
+                                <span class="stat-label">ORIGINE</span>
+                                <span class="stat-value">Essaimage du CRIM</span>
                             </div>
                             <div class="stat-row">
-                                <span class="stat-label">HEADQUARTERS</span>
+                                <span class="stat-label">SIÈGE SOCIAL</span>
                                 <span class="stat-value">Montréal, Canada</span>
                             </div>
                             <div class="stat-row">
-                                <span class="stat-label">DELIVERY PARTNER</span>
+                                <span class="stat-label">PARTENAIRE D'INTÉGRATION</span>
                                 <span class="stat-value">CGI</span>
                             </div>
                             <div class="stat-row" style="border:none; padding:0; margin:0;">
-                                <span class="stat-label">SCALE</span>
-                                <span class="stat-value">90,000+ Professionals</span>
+                                <span class="stat-label">ÉCHELLE</span>
+                                <span class="stat-value">90 000+ Professionnels</span>
                             </div>
                         </div>
                     </div>
@@ -272,80 +294,80 @@
     <!-- TIMELINE -->
     <section style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <span class="mono-tag">Development Path</span>
-            <h2 style="font-size:32px; font-weight:800; margin-bottom: 50px; color:white;">The Evolution of Deterministic AI</h2>
+            <span class="mono-tag">Trajectoire</span>
+            <h2 style="font-size:32px; font-weight:800; margin-bottom: 50px; color:white;">L'Évolution de l'IA Déterministe</h2>
             
             <div style="max-width: 800px;">
                 <div class="timeline-item">
                     <span class="timeline-year">2008 — 2018</span>
-                    <p style="margin:0;">Decade-long collaboration with <strong>RBC</strong> to re-engineer the cognitive flow of commercial loan adjudication.</p>
+                    <p style="margin:0;">Collaboration décennale avec <strong>RBC</strong> pour réingénierier le flux cognitif de l'adjudication de prêts commerciaux.</p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2017</span>
-                    <p style="margin:0;">First international deployment at BNDE (Senegal), proving the engine's adaptability to emerging markets.</p>
+                    <p style="margin:0;">Premier déploiement international à la BNDE (Sénégal), prouvant l'adaptabilité du moteur aux marchés émergents.</p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2024</span>
-                    <p style="margin:0;"><strong>AI Workbench Launch:</strong> Integrating automated financial statement spreading to eliminate manual data entry.</p>
+                    <p style="margin:0;"><strong>Lancement de l'AI Workbench :</strong> Intégration de l'étalement automatisé des états financiers pour éliminer la saisie manuelle.</p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2025</span>
-                    <p style="margin:0;"><strong>CGI Strategic Alliance:</strong> Scaling the "Universal Banker" model to global Tier-1 institutions.</p>
+                    <p style="margin:0;"><strong>Alliance Stratégique CGI :</strong> Mise à l'échelle du modèle « Banquier Universel » pour les institutions mondiales Tier-1.</p>
                 </div>
                 <div class="timeline-item" style="border-left:none;">
                     <span class="timeline-year">2025</span>
-                    <p style="margin:0;"><strong>Cognitive Foundry:</strong> Release of Mortgage Adjudicator, Financial Analyst, and Verification Agent.</p>
+                    <p style="margin:0;"><strong>Cognitive Foundry :</strong> Lancement des agents Adjudicateur Hypothécaire, Analyste Financier et Vérification.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LEADERSHIP -->
+    <!-- LEADERSHIP (REORDERED) -->
     <section>
         <div class="container">
-            <span class="mono-tag">Leadership</span>
-            <h2 style="font-size:32px; font-weight:800; margin-bottom: 20px; color:white;">Infrastructure of Trust</h2>
-            <p style="max-width: 600px;">A multidisciplinary team of physicists, engineers, and risk strategists dedicated to industrializing human expertise.</p>
+            <span class="mono-tag">Direction</span>
+            <h2 style="font-size:32px; font-weight:800; margin-bottom: 20px; color:white;">Une Infrastructure de Confiance</h2>
+            <p style="max-width: 600px;">Une équipe multidisciplinaire où l'expertise bancaire dirige l'exécution technologique.</p>
             
             <div class="team-grid">
-                <!-- Member 1 -->
+                <!-- Member 1: CEO -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/xjB97SCz/fa.jpg" alt="Francois Aubin">
                     </div>
                     <h3>Francois Aubin</h3>
-                    <span class="role-tag">CEO & Founder</span>
-                    <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). Specializes in embedding cognitive ergonomics into mission-critical systems.</p>
+                    <span class="role-tag">PDG & Fondateur</span>
+                    <p>Opérateur Deep-tech avec 20+ ans d'expérience dans des environnements Fortune 500 (Amazon, Ericsson, PG&E). Spécialiste de l'intégration de l'ergonomie cognitive dans les systèmes critiques.</p>
                 </div>
 
-                <!-- Member 2 -->
-                <div class="team-member">
-                    <div class="photo-wrapper">
-                        <img src="https://i.postimg.cc/KzgH3C24/mc.jpg" alt="Marie-Claude Prevost">
-                    </div>
-                    <h3>Marie-Claude Prévost</h3>
-                    <span class="role-tag">Managing Partner</span>
-                    <p>Marie-Claude brings rare depth in translating human factors into industrial-scale, regulator-ready systems, ensuring complex operations remain resilient.</p>
-                </div>
-
-                <!-- Member 3 -->
-                <div class="team-member">
-                    <div class="photo-wrapper">
-                        <img src="https://i.postimg.cc/Z5T2sfr6/zain.jpg" alt="Zain Ahmad Khan">
-                    </div>
-                    <h3>Zain Khan</h3>
-                    <span class="role-tag">Chief Architect</span>
-                    <p>Product leader specializing in high-performance banking platforms (nCino, Sopra). Expert in secure, scalable financial architecture.</p>
-                </div>
-
-                <!-- Member 4 -->
+                <!-- Member 2: THE BANKER (Moved Up) -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/TYM3jg5y/Generated-Image-December-24-2025-7-39AM.jpg" alt="Sylvain Leith">
                     </div>
                     <h3>Sylvain Leith</h3>
-                    <span class="role-tag">Chief Financial Analyst</span>
-                    <p>Former VP of Risk Strategy at National Bank. Basel II/III expert with global experience implementing credit policies for the World Bank (IFC).</p>
+                    <span class="role-tag">Analyste Financier en Chef</span>
+                    <p>Ancien VP Stratégie de Risque à la Banque Nationale. Expert Bâle II/III avec une expérience mondiale dans la mise en œuvre de politiques de crédit pour la Banque Mondiale (SFI).</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="team-member">
+                    <div class="photo-wrapper">
+                        <img src="https://i.postimg.cc/KzgH3C24/mc.jpg" alt="Marie-Claude Prevost">
+                    </div>
+                    <h3>Marie-Claude Prévost</h3>
+                    <span class="role-tag">Associée Directrice</span>
+                    <p>Marie-Claude apporte une profondeur rare dans la traduction des facteurs humains en systèmes à l'échelle industrielle, prêts pour la régulation, assurant la résilience des opérations complexes.</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="team-member">
+                    <div class="photo-wrapper">
+                        <img src="https://i.postimg.cc/Z5T2sfr6/zain.jpg" alt="Zain Ahmad Khan">
+                    </div>
+                    <h3>Zain Khan</h3>
+                    <span class="role-tag">Architecte en Chef</span>
+                    <p>Leader produit spécialisé dans les plateformes bancaires haute performance (nCino, Sopra). Expert en architecture financière sécurisée et évolutive.</p>
                 </div>
             </div>
         </div>
@@ -355,16 +377,16 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking.
+                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Research & Knowledge Base</a>
-                <a href="workflow.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="blog.html" class="footer-link">Recherche & Base de Connaissances</a>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
@@ -376,7 +398,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
@@ -385,21 +407,21 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
                 
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
@@ -424,8 +446,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
-            window.open(url, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
             closeModal();
         }
     </script>

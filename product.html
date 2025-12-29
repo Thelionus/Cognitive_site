@@ -83,39 +83,6 @@
             text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 25px;
         }
 
-        /* --- MANIFESTO --- */
-        .manifesto {
-            padding: 100px 10%;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(34, 197, 94, 0.08) 0%, transparent 100%);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .manifesto-text {
-            font-size: 32px;
-            font-weight: 300;
-            color: var(--text-main);
-            max-width: 1000px;
-            margin: 0 auto;
-            line-height: 1.4;
-            letter-spacing: -0.5px;
-        }
-        .manifesto-text strong {
-            font-weight: 800;
-        }
-        .manifesto-text em {
-            color: var(--accent);
-            font-style: normal;
-            font-weight: 700;
-        }
-        .manifesto-sub {
-            font-size: 18px;
-            color: var(--text-muted);
-            margin-top: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* --- SECTIONS --- */
         section { padding: 120px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         section:nth-child(odd) { background: rgba(255,255,255,0.015); }
@@ -185,51 +152,6 @@
             color: var(--text-main);
         }
 
-        /* Consensus Diagram */
-        .consensus-flow {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 12px;
-            padding: 50px;
-            margin-top: 50px;
-        }
-        .consensus-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-        .consensus-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr auto 1fr;
-            gap: 20px;
-            align-items: center;
-        }
-        .consensus-box {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .consensus-box.highlight {
-            border-color: var(--accent);
-            background: rgba(34, 197, 94, 0.15);
-        }
-        .consensus-arrow {
-            color: var(--accent);
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .consensus-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
         /* Stats Row */
         .stats-row {
             display: flex;
@@ -286,14 +208,11 @@
             nav ul { flex-direction: column; gap: 30px; text-align: center; }
             .page-hero { padding-top: 150px; padding-bottom: 80px; }
             .page-hero h1 { font-size: 42px; letter-spacing: -1.5px; }
-            .manifesto-text { font-size: 22px; }
             .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
             .grid-2 > div:first-child { order: 2; }
             .grid-2 > img { order: 1; }
             .reverse-mobile > div:first-child { order: 2; }
             .reverse-mobile > img { order: 1; }
-            .consensus-grid { grid-template-columns: 1fr; }
-            .consensus-arrow { transform: rotate(90deg); }
             .stats-row { flex-direction: column; gap: 30px; }
             .footer-grid { grid-template-columns: 1fr; }
             h2 { font-size: 36px; }
@@ -319,7 +238,7 @@
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/product.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Request Demo</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
             </ul>
         </nav>
     </header>
@@ -334,19 +253,6 @@
                 This is what happens when AI finally works for regulated finance.
             </p>
         </div>
-    </div>
-
-    <!-- MANIFESTO -->
-    <div class="manifesto">
-        <p class="manifesto-text">
-            Your competitors are paralyzed by <strong>hallucination risk</strong>.<br>
-            You won't be. We built the only AI platform where<br>
-            Tier-1 banks <em>trust the output</em>.
-        </p>
-        <p class="manifesto-sub">
-            No black boxes. No probability guessing. No "it depends."<br>
-            Just deterministic decisions that survive any audit.
-        </p>
     </div>
 
     <!-- MODULE 1: COGNITIVE CORE -->
@@ -404,37 +310,6 @@
                 </div>
                 <a href="workbench.html" class="btn-arrow">See the Architecture &rarr;</a>
             </div>
-        </div>
-
-        <!-- Consensus Flow Diagram -->
-        <div class="consensus-flow" style="max-width: 950px; margin: 80px auto 0;">
-            <div class="consensus-title">Consensus Validation Engine</div>
-            <div class="consensus-grid">
-                <div class="consensus-box">
-                    <div style="font-size: 15px; color: white; font-weight: 700;">Agent A</div>
-                    <div class="consensus-label">Claude / GPT-4</div>
-                </div>
-                <div class="consensus-arrow">→</div>
-                <div class="consensus-box highlight">
-                    <div style="font-size: 15px; color: white; font-weight: 700;">Multiplexer</div>
-                    <div class="consensus-label">JSON Comparison</div>
-                </div>
-                <div class="consensus-arrow">→</div>
-                <div class="consensus-box">
-                    <div style="font-size: 15px; color: white; font-weight: 700;">Validated Output</div>
-                    <div class="consensus-label">or Human Review</div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 20px;">
-                <div class="consensus-box" style="display: inline-block;">
-                    <div style="font-size: 15px; color: white; font-weight: 700;">Agent B</div>
-                    <div class="consensus-label">Gemini / Mistral</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="big-statement">
-            <p><strong>Other vendors hide their uncertainty.</strong><br>We surface it — so your supervisors can act.</p>
         </div>
     </section> 
 

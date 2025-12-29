@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Stories | Cognitive Banking</title>
+    <title>Références Clients | Banque Cognitive</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,23 +18,29 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            /* Overlays */
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
+            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body, html {
+        html { scroll-behavior: smooth; }
+
+        body {
             font-family: 'Manrope', sans-serif;
             color: var(--text-main);
             background-color: var(--bg-body);
-            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* --- HEADER --- */
+        /* --- FIXED HEADER (EXECUTIVE SIZE - 90px) --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -42,34 +48,50 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 26px; width: auto; display: block; }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 35px; list-style: none; align-items: center; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
-        
-        /* Active Link */
-        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
-        .btn-header {
-            background-color: #FFFFFF; color: #020617 !important; padding: 10px 20px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+        /* --- ACTIVE LINK STYLE (Green Underline) --- */
+        nav a.active-link {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
         }
-        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        /* Strategy Session Button Style */
+        .btn-header {
+            background-color: #FFFFFF;
+            color: #020617 !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            text-transform: none !important; 
+            letter-spacing: 0.5px;
+            border-bottom: none !important;
+            padding-bottom: 12px !important;
+        }
+        .btn-header:hover {
+            background-color: var(--accent);
+            color: #FFFFFF !important;
+        }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
+        /* --- PAGE SPECIFIC STYLES --- */
+        
+        /* Hero Banner */
         .hero-banner {
             position: relative; width: 100%; height: 500px; 
-            padding-top: 80px; /* Header spacing */
+            padding-top: 90px;
             display: flex; align-items: center; justify-content: center;
             background-image: url('https://i.imghippo.com/files/hBJ5329Dsg.png');
             background-size: cover; background-position: center;
@@ -86,23 +108,23 @@
             text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
         }
 
-        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
-        .hero-lead { font-size: 18px; color: var(--text-muted); }
+        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); letter-spacing: -1.5px; }
+        .hero-lead { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
 
-        /* --- CASE STUDIES GRID --- */
-        section { padding: 6rem 5%; }
+        /* Content Sections */
+        .main-section { padding: 6rem 5%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 40px; }
 
         .category-header {
             display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 40px;
         }
-        .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; }
+        .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; letter-spacing: -0.5px; }
         .category-badge {
             margin-left: 20px; background: rgba(34, 197, 94, 0.1); color: var(--accent);
             padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* CARDS */
+        /* Cards */
         .case-card {
             background: var(--card-bg); border: var(--card-border); border-radius: 4px;
             overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
@@ -130,11 +152,11 @@
 
         /* --- FOOTER --- */
         footer { 
-            padding: 6rem 10%; background: var(--bg-body); 
-            border-top: 1px solid rgba(255,255,255,0.1); 
+            padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
+            position: relative; z-index: 2; display: flex; flex-direction: column;
         }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
@@ -163,41 +185,50 @@
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
         }
 
-        /* MOBILE */
+        /* --- MOBILE --- */
         @media (max-width: 968px) {
+            header { height: 80px; }
             .hamburger { display: block; }
             nav {
                 position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
+                width: 100%; height: 100vh; justify-content: center; align-items: center;
+                transition: 0.3s; z-index: 999; display: flex;
             }
             nav.active { left: 0; }
-            nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav ul { flex-direction: column; gap: 30px; }
+            nav a { font-size: 20px; }
             
             .hero-banner { height: 400px; }
-            h1 { font-size: 36px; }
+            h1 { font-size: 38px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="workflow.html" onclick="closeMenu()">Product</a></li>
-                <li><a href="success.html" class="active-link" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <!-- APPLIED ACTIVE CLASS HERE -->
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Références</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Strategy Session</a></li>
+                <!-- Language Toggle Points back to English Success page -->
+                <li class="lang-item"><a href="../success.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
@@ -205,27 +236,26 @@
     <!-- HERO -->
     <div class="hero-banner">
         <div class="hero-content">
-            <span class="mono-tag">Global Impact</span>
-            <h1>Mission Critical Deployments</h1>
-            <p class="hero-lead">From Tier-1 Financial Institutions to high-growth Emerging Markets.</p>
+            <span class="mono-tag">Impact Mondial</span>
+            <h1>Déploiements Critiques</h1>
+            <p class="hero-lead">Des Institutions Financières de Premier Rang aux Marchés Émergents à Forte Croissance.</p>
             
             <!-- NEW CLIENT LINK -->
             <div style="margin-top: 2rem;">
                 <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
-                    View our global client list 
+                    Voir notre liste de clients mondiaux
                 </a>
             </div>
-            
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
-    <section>
+    <section class="main-section">
         
         <!-- GROUP 1: ENTERPRISE -->
         <div class="category-header">
-            <h2>Tier-1 Enterprise Deployments</h2>
-            <span class="category-badge">Institutional</span>
+            <h2>Déploiements Entreprise Tier-1</h2>
+            <span class="category-badge">Institutionnel</span>
         </div>
 
         <div class="grid-3">
@@ -235,14 +265,14 @@
                     <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">Credit Decisions</span>
-                    <h3>Mortgage Adjudication (RBC)</h3>
-                    <p class="case-p">Automating complex credit decisions by restructuring the cognitive flow of expert adjudicators. Reduced UI complexity from 50 pages to 2.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">Décisions de Crédit</span>
+                    <h3>Adjudication Hypothécaire (RBC)</h3>
+                    <p class="case-p">Automatisation des décisions de crédit complexes en restructurant le flux cognitif des experts. Complexité de l'interface réduite de 50 pages à 2.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>90%</strong> Time Saved</div>
-                        <div class="mini-stat"><strong>$20M</strong> OpEx Savings</div>
+                        <div class="mini-stat"><strong>90%</strong> Gain de Temps</div>
+                        <div class="mini-stat"><strong>20M$</strong> Économies OpEx</div>
                     </div>
-                    <a href="case-study-mortgage.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case-study-mortgage.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
 
@@ -252,14 +282,14 @@
                     <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">Frictionless Origination</span>
-                    <h3>Commercial Transformation</h3>
-                    <p class="case-p">Reducing loan preparation time by 92% by eliminating front-to-back office friction with deterministic AI orchestration.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">Origination Sans Friction</span>
+                    <h3>Transformation Commerciale</h3>
+                    <p class="case-p">Réduction du temps de préparation des prêts de 92% en éliminant la friction Front/Back-office grâce à l'orchestration IA déterministe.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>92%</strong> Faster Prep</div>
-                        <div class="mini-stat"><strong>0%</strong> Rework Rate</div>
+                        <div class="mini-stat"><strong>92%</strong> Plus Rapide</div>
+                        <div class="mini-stat"><strong>0%</strong> Taux de Reprise</div>
                     </div>
-                    <a href="case-study-commercial.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case-study-commercial.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
 
@@ -269,14 +299,14 @@
                     <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Financial Capture">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">AI Operations</span>
-                    <h3>Statement Automation</h3>
-                    <p class="case-p">From PDF to Moody’s RiskCalc in minutes. Deterministic agents reclassify and validate financial data without math hallucinations.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">Opérations IA</span>
+                    <h3>Automatisation des États Financiers</h3>
+                    <p class="case-p">Du PDF à Moody’s RiskCalc en quelques minutes. Les agents déterministes reclassent et valident les données financières sans hallucinations mathématiques.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>98%</strong> Faster Spreading</div>
-                        <div class="mini-stat"><strong>100%</strong> Traceable</div>
+                        <div class="mini-stat"><strong>98%</strong> Saisie Accélérée</div>
+                        <div class="mini-stat"><strong>100%</strong> Traçable</div>
                     </div>
-                    <a href="case-study-financial-capture.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case-study-financial-capture.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
         </div>
@@ -285,8 +315,8 @@
 
         <!-- GROUP 2: ESG -->
         <div class="category-header">
-            <h2>ESG & Emerging Markets</h2>
-            <span class="category-badge">Financial Inclusion</span>
+            <h2>ESG & Marchés Émergents</h2>
+            <span class="category-badge">Inclusion Financière</span>
         </div>
 
         <div class="grid-3">
@@ -296,14 +326,14 @@
                     <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Emerging Markets">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">Emerging Markets</span>
-                    <h3>Micro-Finance Revolution</h3>
-                    <p class="case-p">The Cognitive Engine transforms qualitative information into auditable financial data, opening access to credit for the unbanked.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">Marchés Émergents</span>
+                    <h3>Révolution Micro-Finance</h3>
+                    <p class="case-p">Le Moteur Cognitif transforme l'information qualitative en données financières auditables, ouvrant l'accès au crédit pour les non-bancarisés.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>50%</strong> Time savings</div>
-                        <div class="mini-stat"><strong>10M</strong> Origination</div>
+                        <div class="mini-stat"><strong>50%</strong> Gain de Temps</div>
+                        <div class="mini-stat"><strong>10M</strong> Originations</div>
                     </div>
-                    <a href="case_study_alrahma.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case_study_alrahma.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
 
@@ -313,14 +343,14 @@
                     <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">Financial Inclusion</span>
-                    <h3>Scaling Inclusion (Impact Labs)</h3>
-                    <p class="case-p">Rescuing small businesses from predatory lenders by reducing origination time from 6 hours to 15 minutes using behavioral agents.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">Inclusion Financière</span>
+                    <h3>Passage à l'Échelle (Impact Labs)</h3>
+                    <p class="case-p">Protéger les petites entreprises des prêteurs prédateurs en réduisant le temps d'origination de 6 heures à 15 minutes via des agents comportementaux.</p>
                     <div class="metric-row">
                         <div class="mini-stat"><strong>15 Min</strong> Origination</div>
-                        <div class="mini-stat"><strong>6x</strong> Faster Scale</div>
+                        <div class="mini-stat"><strong>6x</strong> Échelle Rapide</div>
                     </div>
-                    <a href="case-study-impact.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case-study-impact.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
 
@@ -330,14 +360,14 @@
                     <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Banking">
                 </div>
                 <div class="case-content">
-                    <span class="mono-tag" style="margin-bottom:5px;">Conversational AI</span>
-                    <h3>WhatsApp Credit Origination</h3>
-                    <p class="case-p">A cognitive interface for secure chat lending. Clients apply in natural language, and the AI automatically structures the request for committees.</p>
+                    <span class="mono-tag" style="margin-bottom:5px;">IA Conversationnelle</span>
+                    <h3>Origination de Crédit WhatsApp</h3>
+                    <p class="case-p">Une interface cognitive pour le prêt sécurisé par chat. Les clients postulent en langage naturel, et l'IA structure automatiquement la demande pour les comités.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>Zero</strong> Friction</div>
-                        <div class="mini-stat"><strong>Global</strong> Scale</div>
+                        <div class="mini-stat"><strong>Zéro</strong> Friction</div>
+                        <div class="mini-stat"><strong>Échelle</strong> Mondiale</div>
                     </div>
-                    <a href="case-study-whatsapp.html" class="case-link">View Case Study &rarr;</a>
+                    <a href="case-study-whatsapp.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
         </div>
@@ -348,28 +378,28 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking and global regulated industries.
+                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="products.html" class="footer-link">The Cognitive Suite</a>
-                <a href="blog.html" class="footer-link">Research & Insights</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="../blog.html" class="footer-link">Recherche Réglementaire</a>
+                <a href="../product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="../success.html" class="footer-link">Archives d'Études de Cas</a>
             </div>
             <div>
-                <h4 class="footer-h4">Contact</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
+                <h4 class="footer-h4">Siège Mondial</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    1155 René-Lévesque Blvd West<br>
                     Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
@@ -378,21 +408,21 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
                 
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
@@ -406,6 +436,11 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+        
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
@@ -417,9 +452,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            // Redirect to Cal.com
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
-            window.open(url, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
             closeModal();
         }
     </script>

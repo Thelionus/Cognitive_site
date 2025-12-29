@@ -69,9 +69,18 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
+        /* --- BACK LINK --- */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--text-muted); text-decoration: none;
+            font-size: 14px; font-weight: 600; margin-bottom: 40px;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: var(--accent); transform: translateX(-5px); }
+
         /* --- HERO --- */
         .workbench-hero {
-            padding: 200px 10% 120px 10%;
+            padding: 180px 10% 120px 10%;
             background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png');
             background-size: cover; background-position: center;
             position: relative;
@@ -304,6 +313,9 @@
     <!-- HERO -->
     <div class="workbench-hero">
         <div class="hero-content">
+            <!-- BACK BUTTON -->
+            <a href="product.html" class="back-link">← Back to Platform</a>
+
             <span class="label">Consensus-Based Orchestration</span>
             <h1>AI Workbench:<br><span>The End of Hallucination</span></h1>
             <p class="hero-lead">
