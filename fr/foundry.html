@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Foundry | Deterministic Intelligence</title>
+    <title>Cognitive Foundry | Intelligence Déterministe</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,13 +12,13 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* THÈME EXÉCUTIF SOMBRE */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.3) 100%);
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -35,7 +35,7 @@
 
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
 
-        /* --- FIXED HEADER (90px STANDARD) --- */
+        /* --- HEADER FIXE (90px) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -68,7 +68,6 @@
 
         /* --- HERO --- */
         .foundry-hero {
-            /* Adjusted padding to make room for back button */
             padding: 180px 10% 100px 10%;
             background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png');
             background-size: cover; background-position: center;
@@ -78,7 +77,6 @@
         
         .hero-content { position: relative; z-index: 2; max-width: 800px; }
         
-        /* NEW BACK LINK STYLE */
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
             color: var(--text-muted); text-decoration: none;
@@ -217,7 +215,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -226,13 +224,14 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" class="active-link" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
-                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="product.html" class="active-link" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Publications</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/foundry.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- LIEN LANGUE VERS VERSION ANGLAISE -->
+                <li class="lang-item"><a href="../foundry.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
@@ -240,69 +239,68 @@
     <!-- HERO -->
     <div class="foundry-hero">
         <div class="hero-content">
-            <!-- ADDED BACK BUTTON HERE -->
-            <a href="product.html" class="back-link">← Back to Platform</a>
+            <a href="product.html" class="back-link">← Retour à la plateforme</a>
 
             <span class="label">Cognitive Foundry</span>
-            <h1>Capturing Human Intelligence <br>Before It Leaves.</h1>
+            <h1>Capturer l'intelligence humaine <br>avant qu'elle ne s'échappe.</h1>
             <p class="hero-lead">
-                We do not train black-box models on your data. We use GenAI to capture your experts' "Think Aloud" reasoning, then encapsulate it into deterministic rules that never hallucinate.
+                Nous n'entraînons pas de modèles « boîte noire » sur vos données. Nous utilisons l'IA générative pour capturer le raisonnement de vos experts, puis nous l'encapsulons dans des règles déterministes qui ne présentent aucun risque d'hallucination.
             </p>
             <div class="quote-box">
-                "This is not model training.<br>
-                This is expert logic encapsulation."
+                « Ceci n'est pas de l'entraînement de modèle.<br>
+                C'est de l'encapsulation de logique experte. »
             </div>
         </div>
     </div>
 
-    <!-- DATA SOVEREIGNTY (CRITICAL ADDITION) -->
+    <!-- SOUVERAINETÉ DES DONNÉES -->
     <section>
         <div class="sovereignty-box">
-            <span class="sov-title">Data Sovereignty Guarantee</span>
-            <h2 style="font-size:28px; margin-bottom:15px;">Your Intelligence. Your Silo. Zero Leakage.</h2>
+            <span class="sov-title">Garantie de souveraineté des données</span>
+            <h2 style="font-size:28px; margin-bottom:15px;">Votre intelligence. Votre silo. Zéro fuite.</h2>
             <p style="color:#CBD5E1; max-width:800px; margin-bottom:0;">
-                We build a bespoke logic engine for <strong>you</strong>. Your expert data is isolated in a single-tenant environment. It is never used to train a universal model, and it never touches a public LLM training set. Your IP remains 100% yours.
+                Nous construisons un moteur logique sur mesure pour **vous**. Vos données expertes sont isolées dans un environnement dédié (single-tenant). Elles ne sont jamais utilisées pour entraîner un modèle universel et ne touchent jamais un ensemble d'entraînement public. Votre propriété intellectuelle reste 100 % la vôtre.
             </p>
         </div>
 
-        <span class="label">The Methodology</span>
-        <h2>From "Think Aloud" to <br>Deterministic Agents</h2>
+        <span class="label">La Méthodologie</span>
+        <h2>Du « raisonnement à voix haute » aux <br>agents déterministes</h2>
         
         <div class="pipeline-steps">
             <div class="step-card">
-                <span class="step-num">STEP 01</span>
-                <h3>Active Reasoning Capture</h3>
+                <span class="step-num">ÉTAPE 01</span>
+                <h3>Capture du raisonnement actif</h3>
                 <p style="font-size:13px;">
-                    The system captures senior credit officers as they work. It stimulates and prompts officers to "think aloud" using cues based on time or user actions, capturing verbal reasoning, not just data inputs.
+                    Le système observe vos analystes de crédit seniors pendant leur travail. Il les incite à « réfléchir à voix haute » via des déclencheurs contextuels, capturant le raisonnement verbal et non seulement les saisies de données.
                 </p>
             </div>
             <div class="step-card">
-                <span class="step-num">STEP 02</span>
-                <h3>Cognitive Mapping</h3>
+                <span class="step-num">ÉTAPE 02</span>
+                <h3>Cartographie cognitive</h3>
                 <p style="font-size:13px;">
-                    GenAI structures this unstructured reasoning into a Human Information Processing Map (Cognitive Task Analysis).
+                    L'IA générative structure ce raisonnement informel en une carte de traitement de l'information humaine (Analyse des Tâches Cognitives).
                 </p>
             </div>
             <div class="step-card">
-                <span class="step-num">STEP 03</span>
-                <h3>Deterministic Conversion</h3>
+                <span class="step-num">ÉTAPE 03</span>
+                <h3>Conversion déterministe</h3>
                 <p style="font-size:13px;">
-                    The logic map is converted into deterministic rules. The "Black Box" becomes a "Glass Box."
+                    La carte logique est convertie en règles déterministes rigides. La « boîte noire » devient une « boîte de verre » auditable.
                 </p>
             </div>
             <div class="step-card">
-                <span class="step-num">STEP 04</span>
-                <h3>Agent Deployment</h3>
+                <span class="step-num">ÉTAPE 04</span>
+                <h3>Déploiement des agents</h3>
                 <p style="font-size:13px;">
-                    We deploy autonomous agents that execute this specific logic profile. No hallucinations. 100% Auditability.
+                    Nous déployons des agents autonomes qui exécutent ce profil logique spécifique. Zéro hallucination. Auditabilité à 100 %.
                 </p>
             </div>
         </div>
 
-        <!-- LOGO SECTION -->
+        <!-- SECTION LOGOS -->
         <div class="foundry-logos">
-            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo"> 
-            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
+            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Banque Royale" class="client-logo"> 
+            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="Banque Nationale" class="client-logo">
             <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
             <img src="https://i.imghippo.com/files/dSBI9595LU.png" alt="DUCA" class="client-logo">
             <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD" class="client-logo">
@@ -310,51 +308,51 @@
         </div>
     </section>
 
-    <!-- THE PROBLEM (RISK) -->
+    <!-- LE PROBLÈME (RISQUE) -->
     <section>
         <div class="risk-grid">
             <div>
-                <span class="label">The Execution Gap</span>
-                <h2>Why Generic AI Fails</h2>
+                <span class="label">L'écart d'exécution</span>
+                <h2>Pourquoi l'IA générique échoue</h2>
                 <p>
-                    Most AI models are pre-trained on public data. That works for language, but it fails for credit decisions. 
+                    La plupart des modèles d'IA sont pré-entraînés sur des données publiques. Cela fonctionne pour le langage, mais échoue pour les décisions de crédit complexes. 
                 </p>
                 <p>
-                    Decisive information isn't written on the web. It exists only in the heads of your experts—how they balance policy, context, and intuition. Generic AI cannot guess this.
+                    L'information décisive n'est pas écrite sur le web. Elle n'existe que dans la tête de vos experts — dans leur façon d'équilibrer les politiques, le contexte et l'intuition. Une IA générique ne peut pas deviner cela.
                 </p>
             </div>
             <div class="risk-card">
-                <span class="risk-title">Risk 01: Brain Drain</span>
-                <h3>The "Gold Standard" is Retiring</h3>
+                <span class="risk-title">Risque 01 : Exode des cerveaux</span>
+                <h3>L'« étalon-or » part à la retraite</h3>
                 <p>
-                    Senior credit officers are leaving faster than their expertise can be transferred.
+                    Les analystes seniors partent plus vite que leur expertise ne peut être transférée.
                 </p>
                 <ul style="color:var(--text-muted); padding-left:20px; line-height:1.6;">
-                    <li>Critical judgment remains undocumented</li>
-                    <li>Decision logic lives in experts' heads</li>
-                    <li>Junior bankers lack required intuition</li>
+                    <li>Le jugement critique reste non documenté</li>
+                    <li>La logique décisionnelle réside dans la tête des experts</li>
+                    <li>Les analystes juniors manquent de l'intuition requise</li>
                 </ul>
-                <p style="margin-top:20px; color:white; font-weight:600;">Result: Erosion of institutional expertise.</p>
+                <p style="margin-top:20px; color:white; font-weight:600;">Résultat : Érosion de l'expertise institutionnelle.</p>
             </div>
         </div>
     </section>
 
-    <!-- IMPACT & PRESERVATION -->
+    <!-- IMPACT & PRÉSERVATION -->
     <section style="background: rgba(255,255,255,0.02);">
         <div class="risk-grid">
             <div>
-                <h2>Preserving Expertise — Permanently</h2>
+                <h2>Préserver l'expertise — Définitivement</h2>
                 <p>
-                    The Cognitive Foundry stops brain drain. Expert knowledge is no longer lost when people retire. Human intelligence becomes institutional infrastructure: Encapsulated, Executable, Auditable, and Scalable.
+                    Cognitive Foundry stoppe la perte de connaissances. Le savoir expert n'est plus perdu lors des départs à la retraite. L'intelligence humaine devient une infrastructure institutionnelle : encapsulée, exécutable, auditable et évolutive.
                 </p>
             </div>
             <div>
-                <h2>What This Enables</h2>
+                <h2>Ce que cela permet</h2>
                 <div class="checklist-grid">
-                    <div class="check-item"><span class="check-icon">✓</span> Senior-level judgment instantly</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Zero hallucination decisions</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Full regulator trust</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Single-Tenant Data Isolation</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Jugement de niveau senior instantané</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Décisions sans aucune hallucination</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Confiance totale des régulateurs</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Isolation des données par environnement client</div>
                 </div>
             </div>
         </div>
@@ -364,48 +362,48 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Platform Components</h4>
-                <a href="workbench.html" class="footer-link">The Inputs (Workbench)</a>
-                <a href="foundry.html" class="footer-link">The Brain (Foundry)</a>
-                <a href="workflow.html" class="footer-link">The Execution (Engine)</a>
+                <h4 class="footer-h4">Composants de la plateforme</h4>
+                <a href="workbench.html" class="footer-link">Les Entrées (Workbench)</a>
+                <a href="foundry.html" class="footer-link">Le Cerveau (Foundry)</a>
+                <a href="workflow.html" class="footer-link">L'Exécution (Moteur)</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
+                    1155, boul. René-Lévesque Ouest #2500<br>
                     Montréal, QC H3B 2K4<br>
                     <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
+    <!-- MODAL RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'organisation">
+                <button type="submit" class="modal-btn">Continuer vers le calendrier &rarr;</button>
             </form>
         </div>
     </div>

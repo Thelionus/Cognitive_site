@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Workbench | The End of Hallucination | Cognitive</title>
+    <title>Workbench IA | La Fin des Hallucinations | Cognitive</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,8 +234,6 @@
             color: #475569; 
             font-size: 0.8rem; 
         }
-        .copyright a { color: #64748B; text-decoration: none; }
-        .copyright a:hover { color: var(--accent); }
 
         /* --- MODAL --- */
         .modal-overlay {
@@ -251,7 +249,6 @@
         .close-modal {
             position: absolute; top: 20px; right: 25px; font-size: 28px; color: #94A3B8; cursor: pointer; line-height: 1;
         }
-        .close-modal:hover { color: white; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
         .form-input {
             width: 100%; padding: 14px 16px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
@@ -287,10 +284,10 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER (VERSION FRANÇAISE) -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -299,13 +296,14 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" class="active-link" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="product.html" class="active-link" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/workbench.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Request Demo</a></li>
+                <!-- LANGUAGE SWITCHER: Points to root for English -->
+                <li class="lang-item"><a href="../workbench.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Demander une démo</a></li>
             </ul>
         </nav>
     </header>
@@ -313,99 +311,98 @@
     <!-- HERO -->
     <div class="workbench-hero">
         <div class="hero-content">
-            <!-- BACK BUTTON -->
-            <a href="product.html" class="back-link">← Back to Platform</a>
+            <a href="product.html" class="back-link">← Retour à la plateforme</a>
 
-            <span class="label">Consensus-Based Orchestration</span>
-            <h1>AI Workbench:<br><span>The End of Hallucination</span></h1>
+            <span class="label">Orchestration par Consensus</span>
+            <h1>Workbench IA :<br><span>La Fin des Hallucinations</span></h1>
             <p class="hero-lead">
-                <strong>Multiple agents. One truth.</strong> We don't trust any single AI model. We make them check each other's work — and surface every discrepancy to your supervisors.
+                <strong>Plusieurs agents. Une seule vérité.</strong> Nous ne faisons confiance à aucun modèle d'IA individuel. Nous les forçons à vérifier mutuellement leur travail — et nous révélons chaque divergence à vos superviseurs.
             </p>
         </div>
     </div>
 
-    <!-- SECTION: CONSENSUS ENGINE -->
+    <!-- SECTION: MOTEUR DE CONSENSUS -->
     <section>
         <div style="max-width: 1200px; margin: 0 auto;">
-            <span class="label">The Consensus Engine</span>
-            <h2 style="font-size: 42px; letter-spacing: -1.5px;">20 Matches. 1 Mismatch.<br>Zero Guesswork.</h2>
+            <span class="label">Le Moteur de Consensus</span>
+            <h2 style="font-size: 42px; letter-spacing: -1.5px;">20 Correspondances. 1 Écart.<br>Zéro Approximation.</h2>
             <p style="max-width: 700px;">
-                Every data point runs through independent AI agents. When they agree, you get validated extraction. When they diverge — even on a single field — <strong>the system stops and escalates</strong>.
+                Chaque point de donnée est analysé par des agents d'IA indépendants. Lorsqu'ils sont d'accord, vous obtenez une extraction validée. Lorsqu'ils divergent — même sur un seul champ — <strong>le système s'arrête et escalade</strong>.
             </p>
             <p style="max-width: 700px;">
-                This is not "confidence scoring." This is deterministic validation.
+                Ceci n'est pas un "score de confiance" probabiliste. C'est une validation déterministe.
             </p>
 
             <!-- CONSENSUS IMAGE -->
             <div class="consensus-showcase">
                 <img src="https://i.postimg.cc/VvKQK9b1/Screenshot-2025-12-27-at-8-47-06-AM.png" 
-                     alt="Fiscal Year 2023 Records Review - Match vs Mismatch Validation"
+                     alt="Revue des dossiers de l'exercice financier 2023 - Validation des correspondances"
                      loading="eager">
                 <div class="showcase-caption">
-                    <span class="mono-tag">Live Validation Output</span>
+                    <span class="mono-tag">Résultat de validation en direct</span>
                     <div class="status">
                         <div class="status-item">
                             <span class="status-dot green"></span>
-                            <span style="color: var(--accent);">20 Matched</span>
+                            <span style="color: var(--accent);">20 Validés</span>
                         </div>
                         <div class="status-item">
                             <span class="status-dot red"></span>
-                            <span style="color: #EF4444;">1 Flagged for Review</span>
+                            <span style="color: #EF4444;">1 Signalé pour révision</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="big-statement">
-                <p>Other vendors hide uncertainty behind confidence scores.<br><strong>We surface it — so your supervisors can act.</strong></p>
+                <p>Les autres fournisseurs cachent l'incertitude derrière des scores de confiance.<br><strong>Nous la révélons — pour que vos superviseurs puissent agir.</strong></p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: HOW IT WORKS -->
+    <!-- SECTION: COMMENT ÇA FONCTIONNE -->
     <section>
         <div class="grid-2">
             <div>
-                <span class="label">The Protocol</span>
-                <h2 style="font-size: 38px;">The 1% Exception Queue</h2>
+                <span class="label">Le Protocole</span>
+                <h2 style="font-size: 38px;">La File d'Attente des Exceptions (1%)</h2>
                 <p>
-                    <strong>Legal liability lives in the edge cases.</strong> We don't hide them; we highlight them.
+                    <strong>La responsabilité juridique réside dans les cas marginaux.</strong> Nous ne les cachons pas ; nous les mettons en lumière.
                 </p>
                 <p>
-                    When our multi-agent consensus engine detects ambiguity — a blurred scan, a handwritten note, or conflicting data — it doesn't guess. It locks the workflow and routes the specific data point to your analyst's Exception Queue.
+                    Lorsque notre moteur de consensus multi-agent détecte une ambiguïté — un scan flou, une note manuscrite ou des données contradictoires — il ne devine pas. Il verrouille le flux et dirige le point de donnée spécifique vers la file d'exception de votre analyste.
                 </p>
                 <p>
-                    <strong>Your analysts stop doing data entry and start doing risk arbitrage.</strong>
+                    <strong>Vos analystes cessent de faire de la saisie de données et commencent à faire de l'arbitrage de risque.</strong>
                 </p>
                 <div class="feature-pills">
-                    <span class="pill">Multi-Agent Validation</span>
-                    <span class="pill">JSON Schema Comparison</span>
-                    <span class="pill">Instant Escalation</span>
+                    <span class="pill">Validation Multi-Agent</span>
+                    <span class="pill">Comparaison de Schémas JSON</span>
+                    <span class="pill">Escalade Instantanée</span>
                 </div>
             </div>
             <div>
                 <div style="background: var(--ui-bg); border: 1px solid var(--ui-border); border-radius: 12px; padding: 40px;">
-                    <div class="mono-tag" style="margin-bottom: 25px;">Exception Protocol</div>
+                    <div class="mono-tag" style="margin-bottom: 25px;">Protocole d'Exception</div>
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="width: 40px; height: 40px; background: rgba(34, 197, 94, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700;">1</div>
                             <div>
-                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Agents Process Independently</div>
-                                <div style="font-size: 13px; color: var(--text-muted);">Claude, GPT-4, Gemini extract same document</div>
+                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Traitement Indépendant</div>
+                                <div style="font-size: 13px; color: var(--text-muted);">Claude, GPT-4 et Gemini extraient le même document</div>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="width: 40px; height: 40px; background: rgba(34, 197, 94, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700;">2</div>
                             <div>
-                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Multiplexer Compares Outputs</div>
-                                <div style="font-size: 13px; color: var(--text-muted);">Field-by-field JSON validation</div>
+                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Multiplexeur de Comparaison</div>
+                                <div style="font-size: 13px; color: var(--text-muted);">Validation JSON champ par champ</div>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="width: 40px; height: 40px; background: rgba(239, 68, 68, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #EF4444; font-weight: 700;">!</div>
                             <div>
-                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Mismatch? Instant Escalation</div>
-                                <div style="font-size: 13px; color: var(--text-muted);">Locked for human review — no silent failures</div>
+                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Écart ? Escalade Instantanée</div>
+                                <div style="font-size: 13px; color: var(--text-muted);">Verrouillé pour révision humaine — aucun échec silencieux</div>
                             </div>
                         </div>
                     </div>
@@ -417,25 +414,25 @@
     <!-- AGENT ARCHITECTURE -->
     <section>
         <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
-            <span class="label">Orchestration Layer</span>
-            <h2 style="font-size: 42px;">Task-Specific Agents</h2>
+            <span class="label">Couche d'Orchestration</span>
+            <h2 style="font-size: 42px;">Agents Spécialisés</h2>
             <p style="text-align: center; max-width: 600px; margin: 0 auto;">
-                No single "black box" model. We deploy specialized agents that check each other's work before presenting to your team.
+                Pas de modèle "boîte noire" unique. Nous déployons des agents spécialisés qui vérifient mutuellement leur travail avant de le présenter à votre équipe.
             </p>
         </div>
         
         <div class="agent-grid">
             <div class="agent-card">
-                <h3>The Reader</h3>
-                <p>OCR and layout analysis. Identifies tables, footnotes, and handwritten margins with structural awareness.</p>
+                <h3>Le Lecteur</h3>
+                <p>Analyse de l'OCR et de la mise en page. Identifie les tableaux, les notes de bas de page et les marges manuscrites avec conscience structurelle.</p>
             </div>
             <div class="agent-card">
-                <h3>The Auditor</h3>
-                <p>Cross-references extracted data against previous years, external bureaus, and internal consistency rules.</p>
+                <h3>L'Auditeur</h3>
+                <p>Recoupe les données extraites avec les années précédentes, les registres externes et les règles de cohérence interne.</p>
             </div>
             <div class="agent-card">
-                <h3>The Skeptic</h3>
-                <p>Specifically trained to find inconsistencies. If it finds one, it flags the file for human-in-the-loop review.</p>
+                <h3>Le Sceptique</h3>
+                <p>Spécialement entraîné pour trouver les incohérences. S'il en trouve une, il signale le fichier pour une révision humaine immédiate.</p>
             </div>
         </div>
     </section>
@@ -444,31 +441,30 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">The Standard for Commercial Credit</h4>
+                <h4 class="footer-h4">Le standard du crédit commercial</h4>
                 <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem;">
-                    Cognitive builds deterministic AI infrastructure for the world's most regulated financial institutions. Founded 1995. Montréal.
+                    Cognitive construit l'infrastructure d'IA déterministe pour les institutions financières les plus réglementées au monde. Fondée en 1995. Montréal.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Platform</h4>
+                <h4 class="footer-h4">Plateforme</h4>
                 <a href="workflow.html" class="footer-link">Cognitive Core</a>
-                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="workbench.html" class="footer-link">Workbench IA</a>
                 <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
-                <a href="success.html" class="footer-link">Client Results</a>
+                <a href="success.html" class="footer-link">Réalisations Clients</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">
-                    1155 René-Lévesque Blvd W.<br>
-                    Suite 2500<br>
+                    1155, boul. René-Lévesque Ouest<br>
+                    Bureau 2500<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group Inc. All rights reserved.<br>
-            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="security.html">Security</a>
+            &copy; 2025 Groupe Cognitive Inc. Tous droits réservés.
         </div>
     </footer>
 
@@ -477,18 +473,18 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2.5rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:15px;">Executive Briefing</span>
-                <h3 style="color: white; font-size: 26px; margin:0; letter-spacing: -0.5px;">See It In Action</h3>
-                <p style="font-size: 15px; color: #94A3B8; margin-top:12px;">30 minutes. No slides. Live platform demo.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:15px;">Briefing Exécutif</span>
+                <h3 style="color: white; font-size: 26px; margin:0; letter-spacing: -0.5px;">Voyez-le en action</h3>
+                <p style="font-size: 15px; color: #94A3B8; margin-top:12px;">30 minutes. Aucune diapositive. Démo en direct de la plateforme.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Bank / Institution</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Organization">
-                <button type="submit" class="modal-btn">Book Your Demo &rarr;</button>
+                <label class="form-label">Nom complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Courriel professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Banque / Institution</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'organisation">
+                <button type="submit" class="modal-btn">Réserver votre démo &rarr;</button>
             </form>
         </div>
     </div>
@@ -517,7 +513,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organisation: " + org)}`, '_blank');
             closeModal();
         }
     </script>
