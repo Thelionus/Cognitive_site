@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 2. SEO: Optimized Title -->
-    <title>About Cognitive Banking | Our History & Leadership</title>
+    <title>About Cognitive Banking | Our Pedigree & Leadership</title>
     
-    <!-- 3. SEO: Unique Meta Description -->
-    <meta name="description" content="Learn about Cognitive Banking, a CRIM spinoff specializing in deterministic AI for global finance. Partnered with RBC and CGI to re-engineer credit flows.">
+    <!-- 3. SEO: Unique Description -->
+    <meta name="description" content="Learn about Cognitive Group, a CRIM deep-tech spinoff. Partnered with RBC and CGI to deliver deterministic AI infrastructure for global Tier-1 banks.">
     
     <!-- 4. SEO: Canonical Link -->
     <link rel="canonical" href="https://www.cognitivegroup.com/about.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
     
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <!-- 8. SEO: Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,24 +35,23 @@
         "@type": "Organization",
         "name": "Cognitive Group",
         "url": "https://www.cognitivegroup.com",
-        "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png",
-        "description": "Specialized spinoff of CRIM focused on deterministic AI for banking."
+        "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png"
       }
     }
     </script>
 
-    <!-- 9. TRACKING: Google Analytics (Francois Aubin ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7MQG76P6"></script>
+    <!-- 9. TRACKING: Google Analytics (Verified ID: G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-GM7MQG76P6');
+      gtag('config', 'G-L9N7RPQDDB');
     </script>
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* DARK EXECUTIVE THEME - SYNCED WITH INDEX */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
@@ -64,7 +63,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER: EXACT SYNC --- */
+        /* --- HEADER: EXACT MATCH TO INDEX.HTML --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -76,12 +75,17 @@
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
-        nav a.active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+        nav a.active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+        /* FIXED: FR Link matches index exactly (Plain text, bold, no border) */
+        .lang-item a { 
+            color: var(--accent) !important; font-weight: 800; border: none !important; padding: 0 !important; 
+        }
 
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; 
-            letter-spacing: 0.5px; border-bottom: none !important; cursor: pointer;
+            letter-spacing: 0.5px; cursor: pointer; transition: 0.3s;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
@@ -101,45 +105,51 @@
         section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .container { max-width: 1200px; margin: 0 auto; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-        h3 { font-size: 24px; color: white; margin-bottom: 15px; font-weight: 700; }
-        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 16px; }
+        
+        h3 { font-size: 26px; color: white; margin-bottom: 15px; font-weight: 800; }
+        
+        /* SYNCED FONT SIZE: 18px consistent with Index Page Typography */
+        p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; font-size: 18px; }
+        p strong { color: white; font-weight: 700; }
 
-        /* Card Style */
         .info-card { background: var(--card-bg); border: var(--card-border); border-radius: 6px; overflow: hidden; }
         .card-header { padding: 20px 30px; background: rgba(34, 197, 94, 0.05); border-bottom: var(--card-border); }
         .card-body { padding: 30px; }
         .stat-row { display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px; }
-        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); }
-        .stat-value { font-weight: 700; color: white; }
+        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 700; }
+        .stat-value { font-weight: 700; color: white; font-size: 15px; }
 
-        /* --- TIMELINE FIX: Clean vertical design --- */
+        /* --- TIMELINE FIX: Clean vertical path --- */
         .timeline-container { max-width: 800px; margin-top: 40px; }
         .timeline-item { 
-            padding-left: 40px; 
-            border-left: 2px solid rgba(255,255,255,0.1); 
-            padding-bottom: 50px; 
-            position: relative; 
+            padding-left: 40px; border-left: 1px solid rgba(255,255,255,0.1); 
+            padding-bottom: 50px; position: relative; 
         }
-        .timeline-item:last-child { border-left: 2px solid transparent; } /* Removes extra line at end */
+        .timeline-item:last-child { border-left: 1px solid transparent; }
         .timeline-item::before { 
-            content: ''; position: absolute; left: -7px; top: 0; 
-            width: 12px; height: 12px; background: var(--accent); 
-            border-radius: 50%; box-shadow: 0 0 15px var(--accent);
-            z-index: 2;
+            content: ''; position: absolute; left: -6px; top: 0; 
+            width: 11px; height: 11px; background: var(--accent); 
+            border-radius: 50%; box-shadow: 0 0 10px var(--accent); z-index: 2;
         }
         .timeline-year { 
-            font-weight: 800; color: var(--accent); margin-bottom: 8px; 
-            font-family: 'JetBrains Mono', monospace; font-size: 16px; 
-            display: block; line-height: 1;
+            font-weight: 800; color: var(--accent); margin-bottom: 10px; 
+            font-family: 'JetBrains Mono', monospace; font-size: 16px; display: block; 
         }
 
-        /* --- TEAM GRID --- */
-        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
-        .team-member { transition: 0.3s; }
-        .photo-wrapper { width: 100%; height: 400px; overflow: hidden; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; position: relative; background: #0F172A; }
-        .team-member img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: 0.5s ease; }
+        /* --- TEAM GRID FIX: Prevents Clipping --- */
+        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px 40px; margin-top: 40px; }
+        .photo-wrapper { 
+            width: 100%; aspect-ratio: 3 / 3.8; overflow: hidden; border-radius: 4px; 
+            border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; 
+            position: relative; background: #0F172A; 
+        }
+        .team-member img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            object-position: center 10%; /* FACE FIX */
+            filter: grayscale(20%); transition: 0.5s ease; 
+        }
         .team-member:hover img { transform: scale(1.05); filter: grayscale(0%); }
-        .role-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .role-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: 700; }
 
         /* --- FOOTER --- */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
@@ -147,12 +157,6 @@
         .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
-
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
-        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
-        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
         @media (max-width: 968px) {
             header { height: 80px; }
@@ -162,7 +166,6 @@
             nav ul { flex-direction: column; gap: 30px; }
             h1 { font-size: 36px; }
             .grid-2, .team-grid, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .photo-wrapper { height: 350px; }
         }
     </style>
 </head>
@@ -172,11 +175,9 @@
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
-        
-        <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <div class="hamburger" id="hamburger">
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
-
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html">Products</a></li>
@@ -184,7 +185,8 @@
                 <li><a href="about.html" class="active-link">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <!-- FIXED: Plain text link matches Index -->
+                <li class="lang-item"><a href="fr/index.html">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
@@ -207,10 +209,9 @@
                     <p>Leveraging decades of proprietary <strong>cognitive analysis</strong> capturing expert reasoning not present in public datasets, we partnered with the <strong>Royal Bank of Canada</strong> for over a decade to optimize high-stakes loan origination.</p>
                     <div style="margin-top: 30px; padding: 25px; border-left: 3px solid var(--accent); background: rgba(34, 197, 94, 0.05);">
                         <span class="mono-tag" style="margin-bottom: 10px;">Strategic Scale</span>
-                        <p style="margin: 0; font-size: 15px; color: white;">Our alliance with <strong>CGI</strong> allows us to combine deep-tech agility with the global delivery assurance required by Tier-1 institutions.</p>
+                        <p style="margin: 0; font-size: 16px; color: white;">Our alliance with <strong>CGI</strong> allows us to combine deep-tech agility with the global delivery assurance required by Tier-1 institutions.</p>
                     </div>
                 </div>
-                
                 <div>
                     <div class="info-card">
                         <div class="card-header"><h3 style="margin:0; font-size:16px;">Institutional Profile</h3></div>
@@ -226,12 +227,11 @@
         </div>
     </section>
 
-    <!-- TIMELINE FIX APPLIED HERE -->
+    <!-- TIMELINE FIX: Professional Vertical Line -->
     <section style="background: rgba(255,255,255,0.02);">
         <div class="container">
             <span class="mono-tag">Development Path</span>
             <h2 style="font-size:32px; font-weight:800; margin-bottom: 50px; color:white;">The Evolution of Deterministic AI</h2>
-            
             <div class="timeline-container">
                 <div class="timeline-item">
                     <span class="timeline-year">2008 — 2018</span>
@@ -262,10 +262,9 @@
             <span class="mono-tag">Leadership</span>
             <h2 style="font-size:32px; font-weight:800; margin-bottom: 20px; color:white;">Infrastructure of Trust</h2>
             <p style="max-width: 600px;">A multidisciplinary team where banking expertise directs technological execution.</p>
-            
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="photo-wrapper"><img src="https://i.postimg.cc/xjB97SCz/fa.jpg" alt="Francois Aubin"></div>
+                    <div class="photo-wrapper"><img src="https://i.postimg.cc/xjB97SCz/fa.jpg" alt="Francois Aubin, CEO"></div>
                     <h3>Francois Aubin</h3><span class="role-tag">CEO & Founder</span>
                     <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E).</p>
                 </div>
@@ -292,10 +291,8 @@
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
-                <!-- FIXED: Removed Founded in 1995 -->
-                <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
-                </p>
+                <!-- FIXED: Date Removed -->
+                <p style="color: var(--text-muted); line-height: 1.6;">Cognitive specializes in deterministic AI for mission-critical banking.</p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
@@ -305,30 +302,24 @@
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
-                </p>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4<br><br><a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a></p>
             </div>
         </div>
         <div class="copyright">&copy; 2025 Cognitive Group. All Rights Reserved.</div>
     </footer>
 
-    <div id="bookingModal" class="modal-overlay">
-        <div class="modal-card">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div id="bookingModal" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center;">
+        <div class="modal-card" style="background:#0F172A; padding:40px; border-radius:8px; width:100%; max-width:450px; position:relative;">
+            <span onclick="closeModal()" style="position:absolute; top:20px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Executive Briefing</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-name" placeholder="Full Name" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;" required>
+                <input type="email" id="g-email" placeholder="Work Email" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;" required>
+                <input type="text" id="g-org" placeholder="Organization" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;" required>
+                <button type="submit" style="width:100%; padding:14px; background:var(--accent); color:black; font-weight:700; border:none; margin-top:20px; cursor:pointer;">Continue to Calendar &rarr;</button>
             </form>
         </div>
     </div>

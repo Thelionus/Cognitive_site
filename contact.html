@@ -5,18 +5,18 @@
     <!-- 1. SEO: Mobile-First Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
+    <!-- 2. SEO: Optimized Title -->
     <title>Contact Us | Cognitive Banking Global Offices</title>
     
-    <!-- 3. SEO: Unique Meta Description (150-160 chars) -->
+    <!-- 3. SEO: Unique Description -->
     <meta name="description" content="Get in touch with Cognitive Group. Schedule a briefing with our solution engineers in Montreal, San Francisco, Dallas, or Dakar to deploy deterministic AI.">
     
     <!-- 4. SEO: Canonical Link -->
     <link rel="canonical" href="https://www.cognitivegroup.com/contact.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
-    <!-- Added google.com/maps for the office iframes -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.google.com https://maps.google.com;">
+    <!-- Allows Google Analytics collection and Google Maps integration -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co; frame-src https://www.google.com https://maps.google.com https://www.google.com/maps/;">
     
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <!-- 8. SEO: Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,39 +35,36 @@
       "mainEntity": {
         "@type": "Organization",
         "name": "Cognitive Group",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "info@cognitivegroup.com",
-          "contactType": "customer support"
-        }
+        "url": "https://www.cognitivegroup.com",
+        "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png"
       }
     }
     </script>
 
-    <!-- 9. TRACKING: Google Analytics (G-GM7MQG76P6) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7MQG76P6"></script>
+    <!-- 9. TRACKING: Google Analytics (Verified ID: G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-GM7MQG76P6');
+      gtag('config', 'G-L9N7RPQDDB');
     </script>
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* DARK EXECUTIVE THEME - SYNCED WITH INDEX */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); scroll-behavior: smooth; overflow-x: hidden; }
+        body, html { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 
+        /* --- HEADER: EXACT MATCH TO INDEX.HTML --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -76,7 +73,6 @@
         }
         
         .logo img { height: 30px; width: auto; display: block; }
-
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
@@ -84,14 +80,15 @@
 
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer; transition: 0.3s;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
+        /* --- HERO --- */
         .hero-small {
             padding: 180px 10% 80px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
@@ -100,38 +97,40 @@
         .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
 
+        /* --- CONTENT SECTION --- */
         section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .container { max-width: 1200px; margin: 0 auto; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         
+        p { color: var(--text-muted); font-size: 17px; margin-bottom: 15px; line-height: 1.7; }
+        h3 { font-size: 24px; color: white; margin-bottom: 15px; font-weight: 800; }
+
         .contact-card { background: var(--card-bg); border: var(--card-border); padding: 30px; border-radius: 6px; transition: 0.3s; }
         .contact-card:hover { border-color: var(--accent); background: rgba(34, 197, 94, 0.05); }
 
         .map-frame { width: 100%; height: 250px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; filter: grayscale(100%) invert(90%) contrast(1.2); opacity: 0.8; transition: 0.3s; }
         .contact-card:hover .map-frame { filter: grayscale(0%) invert(0%); opacity: 1; }
 
-        h3 { font-size: 20px; color: white; margin-bottom: 15px; font-weight: 700; }
-        p { color: var(--text-muted); font-size: 15px; margin-bottom: 5px; line-height: 1.6; }
         .email-link { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; margin-top: 15px; display: inline-block; }
         .email-link:hover { text-decoration: underline; }
 
         .audit-section { background: linear-gradient(to right, rgba(34, 197, 94, 0.1), transparent); border: 1px solid var(--accent); padding: 40px; border-radius: 8px; margin-bottom: 60px; }
-        .audit-btn { background: var(--accent); color: black; font-weight: 800; padding: 15px 30px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px; }
+        .audit-btn { background: var(--accent); color: black; font-weight: 800; padding: 15px 30px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
         .audit-btn:hover { background: white; }
 
         .testimonial-section { background: rgba(255,255,255,0.02); padding: 8rem 10%; text-align: center; }
         .quote { font-size: 28px; font-weight: 300; color: white; max-width: 900px; margin: 0 auto 40px; font-style: italic; line-height: 1.4; }
 
+        /* --- FOOTER --- */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
         .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
@@ -159,13 +158,14 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
-                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
-                <li><a href="contact.html" class="active-link" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/contact.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <!-- CTA Renamed -->
+                <li><a href="product.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html" class="active-link">Contact</a></li>
+                <!-- Language Toggle FIXED to match Index perfectly (No box/border) -->
+                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <!-- CTA Button RENAMED -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
@@ -189,7 +189,6 @@
                 <p style="color: #cbd5e1; max-width: 800px;">
                     A solution engineer will guide you through a live demonstration of the AI Workbench, tailored to your credit workflows and regulatory context.
                 </p>
-                <!-- CTA Renamed -->
                 <a href="#" onclick="openModal()" class="audit-btn">Schedule Briefing</a>
             </div>
 
@@ -272,15 +271,12 @@
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br><br>
+                    1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
-        </div>
+        <div class="copyright">&copy; 2025 Cognitive Group. All Rights Reserved.</div>
     </footer>
 
     <div id="bookingModal" class="modal-overlay">
@@ -289,16 +285,12 @@
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Executive Briefing</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-name" class="form-input" required placeholder="Full Name" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;">
+                <input type="email" id="g-email" class="form-input" required placeholder="Work Email" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;">
+                <input type="text" id="g-org" class="form-input" required placeholder="Organization" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white;">
+                <button type="submit" class="modal-btn" style="width:100%; padding:14px; background:var(--accent); color:black; font-weight:700; border:none; margin-top:20px; cursor:pointer;">Continue to Calendar &rarr;</button>
             </form>
         </div>
     </div>
