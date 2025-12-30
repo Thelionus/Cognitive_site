@@ -2,43 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. SEO: Mobile-First Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Stories | Cognitive Banking</title>
     
+    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
+    <title>Case Studies & Success Stories | Cognitive Banking</title>
+    
+    <!-- 3. SEO: Unique Description (150-160 chars) -->
+    <meta name="description" content="See how Cognitive Banking transforms commercial credit and financial inclusion through deterministic AI for Tier-1 banks and emerging market institutions.">
+    
+    <!-- 4. SEO: Canonical Link -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/success.html">
+
+    <!-- 5. SECURITY: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://i.imghippo.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com;">
+    
+    <!-- 6. SECURITY: Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- 7. PERFORMANCE: Preload Hero Image -->
+    <link rel="preload" as="image" href="https://i.imghippo.com/files/hBJ5329Dsg.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Cognitive Banking Success Stories",
+      "description": "Global impact case studies from Tier-1 Financial Institutions to emerging markets.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cognitive Group"
+      }
+    }
+    </script>
+
+    <!-- 9. TRACKING: Google Analytics (G-GM7MQG76P6) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7MQG76P6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GM7MQG76P6');
+    </script>
+
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
-            
-            /* Overlays */
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
-            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
-            --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); overflow-x: hidden; width: 100%; }
 
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* --- FIXED HEADER (EXECUTIVE SIZE) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -48,47 +74,24 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
+        /* Restored original logo behavior with dimensions for CLS */
         .logo img { height: 30px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        
-        nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
-            font-weight: 600; transition: 0.3s;
-        }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
+        nav a.active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
 
-        /* --- ACTIVE LINK STYLE (Green Underline) --- */
-        nav a.active-link {
-            color: var(--text-main);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
-        }
-
-        /* Strategy Session Button Style */
         .btn-header {
-            background-color: #FFFFFF;
-            color: #020617 !important;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 700 !important;
-            text-transform: none !important; 
-            letter-spacing: 0.5px;
-            border-bottom: none !important; /* Prevent underline on button */
-            padding-bottom: 12px !important;
+            background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
+            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer; transition: 0.3s;
         }
-        .btn-header:hover {
-            background-color: var(--accent);
-            color: #FFFFFF !important;
-        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- PAGE SPECIFIC STYLES --- */
-        
-        /* Hero Banner */
         .hero-banner {
             position: relative; width: 100%; height: 500px; 
             padding-top: 90px;
@@ -102,35 +105,18 @@
         }
         
         .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 5%; }
-        
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
-        }
-
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
         h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); letter-spacing: -1.5px; }
         .hero-lead { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
 
-        /* Content Sections */
         .main-section { padding: 6rem 5%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 40px; }
-
-        .category-header {
-            display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 40px;
-        }
+        .category-header { display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 40px; }
         .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; letter-spacing: -0.5px; }
-        .category-badge {
-            margin-left: 20px; background: rgba(34, 197, 94, 0.1); color: var(--accent);
-            padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(34, 197, 94, 0.2);
-        }
+        .category-badge { margin-left: 20px; background: rgba(34, 197, 94, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(34, 197, 94, 0.2); }
 
-        /* Cards */
-        .case-card {
-            background: var(--card-bg); border: var(--card-border); border-radius: 4px;
-            overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
-        }
+        .case-card { background: var(--card-bg); border: var(--card-border); border-radius: 4px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
         .case-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-
         .case-image-box { height: 220px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .case-image-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
         .case-card:hover .case-image-box img { opacity: 1; transform: scale(1.05); }
@@ -138,62 +124,31 @@
         .case-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
         .case-content h3 { font-size: 20px; margin: 10px 0 15px; color: white; font-weight: 700; }
         .case-p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
-
-        .metric-row {
-            display: flex; gap: 20px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        .metric-row { display: flex; gap: 20px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .mini-stat { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .mini-stat strong { display: block; color: var(--accent); font-size: 18px; margin-bottom: 3px; font-family: 'Manrope', sans-serif; }
-
-        .case-link {
-            display: block; margin-top: 20px; font-size: 13px; font-weight: 700; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .case-link { display: block; margin-top: 20px; font-size: 13px; font-weight: 700; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
         .case-link:hover { color: var(--accent); }
 
-        /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
-            position: relative; z-index: 2; display: flex; flex-direction: column;
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 2; display: flex; flex-direction: column; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
-        /* --- MOBILE --- */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; }
             nav a { font-size: 20px; }
-            
-            .hero-banner { height: 400px; }
             h1 { font-size: 38px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; }
         }
@@ -201,13 +156,13 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <!-- Included dimensions for CLS prevention -->
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -216,26 +171,22 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html">Products</a></li>
-                <!-- APPLIED ACTIVE CLASS HERE -->
                 <li><a href="success.html" class="active-link">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <!-- Language Toggle -->
                 <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- CTA Button Renamed -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="hero-banner">
         <div class="hero-content">
             <span class="mono-tag">Global Impact</span>
             <h1>Mission Critical Deployments</h1>
             <p class="hero-lead">From Tier-1 Financial Institutions to high-growth Emerging Markets.</p>
-            
-            <!-- NEW CLIENT LINK -->
             <div style="margin-top: 2rem;">
                 <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
                     View our global client list 
@@ -244,20 +195,16 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <section class="main-section">
-        
-        <!-- GROUP 1: ENTERPRISE -->
         <div class="category-header">
             <h2>Tier-1 Enterprise Deployments</h2>
             <span class="category-badge">Institutional</span>
         </div>
 
         <div class="grid-3">
-            <!-- Card 1 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage">
+                    <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="Mortgage Adjudication automation for RBC">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Credit Decisions</span>
@@ -271,10 +218,9 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending">
+                    <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending transformation">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Frictionless Origination</span>
@@ -288,10 +234,9 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Financial Capture">
+                    <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="AI statement automation for banks">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">AI Operations</span>
@@ -308,17 +253,15 @@
 
         <div style="height: 100px;"></div>
 
-        <!-- GROUP 2: ESG -->
         <div class="category-header">
             <h2>ESG & Emerging Markets</h2>
             <span class="category-badge">Financial Inclusion</span>
         </div>
 
         <div class="grid-3">
-            <!-- Card 4 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Emerging Markets">
+                    <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Micro-Finance revolution in emerging markets">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Emerging Markets</span>
@@ -332,10 +275,9 @@
                 </div>
             </div>
 
-            <!-- Card 5 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs">
+                    <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs small business lending">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Financial Inclusion</span>
@@ -349,10 +291,9 @@
                 </div>
             </div>
 
-            <!-- Card 6 -->
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Banking">
+                    <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="Conversational AI credit origination via WhatsApp">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Conversational AI</span>
@@ -366,16 +307,15 @@
                 </div>
             </div>
         </div>
-
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
+                <!-- Editted to remove "Founded in 1995" -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
                 </p>
             </div>
             <div>
@@ -398,7 +338,6 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#94A3B8; cursor:pointer; font-size:24px;">&times;</span>
@@ -415,9 +354,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Hamburger
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         hamburger.addEventListener('click', () => {
@@ -425,12 +362,10 @@
             navMenu.classList.toggle('active');
         });
 
-        // Modal
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
         
-        // Close on clicking outside
         window.onclick = function(e) { if (e.target == gModal) closeModal(); }
 
         function handleGlobalSubmit(e) {
@@ -442,6 +377,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>

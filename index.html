@@ -2,13 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. SEO: Mobile-First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
     <title>Cognitive Banking | Secure Decision Infrastructure</title>
     
+    <!-- 3. SEO: Unique Description (150-160 chars) -->
+    <meta name="description" content="The only AI-enabled platform designed for transparency, traceability, and operational control in regulated banking. Basel IV compliant infrastructure.">
+    
+    <!-- 4. SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/">
+
+    <!-- 5. SECURITY: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src https://ipapi.co https://www.google-analytics.com;">
+    
+    <!-- 6. SECURITY: Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- 7. PERFORMANCE: Preload Hero Image for LCP -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cognitive Group",
+      "url": "https://www.cognitivegroup.com",
+      "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png",
+      "description": "The first AI platform for regulated industries specializing in deterministic decision logic.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1155 René-Lévesque Blvd West",
+        "addressLocality": "Montréal",
+        "addressRegion": "QC",
+        "postalCode": "H3B 2K4",
+        "addressCountry": "CA"
+      }
+    }
+    </script>
+
+    <!-- 9. TRACKING: Google Analytics (Francois Aubin ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7MQG76P6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GM7MQG76P6');
+    </script>
 
     <style>
         :root {
@@ -27,20 +74,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); overflow-x: hidden; width: 100%; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* --- STANDARDIZED HEADER (Matches Product & Workflow) --- */
         header {
             position: fixed; top: 0; width: 100%; 
             height: 90px;
@@ -56,49 +92,32 @@
             width: auto; display: block; 
         }
 
-        nav ul { 
-            display: flex; 
-            gap: 40px;
-            list-style: none; align-items: center; 
-        }
-        
-        nav a { 
-            color: var(--text-muted); text-decoration: none; 
-            font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
-            font-weight: 600; transition: 0.3s;
-        }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
-        
-        /* Added for consistency with other pages */
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button Style */
         .btn-header {
             background-color: #FFFFFF;
-            color: #020617 !important; /* Force dark text */
+            color: #020617 !important;
             padding: 12px 24px;
             border-radius: 4px;
             font-weight: 700 !important;
             text-transform: none !important; 
             letter-spacing: 0.5px;
         }
-        .btn-header:hover {
-            background-color: var(--accent);
-            color: #FFFFFF !important;
-        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- SECTIONS COMMON --- */
         section {
             min-height: 100vh; 
             width: 100%;
             position: relative;
             display: flex; 
             align-items: center;
-            padding: 120px 10%; /* Keeps content safe below 90px header */
+            padding: 120px 10%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -113,148 +132,70 @@
             padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);
         }
         
-        h1 { 
-            font-size: 56px; font-weight: 800; line-height: 1.1; 
-            margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px;
-        }
-        
-        .description { 
-            font-size: 18px; margin-bottom: 35px; font-weight: 400; 
-            color: var(--text-muted); line-height: 1.7; 
-        }
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px; }
+        .description { font-size: 18px; margin-bottom: 35px; font-weight: 400; color: var(--text-muted); line-height: 1.7; }
 
-        .btn {
-            display: inline-block; padding: 18px 45px;
-            background: var(--text-main); color: var(--bg-body);
-            text-decoration: none; font-weight: 700; font-size: 14px;
-            border-radius: 4px; transition: all 0.3s ease;
-        }
-        .btn-outline {
-            background: transparent; color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.3);
+        .btn, .btn-outline {
             display: inline-block; padding: 18px 45px;
             text-decoration: none; font-weight: 700; font-size: 14px;
             border-radius: 4px; transition: all 0.3s ease;
         }
-        .btn:hover, .btn-outline:hover { 
-            transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent);
-        }
+        .btn { background: var(--text-main); color: var(--bg-body); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.3); }
+        .btn:hover, .btn-outline:hover { transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* --- LOGO STRIP --- */
-        .logo-strip {
-            margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%;
-        }
+        .logo-strip { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%; }
         .logo-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
         .logo-grid { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-        .client-logo {
-            font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9;
-            letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;
-        }
+        .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        /* --- SPECIFIC SECTIONS --- */
-        
-        /* HERO */
-        #hero { 
-            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); 
-            background-position: center top; 
-        }
+        #hero { background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); background-position: center top; }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* FOUNDRY */
-        #foundry { 
-            background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
-            justify-content: flex-end; text-align: right;
-        }
+        #foundry { background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); justify-content: flex-end; text-align: right; }
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
-        /* WORKBENCH */
         #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* STATS */
-        .stats-grid { 
-            display: flex; gap: 40px; margin-top: 40px; 
-            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; 
-        }
+        .stats-grid { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
         #foundry .stats-grid { justify-content: flex-end; }
-        
-        .stat-item { text-align: inherit; }
         .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
         .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- FOOTER --- */
-        footer { 
-            scroll-snap-align: start; padding: 6rem 10%; min-height: 60vh;
-            background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
-            position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center;
-        }
+        footer { padding: 6rem 10%; min-height: 60vh; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .close-modal:hover { color: white; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px;
-        }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- MOBILE --- */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; 
-                flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
-
             section { padding: 80px 5%; text-align: left !important; justify-content: flex-start !important; }
             section::after { background: var(--overlay-mobile); }
-            
             .content { padding-top: 20px; }
             h1 { font-size: 38px; }
-            
             .logo-strip { margin-top: 40px; padding-bottom: 40px;}
             .logo-grid { gap: 20px 30px; }
-
             #foundry { justify-content: flex-start; }
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
-            
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            
-            #hero { background-position: center top; }
         }
     </style>
 </head>
@@ -263,10 +204,11 @@
     <!-- NAV -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <!-- Added width and height attributes to satisfy CLS principles -->
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" aria-label="Menu Toggle">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -280,7 +222,7 @@
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
     </header>
@@ -314,7 +256,7 @@
             <h2>"Glass Box" Logic Model</h2>
             <h1>Cognitive Foundry</h1>
             <p class="description">
-                Cognitive Foundry compiles expert human judgment,  credit policy, compliance rules—into deterministic decision logic that executes consistently across all channels.
+                Cognitive Foundry compiles expert human judgment, credit policy, compliance rules—into deterministic decision logic that executes consistently across all channels.
             </p>
             
             <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
@@ -354,7 +296,7 @@
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
                 </p>
             </div>
             <div>

@@ -2,13 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. SEO: Mobile-First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Credit, Reinvented | Cognitive Platform</title>
     
+    <!-- 2. SEO: Unique Title (Under 60 chars) -->
+    <title>Commercial Credit AI Modules | Cognitive Banking Platform</title>
+    
+    <!-- 3. SEO: Unique Description (150-160 chars) -->
+    <meta name="description" content="Explore Cognitive Core, AI Workbench, and Cognitive Foundry. Deterministic AI infrastructure for commercial credit, loan origination, and banking automation.">
+    
+    <!-- 4. SEO: Canonical Link -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/product.html">
+
+    <!-- 5. SECURITY: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com;">
+    
+    <!-- 6. SECURITY: Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- 7. PERFORMANCE: Preload Hero Font/Assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Cognitive Banking Platform",
+      "operatingSystem": "Web-based",
+      "applicationCategory": "FinanceApplication",
+      "description": "Deterministic AI modules for commercial credit and loan origination.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- 9. TRACKING: Google Analytics (G-GM7MQG76P6) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7MQG76P6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GM7MQG76P6');
+    </script>
 
     <style>
         :root {
@@ -31,7 +73,6 @@
             overflow-x: hidden;
         }
 
-        /* --- FIXED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -44,178 +85,80 @@
         .logo img { height: 30px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        nav a { 
-            color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-            font-weight: 600; transition: 0.3s;
-        }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
+        /* CTA Button Styling */
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+            cursor: pointer; transition: 0.3s;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
         .page-hero {
             padding: 200px 10% 100px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .page-hero h1 { 
-            font-size: 72px; font-weight: 800; letter-spacing: -3px; margin-bottom: 30px; line-height: 1.05;
-        }
+        .page-hero h1 { font-size: 72px; font-weight: 800; letter-spacing: -3px; margin-bottom: 30px; line-height: 1.05; }
         .page-hero h1 span {
             background: linear-gradient(135deg, #22C55E 0%, #4ADE80 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .hero-lead { font-size: 22px; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.5; }
-        
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 25px;
-        }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 25px; }
 
-        /* --- SECTIONS --- */
         section { padding: 120px 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         section:nth-child(odd) { background: rgba(255,255,255,0.015); }
-        
-        .section-tag { 
-            color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; 
-            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
+        .section-tag { color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 20px; font-weight: 700; }
         h2 { font-size: 48px; margin-bottom: 15px; font-weight: 800; color: white; letter-spacing: -1.5px; line-height: 1.1; }
         h3 { font-size: 16px; color: var(--accent); margin-bottom: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        
         p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 17px; max-width: 520px; }
         p strong { color: var(--text-main); }
-
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
-        
-        .product-img { 
-            width: 100%; border-radius: 8px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6); 
-            transition: 0.4s; 
-        }
-        .product-img:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 50px 100px -20px rgba(34, 197, 94, 0.2);
-        }
+        .product-img { width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6); transition: 0.4s; }
+        .product-img:hover { transform: translateY(-5px); box-shadow: 0 50px 100px -20px rgba(34, 197, 94, 0.2); }
 
-        .btn-arrow {
-            color: var(--accent); font-weight: 700; text-decoration: none; font-size: 15px;
-            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
-            margin-top: 15px;
-            padding: 12px 0;
-            border-bottom: 2px solid transparent;
-        }
+        .btn-arrow { color: var(--accent); font-weight: 700; text-decoration: none; font-size: 15px; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; margin-top: 15px; padding: 12px 0; border-bottom: 2px solid transparent; }
         .btn-arrow:hover { color: #fff; gap: 15px; border-bottom-color: var(--accent); }
 
-        /* Feature Pills */
-        .feature-pills {
-            display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0;
-        }
-        .pill {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: var(--accent);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+        .feature-pills { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0; }
+        .pill { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: var(--accent); padding: 10px 20px; border-radius: 25px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
 
-        /* Big Statement */
-        .big-statement {
-            background: var(--card-bg);
-            border: var(--card-border);
-            border-radius: 8px;
-            padding: 50px;
-            margin: 50px 0 0;
-            text-align: center;
-        }
-        .big-statement p {
-            max-width: 100%;
-            font-size: 20px;
-            margin: 0 auto;
-            color: var(--text-main);
-        }
+        .big-statement { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 50px; margin: 50px 0 0; text-align: center; }
+        .big-statement p { max-width: 100%; font-size: 20px; margin: 0 auto; color: var(--text-main); }
 
-        /* Stats Row */
-        .stats-row {
-            display: flex;
-            gap: 80px;
-            margin: 50px 0;
-        }
-        .stat-item {
-            text-align: left;
-        }
-        .stat-number {
-            font-size: 56px;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .stats-row { display: flex; gap: 80px; margin: 50px 0; }
+        .stat-number { font-size: 56px; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -2px; }
+        .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FOOTER --- */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display:block; margin-bottom:10px; font-size: 14px; transition: 0.2s; }
         .footer-link:hover { color: white; }
-        .copyright { 
-            text-align: center; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            padding-top: 2rem; 
-            margin-top: 4rem; 
-            color: #475569; 
-            font-size: 0.8rem; 
-        }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.8rem; }
         .copyright a { color: #64748B; text-decoration: none; }
-        .copyright a:hover { color: var(--accent); }
 
-        /* --- MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; }
         .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 50px; border-radius: 12px; width: 100%; max-width: 480px; position: relative; }
         .form-input { width: 100%; padding: 14px 16px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; margin-bottom: 20px; outline:none; font-family: 'Manrope', sans-serif; font-size: 15px; }
-        .form-input:focus { border-color: var(--accent); }
 
-        /* MOBILE */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
             nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center; }
-            .page-hero { padding-top: 150px; padding-bottom: 80px; }
-            .page-hero h1 { font-size: 42px; letter-spacing: -1.5px; }
+            .page-hero h1 { font-size: 42px; }
             .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
-            .grid-2 > div:first-child { order: 2; }
-            .grid-2 > img { order: 1; }
-            .reverse-mobile > div:first-child { order: 2; }
-            .reverse-mobile > img { order: 1; }
             .stats-row { flex-direction: column; gap: 30px; }
             .footer-grid { grid-template-columns: 1fr; }
-            h2 { font-size: 36px; }
         }
     </style>
 </head>
@@ -223,10 +166,11 @@
 
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <!-- Added width/height for CLS -->
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" aria-label="Menu Toggle">
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
 
@@ -238,12 +182,12 @@
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/product.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- FIX: Renamed CTA -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="page-hero">
         <div class="container">
             <span class="mono-tag">The Next Evolution</span>
@@ -256,21 +200,14 @@
     </div>
 
     <!-- MODULE 1: COGNITIVE CORE -->
-    <section>
+    <section id="core">
         <div class="grid-2">
             <div>
                 <span class="section-tag">Module 01</span>
                 <h2>Cognitive Core</h2>
                 <h3>Loan Origination — Simplified to the Extreme</h3>
-                <p>
-                    <strong>100% no-code.</strong> Your credit team builds workflows, not your IT department. Application intake to disbursement — one unified system.
-                </p>
-                <p>
-                    We train your people once. Then we step back. You own it completely.
-                </p>
-                <p>
-                    This is what "enterprise software" should have been all along.
-                </p>
+                <p><strong>100% no-code.</strong> Your credit team builds workflows, not your IT department. Application intake to disbursement — one unified system.</p>
+                <p>We train your people once. Then we step back. You own it completely.</p>
                 <div class="feature-pills">
                     <span class="pill">Zero IT Dependency</span>
                     <span class="pill">Deploy in Weeks</span>
@@ -283,26 +220,16 @@
     </section>
 
     <!-- MODULE 2: AI WORKBENCH -->
-    <section>
+    <section id="workbench">
         <div class="grid-2 reverse-mobile">
             <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
             <div>
                 <span class="section-tag">Module 02</span>
                 <h2>AI Workbench</h2>
                 <h3>The End of AI Hallucination</h3>
-                <p>
-                    <strong>Multiple agents. One truth.</strong> We run the same document through independent AI models. Claude. GPT-4. Gemini. Mistral.
-                </p>
-                <p>
-                    Our multiplexer compares outputs using strict JSON schemas. Apple to apple. Field by field.
-                </p>
-                <p>
-                    <strong>If they agree</strong> — statistically validated extraction.<br>
-                    <strong>If they diverge</strong> — instant human escalation.
-                </p>
-                <p>
-                    No silent failures. No hidden errors. Every discrepancy surfaces.
-                </p>
+                <p><strong>Multiple agents. One truth.</strong> We run the same document through independent AI models. Claude. GPT-4. Gemini. Mistral.</p>
+                <p>Our multiplexer compares outputs using strict JSON schemas. Apple to apple. Field by field.</p>
+                <p><strong>If they agree</strong> — statistically validated extraction.<br><strong>If they diverge</strong> — instant human escalation.</p>
                 <div class="feature-pills">
                     <span class="pill">Multi-Agent Consensus</span>
                     <span class="pill">Human-in-the-Loop</span>
@@ -314,36 +241,18 @@
     </section> 
 
     <!-- MODULE 3: COGNITIVE FOUNDRY -->
-    <section>
+    <section id="foundry">
         <div class="grid-2">
             <div>
                 <span class="section-tag">Module 03</span>
                 <h2>Cognitive Foundry</h2>
                 <h3>30 Years of Expertise. Captured Forever.</h3>
-                <p>
-                    <strong>Your best credit officer retires in 18 months.</strong> Their judgment, edge cases, and intuition — do they walk out the door?
-                </p>
-                <p>
-                    Not anymore. We've captured <strong>1,000+ hours of Cognitive Task Analysis</strong> from senior analysts. Their reasoning is now encapsulated in specialized agents.
-                </p>
-                <p>
-                    <strong>New:</strong> Automated think-aloud capture. Agents prompt experts to reason out loud. We transcribe, structure, and encode that knowledge — automatically.
-                </p>
-                <p>
-                    This is institutional memory that actually persists.
-                </p>
-
+                <p><strong>Your best credit officer retires in 18 months.</strong> Their judgment, edge cases, and intuition — do they walk out the door?</p>
+                <p>Not anymore. We've captured <strong>1,000+ hours of Cognitive Task Analysis</strong> from senior analysts.</p>
                 <div class="stats-row">
-                    <div class="stat-item">
-                        <div class="stat-number">1,000+</div>
-                        <div class="stat-label">Hours of CTA</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">30</div>
-                        <div class="stat-label">Years Encoded</div>
-                    </div>
+                    <div class="stat-item"><div class="stat-number">1,000+</div><div class="stat-label">Hours of CTA</div></div>
+                    <div class="stat-item"><div class="stat-number">30</div><div class="stat-label">Years Encoded</div></div>
                 </div>
-
                 <div class="feature-pills">
                     <span class="pill">Cognitive Task Analysis</span>
                     <span class="pill">Think-Aloud Capture</span>
@@ -353,7 +262,6 @@
             </div>
             <img src="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png" class="product-img" alt="Cognitive Foundry Logic">
         </div>
-
         <div class="big-statement">
             <p><strong>Legacy systems store transactions.</strong><br>We store judgment.</p>
         </div>
@@ -364,8 +272,9 @@
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">The Standard for Commercial Credit</h4>
+                <!-- FIX: Removed Founded 1995 -->
                 <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    Cognitive builds deterministic AI infrastructure for the world's most regulated financial institutions. Founded 1995. Montréal.
+                    Cognitive builds deterministic AI infrastructure for the world's most regulated financial institutions. Montréal.
                 </p>
             </div>
             <div>
@@ -378,9 +287,7 @@
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">
-                    1155 René-Lévesque Blvd W.<br>
-                    Suite 2500<br>
-                    Montréal, QC H3B 2K4<br><br>
+                    1155 René-Lévesque Blvd W.<br>Suite 2500<br>Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">info@cognitivegroup.com</a>
                 </p>
             </div>
@@ -413,23 +320,13 @@
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         
-        hamburger.addEventListener('click', () => { 
-            hamburger.classList.toggle('active'); 
-            navMenu.classList.toggle('active'); 
-        });
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
 
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
-        
-        window.onclick = function(e) {
-            if (e.target == gModal) closeModal();
-        }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
 
         function handleGlobalSubmit(e) {
             e.preventDefault();
@@ -440,6 +337,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>
