@@ -8,7 +8,7 @@
     <!-- SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/fr/blog.html">
 
-    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <!-- 1. SÉCURITÉ (CSP) : Mise à jour pour autoriser GA4 -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <!-- 2. TRACKING : ID de mesure mis à jour vers G-L9N7RPQDDB -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -33,6 +33,7 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
+            /* Overlays */
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
@@ -56,7 +57,7 @@
             display: block; margin-bottom: 10px;
         }
 
-        /* --- HEADER --- */
+        /* --- FIXED HEADER (90px) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -69,7 +70,6 @@
         .logo img { height: 30px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        
         nav a { 
             color: var(--text-muted); text-decoration: none; font-size: 14px;
             text-transform: uppercase; letter-spacing: 1px;
@@ -81,13 +81,13 @@
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
             border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
+        /* --- HERO SECTIONS --- */
         .hero-small {
             padding: 180px 10% 80px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
@@ -95,6 +95,7 @@
         }
         .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
         
+        /* CONTENT */
         section { padding: 6rem 10%; min-height: 60vh; }
         .container { max-width: 1200px; margin: 0 auto; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
@@ -114,6 +115,7 @@
         }
         .read-btn:hover { color: var(--accent); }
 
+        /* SINGLE POST VIEW */
         #single-post-view { display: none; max-width: 800px; margin: 0 auto; }
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
@@ -125,12 +127,17 @@
         .post-content { color: #cbd5e1; font-size: 18px; line-height: 1.8; }
         .post-content h3 { color: white; font-size: 24px; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
 
-        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
+        /* --- FOOTER --- */
+        footer { 
+            padding: 6rem 10%; background: var(--bg-body); 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+        }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
+        /* --- MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
         .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
@@ -168,7 +175,7 @@
                 <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="../blog.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <!-- CORRECTION : Bouton renommé -->
+                <!-- 3. HEADER FIX : Bouton renommé -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
@@ -189,7 +196,6 @@
             <a href="blog.html" class="back-link">&larr; RETOUR AUX BRIEFINGS</a>
             <span class="mono-tag" id="detail-category" style="color: var(--accent);">Catégorie</span>
             <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Titre</h1>
-            <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
         </div>
     </div>
 
@@ -206,42 +212,31 @@
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
-                <!-- CORRECTION : Mention "Fondé en 1995" supprimée -->
+                <!-- 4. FOOTER FIX : 1995 supprimé -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Liens Institutionnels</h4>
-                <a href="product.html" class="footer-link">La Suite Cognitive</a>
-                <a href="about.html" class="footer-link">Notre Histoire</a>
-                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
+                <h4 class="footer-h4">Liens</h4>
+                <a href="product.html" class="footer-link">Produits</a>
+                <a href="success.html" class="footer-link">Références</a>
             </div>
             <div>
-                <h4 class="footer-h4">Contact</h4>
-                <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br>
-                    <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
-                </p>
+                <h4 class="footer-h4">Siège</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Montréal, QC H3B 2K4, Canada</p>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Groupe Cognitive. Tous droits réservés.
-        </div>
+        <div class="copyright">&copy; 2025 Groupe Cognitive. Tous droits réservés.</div>
     </footer>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block;">Session Stratégique</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
-            </div>
+            <h3 style="color:white; margin-bottom:20px;">Réserver un briefing</h3>
             <form onsubmit="handleGlobalSubmit(event)">
-                <input type="text" id="g-name" class="form-input" required placeholder="Nom Complet">
-                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <input type="text" id="g-name" class="form-input" required placeholder="Nom complet">
+                <input type="email" id="g-email" class="form-input" required placeholder="Email professionnel">
                 <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
@@ -250,33 +245,12 @@
     <script src="blog_data_fr.js"></script> 
     
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
-        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
-
-        const gModal = document.getElementById('bookingModal');
-        function openModal() { gModal.style.display = 'flex'; }
-        function closeModal() { gModal.style.display = 'none'; }
-        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
-
-        function handleGlobalSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('g-name').value;
-            const email = document.getElementById('g-email').value;
-            const org = document.getElementById('g-org').value;
-            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
-            closeModal();
-        }
-
         const gridEl = document.getElementById('blog-grid');
         const listHeroEl = document.getElementById('hero-list');
         const detailViewEl = document.getElementById('single-post-view');
         const detailHeroEl = document.getElementById('hero-detail');
 
-        if (typeof blogPosts === 'undefined') {
-            gridEl.innerHTML = "<h3 style='color:white;'>Chargement...</h3>";
-        } else {
+        if (typeof blogPosts !== 'undefined') {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
 
@@ -287,9 +261,10 @@
                     detailHeroEl.style.display = 'block'; detailViewEl.style.display = 'block';
                     document.getElementById('detail-category').innerText = post.category;
                     document.getElementById('detail-title').innerText = post.title;
-                    document.getElementById('detail-date').innerText = post.date;
                     document.getElementById('article-body').innerHTML = post.content;
-                    document.title = post.title + " | Insights Cognitive";
+                    
+                    // --- ENVOI DES DONNÉES À GA4 POUR L'ARTICLE ---
+                    gtag('event', 'page_view', { page_title: post.title, page_location: window.location.href });
                 }
             } else {
                 blogPosts.forEach(post => {
@@ -298,11 +273,20 @@
                             <span class="mono-tag">${post.category}</span>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
-                            <a href="blog.html?id=${post.id}" class="read-btn">Lire le Livre Blanc &rarr;</a>
+                            <a href="blog.html?id=${post.id}" class="read-btn">Lire &rarr;</a>
                         </div>`;
                 });
             }
         }
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        function handleGlobalSubmit(e) { e.preventDefault(); window.open('https://cal.com/francoisaubin', '_blank'); closeModal(); }
     </script>
 </body>
 </html>
