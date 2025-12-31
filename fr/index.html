@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banque Cognitive | Infrastructure de Décision</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -28,9 +43,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Manrope', sans-serif;
@@ -40,7 +53,6 @@
             width: 100%;
         }
 
-        /* --- STANDARDIZED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; 
             height: 90px;
@@ -51,31 +63,22 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { 
-            height: 30px;
-            width: auto; display: block; 
-        }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { 
-            display: flex; 
-            gap: 40px;
-            list-style: none; align-items: center; 
-        }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
             color: var(--text-muted); text-decoration: none; 
-            font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
+            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
         
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Button Style */
         .btn-header {
             background-color: #FFFFFF;
-            color: #020617 !important; /* Force dark text */
+            color: #020617 !important;
             padding: 12px 24px;
             border-radius: 4px;
             font-weight: 700 !important;
@@ -90,17 +93,10 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- SECTIONS COMMON --- */
         section {
-            min-height: 100vh; 
-            width: 100%;
-            position: relative;
-            display: flex; 
-            align-items: center;
-            padding: 120px 10%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            min-height: 100vh; width: 100%; position: relative;
+            display: flex; align-items: center; padding: 120px 10%;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
         }
 
         .content { position: relative; z-index: 2; max-width: 650px; }
@@ -112,55 +108,31 @@
             padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);
         }
         
-        h1 { 
-            font-size: 56px; font-weight: 800; line-height: 1.1; 
-            margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px;
-        }
-        
-        .description { 
-            font-size: 18px; margin-bottom: 35px; font-weight: 400; 
-            color: var(--text-muted); line-height: 1.7; 
-        }
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1.5px; }
+        .description { font-size: 18px; margin-bottom: 35px; font-weight: 400; color: var(--text-muted); line-height: 1.7; }
 
         .btn {
-            display: inline-block; padding: 18px 45px;
-            background: var(--text-main); color: var(--bg-body);
-            text-decoration: none; font-weight: 700; font-size: 14px;
-            border-radius: 4px; transition: all 0.3s ease;
+            display: inline-block; padding: 18px 45px; background: var(--text-main); color: var(--bg-body);
+            text-decoration: none; font-weight: 700; font-size: 14px; border-radius: 4px; transition: all 0.3s ease;
         }
         .btn-outline {
-            background: transparent; color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.3);
-            display: inline-block; padding: 18px 45px;
-            text-decoration: none; font-weight: 700; font-size: 14px;
-            border-radius: 4px; transition: all 0.3s ease;
+            background: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.3);
+            display: inline-block; padding: 18px 45px; text-decoration: none; font-weight: 700; font-size: 14px; border-radius: 4px; transition: all 0.3s ease;
         }
-        .btn:hover, .btn-outline:hover { 
-            transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent);
-        }
+        .btn:hover, .btn-outline:hover { transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* --- LOGO STRIP --- */
-        .logo-strip {
-            margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%;
-        }
+        .logo-strip { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%; }
         .logo-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
         .logo-grid { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-        .client-logo {
-            font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9;
-            letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;
-        }
+        .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        /* --- SPECIFIC SECTIONS --- */
-        
-        /* HERO */
         #hero { 
             background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); 
             background-position: center top; 
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* FOUNDRY */
         #foundry { 
             background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
             justify-content: flex-end; text-align: right;
@@ -168,22 +140,16 @@
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
-        /* WORKBENCH */
         #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* STATS */
-        .stats-grid { 
-            display: flex; gap: 40px; margin-top: 40px; 
-            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; 
-        }
+        .stats-grid { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
         #foundry .stats-grid { justify-content: flex-end; }
         
         .stat-item { text-align: inherit; }
         .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
         .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- FOOTER --- */
         footer { 
             scroll-snap-align: start; padding: 6rem 10%; min-height: 60vh;
             background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
@@ -195,7 +161,6 @@
         .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
@@ -206,10 +171,7 @@
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
             position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .close-modal:hover { color: white; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
@@ -220,49 +182,36 @@
             width: 100%; padding: 14px; background: var(--accent); color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
         }
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px;
-        }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- MOBILE --- */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
             nav {
-                position: fixed; left: -100%; top: 0; 
-                flex-direction: column; background-color: var(--bg-body); 
+                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
                 width: 100%; height: 100vh; justify-content: center; align-items: center;
                 transition: 0.3s; z-index: 999; display: flex;
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
-
             section { padding: 80px 5%; text-align: left !important; justify-content: flex-start !important; }
             section::after { background: var(--overlay-mobile); }
-            
             .content { padding-top: 20px; }
             h1 { font-size: 38px; }
-            
             .logo-strip { margin-top: 40px; padding-bottom: 40px;}
             .logo-grid { gap: 20px 30px; }
-
             #foundry { justify-content: flex-start; }
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
-            
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            
             #hero { background-position: center top; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
     <header>
         <div class="logo">
-            <!-- Points to current page (French Index) -->
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
@@ -274,26 +223,24 @@
 
         <nav id="nav-menu">
             <ul>
-                <!-- RELATIVE LINKS TO FR PAGES -->
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- LANGUAGE TOGGLE POINTS TO ENGLISH ROOT -->
                 <li class="lang-item"><a href="../index.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION: Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
             <h2>Conformité Bâle IV & IFRS 9</h2>
-            <h1>Infrastructure Décisionnelle pour Industries Régulées</h1>
+            <h1>La première plateforme d’IA conçue pour les environnements réglementés</h1>
             <p class="description">
-                La seule plateforme assistée par IA conçue pour répondre aux exigences de supervision en matière de transparence, de traçabilité et de contrôle opérationnel—sans risque de "boîte noire".
+                IA explicable et auditable, avec transparence totale, traçabilité complète et contrôle strict sans dérive ni boîte noire.
             </p>
             <a href="product.html" class="btn btn-outline">Voir l'Architecture</a>
 
@@ -310,7 +257,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: FOUNDRY -->
     <section id="foundry">
         <div class="content">
             <h2>Modèle Logique « Boîte de Verre »</h2>
@@ -322,23 +268,13 @@
             <a href="foundry.html" class="btn btn-outline">Explorer la Logique</a>
 
             <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-val">0%</span>
-                    <span class="stat-label">Risque Boîte Noire</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">100%</span>
-                    <span class="stat-label">Traçabilité d'Audit</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">Tier-1</span>
-                    <span class="stat-label">Validé</span>
-                </div>
+                <div class="stat-item"><span class="stat-val">0%</span><span class="stat-label">Risque Boîte Noire</span></div>
+                <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Traçabilité d'Audit</span></div>
+                <div class="stat-item"><span class="stat-val">Tier-1</span><span class="stat-label">Validé</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: WORKBENCH -->
     <section id="workbench">
         <div class="content">
             <h2>Infrastructure d'Orchestration</h2>
@@ -350,13 +286,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : "Fondé en 1995" supprimé -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
@@ -379,7 +315,6 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -391,33 +326,26 @@
             <form onsubmit="handleGlobalSubmit(event)">
                 <label class="form-label">Nom Complet</label>
                 <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                
                 <label class="form-label">Email Professionnel</label>
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                
                 <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                
                 <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-        
         function closeMenu() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
-
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -432,6 +360,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>

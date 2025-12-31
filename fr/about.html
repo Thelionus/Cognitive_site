@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>À Propos | Banque Cognitive</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/about.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -35,7 +50,7 @@
             width: 100%;
         }
 
-        /* --- FIXED HEADER (EXECUTIVE SIZE - 90px) --- */
+        /* --- FIXED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -56,14 +71,12 @@
         }
         nav a:hover { color: var(--text-main); }
 
-        /* --- ACTIVE LINK STYLE (Green Underline) --- */
         nav a.active-link {
             color: var(--text-main);
             border-bottom: 2px solid var(--accent);
             padding-bottom: 5px;
         }
 
-        /* Strategy Session Button Style */
         .btn-header {
             background-color: #FFFFFF;
             color: #020617 !important;
@@ -72,7 +85,6 @@
             font-weight: 700 !important;
             text-transform: none !important; 
             letter-spacing: 0.5px;
-            border-bottom: none !important;
         }
         .btn-header:hover {
             background-color: var(--accent);
@@ -82,130 +94,60 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
         .hero-small {
             padding: 180px 10% 80px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .hero-small h1 { 
-            font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px;
-        }
-        
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px;
-        }
+        .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
 
-        /* --- SECTIONS --- */
         section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .container { max-width: 1200px; margin: 0 auto; }
-
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
         
         h3 { font-size: 24px; color: white; margin-bottom: 15px; font-weight: 700; }
         p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 16px; }
 
-        /* Card Style */
-        .info-card {
-            background: var(--card-bg); border: var(--card-border); padding: 0; border-radius: 6px; overflow: hidden;
-        }
-        .card-header {
-            padding: 20px 30px; background: rgba(34, 197, 94, 0.05); border-bottom: var(--card-border);
-        }
+        .info-card { background: var(--card-bg); border: var(--card-border); padding: 0; border-radius: 6px; overflow: hidden; }
+        .card-header { padding: 20px 30px; background: rgba(34, 197, 94, 0.05); border-bottom: var(--card-border); }
         .card-body { padding: 30px; }
-        .stat-row {
-            display: flex; justify-content: space-between; padding-bottom: 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px;
-        }
+        .stat-row { display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px; }
         .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); }
         .stat-value { font-weight: 700; color: white; }
 
-        /* --- TIMELINE --- */
-        .timeline-item { 
-            padding-left: 30px; border-left: 2px solid rgba(255,255,255,0.1); 
-            padding-bottom: 40px; position: relative; 
-        }
-        .timeline-item::before { 
-            content: ''; position: absolute; left: -6px; top: 5px; 
-            width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent);
-        }
-        .timeline-year { 
-            font-weight: 700; color: var(--accent); margin-bottom: 10px; 
-            font-family: 'JetBrains Mono', monospace; font-size: 14px; display: block;
-        }
+        .timeline-item { padding-left: 30px; border-left: 2px solid rgba(255,255,255,0.1); padding-bottom: 40px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 5px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+        .timeline-year { font-weight: 700; color: var(--accent); margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; font-size: 14px; display: block; }
 
-        /* --- TEAM GRID --- */
         .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
-        
         .team-member { transition: 0.3s; }
-        .photo-wrapper {
-            width: 100%; height: 400px; overflow: hidden; border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;
-            position: relative; background: #0F172A;
-        }
-        .team-member img {
-            width: 100%; height: 100%; object-fit: cover; object-position: top;
-            transition: transform 0.5s ease; filter: grayscale(20%);
-        }
+        .photo-wrapper { width: 100%; height: 400px; overflow: hidden; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; position: relative; background: #0F172A; }
+        .team-member img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; filter: grayscale(20%); }
         .team-member:hover img { transform: scale(1.05); filter: grayscale(0%); }
-        
-        .role-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 11px; 
-            color: var(--accent); text-transform: uppercase; margin-bottom: 5px; display: block;
-        }
+        .role-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; display: block; }
 
-        /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
-        /* MOBILE */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            nav a { font-size: 20px; }
-            
             .hero-small { padding-top: 140px; }
             h1 { font-size: 36px; }
             .grid-2, .team-grid, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .photo-wrapper { height: 350px; }
         }
     </style>
 </head>
@@ -225,20 +167,18 @@
 
         <nav id="nav-menu">
             <ul>
-                <!-- Internal FR Links -->
                 <li><a href="product.html">Produits</a></li>
                 <li><a href="success.html">Références</a></li>
                 <li><a href="about.html" class="active-link">À Propos</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <!-- Language Toggle: Points back to root (English) About page -->
                 <li class="lang-item"><a href="../about.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION: Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="hero-small">
         <div class="container">
             <span class="mono-tag">Nos Origines</span>
@@ -246,7 +186,6 @@
         </div>
     </div>
 
-    <!-- HISTORY SECTION -->
     <section>
         <div class="container">
             <div class="grid-2">
@@ -291,7 +230,6 @@
         </div>
     </section>
 
-    <!-- TIMELINE -->
     <section style="background: rgba(255,255,255,0.02);">
         <div class="container">
             <span class="mono-tag">Trajectoire</span>
@@ -322,64 +260,58 @@
         </div>
     </section>
 
-    <!-- LEADERSHIP (REORDERED) -->
     <section>
         <div class="container">
             <span class="mono-tag">Direction</span>
             <h2 style="font-size:32px; font-weight:800; margin-bottom: 20px; color:white;">Une Infrastructure de Confiance</h2>
-            <p style="max-width: 600px;">Une équipe multidisciplinaire où l'expertise bancaire dirige l'exécution technologique.</p>
             
             <div class="team-grid">
-                <!-- Member 1: CEO -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/xjB97SCz/fa.jpg" alt="Francois Aubin">
                     </div>
                     <h3>Francois Aubin</h3>
-                    <span class="role-tag">PDG & Fondateur</span>
-                    <p>Opérateur Deep-tech avec 20+ ans d'expérience dans des environnements Fortune 500 (Amazon, Ericsson, PG&E). Spécialiste de l'intégration de l'ergonomie cognitive dans les systèmes critiques.</p>
+                    <span class="role-tag">VP Recherche</span>
+                    <p>Opérateur Deep-tech avec 20+ ans d'expérience dans des environnements Fortune 500 (Amazon, Ericsson, PG&E). Spécialiste de l'ergonomie cognitive.</p>
                 </div>
 
-                <!-- Member 2: THE BANKER (Moved Up) -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/TYM3jg5y/Generated-Image-December-24-2025-7-39AM.jpg" alt="Sylvain Leith">
                     </div>
                     <h3>Sylvain Leith</h3>
                     <span class="role-tag">Analyste Financier en Chef</span>
-                    <p>Ancien VP Stratégie de Risque à la Banque Nationale. Expert Bâle II/III avec une expérience mondiale dans la mise en œuvre de politiques de crédit pour la Banque Mondiale (SFI).</p>
+                    <p>Ancien VP Stratégie de Risque à la Banque Nationale. Expert Bâle II/III avec une expérience mondiale à la Banque Mondiale (SFI).</p>
                 </div>
 
-                <!-- Member 3 -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/KzgH3C24/mc.jpg" alt="Marie-Claude Prevost">
                     </div>
                     <h3>Marie-Claude Prévost</h3>
                     <span class="role-tag">Associée Directrice</span>
-                    <p>Marie-Claude apporte une profondeur rare dans la traduction des facteurs humains en systèmes à l'échelle industrielle, prêts pour la régulation, assurant la résilience des opérations complexes.</p>
+                    <p>Experte en traduction des facteurs humains en systèmes à l'échelle industrielle, assurant la résilience des opérations complexes.</p>
                 </div>
 
-                <!-- Member 4 -->
                 <div class="team-member">
                     <div class="photo-wrapper">
                         <img src="https://i.postimg.cc/Z5T2sfr6/zain.jpg" alt="Zain Ahmad Khan">
                     </div>
                     <h3>Zain Khan</h3>
                     <span class="role-tag">Architecte en Chef</span>
-                    <p>Leader produit spécialisé dans les plateformes bancaires haute performance (nCino, Sopra). Expert en architecture financière sécurisée et évolutive.</p>
+                    <p>Leader produit spécialisé dans les plateformes bancaires haute performance (nCino, Sopra). Expert en architecture financière sécurisée.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
@@ -392,7 +324,7 @@
                 <h4 class="footer-h4">Contact</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br><br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
@@ -402,40 +334,30 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
                 <label class="form-label">Nom Complet</label>
                 <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                
                 <label class="form-label">Email Professionnel</label>
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                
                 <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                
                 <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -450,6 +372,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>

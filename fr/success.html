@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Références Clients | Banque Cognitive</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/success.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -38,7 +53,7 @@
             width: 100%;
         }
 
-        /* --- FIXED HEADER (EXECUTIVE SIZE - 90px) --- */
+        /* --- FIXED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -59,14 +74,12 @@
         }
         nav a:hover { color: var(--text-main); }
 
-        /* --- ACTIVE LINK STYLE (Green Underline) --- */
         nav a.active-link {
             color: var(--text-main);
             border-bottom: 2px solid var(--accent);
             padding-bottom: 5px;
         }
 
-        /* Strategy Session Button Style */
         .btn-header {
             background-color: #FFFFFF;
             color: #020617 !important;
@@ -75,8 +88,6 @@
             font-weight: 700 !important;
             text-transform: none !important; 
             letter-spacing: 0.5px;
-            border-bottom: none !important;
-            padding-bottom: 12px !important;
         }
         .btn-header:hover {
             background-color: var(--accent);
@@ -86,9 +97,7 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- PAGE SPECIFIC STYLES --- */
-        
-        /* Hero Banner */
+        /* --- HERO BANNER --- */
         .hero-banner {
             position: relative; width: 100%; height: 500px; 
             padding-top: 90px;
@@ -108,7 +117,7 @@
             text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
         }
 
-        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); letter-spacing: -1.5px; }
+        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; }
         .hero-lead { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
 
         /* Content Sections */
@@ -124,12 +133,12 @@
             padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* Cards */
+        /* Case Cards */
         .case-card {
             background: var(--card-bg); border: var(--card-border); border-radius: 4px;
             overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;
         }
-        .case-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .case-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
         .case-image-box { height: 220px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .case-image-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
@@ -151,10 +160,7 @@
         .case-link:hover { color: var(--accent); }
 
         /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
-            position: relative; z-index: 2; display: flex; flex-direction: column;
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
@@ -169,23 +175,18 @@
         .modal-card {
             background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
-        .form-input:focus { border-color: var(--accent); }
         .modal-btn {
             width: 100%; padding: 14px; background: var(--accent); color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
         }
 
-        /* --- MOBILE --- */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -196,8 +197,6 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; }
-            nav a { font-size: 20px; }
-            
             .hero-banner { height: 400px; }
             h1 { font-size: 38px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; }
@@ -206,7 +205,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -221,26 +219,23 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
-                <!-- APPLIED ACTIVE CLASS HERE -->
                 <li><a href="success.html" class="active-link" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- Language Toggle Points back to English Success page -->
                 <li class="lang-item"><a href="../success.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION : Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="hero-banner">
         <div class="hero-content">
             <span class="mono-tag">Impact Mondial</span>
             <h1>Déploiements Critiques</h1>
             <p class="hero-lead">Des Institutions Financières de Premier Rang aux Marchés Émergents à Forte Croissance.</p>
             
-            <!-- NEW CLIENT LINK -->
             <div style="margin-top: 2rem;">
                 <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
                     Voir notre liste de clients mondiaux
@@ -249,17 +244,14 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <section class="main-section">
         
-        <!-- GROUP 1: ENTERPRISE -->
         <div class="category-header">
             <h2>Déploiements Entreprise Tier-1</h2>
             <span class="category-badge">Institutionnel</span>
         </div>
 
         <div class="grid-3">
-            <!-- Card 1 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage">
@@ -276,7 +268,6 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending">
@@ -293,7 +284,6 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Financial Capture">
@@ -313,14 +303,12 @@
 
         <div style="height: 100px;"></div>
 
-        <!-- GROUP 2: ESG -->
         <div class="category-header">
             <h2>ESG & Marchés Émergents</h2>
             <span class="category-badge">Inclusion Financière</span>
         </div>
 
         <div class="grid-3">
-            <!-- Card 4 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Emerging Markets">
@@ -337,7 +325,6 @@
                 </div>
             </div>
 
-            <!-- Card 5 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs">
@@ -354,7 +341,6 @@
                 </div>
             </div>
 
-            <!-- Card 6 -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Banking">
@@ -371,16 +357,15 @@
                 </div>
             </div>
         </div>
-
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
@@ -403,7 +388,6 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -415,33 +399,20 @@
             <form onsubmit="handleGlobalSubmit(event)">
                 <label class="form-label">Nom Complet</label>
                 <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                
                 <label class="form-label">Email Professionnel</label>
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                
                 <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                
                 <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -456,6 +427,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>

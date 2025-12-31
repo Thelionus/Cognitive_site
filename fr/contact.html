@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactez-nous | Banque Cognitive</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/contact.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -18,7 +33,6 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
-            /* Overlays */
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
@@ -35,7 +49,7 @@
             width: 100%;
         }
 
-        /* --- FIXED HEADER (90px STANDARD) --- */
+        /* --- FIXED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -73,19 +87,12 @@
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .hero-small h1 { 
-            font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px;
-        }
-        
-        .mono-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px;
-        }
+        .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
 
         /* --- CONTACT CARDS --- */
         section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .container { max-width: 1200px; margin: 0 auto; }
-
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         
         .contact-card {
@@ -103,79 +110,40 @@
         h3 { font-size: 20px; color: white; margin-bottom: 15px; font-weight: 700; }
         p { color: var(--text-muted); font-size: 15px; margin-bottom: 5px; line-height: 1.6; }
         
-        .email-link { 
-            color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; 
-            margin-top: 15px; display: inline-block;
-        }
+        .email-link { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; margin-top: 15px; display: inline-block; }
         .email-link:hover { text-decoration: underline; }
 
-        /* --- AUDIT CTA SECTION --- */
         .audit-section {
             background: linear-gradient(to right, rgba(34, 197, 94, 0.1), transparent);
             border: 1px solid var(--accent); padding: 40px; border-radius: 8px; margin-bottom: 60px;
         }
-        .audit-btn {
-            background: var(--accent); color: black; font-weight: 800; padding: 15px 30px;
-            border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px;
-        }
+        .audit-btn { background: var(--accent); color: black; font-weight: 800; padding: 15px 30px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px; }
         .audit-btn:hover { background: white; }
 
-        /* --- TESTIMONIAL --- */
-        .testimonial-section { 
-            background: rgba(255,255,255,0.02); padding: 8rem 10%; text-align: center; 
-        }
-        .quote { 
-            font-size: 28px; font-weight: 300; color: white; max-width: 900px; 
-            margin: 0 auto 40px; font-style: italic; line-height: 1.4;
-        }
+        .testimonial-section { background: rgba(255,255,255,0.02); padding: 8rem 10%; text-align: center; }
+        .quote { font-size: 28px; font-weight: 300; color: white; max-width: 900px; margin: 0 auto 40px; font-style: italic; line-height: 1.4; }
 
         /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
         /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .close-modal:hover { color: white; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
-        /* MOBILE */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            
             .hero-small { padding-top: 150px; }
             h1 { font-size: 36px; }
             .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -184,34 +152,29 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <!-- Internal FR Links -->
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" class="active-link" onclick="closeMenu()">Contact</a></li>
-                <!-- Language Toggle: Points back to root (English) Contact page -->
                 <li class="lang-item"><a href="../contact.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION: Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="hero-small">
         <div class="container">
             <span class="mono-tag">Équipes d'Implémentation</span>
@@ -222,22 +185,18 @@
         </div>
     </div>
 
-    <!-- LOCATIONS -->
     <section>
         <div class="container">
             
-            <!-- NEW AUDIT CTA SECTION -->
             <div class="audit-section">
                 <h2 style="font-size: 28px; margin-bottom: 10px;">Demander une Démonstration</h2>
                 <p style="color: #cbd5e1; max-width: 800px;">
                     Un ingénieur solution vous guidera à travers une démonstration en direct de l'AI Workbench, adaptée à vos flux de crédit et à votre contexte réglementaire.
                 </p>
-                <a href="#" onclick="openModal()" class="audit-btn">Demander une Démonstration</a>
+                <a href="#" onclick="openModal()" class="audit-btn">Réserver mon Briefing</a>
             </div>
 
             <div class="grid-2">
-                
-                <!-- Montreal HQ -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=1155%20Rene-Levesque%20Blvd%20West%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -249,7 +208,6 @@
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
 
-                <!-- San Francisco -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=1390%20Market%20St%20San%20Francisco&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -261,7 +219,6 @@
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
 
-                <!-- Dallas -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -274,7 +231,6 @@
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
 
-                <!-- Dakar Office (West Africa Hub) -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=104%20Sicap%20Baobab%20Dakar%20Senegal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -285,12 +241,10 @@
                     <p>Dakar, Sénégal</p>
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIAL -->
     <div class="testimonial-section">
         <div class="container">
             <span class="mono-tag">Le Verdict Institutionnel</span>
@@ -304,13 +258,13 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
@@ -318,13 +272,13 @@
                 <a href="product.html" class="footer-link">La Suite Cognitive</a>
                 <a href="success.html" class="footer-link">Références</a>
                 <a href="about.html" class="footer-link">Notre Histoire</a>
-                <a href="blog.html" class="footer-link">Base de Connaissances</a>
+                <a href="blog.html" class="footer-link">Insights</a>
             </div>
             <div>
-                <h4 class="footer-h4">Contact</h4>
+                <h4 class="footer-h4">Siège Mondial</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd Ouest #2500<br>
-                    Montréal, QC H3B 2K4<br><br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
@@ -334,14 +288,12 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Audit d'Implémentation</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Demander un Audit Système</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Parlez avec un architecte d'implémentation, pas un vendeur.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
                 <label class="form-label">Nom Complet</label>
@@ -350,26 +302,16 @@
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                <button type="submit" class="modal-btn">Demander Audit & PoC &rarr;</button>
+                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -384,6 +326,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>

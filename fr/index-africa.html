@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cognitive Banking | Pôle Afrique de l'Ouest</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -38,7 +53,6 @@
             scroll-behavior: smooth;
         }
 
-        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; 
             height: 90px;
@@ -87,7 +101,6 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- SECTIONS COMMON --- */
         section {
             min-height: 100vh; 
             width: 100%;
@@ -137,7 +150,6 @@
             transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent);
         }
 
-        /* --- LOGO STRIP --- */
         .logo-strip {
             margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%;
         }
@@ -149,8 +161,6 @@
         }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        /* --- SPECIFIC SECTIONS --- */
-        
         #hero { 
             background-image: url('https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png'); 
             background-position: center top; 
@@ -167,7 +177,6 @@
         #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
-        /* STATS */
         .stats-grid { 
             display: flex; gap: 40px; margin-top: 40px; 
             border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; 
@@ -178,7 +187,6 @@
         .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
         .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- FOOTER --- */
         footer { 
             scroll-snap-align: start; padding: 6rem 10%; min-height: 60vh;
             background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
@@ -190,7 +198,6 @@
         .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
@@ -220,7 +227,6 @@
             text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* --- MOBILE --- */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -254,7 +260,6 @@
 </head>
 <body>
 
-    <!-- HEADER (Dans /fr/) -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
@@ -273,14 +278,13 @@
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- LIEN LANGUE : Retour vers la version EN à la racine -->
                 <li class="lang-item"><a href="../index-africa.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION: Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
             <h2>Pôle Afrique de l'Ouest</h2>
@@ -303,7 +307,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: FOUNDRY -->
     <section id="foundry">
         <div class="content">
             <h2>Conformité Régionale (OHADA)</h2>
@@ -322,7 +325,6 @@
         </div>
     </section>
 
-    <!-- SECTION 3: WORKBENCH -->
     <section id="workbench">
         <div class="content">
             <h2>Infrastructure d'Orchestration</h2>
@@ -334,13 +336,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondée en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques, avec un accent stratégique sur l'inclusion financière en Afrique de l'Ouest.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques, avec un accent stratégique sur l'inclusion financière en Afrique de l'Ouest.
                 </p>
             </div>
             <div>
@@ -363,7 +365,6 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -384,7 +385,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');

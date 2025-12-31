@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insights & Livres Blancs | Banque Cognitive</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/blog.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -41,7 +56,7 @@
             display: block; margin-bottom: 10px;
         }
 
-        /* --- FIXED HEADER (90px STANDARD) --- */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -73,21 +88,15 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO SECTIONS --- */
         .hero-small {
             padding: 180px 10% 80px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
         
-        .hero-small h1 { 
-            font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px;
-        }
-        
-        /* CONTENT */
         section { padding: 6rem 10%; min-height: 60vh; }
         .container { max-width: 1200px; margin: 0 auto; }
-        
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
         
         .card {
@@ -105,9 +114,7 @@
         }
         .read-btn:hover { color: var(--accent); }
 
-        /* SINGLE POST VIEW */
         #single-post-view { display: none; max-width: 800px; margin: 0 auto; }
-        
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
             color: var(--text-muted); text-decoration: none; font-weight: 600; margin-bottom: 2.5rem;
@@ -117,56 +124,25 @@
 
         .post-content { color: #cbd5e1; font-size: 18px; line-height: 1.8; }
         .post-content h3 { color: white; font-size: 24px; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
-        .post-content p { margin-bottom: 1.5rem; }
-        .post-content ul { margin-bottom: 2rem; padding-left: 1.5rem; list-style: square; color: var(--text-muted); }
-        .post-content li { margin-bottom: 0.8rem; }
 
-        /* --- FOOTER --- */
-        footer { 
-            padding: 6rem 10%; background: var(--bg-body); 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-        }
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            nav a { font-size: 20px; }
-            
             .hero-small { padding-top: 150px; }
             h1 { font-size: 36px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -175,7 +151,6 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
@@ -187,20 +162,18 @@
 
         <nav id="nav-menu">
             <ul>
-                <!-- Updated Links: Point to pages inside the current 'fr' directory -->
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- EN Link points back to main directory blog page -->
                 <li class="lang-item"><a href="../blog.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION : Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO: List View -->
     <div id="hero-list" class="hero-small">
         <div class="container">
             <span class="mono-tag">Briefings Exécutifs</span>
@@ -211,35 +184,31 @@
         </div>
     </div>
 
-    <!-- HERO: Detail View -->
     <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
         <div class="container" style="max-width: 800px; margin: 0 auto;">
             <a href="blog.html" class="back-link">&larr; RETOUR AUX BRIEFINGS</a>
             <span class="mono-tag" id="detail-category" style="color: var(--accent);">Catégorie</span>
-            <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Titre de l'Article</h1>
+            <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Titre</h1>
             <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
         </div>
     </div>
 
-    <!-- CONTENT -->
     <section>
         <div class="container">
-            <!-- GRID -->
             <div id="blog-grid" class="grid-3"></div>
-            <!-- ARTICLE -->
             <div id="single-post-view">
                 <div id="article-body" class="post-content"></div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : Mention "Fondé en 1995" supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
@@ -262,28 +231,22 @@
         </div>
     </footer>
 
-    <!-- MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block;">Session Stratégique</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Nom Complet</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                <label class="form-label">Email Professionnel</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Nom Complet">
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
                 <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- DATA SCRIPT (Points to the French data file) -->
     <script src="blog_data_fr.js"></script> 
     
     <script>
@@ -306,14 +269,13 @@
             closeModal();
         }
 
-        // BLOG LOGIC
         const gridEl = document.getElementById('blog-grid');
         const listHeroEl = document.getElementById('hero-list');
         const detailViewEl = document.getElementById('single-post-view');
         const detailHeroEl = document.getElementById('hero-detail');
 
         if (typeof blogPosts === 'undefined') {
-            gridEl.innerHTML = "<h3 style='color:white;'>Chargement de l'Intelligence...</h3>";
+            gridEl.innerHTML = "<h3 style='color:white;'>Chargement...</h3>";
         } else {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
@@ -323,7 +285,6 @@
                 if (post) {
                     gridEl.style.display = 'none'; listHeroEl.style.display = 'none';
                     detailHeroEl.style.display = 'block'; detailViewEl.style.display = 'block';
-                    
                     document.getElementById('detail-category').innerText = post.category;
                     document.getElementById('detail-title').innerText = post.title;
                     document.getElementById('detail-date').innerText = post.date;
@@ -332,18 +293,16 @@
                 }
             } else {
                 blogPosts.forEach(post => {
-                    const cardHTML = `
+                    gridEl.innerHTML += `
                         <div class="card">
                             <span class="mono-tag">${post.category}</span>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
                             <a href="blog.html?id=${post.id}" class="read-btn">Lire le Livre Blanc &rarr;</a>
                         </div>`;
-                    gridEl.innerHTML += cardHTML;
                 });
             }
         }
     </script>
-
 </body>
 </html>

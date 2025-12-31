@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workbench IA | La Fin des Hallucinations | Cognitive</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/workbench.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -38,7 +53,6 @@
 
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
 
-        /* --- FIXED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -69,7 +83,6 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- BACK LINK --- */
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
             color: var(--text-muted); text-decoration: none;
@@ -78,7 +91,6 @@
         }
         .back-link:hover { color: var(--accent); transform: translateX(-5px); }
 
-        /* --- HERO --- */
         .workbench-hero {
             padding: 180px 10% 120px 10%;
             background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png');
@@ -106,93 +118,39 @@
         .hero-lead { 
             font-size: 22px; line-height: 1.5; color: var(--text-muted); margin-bottom: 40px; font-weight: 400;
         }
-        .hero-lead strong { color: white; }
 
-        /* --- SECTIONS --- */
         section { padding: 120px 10%; border-top: 1px solid rgba(255,255,255,0.05); }
         section:nth-child(odd) { background: rgba(255,255,255,0.015); }
 
         p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 17px; }
         p strong { color: var(--text-main); }
 
-        /* --- CONSENSUS IMAGE SHOWCASE --- */
         .consensus-showcase {
-            margin-top: 50px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+            margin-top: 50px; border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
             background: #0a0f1a;
         }
-        .consensus-showcase img {
-            width: 100%;
-            height: auto;
-            display: block;
-            max-width: 100%;
-            object-fit: contain;
-        }
+        .consensus-showcase img { width: 100%; height: auto; display: block; object-fit: contain; }
         .showcase-caption {
-            background: var(--ui-panel);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--ui-panel); padding: 20px 30px; display: flex;
+            justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05);
         }
-        .showcase-caption .mono-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .showcase-caption .status {
-            display: flex;
-            gap: 20px;
-        }
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
+        .showcase-caption .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .status { display: flex; gap: 20px; }
+        .status-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
         .status-dot.green { background: var(--accent); }
         .status-dot.red { background: #EF4444; }
 
-        /* --- BIG STATEMENT --- */
         .big-statement {
             background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.02) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 12px;
-            padding: 60px;
-            margin: 60px 0;
-            text-align: center;
+            border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 12px; padding: 60px; margin: 60px 0; text-align: center;
         }
-        .big-statement p {
-            max-width: 100%;
-            font-size: 24px;
-            margin: 0 auto;
-            color: var(--text-main);
-            line-height: 1.4;
-        }
-        .big-statement p strong {
-            color: var(--accent);
-        }
+        .big-statement p { max-width: 100%; font-size: 24px; margin: 0 auto; color: var(--text-main); line-height: 1.4; }
+        .big-statement p strong { color: var(--accent); }
 
-        /* --- GRID LAYOUT --- */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
-        /* --- AGENT GRID --- */
         .agent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
         .agent-card {
             background: var(--card-bg); border: var(--card-border); padding: 35px;
@@ -202,22 +160,12 @@
         .agent-card h3 { font-size: 20px; margin-bottom: 15px; }
         .agent-card p { font-size: 14px; color: #94A3B8; margin: 0; }
 
-        /* Feature Pills */
-        .feature-pills {
-            display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0;
-        }
+        .feature-pills { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0; }
         .pill {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: var(--accent);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);
+            color: var(--accent); padding: 10px 20px; border-radius: 25px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
         }
 
-        /* --- FOOTER --- */
         footer { 
             padding: 6rem 10%; background: var(--bg-body); 
             border-top: 1px solid rgba(255,255,255,0.1); 
@@ -225,66 +173,38 @@
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: 0.2s; }
-        .footer-link:hover { color: white; }
-        .copyright { 
-            text-align: center; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            padding-top: 2rem; 
-            margin-top: 4rem; 
-            color: #475569; 
-            font-size: 0.8rem; 
-        }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.8rem; }
 
-        /* --- MODAL --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
             z-index: 2000; align-items: center; justify-content: center;
         }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 50px; border-radius: 12px; width: 100%; max-width: 480px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 20px; right: 25px; font-size: 28px; color: #94A3B8; cursor: pointer; line-height: 1;
-        }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 50px; border-radius: 12px; width: 100%; max-width: 480px; position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 28px; color: #94A3B8; cursor: pointer; line-height: 1; }
         .form-input {
             width: 100%; padding: 14px 16px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 6px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; font-size: 15px;
         }
         .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 16px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;
-        }
-        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; }
+        .modal-btn { width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; }
 
-        /* MOBILE */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            
             .workbench-hero { padding-top: 150px; }
             h1 { font-size: 38px; }
             .grid-2 { grid-template-columns: 1fr; gap: 40px; }
             .agent-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
-            .big-statement { padding: 40px 25px; }
-            .big-statement p { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER (VERSION FRANÇAISE) -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
@@ -301,14 +221,13 @@
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- LANGUAGE SWITCHER: Points to root for English -->
                 <li class="lang-item"><a href="../workbench.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Demander une démo</a></li>
+                <!-- CORRECTION: Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="workbench-hero">
         <div class="hero-content">
             <a href="product.html" class="back-link">← Retour à la plateforme</a>
@@ -321,7 +240,6 @@
         </div>
     </div>
 
-    <!-- SECTION: MOTEUR DE CONSENSUS -->
     <section>
         <div style="max-width: 1200px; margin: 0 auto;">
             <span class="label">Le Moteur de Consensus</span>
@@ -329,14 +247,10 @@
             <p style="max-width: 700px;">
                 Chaque point de donnée est analysé par des agents d'IA indépendants. Lorsqu'ils sont d'accord, vous obtenez une extraction validée. Lorsqu'ils divergent — même sur un seul champ — <strong>le système s'arrête et escalade</strong>.
             </p>
-            <p style="max-width: 700px;">
-                Ceci n'est pas un "score de confiance" probabiliste. C'est une validation déterministe.
-            </p>
 
-            <!-- CONSENSUS IMAGE -->
             <div class="consensus-showcase">
                 <img src="https://i.postimg.cc/VvKQK9b1/Screenshot-2025-12-27-at-8-47-06-AM.png" 
-                     alt="Revue des dossiers de l'exercice financier 2023 - Validation des correspondances"
+                     alt="Validation des correspondances - Multiplexeur"
                      loading="eager">
                 <div class="showcase-caption">
                     <span class="mono-tag">Résultat de validation en direct</span>
@@ -359,7 +273,6 @@
         </div>
     </section>
 
-    <!-- SECTION: COMMENT ÇA FONCTIONNE -->
     <section>
         <div class="grid-2">
             <div>
@@ -369,10 +282,7 @@
                     <strong>La responsabilité juridique réside dans les cas marginaux.</strong> Nous ne les cachons pas ; nous les mettons en lumière.
                 </p>
                 <p>
-                    Lorsque notre moteur de consensus multi-agent détecte une ambiguïté — un scan flou, une note manuscrite ou des données contradictoires — il ne devine pas. Il verrouille le flux et dirige le point de donnée spécifique vers la file d'exception de votre analyste.
-                </p>
-                <p>
-                    <strong>Vos analystes cessent de faire de la saisie de données et commencent à faire de l'arbitrage de risque.</strong>
+                    Lorsque notre moteur de consensus multi-agent détecte une ambiguïté, il ne devine pas. Il verrouille le flux et dirige le point de donnée spécifique vers la file d'exception de votre analyste.
                 </p>
                 <div class="feature-pills">
                     <span class="pill">Validation Multi-Agent</span>
@@ -392,13 +302,6 @@
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="width: 40px; height: 40px; background: rgba(34, 197, 94, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700;">2</div>
-                            <div>
-                                <div style="color: white; font-weight: 600; margin-bottom: 4px;">Multiplexeur de Comparaison</div>
-                                <div style="font-size: 13px; color: var(--text-muted);">Validation JSON champ par champ</div>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="width: 40px; height: 40px; background: rgba(239, 68, 68, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #EF4444; font-weight: 700;">!</div>
                             <div>
                                 <div style="color: white; font-weight: 600; margin-bottom: 4px;">Écart ? Escalade Instantanée</div>
@@ -411,39 +314,13 @@
         </div>
     </section>
 
-    <!-- AGENT ARCHITECTURE -->
-    <section>
-        <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
-            <span class="label">Couche d'Orchestration</span>
-            <h2 style="font-size: 42px;">Agents Spécialisés</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto;">
-                Pas de modèle "boîte noire" unique. Nous déployons des agents spécialisés qui vérifient mutuellement leur travail avant de le présenter à votre équipe.
-            </p>
-        </div>
-        
-        <div class="agent-grid">
-            <div class="agent-card">
-                <h3>Le Lecteur</h3>
-                <p>Analyse de l'OCR et de la mise en page. Identifie les tableaux, les notes de bas de page et les marges manuscrites avec conscience structurelle.</p>
-            </div>
-            <div class="agent-card">
-                <h3>L'Auditeur</h3>
-                <p>Recoupe les données extraites avec les années précédentes, les registres externes et les règles de cohérence interne.</p>
-            </div>
-            <div class="agent-card">
-                <h3>Le Sceptique</h3>
-                <p>Spécialement entraîné pour trouver les incohérences. S'il en trouve une, il signale le fichier pour une révision humaine immédiate.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Le standard du crédit commercial</h4>
+                <!-- CORRECTION : "Fondée en 1995" supprimé -->
                 <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem;">
-                    Cognitive construit l'infrastructure d'IA déterministe pour les institutions financières les plus réglementées au monde. Fondée en 1995. Montréal.
+                    Cognitive construit l'infrastructure d'IA déterministe pour les institutions financières les plus réglementées au monde. Montréal.
                 </p>
             </div>
             <div>
@@ -456,8 +333,7 @@
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">
-                    1155, boul. René-Lévesque Ouest<br>
-                    Bureau 2500<br>
+                    1155, boul. René-Lévesque Ouest, bureau 2500<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">info@cognitivegroup.com</a>
                 </p>
@@ -468,22 +344,17 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2.5rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:15px;">Briefing Exécutif</span>
-                <h3 style="color: white; font-size: 26px; margin:0; letter-spacing: -0.5px;">Voyez-le en action</h3>
-                <p style="font-size: 15px; color: #94A3B8; margin-top:12px;">30 minutes. Aucune diapositive. Démo en direct de la plateforme.</p>
+                <h3 style="color: white; font-size: 26px; margin:0;">Voyez-le en action</h3>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Nom complet</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                <label class="form-label">Courriel professionnel</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                <label class="form-label">Banque / Institution</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'organisation">
+                <input type="text" id="g-name" class="form-input" required placeholder="Nom complet">
+                <input type="email" id="g-email" class="form-input" required placeholder="Courriel professionnel">
+                <input type="text" id="g-org" class="form-input" required placeholder="Banque / Institution">
                 <button type="submit" class="modal-btn">Réserver votre démo &rarr;</button>
             </form>
         </div>
@@ -492,17 +363,8 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }

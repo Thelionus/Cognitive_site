@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cognitive Foundry | Intelligence Déterministe</title>
     
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/foundry.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
 
     <style>
         :root {
@@ -35,7 +50,6 @@
 
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
 
-        /* --- HEADER FIXE (90px) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
@@ -66,7 +80,6 @@
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
         .foundry-hero {
             padding: 180px 10% 100px 10%;
             background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png');
@@ -101,14 +114,12 @@
             font-size: 18px; color: var(--text-muted); font-style: italic;
         }
 
-        /* --- SECTIONS --- */
         section { padding: 100px 10%; border-top: 1px solid rgba(255,255,255,0.05); }
 
         h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; letter-spacing: -0.5px; color: white; }
         h3 { font-size: 20px; color: white; margin-bottom: 10px; font-weight: 700; }
         p { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 16px; }
 
-        /* --- SOVEREIGNTY CARD --- */
         .sovereignty-box {
             background: #0F172A; border: 1px solid var(--accent);
             padding: 40px; border-radius: 8px; margin-bottom: 60px;
@@ -116,7 +127,6 @@
         }
         .sov-title { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; font-size: 14px; margin-bottom: 15px; display:block; }
         
-        /* --- PIPELINE SECTION --- */
         .pipeline-steps {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px;
         }
@@ -127,7 +137,6 @@
         .step-card:hover { border-color: var(--accent); background: rgba(34, 197, 94, 0.05); }
         .step-num { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 15px; display: block; }
 
-        /* --- LOGO GRID --- */
         .foundry-logos {
             margin-top: 40px;
             background: #000000;
@@ -136,26 +145,16 @@
             display: flex; align-items: center; justify-content: flex-start;
             flex-wrap: wrap; gap: 50px;
         }
-        .client-logo {
-            height: 40px; width: auto; object-fit: contain;
-            filter: none; opacity: 1; transition: 0.3s;
-        }
-        .client-logo:hover { transform: scale(1.05); }
+        .client-logo { height: 40px; width: auto; object-fit: contain; transition: 0.3s; }
 
-        /* --- RISK SECTION --- */
         .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
-        .risk-card { 
-            background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); 
-            padding: 40px; border-radius: 4px; 
-        }
+        .risk-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 40px; border-radius: 4px; }
         .risk-title { color: #FCA5A5; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; font-weight: 700; margin-bottom: 15px; }
 
-        /* --- CHECKLIST SECTION --- */
         .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
         .check-item { display: flex; align-items: center; gap: 15px; color: white; font-weight: 600; }
         .check-icon { color: var(--accent); font-size: 20px; }
 
-        /* --- FOOTER --- */
         footer { 
             padding: 6rem 10%; background: var(--bg-body); 
             border-top: 1px solid rgba(255,255,255,0.1); 
@@ -165,7 +164,6 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* --- MODAL --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
@@ -176,23 +174,13 @@
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
             position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
-        .close-modal:hover { color: white; }
-        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
-        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
 
-        /* MOBILE */
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -202,17 +190,14 @@
             }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            
             .foundry-hero { padding-top: 150px; }
             h1 { font-size: 38px; }
             .risk-grid, .pipeline-steps, .checklist-grid, .footer-grid { grid-template-columns: 1fr; }
-            .foundry-logos { justify-content: center; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
@@ -229,14 +214,13 @@
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Publications</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- LIEN LANGUE VERS VERSION ANGLAISE -->
                 <li class="lang-item"><a href="../foundry.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+                <!-- CORRECTION : Bouton renommé -->
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
     <div class="foundry-hero">
         <div class="hero-content">
             <a href="product.html" class="back-link">← Retour à la plateforme</a>
@@ -253,13 +237,12 @@
         </div>
     </div>
 
-    <!-- SOUVERAINETÉ DES DONNÉES -->
     <section>
         <div class="sovereignty-box">
             <span class="sov-title">Garantie de souveraineté des données</span>
             <h2 style="font-size:28px; margin-bottom:15px;">Votre intelligence. Votre silo. Zéro fuite.</h2>
             <p style="color:#CBD5E1; max-width:800px; margin-bottom:0;">
-                Nous construisons un moteur logique sur mesure pour **vous**. Vos données expertes sont isolées dans un environnement dédié (single-tenant). Elles ne sont jamais utilisées pour entraîner un modèle universel et ne touchent jamais un ensemble d'entraînement public. Votre propriété intellectuelle reste 100 % la vôtre.
+                Nous construisons un moteur logique sur mesure pour **vous**. Vos données expertes sont isolées dans un environnement dédié. Elles ne sont jamais utilisées pour entraîner un modèle universel. Votre propriété intellectuelle reste 100 % la vôtre.
             </p>
         </div>
 
@@ -270,99 +253,38 @@
             <div class="step-card">
                 <span class="step-num">ÉTAPE 01</span>
                 <h3>Capture du raisonnement actif</h3>
-                <p style="font-size:13px;">
-                    Le système observe vos analystes de crédit seniors pendant leur travail. Il les incite à « réfléchir à voix haute » via des déclencheurs contextuels, capturant le raisonnement verbal et non seulement les saisies de données.
-                </p>
+                <p style="font-size:13px;">Le système observe vos analystes seniors. Il les incite à « réfléchir à voix haute » pour capturer le raisonnement verbal.</p>
             </div>
             <div class="step-card">
                 <span class="step-num">ÉTAPE 02</span>
                 <h3>Cartographie cognitive</h3>
-                <p style="font-size:13px;">
-                    L'IA générative structure ce raisonnement informel en une carte de traitement de l'information humaine (Analyse des Tâches Cognitives).
-                </p>
+                <p style="font-size:13px;">L'IA générative structure ce raisonnement informel en une carte de traitement de l'information humaine.</p>
             </div>
             <div class="step-card">
                 <span class="step-num">ÉTAPE 03</span>
                 <h3>Conversion déterministe</h3>
-                <p style="font-size:13px;">
-                    La carte logique est convertie en règles déterministes rigides. La « boîte noire » devient une « boîte de verre » auditable.
-                </p>
+                <p style="font-size:13px;">La carte logique est convertie en règles déterministes rigides. La « boîte noire » devient auditable.</p>
             </div>
             <div class="step-card">
                 <span class="step-num">ÉTAPE 04</span>
                 <h3>Déploiement des agents</h3>
-                <p style="font-size:13px;">
-                    Nous déployons des agents autonomes qui exécutent ce profil logique spécifique. Zéro hallucination. Auditabilité à 100 %.
-                </p>
+                <p style="font-size:13px;">Nous déployons des agents autonomes qui exécutent ce profil logique. Zéro hallucination.</p>
             </div>
         </div>
 
-        <!-- SECTION LOGOS -->
         <div class="foundry-logos">
-            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Banque Royale" class="client-logo"> 
-            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="Banque Nationale" class="client-logo">
+            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC" class="client-logo"> 
+            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="BNC" class="client-logo">
             <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
-            <img src="https://i.imghippo.com/files/dSBI9595LU.png" alt="DUCA" class="client-logo">
-            <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD" class="client-logo">
             <img src="https://i.imghippo.com/files/ezLO8362EE.png" alt="BNDE" class="client-logo">
         </div>
     </section>
 
-    <!-- LE PROBLÈME (RISQUE) -->
-    <section>
-        <div class="risk-grid">
-            <div>
-                <span class="label">L'écart d'exécution</span>
-                <h2>Pourquoi l'IA générique échoue</h2>
-                <p>
-                    La plupart des modèles d'IA sont pré-entraînés sur des données publiques. Cela fonctionne pour le langage, mais échoue pour les décisions de crédit complexes. 
-                </p>
-                <p>
-                    L'information décisive n'est pas écrite sur le web. Elle n'existe que dans la tête de vos experts — dans leur façon d'équilibrer les politiques, le contexte et l'intuition. Une IA générique ne peut pas deviner cela.
-                </p>
-            </div>
-            <div class="risk-card">
-                <span class="risk-title">Risque 01 : Exode des cerveaux</span>
-                <h3>L'« étalon-or » part à la retraite</h3>
-                <p>
-                    Les analystes seniors partent plus vite que leur expertise ne peut être transférée.
-                </p>
-                <ul style="color:var(--text-muted); padding-left:20px; line-height:1.6;">
-                    <li>Le jugement critique reste non documenté</li>
-                    <li>La logique décisionnelle réside dans la tête des experts</li>
-                    <li>Les analystes juniors manquent de l'intuition requise</li>
-                </ul>
-                <p style="margin-top:20px; color:white; font-weight:600;">Résultat : Érosion de l'expertise institutionnelle.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- IMPACT & PRÉSERVATION -->
-    <section style="background: rgba(255,255,255,0.02);">
-        <div class="risk-grid">
-            <div>
-                <h2>Préserver l'expertise — Définitivement</h2>
-                <p>
-                    Cognitive Foundry stoppe la perte de connaissances. Le savoir expert n'est plus perdu lors des départs à la retraite. L'intelligence humaine devient une infrastructure institutionnelle : encapsulée, exécutable, auditable et évolutive.
-                </p>
-            </div>
-            <div>
-                <h2>Ce que cela permet</h2>
-                <div class="checklist-grid">
-                    <div class="check-item"><span class="check-icon">✓</span> Jugement de niveau senior instantané</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Décisions sans aucune hallucination</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Confiance totale des régulateurs</div>
-                    <div class="check-item"><span class="check-icon">✓</span> Isolation des données par environnement client</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Notre Héritage</h4>
+                <!-- CORRECTION : "Fondée en 1995" supprimé -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
                     Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
@@ -387,14 +309,12 @@
         </div>
     </footer>
 
-    <!-- MODAL RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
                 <label class="form-label">Nom Complet</label>
@@ -411,17 +331,8 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -436,6 +347,5 @@
             closeModal();
         }
     </script>
-
 </body>
 </html>
