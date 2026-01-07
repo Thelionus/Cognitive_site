@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://www.cognitivegroup.com/success.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://i.imghippo.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://i.imghippo.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
     
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -41,7 +41,7 @@
     }
     </script>
 
-    <!-- 9. TRACKING: Google Analytics (Verified ID: G-L9N7RPQDDB) -->
+    <!-- 9. TRACKING: Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -52,28 +52,19 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
-            
-            /* Overlays */
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
-            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
-            --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* PREVENTS SACCADA: Keeps scrollbar gutter constant on all pages */
         html { scroll-behavior: smooth; overflow-y: scroll; }
-
         body { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER: EXACT MATCH TO INDEX.HTML --- */
         header {
             position: fixed; top: 0; width: 100%; 
             height: 90px;
@@ -84,46 +75,42 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { 
-            height: 30px;
-            width: auto; display: block; 
-        }
-
+        .logo img { height: 30px; width: auto; display: block; }
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
         .btn-header {
-            background-color: #FFFFFF;
-            color: #020617 !important;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 700 !important;
-            text-transform: none !important; 
-            letter-spacing: 0.5px;
+            background-color: #FFFFFF; color: #020617 !important;
+            padding: 12px 24px; border-radius: 4px; font-weight: 700 !important;
+            text-transform: none !important; letter-spacing: 0.5px;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
+        /* HERO - UPDATED FOR SPACING FIX */
         .hero-banner {
-            position: relative; width: 100%; height: 500px; padding-top: 90px;
+            position: relative; width: 100%; 
+            min-height: 480px; /* Changed from fixed 500px to min-height */
+            padding-top: 110px; /* Added padding to account for fixed header + spacing */
+            padding-bottom: 40px;
             display: flex; align-items: center; justify-content: center;
             background-image: url('https://i.imghippo.com/files/hBJ5329Dsg.png');
             background-size: cover; background-position: center;
         }
-        .hero-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-body) 10%, rgba(2, 6, 23, 0.6) 100%); }
+        .hero-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-body) 15%, rgba(2, 6, 23, 0.6) 100%); }
         .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 5%; }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
         h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); letter-spacing: -1.5px; }
-        
         .hero-lead { font-size: 18px; color: var(--text-muted); line-height: 1.8; }
 
-        /* --- CONTENT SECTIONS --- */
-        .main-section { padding: 6rem 5%; }
+        /* CONTENT SECTIONS - UPDATED FOR SPACING FIX */
+        .main-section { 
+            padding: 2rem 5% 6rem 5%; /* Reduced top padding from 6rem to 2rem */
+        }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 40px; }
         .category-header { display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 40px; }
         .category-header h2 { font-size: 28px; font-weight: 700; margin: 0; color: white; letter-spacing: -0.5px; }
@@ -143,14 +130,21 @@
         .mini-stat strong { display: block; color: var(--accent); font-size: 18px; margin-bottom: 3px; }
         .case-link { display: block; margin-top: 20px; font-size: 13px; font-weight: 700; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FOOTER --- */
+        /* CLIENT LIST SPECIFIC STYLES */
+        .client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 3rem; margin-top: 2rem; }
+        .region-title { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); text-transform: uppercase; letter-spacing: 1px; }
+        .client-list { list-style: none; padding: 0; }
+        .client-list li { margin-bottom: 10px; color: var(--text-muted); transition: all 0.2s; font-size: 14px; border-left: 2px solid transparent; padding-left: 0; }
+        .client-list li:hover { color: white; border-left: 2px solid var(--accent); padding-left: 12px; }
+
+        /* FOOTER */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 2; display: flex; flex-direction: column; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
         
-        /* --- MODAL --- */
+        /* MODAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
         .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .form-input { width: 100%; padding: 12px; margin: 10px 0; background: #020617; border: 1px solid #334155; color: white; border-radius: 4px; font-family: 'Manrope', sans-serif; }
@@ -170,17 +164,13 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <header>
         <div class="logo">
-            <!-- Added width and height attributes to satisfy CLS principles -->
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
         <div class="hamburger" id="hamburger" aria-label="Menu Toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
@@ -202,7 +192,7 @@
             <h1>Mission Critical Deployments</h1>
             <p class="hero-lead">From Tier-1 Financial Institutions to high-growth Emerging Markets.</p>
             <div style="margin-top: 2rem;">
-                <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
+                <a href="#global-footprint" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
                     View our global client list 
                 </a>
             </div>
@@ -216,13 +206,14 @@
         </div>
 
         <div class="grid-3">
+            <!-- RBC -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage Automation">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Credit Decisions</span>
-                    <h3>Mortgage Adjudication (RBC)</h3>
+                    <h3>Mortgage Adjudication </h3>
                     <p class="case-p">Automating complex credit decisions by restructuring the cognitive flow of expert adjudicators. Reduced UI complexity from 50 pages to 2.</p>
                     <div class="metric-row">
                         <div class="mini-stat"><strong>90%</strong> Time Saved</div>
@@ -232,6 +223,7 @@
                 </div>
             </div>
 
+            <!-- Commercial -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Lending Transformation">
@@ -248,6 +240,7 @@
                 </div>
             </div>
 
+            <!-- Statement Automation -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Statement Automation AI">
@@ -273,6 +266,7 @@
         </div>
 
         <div class="grid-3">
+            <!-- Micro-Finance -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Micro-Finance Revolution">
@@ -289,6 +283,7 @@
                 </div>
             </div>
 
+            <!-- Impact Labs -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Scaling Inclusion">
@@ -305,6 +300,7 @@
                 </div>
             </div>
 
+            <!-- WhatsApp -->
             <div class="case-card">
                 <div class="case-image-box">
                     <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Origination">
@@ -319,6 +315,125 @@
                     </div>
                     <a href="case-study-whatsapp.html" class="case-link">View Case Study &rarr;</a>
                 </div>
+            </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+
+        <!-- ============================================= -->
+        <!--  R&D SECTION: AVIATION & REGULATED INDUSTRY   -->
+        <!-- ============================================= -->
+        <div class="category-header">
+            <h2>Research & Development</h2>
+            <span class="category-badge">Regulated Industry</span>
+        </div>
+
+        <div class="grid-3">
+            <!-- 1. SymbIA Case Study -->
+            <div class="case-card">
+                <div class="case-image-box">
+                    <img src="https://i.postimg.cc/26txFGhb/Chat-GPT-Image-Jan-7-2026-02-11-12-PM.png" alt="Aviation Human-Autonomy Teaming Cockpit">
+                </div>
+                <div class="case-content">
+                    <span class="mono-tag" style="margin-bottom:5px;">Aviation Safety</span>
+                    <h3>Human-Autonomy Teaming (SymbIA)</h3>
+                    <p class="case-p">Mitigating human-automation conflict in Single Pilot Operations (SPO) through cognitive task analysis and generative AI. Ensuring transparency and trust.</p>
+                    <div class="metric-row">
+                        <div class="mini-stat"><strong>90%</strong> Faster Capture</div>
+                        <div class="mini-stat"><strong>Zero</strong> Trust Architecture</div>
+                    </div>
+                    <a href="symbia.html" class="case-link">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+            <!-- 2. C-Pilot Case Study (NEW IMAGE) -->
+            <div class="case-card">
+                <div class="case-image-box">
+                    <!-- Updated with high-quality Glass Cockpit image -->
+                    <img src="https://i.postimg.cc/3xMYbHYg/Chat-GPT-Image-Jan-7-2026-02-22-42-PM.png" alt="C-Pilot Cognitive Cockpit">
+                </div>
+                <div class="case-content">
+                    <span class="mono-tag" style="margin-bottom:5px;">Aviation Safety</span>
+                    <h3>The Cognitive Cockpit (C-Pilot)</h3>
+                    <p class="case-p">Digitalizing pilot reasoning in real-time. We are engineering a non-invasive capture engine that monitors cognitive load and deploys AI companions for high-stress maneuvers.</p>
+                    <div class="metric-row">
+                        <div class="mini-stat"><strong>Real-Time</strong> Capture</div>
+                        <div class="mini-stat"><strong>Live</strong> AI Supervision</div>
+                    </div>
+                    <a href="cpilot.html" class="case-link">Explore the Research &rarr;</a>
+                </div>
+            </div>
+            
+            <!-- 3. Placeholder for future R&D project -->
+             <div class="case-card" style="opacity: 0.5; border: 1px dashed rgba(255,255,255,0.2); background: transparent;">
+                <div class="case-content" style="justify-content: center; align-items: center; text-align: center; height: 100%;">
+                    <h3 style="color: var(--text-muted); font-size: 16px;">Confidential R&D</h3>
+                    <p style="font-size: 13px; color: #475569;">Upcoming Publication</p>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================= -->
+        <!--            END R&D SECTION                    -->
+        <!-- ============================================= -->
+
+        <div style="height: 100px;" id="global-footprint"></div>
+        
+        <div class="category-header">
+            <h2>Global Client Footprint</h2>
+            <span class="category-badge">Strategic Partners</span>
+        </div>
+
+        <div class="client-grid">
+            <!-- Group 1: North America -->
+            <div class="region-group">
+                <h3 class="region-title">North America</h3>
+                <ul class="client-list">
+                    <li>Aviva</li>
+                    <li>BDC (Business Development Bank)</li>
+                    <li>Central 1</li>
+                    <li>Desjardins Group</li>
+                    <li>Duca Financial</li>
+                    <li>Impact Labs</li>
+                    <li>IFC (World Bank Group)</li>
+                    <li>Laurentian Bank</li>
+                    <li>Manulife Bank</li>
+                    <li>Montrusco Bolton</li>
+                    <li>National Bank of Canada</li>
+                    <li>Royal Bank of Canada (RBC)</li>
+                    <li>TD Insurance</li>
+                </ul>
+            </div>
+
+            <!-- Group 2: Asia, LATAM & Africa -->
+            <div class="region-group">
+                <h3 class="region-title">Asia, LATAM & Africa</h3>
+                <ul class="client-list">
+                    <li>Chengdu Commercial Bank</li>
+                    <li>Union Bank</li>
+                    <li>Sophides</li>
+                    <li>Alrahma (Senegal)</li>
+                    <li>Bank of Abidjan (Ivory Coast)</li>
+                    <li>Bank of Dakar (Senegal)</li>
+                    <li>BNDE (Senegal)</li>
+                    <li>BSIC (Benin)</li>
+                    <li>CK-GUINEE / Mali / Senegal</li>
+                </ul>
+            </div>
+
+            <!-- Group 3: Infrastructure & Mission Critical -->
+            <div class="region-group">
+                <h3 class="region-title">Mission-Critical Sectors</h3>
+                <ul class="client-list">
+                    <li>Hydro-Québec</li>
+                    <li>PG&E</li>
+                    <li>Bell / Ericsson / Telus</li>
+                    <li>CAE / Pratt & Whitney</li>
+                    <li>General Dynamics / Thales</li>
+                    <li>Air Canada</li>
+                    <li>Amazon</li>
+                    <li>Revenu Québec</li>
+                    <li style="color: white; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px;">CGI (Global Alliance)</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -348,6 +463,7 @@
         <div class="copyright">&copy; 2025 Cognitive Group. All Rights Reserved.</div>
     </footer>
 
+    <!-- MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span onclick="closeModal()" style="position:absolute; top:20px; right:25px; color:#94A3B8; cursor:pointer; font-size:28px; line-height:1;">&times;</span>
@@ -384,4 +500,3 @@
         }
     </script>
 </body>
-</html>
