@@ -5,16 +5,16 @@
     <!-- 1. SEO: Mobile-First Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
+    <!-- 2. SEO: Optimized Title -->
     <title>Banking AI Insights & White Papers | Cognitive Group</title>
     
-    <!-- 3. SEO: Unique Meta Description (150-160 chars) -->
+    <!-- 3. SEO: Unique Meta Description -->
     <meta name="description" content="Access strategic intelligence and actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety for modern banking.">
     
     <!-- 4. SEO: Canonical Link -->
     <link rel="canonical" href="https://www.cognitivegroup.com/blog.html">
 
-    <!-- 5. SECURITY: Updated Content Security Policy (CSP) for GA4 -->
+    <!-- 5. SECURITY: Updated Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
     
     <!-- 6. SECURITY: Referrer Policy -->
@@ -41,7 +41,7 @@
     }
     </script>
 
-    <!-- 9. TRACKING: Updated Google Analytics (Corrected ID: G-L9N7RPQDDB) -->
+    <!-- 9. TRACKING: Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -99,7 +99,7 @@
         }
         .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
         
-        section { padding: 6rem 10%; min-height: 60vh; }
+        section { padding: 4rem 10%; min-height: 60vh; }
         .container { max-width: 1200px; margin: 0 auto; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
         
@@ -115,12 +115,53 @@
         .read-btn { color: white; text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
         .read-btn:hover { color: var(--accent); }
 
+        /* POST CONTENT STYLING */
         #single-post-view { display: none; max-width: 800px; margin: 0 auto; }
         .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-weight: 600; margin-bottom: 2.5rem; transition: color 0.2s; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; }
         .back-link:hover { color: var(--accent); }
 
         .post-content { color: #cbd5e1; font-size: 18px; line-height: 1.8; }
         .post-content h3 { color: white; font-size: 24px; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
+        
+        /* Indented Lists */
+        .post-content ul, .post-content ol {
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+
+        /* Table Styling for Data Papers */
+        .post-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+        }
+        .post-content th, .post-content td {
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+        .post-content th {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .post-content blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin: 2rem 0;
+        }
 
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
@@ -128,6 +169,7 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
+        /* Modal Styles */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
         .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
@@ -141,7 +183,7 @@
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             .hero-small { padding-top: 150px; }
-            h1 { font-size: 36px; }
+            .hero-small h1 { font-size: 36px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
     </style>
@@ -165,7 +207,6 @@
                 <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/blog.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <!-- CTA Renamed -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
@@ -205,7 +246,6 @@
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
-                <!-- FIXED: Removed "Founded in 1995" -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
                     Cognitive specializes in deterministic AI for mission-critical banking.
                 </p>
@@ -290,7 +330,6 @@
                     document.getElementById('article-body').innerHTML = post.content;
                     document.title = post.title + " | Cognitive Insights";
 
-                    // --- SEND DYNAMIC PAGE VIEW TO GA4 ---
                     gtag('event', 'page_view', {
                         page_title: post.title,
                         page_location: window.location.href,
