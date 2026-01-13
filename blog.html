@@ -5,34 +5,25 @@
     <!-- 1. SEO: Mobile-First Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 2. SEO: Optimized Title -->
-    <title>Banking AI Insights & White Papers | Cognitive Group</title>
-    
-    <!-- 3. SEO: Unique Meta Description -->
-    <meta name="description" content="Access strategic intelligence and actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety for modern banking.">
-    
-    <!-- 4. SEO: Canonical Link -->
-    <link rel="canonical" href="https://www.cognitivegroup.com/blog.html">
+    <!-- 2. SEO: Dynamic Meta Tags (Managed by JS) -->
+    <title id="dynamic-title">Banking AI Insights & White Papers | Cognitive Group</title>
+    <meta name="description" id="dynamic-desc" content="Access strategic intelligence and actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety for modern banking.">
+    <link rel="canonical" id="dynamic-canonical" href="https://www.cognitivegroup.com/blog.html">
 
-    <!-- 5. SECURITY: Updated Content Security Policy (CSP) -->
+    <!-- 3. SECURITY & PERFORMANCE -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
-    
-    <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <!-- 7. PERFORMANCE: Preload Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- 8. SEO: Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+    <!-- 4. SEO: Structured Data -->
+    <script type="application/ld+json" id="structured-data">
     {
       "@context": "https://schema.org",
       "@type": "Blog",
       "name": "Cognitive Banking Strategic Intelligence",
-      "description": "White papers on Regulatory Compliance and Deterministic AI Safety.",
       "publisher": {
         "@type": "Organization",
         "name": "Cognitive Group",
@@ -41,7 +32,7 @@
     }
     </script>
 
-    <!-- 9. TRACKING: Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -52,12 +43,11 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* SYNCED WITH INDEX.HTML */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
-            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -65,18 +55,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); scroll-behavior: smooth; overflow-x: hidden; }
 
-        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
-        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 10px; }
-
+        /* HEADER - IDENTICAL TO INDEX */
         header {
             position: fixed; top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
         .logo img { height: 30px; width: auto; display: block; }
-
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--text-main); }
@@ -84,21 +70,25 @@
 
         .btn-header {
             background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px;
-            border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px;
-            cursor: pointer;
+            border-radius: 4px; font-weight: 700 !important;
+            text-transform: none !important; /* Matches index.html exactly */
+            letter-spacing: 0.5px; cursor: pointer;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
+        /* HERO STYLES */
         .hero-small {
             padding: 180px 10% 80px; text-align: center;
             background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
-        
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+
+        /* CONTENT GRID */
         section { padding: 4rem 10%; min-height: 60vh; }
         .container { max-width: 1200px; margin: 0 auto; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
@@ -106,70 +96,37 @@
         .card {
             background: var(--card-bg); border: var(--card-border);
             padding: 30px; border-radius: 6px; transition: all 0.3s ease;
-            display: flex; flex-direction: column; align-items: flex-start;
+            display: flex; flex-direction: column; align-items: flex-start; text-decoration: none;
         }
         .card:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(34, 197, 94, 0.05); }
-        .card h3 { font-size: 20px; line-height: 1.4; margin-bottom: 15px; color: white; }
+        .card h2 { font-size: 20px; line-height: 1.4; margin-bottom: 15px; color: white; }
         .card p { color: var(--text-muted); font-size: 15px; margin-bottom: 25px; flex-grow: 1; line-height: 1.6; }
-        
         .read-btn { color: white; text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
         .read-btn:hover { color: var(--accent); }
 
-        /* POST CONTENT STYLING */
-        #single-post-view { display: none; max-width: 800px; margin: 0 auto; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-weight: 600; margin-bottom: 2.5rem; transition: color 0.2s; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; }
-        .back-link:hover { color: var(--accent); }
-
+        /* ARTICLE STYLING - UPDATED WITH INDENTATION FIX */
         .post-content { color: #cbd5e1; font-size: 18px; line-height: 1.8; }
         .post-content h3 { color: white; font-size: 24px; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1.5rem; }
         
-        /* Indented Lists */
-        .post-content ul, .post-content ol {
-            margin-left: 2rem;
-            margin-bottom: 2rem;
-        }
-        .post-content li {
-            margin-bottom: 0.8rem;
-            padding-left: 0.5rem;
-        }
+        /* Indentation Fix for Bullets */
+        .post-content ul { list-style: disc; margin-left: 2rem; margin-bottom: 2rem; padding-left: 1rem; }
+        .post-content ol { list-style: decimal; margin-left: 2rem; margin-bottom: 2rem; padding-left: 1rem; }
+        .post-content li { margin-bottom: 0.8rem; display: list-item; }
+        .post-content p { margin-bottom: 1.5rem; }
 
-        /* Table Styling for Data Papers */
-        .post-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2.5rem 0;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 16px;
-        }
-        .post-content th, .post-content td {
-            padding: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: left;
-        }
-        .post-content th {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-        .post-content blockquote {
-            border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin: 2rem 0;
-        }
+        .post-content table { width: 100%; border-collapse: collapse; margin: 2.5rem 0; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02); }
+        .post-content th, .post-content td { padding: 14px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; }
+        .post-content th { background: rgba(34, 197, 94, 0.15); color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 13px; }
 
+        /* FOOTER - IDENTICAL TO INDEX */
         footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        /* Modal Styles */
+        /* MODAL - IDENTICAL TO INDEX */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
         .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
@@ -182,7 +139,6 @@
             nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
-            .hero-small { padding-top: 150px; }
             .hero-small h1 { font-size: 36px; }
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
@@ -190,92 +146,100 @@
 </head>
 <body>
 
+    <!-- NAV - MATCHES INDEX EXACTLY -->
     <header>
         <div class="logo">
             <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
-        <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <div class="hamburger" id="hamburger" aria-label="Menu Toggle">
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
-                <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
-                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html" class="active-link">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li class="lang-item"><a href="fr/blog.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO: List View -->
-    <div id="hero-list" class="hero-small">
-        <div class="container">
-            <span class="mono-tag">Executive Briefings</span>
-            <h1>Strategic Intelligence</h1>
-            <p style="color: var(--text-muted); margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 18px;">
-                Actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety.
-            </p>
-        </div>
-    </div>
-
-    <!-- HERO: Detail View -->
-    <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <a href="blog.html" class="back-link">&larr; BACK TO BRIEFINGS</a>
-            <span class="mono-tag" id="detail-category" style="color: var(--accent);">Category</span>
-            <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Article Title</h1>
-            <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
-        </div>
-    </div>
-
-    <section>
-        <div class="container">
-            <div id="blog-grid" class="grid-3"></div>
-            <div id="single-post-view">
-                <div id="article-body" class="post-content"></div>
+    <main>
+        <!-- HERO: List View -->
+        <div id="hero-list" class="hero-small">
+            <div class="container">
+                <span class="mono-tag">Executive Briefings</span>
+                <h1 id="hero-h1">Strategic Intelligence</h1>
+                <p id="hero-p" style="color: var(--text-muted); margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 18px;">
+                    Actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety.
+                </p>
             </div>
         </div>
-    </section>
 
+        <!-- HERO: Detail View Overlay -->
+        <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <a href="blog.html" style="color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono'; font-size: 12px;">&larr; BACK TO BRIEFINGS</a>
+                <span class="mono-tag" id="detail-category" style="color: var(--accent); margin-top: 2rem;">Category</span>
+                <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Article Title</h1>
+                <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
+            </div>
+        </div>
+
+        <section>
+            <div class="container">
+                <!-- GRID VIEW -->
+                <div id="blog-grid" class="grid-3"></div>
+                <!-- ARTICLE VIEW -->
+                <article id="single-post-view" style="display: none; max-width: 800px; margin: 0 auto;">
+                    <div id="article-body" class="post-content"></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER - MATCHES INDEX EXACTLY -->
     <footer>
         <div class="footer-grid">
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
+                <a href="blog.html" class="footer-link">Regulatory Research</a>
                 <a href="product.html" class="footer-link">The Cognitive Suite</a>
-                <a href="about.html" class="footer-link">Our History</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
-                <h4 class="footer-h4">Contact</h4>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">
-                    1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4, Canada<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
+                <h4 class="footer-h4">Global Headquarters</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    1155 René-Lévesque Blvd West<br>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2026 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
 
+    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
-            <span class="close-modal" onclick="closeModal()" aria-label="Close Modal">&times;</span>
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block;">Strategy Session</span>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
                 <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
@@ -289,15 +253,14 @@
     <!-- DATA SCRIPT -->
     <script src="blog_data.js"></script>
     <script>
+        // UI Logic
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
-        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
 
-        const gModal = document.getElementById('bookingModal');
-        function openModal() { gModal.style.display = 'flex'; }
-        function closeModal() { gModal.style.display = 'none'; }
-        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+        function openModal() { document.getElementById('bookingModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == document.getElementById('bookingModal')) closeModal(); }
 
         function handleGlobalSubmit(e) {
             e.preventDefault();
@@ -308,46 +271,62 @@
             closeModal();
         }
 
-        // BLOG LOGIC
+        // SEO & RENDER ENGINE
         const gridEl = document.getElementById('blog-grid');
         const listHeroEl = document.getElementById('hero-list');
-        const detailViewEl = document.getElementById('single-post-view');
         const detailHeroEl = document.getElementById('hero-detail');
+        const detailViewEl = document.getElementById('single-post-view');
 
-        if (typeof blogPosts !== 'undefined') {
+        function renderBlog() {
+            if (typeof blogPosts === 'undefined') return;
+
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
 
             if (postId) {
                 const post = blogPosts.find(p => p.id === postId);
                 if (post) {
-                    gridEl.style.display = 'none'; listHeroEl.style.display = 'none';
-                    detailHeroEl.style.display = 'block'; detailViewEl.style.display = 'block';
-                    
+                    gridEl.style.display = 'none';
+                    listHeroEl.style.display = 'none';
+                    detailHeroEl.style.display = 'block';
+                    detailViewEl.style.display = 'block';
+
                     document.getElementById('detail-category').innerText = post.category;
                     document.getElementById('detail-title').innerText = post.title;
                     document.getElementById('detail-date').innerText = post.date;
                     document.getElementById('article-body').innerHTML = post.content;
-                    document.title = post.title + " | Cognitive Insights";
 
-                    gtag('event', 'page_view', {
-                        page_title: post.title,
-                        page_location: window.location.href,
-                        page_path: '/blog/' + post.id
-                    });
+                    document.title = `${post.title} | Cognitive Insights`;
+                    document.getElementById('dynamic-title').innerText = `${post.title} | Cognitive Insights`;
+                    document.getElementById('dynamic-desc').setAttribute('content', post.summary);
+                    document.getElementById('dynamic-canonical').setAttribute('href', `https://www.cognitivegroup.com/blog.html?id=${post.id}`);
+
+                    const schema = {
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": post.title,
+                        "description": post.summary,
+                        "author": {"@type": "Person", "name": "Francois Aubin"},
+                        "datePublished": post.date,
+                        "publisher": {"@type": "Organization", "name": "Cognitive Group"}
+                    };
+                    document.getElementById('structured-data').text = JSON.stringify(schema);
+                    return;
                 }
-            } else {
-                blogPosts.forEach(post => {
-                    gridEl.innerHTML += `
-                        <div class="card">
-                            <span class="mono-tag">${post.category}</span>
-                            <h3>${post.title}</h3>
-                            <p>${post.summary}</p>
-                            <a href="blog.html?id=${post.id}" class="read-btn">Read White Paper &rarr;</a>
-                        </div>`;
-                });
             }
+
+            blogPosts.forEach(post => {
+                gridEl.innerHTML += `
+                    <a href="blog.html?id=${post.id}" class="card">
+                        <span class="mono-tag">${post.category}</span>
+                        <h2>${post.title}</h2>
+                        <p>${post.summary}</p>
+                        <span class="read-btn">Read White Paper &rarr;</span>
+                    </a>`;
+            });
         }
+
+        window.onload = renderBlog;
     </script>
 </body>
 </html>
