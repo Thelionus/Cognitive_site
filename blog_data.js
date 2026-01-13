@@ -10,11 +10,11 @@ const blogPosts = [
             <h3>Summary</h3>
             <p>Public discourse on Artificial General Intelligence (AGI) has intensified, driven by speculative timelines, media narratives, and benchmark extrapolations. Despite this attention, AGI remains weakly defined, poorly operationalized, and detached from real institutional performance requirements. This paper argues that the AGI framing is conceptually misleading and operationally unproductive. Drawing on cognitive engineering and thousands of hours of cognitive task analysis—particularly in regulated financial domains—we propose a domain-specific, performance-oriented framework for evaluating intelligence.</p>
             <p>We present empirical results comparing a state-of-the-art large language model, a seasoned human expert, and a domain-embedded cognitive model across five critical performance dimensions. The results show that cognitive models incorporating structured human expertise substantially outperform both general-purpose AI systems and experienced professionals. These findings demonstrate that intelligence is best understood as situated task performance rather than abstract generality.</p>
-
+    
             <h3>1. Introduction: The Ambiguity of AGI</h3>
             <p>Artificial General Intelligence is frequently presented as an imminent milestone, often predicted to arrive within a fixed timeframe. However, the term lacks a stable definition, agreed-upon evaluation criteria, or falsifiable benchmarks. As a result, AGI functions more as a rhetorical construct than a scientific one.</p>
             <p>From a cognitive-engineering perspective, this framing is fundamentally flawed. Intelligence does not exist independently of tasks, environments, and constraints. What matters in practice—especially in institutional and regulated settings—is whether a system can reliably perform specific cognitive functions at or above expert level.</p>
-
+    
             <h3>2. Intelligence as Situated Performance</h3>
             <p>Extensive cognitive task analyses consistently show that:</p>
             <ul>
@@ -23,15 +23,15 @@ const blogPosts = [
                 <li>Decision quality depends on knowledge, skill, and information credibility assessment.</li>
             </ul>
             <p>Humans are not general problem solvers in practice; they are specialists executing constrained tasks with calibrated heuristics. Any meaningful comparison between humans and machines must therefore occur within a clearly defined task environment.</p>
-
+    
             <h3>3. Evaluation Framework</h3>
             <p>To operationalize intelligence as performance, we evaluated three agents within the same constrained financial-decision domain:</p>
             <ol>
                 <li>A state-of-the-art general-purpose large language model (Anthropic 4.5).</li>
                 <li>A human expert with approximately ten years of professional experience.</li>
-                <li>A cognitive model embedding domain expertise derived from cognitive task analysis.</li>
+                <li><strong>A Cognitive Model:</strong> A specialized architecture that does not rely on retraining, but rather "wraps" a foundation model with explicit reasoning structures, heuristics, and validation logic derived from rigorous Cognitive Task Analysis (CTA) of human experts.</li>
             </ol>
-
+    
             <h4>3.1 Performance Metrics</h4>
             <p>The evaluation focused on five task-critical dimensions that reflect real institutional requirements:</p>
             <ul>
@@ -41,7 +41,7 @@ const blogPosts = [
                 <li><strong>Strategic Modeling:</strong> Capacity to reason over multi-step decision structures and downstream implications.</li>
                 <li><strong>Overall Composite Score:</strong> A weighted aggregate of task-specific performance.</li>
             </ul>
-
+    
             <h3>4. Empirical Results</h3>
             <p>The comparative performance scores across the evaluated agents were as follows:</p>
             <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">
@@ -61,23 +61,27 @@ const blogPosts = [
                     <tr style="background: rgba(255,255,255,0.05); font-weight: bold;"><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Overall Composite Score</td><td style="text-align:center;">28.7</td><td style="text-align:center;">68.7</td><td style="text-align:center; color: var(--accent);">97.2</td></tr>
                 </tbody>
             </table>
-
+    
             <h3>5. Interpretation of Results</h3>
             <h4>5.1 Why General-Purpose Models Fail</h4>
             <p>Despite strong linguistic and pattern-matching abilities, the general-purpose model performs poorly in areas that matter most in regulated environments: it fails to enforce compliance hard-stops reliably, lacks calibrated thresholds for plausibility, and struggles with multi-constraint reasoning. These failures reflect the absence of embedded domain expertise.</p>
             
             <h4>5.2 Human Expertise: Strong but Fragile</h4>
             <p>The human expert demonstrates solid performance, particularly in strategic modeling. However, performance remains variable; cognitive load and fatigue affect consistency, and cross-document verification is time-intensive. Human expertise is powerful, but it does not scale linearly.</p>
-
+    
             <h4>5.3 Cognitive Models: Embedded Expertise at Scale</h4>
             <p>The cognitive model outperforms both comparators across every metric. The approximately twofold improvement over human performance demonstrates that intelligence is not a property of "general reasoning," but of structured expertise embedded in a computational substrate.</p>
-
+    
+            <h4>5.4 Robustness and Transferability</h4>
+            <p>A common critique of domain-specific models is "brittleness"—the assumption that slight shifts in task structure render the model useless, unlike a "General" intelligence. However, our data suggests otherwise. In parallel tests, we adapted a mortgage adjudication model designed for a large commercial bank to a specialized "troubled loan" portfolio for a smaller institution. Despite the shift in risk parameters, document variability, and policy constraints, the cognitive model adapted and continued to produce better results than human specialists.</p>
+            <p>While no system is immune to "black swan" events, human experts are equally susceptible to failure during such outliers—often exacerbated by cognitive bias, panic, or lack of historical precedent. The goal of cognitive engineering is not theoretical perfection in undefined scenarios, but superior reliability in the high-volume operational reality where institutions actually live.</p>
+    
             <h3>6. The Misuse of "IQ" in AI Discourse</h3>
             <p>Labeling a composite score as "IQ" in these contexts is misleading. What is being measured is task-bounded cognitive performance. The dramatic gap does not imply the model is "more intelligent" in a human sense; it implies that when expertise is formalized and embedded, machines can outperform both humans and generic AI within that specific domain. This directly undermines the AGI narrative.</p>
-
+    
             <h3>7. Implications for the AGI Debate</h3>
             <p>These results expose a core flaw in AGI-centric thinking: intelligence does not arrive as a singular capability. Performance emerges when knowledge, heuristics, validation logic, and task structure are aligned. Generality is neither necessary nor desirable in institutional contexts.</p>
-
+    
             <h3>8. Conclusion: Replace AGI with Performance Engineering</h3>
             <p>The question is not when AGI will arrive, but which domains can now be automated at super-expert level and what structures enable this. The empirical evidence shows that cognitive models grounded in domain expertise already surpass both human experts and state-of-the-art general AI systems. The future of intelligence is not general; it is engineered, situated, and measurable.</p>
         `
