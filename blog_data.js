@@ -1,4 +1,4 @@
-const blogPosts = [
+ const blogPosts = [
     {
         id: "beyond-the-illusion-of-generality",
         category: "Cognitive Engineering",
@@ -9,13 +9,13 @@ const blogPosts = [
             <p><strong>By: Francois Aubin</strong></p>
     
             <h3>Abstract</h3>
-            <p>As Artificial General Intelligence (AGI) dominates public discourse, a gap has widened between benchmark-driven "generality" and institutional performance requirements. This paper argues that the pursuit of AGI as a monolithic entity is operationally unproductive. We propose a shift toward <strong>Performance Engineering</strong>. Through a study in financial adjudication, we demonstrate that a foundation model (Claude Sonnet 4.5) integrated with an automated <strong>Cognitive Task Analysis (CTA)</strong> pipeline outperforms both human experts and standard production-grade LLMs. We conclude that intelligence in professional domains is not a product of abstract scale, but of captured, situated expertise.</p>
+            <p>As Artificial General Intelligence (AGI) dominates public discourse, a gap has widened between benchmark-driven "generality" and institutional performance requirements. This paper argues that the pursuit of AGI as a monolithic entity is operationally unproductive. We propose a shift toward <strong>Performance Engineering</strong>. Through a study in financial adjudication, we demonstrate that a foundation model (Claude Sonnet 4.5) integrated with an automated <strong>Cognitive Task Analysis (CTA)</strong> pipeline outperforms both human experts and standard production-grade LLMs. We conclude that intelligence in professional domains is a product of structured expertise, not abstract scale.</p>
     
             <h3>1. Introduction: The Generality Trap</h3>
             <p>The AGI narrative assumes that scaling foundation models will eventually lead to "expert" performance. However, in regulated environments, generality is often a liability. The challenge is the <strong>Knowledge Bottleneck</strong>: public training data lacks the "dark matter" of expertise—the tacit knowledge, edge-case calibrations, and on-the-job heuristics that professionals learn through peer observation and years of trial-and-error.</p>
     
             <h3>2. Methodology: The Automated CTA Pipeline</h3>
-            <p>To evaluate the limits of generality, we compared three agents in a Personnal Loan Adjudication domain. Crucially, the baseline used was not a "strawman," but our previous production-standard model.</p>
+            <p>To evaluate the limits of generality, we compared three agents in a <strong>Personal</strong> Loan Adjudication domain. Crucially, the baseline used was not a "strawman," but our previous production-standard model.</p>
             <ul>
                 <li><strong>Baseline Production LLM (Sonnet 4.5):</strong> The standard model used in banking environments, provided with full policy manuals and standard chain-of-thought prompts. This was our high-water mark prior to this research.</li>
                 <li><strong>Human Expert:</strong> A senior professional (10+ years). While highly skilled, humans are fallible, subject to fatigue, cognitive bias, and their own versions of "hallucination."</li>
@@ -56,7 +56,8 @@ const blogPosts = [
             <h3>6. Conclusion: Performance Engineering is the Goal</h3>
             <p>We must move beyond AGI as a misleading rhetorical concept. Whether a machine is "intelligent" depends on its definition; if intelligence is the ability to learn and execute, our automated CTA feedback loop achieves this today. The future is not a generalist machine, but an <strong>Engineered Expert</strong> that scales human wisdom without human fallibility.</p>
         `
-    },{
+    },
+    {
         id: "ai-assisted-supervision-louvre",
         category: "AI & Security",
         date: "Nov 01, 2025",
@@ -961,4 +962,4 @@ const blogPosts = [
             <p><em>Tagged with: Cognitive Engineering, Cognitive Task Analysis, Generative AI, Loan processing, Prompt engineering</em></p>
         `
     }
-];
+]
