@@ -1,62 +1,62 @@
 const blogPosts = [
     {
-       id: "beyond-the-illusion-of-generality",
-       category: "Cognitive Engineering",
-       date: "Jan 12, 2026",
-       title: "Beyond the Illusion of Generality: Cognitive Engineering vs. Raw Foundation Models",
-       summary: "This paper proposes a shift from abstract AGI narratives to 'Performance Engineering,' demonstrating an automated pipeline that captures 'dark matter' expertise to outperform both raw LLMs and fallible human specialists.",
-       content: `
-           <p><strong>By: Francois Aubin</strong></p>
-   
-           <h3>Abstract</h3>
-           <p>As Artificial General Intelligence (AGI) dominates public discourse, a gap has widened between benchmark-driven "generality" and institutional performance requirements. This paper argues that the pursuit of AGI as a monolithic entity is operationally unproductive. We propose a shift toward <strong>Performance Engineering</strong>. Through a study in financial adjudication, we demonstrate that a foundation model (Claude Sonnet 4.5) integrated with an automated <strong>Cognitive Task Analysis (CTA)</strong> pipeline outperforms both human experts and standard production-grade LLMs. We conclude that intelligence in professional domains is a product of structured expertise, not abstract scale.</p>
-   
-           <h3>1. Introduction: The Generality Trap</h3>
-           <p>The AGI narrative assumes that scaling foundation models will eventually lead to "expert" performance. However, in regulated environments, generality is often a liability. The challenge is the <strong>Knowledge Bottleneck</strong>: public training data lacks the "dark matter" of expertise—the tacit knowledge, edge-case calibrations, and on-the-job heuristics that professionals learn through peer observation and years of trial-and-error.</p>
-   
-           <h3>2. Methodology: The Automated CTA Pipeline</h3>
-           <p>To evaluate the limits of generality, we compared three agents in a <strong>Personal</strong> Loan Adjudication domain. Crucially, the baseline used was not a "strawman," but our previous production-standard model.</p>
-           <ul>
-               <li><strong>Baseline Production LLM (Sonnet 4.5):</strong> The standard model used in banking environments, provided with full policy manuals and standard chain-of-thought prompts. This was our high-water mark prior to this research.</li>
-               <li><strong>Human Expert:</strong> A senior professional (10+ years). While highly skilled, humans are fallible, subject to fatigue, cognitive bias, and their own versions of "hallucination."</li>
-               <li><strong>The Cognitive Model (Automated CTA):</strong> Unlike manual expert systems of the past, this system utilizes an <strong>automated capture pipeline</strong>. As experts work, their "Think-Aloud" protocols are captured via speech-to-text and automatically distilled into reasoning scaffolds. This allows the system to "learn" the expert's mental map without labor-intensive manual coding.</li>
-           </ul>
-   
-           <h3>3. Empirical Results</h3>
-           <p>The agents were tested on a dataset of 10 complex cases involving high data variability and conflicting regulatory constraints.</p>
-   
-           <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">
-               <thead>
-                   <tr style="background: rgba(34, 197, 94, 0.1);">
-                       <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Performance Metric</th>
-                       <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Sonnet 4.5 (Prev. Production)</th>
-                       <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Human Expert (10yr+)</th>
-                       <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Cognitive Model (Automated CTA)</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Arithmetic Precision</td><td style="text-align:center;">78%</td><td style="text-align:center;">85%</td><td style="text-align:center;"><strong>99.8%</strong></td></tr>
-                   <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Forensic Detection</td><td style="text-align:center;">45%</td><td style="text-align:center;">78%</td><td style="text-align:center;"><strong>96.5%</strong></td></tr>
-                   <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Compliance Hard-Stops</td><td style="text-align:center;">62%</td><td style="text-align:center;">92%</td><td style="text-align:center;"><strong>100%</strong></td></tr>
-                   <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Strategic Reasoning</td><td style="text-align:center;">40%</td><td style="text-align:center;">75%</td><td style="text-align:center;"><strong>94.0%</strong></td></tr>
-                   <tr style="background: rgba(255,255,255,0.05); font-weight: bold;"><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Overall Composite Score</td><td style="text-align:center;">56.2</td><td style="text-align:center;">82.5</td><td style="text-align:center; color: #22c55e;">97.6</td></tr>
-               </tbody>
-           </table>
-   
-           <h3>4. Interpretation of Findings</h3>
-           <h4>4.1 Moving Beyond Policy Prompting</h4>
-           <p>Our previous production baseline (56.2%) proves that simply giving an LLM a policy manual is insufficient. Policy manuals describe <em>what</em> to do, but not <em>how to think</em>. The automated CTA captures the "Think-Aloud" logic that professionals use to resolve ambiguity—knowledge that currently does not exist in the training sets of general models.</p>
-           
-           <h4>4.2 Human vs. Machine Fallibility</h4>
-           <p>The Human Expert (82.5%) is limited by cognitive load and natural bias. Humans "hallucinate" based on their own prejudices or fatigue. By automating the capture of human expertise and running it through a foundation model, we eliminate human error while retaining human intuition. The result is a <strong>High-Fidelity Epistemic Scaffold</strong> that outperforms both the source (human) and the engine (LLM).</p>
-   
-           <h3>5. Discussion: The Obsolescence Risk</h3>
-           <p>A valid critique of this approach is the "Obsolescence Risk": will future models (Claude 5, GPT-6) eventually ingest this tacit knowledge? While foundation models will improve, on-the-job expertise is a moving target. It is built through peer-to-peer interaction and institutional history that is rarely documented. Until models can participate in the physical and social reality of a workplace, Performance Engineering remains the only way to achieve "Super-Expert" reliability.</p>
-   
-           <h3>6. Conclusion: Performance Engineering is the Goal</h3>
-           <p>We must move beyond AGI as a misleading rhetorical concept. Whether a machine is "intelligent" depends on its definition; if intelligence is the ability to learn and execute, our automated CTA feedback loop achieves this today. The future is not a generalist machine, but an <strong>Engineered Expert</strong> that scales human wisdom without human fallibility.</p>
-       `
-   },{
+    "id": "beyond-the-illusion-of-generality",
+    "category": "Cognitive Engineering",
+    "date": "Jan 12, 2026",
+    "title": "Beyond the Illusion of Generality: Cognitive Engineering vs. Raw Foundation Models",
+    "summary": "This paper proposes a shift from abstract AGI narratives to 'Performance Engineering,' demonstrating an automated pipeline that captures 'dark matter' expertise to outperform both raw LLMs and fallible human specialists.",
+    "content": `
+        <p><strong>By: Francois Aubin</strong></p>
+
+        <h3>Abstract</h3>
+        <p>As Artificial General Intelligence (AGI) dominates public discourse, a gap has widened between benchmark-driven "generality" and institutional performance requirements. This paper argues that the pursuit of AGI as a monolithic entity is operationally unproductive. We propose a shift toward <strong>Performance Engineering</strong>. Through a study in financial adjudication, we demonstrate that a foundation model (Claude Sonnet 4.5) integrated with an automated <strong>Cognitive Task Analysis (CTA)</strong> pipeline outperforms both human experts and standard production-grade LLMs. We conclude that intelligence in professional domains is a product of structured expertise, not abstract scale.</p>
+
+        <h3>1. Introduction: The Generality Trap</h3>
+        <p>The AGI narrative assumes that scaling foundation models will eventually lead to "expert" performance. However, in regulated environments, generality is often a liability. The challenge is the <strong>Knowledge Bottleneck</strong>: public training data lacks the "dark matter" of expertise—the tacit knowledge, edge-case calibrations, and on-the-job heuristics that professionals learn through peer observation and years of trial-and-error.</p>
+
+        <h3>2. Methodology: The Automated CTA Pipeline</h3>
+        <p>To evaluate the limits of generality, we compared three agents in a <strong>Personal</strong> Loan Adjudication domain. Crucially, the baseline used was not a "strawman," but our previous production-standard model.</p>
+        <ul>
+            <li><strong>Anthropic 4.5 (Prev. Production):</strong> The standard model used in banking environments, provided with full policy manuals and standard chain-of-thought prompts. This was our high-water mark prior to this research.</li>
+            <li><strong>Human Adjudicator:</strong> A senior professional (10+ years). While highly skilled, humans are fallible, subject to fatigue, cognitive bias, and their own versions of "hallucination."</li>
+            <li><strong>LLM + Cognitive Models (Automated CTA):</strong> Unlike manual expert systems of the past, this system utilizes an <strong>automated capture pipeline</strong>. As experts work, their "Think-Aloud" protocols are captured via speech-to-text and automatically distilled into reasoning scaffolds. This allows the system to "learn" the expert's mental map without labor-intensive manual coding.</li>
+        </ul>
+
+        <h3>3. Empirical Results</h3>
+        <p>The agents were tested on a dataset of 10 complex cases involving high data variability and conflicting regulatory constraints.</p>
+
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">
+            <thead>
+                <tr style="background: rgba(34, 197, 94, 0.1);">
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Criteria</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Human Adjudic</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Anthropic 4.5</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">LLM + Cognitive Models</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Arithmetic Precision</td><td style="text-align:center;">35%</td><td style="text-align:center;">53%</td><td style="text-align:center;"><strong>94%</strong></td></tr>
+                <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Forensic Detection</td><td style="text-align:center;">90%</td><td style="text-align:center;">68%</td><td style="text-align:center;"><strong>97%</strong></td></tr>
+                <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Compliance Hard-Stops</td><td style="text-align:center;">15%</td><td style="text-align:center;">10%</td><td style="text-align:center;"><strong>98%</strong></td></tr>
+                <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Strategic Reasoning</td><td style="text-align:center;">88%</td><td style="text-align:center;">76%</td><td style="text-align:center;"><strong>95%</strong></td></tr>
+                <tr style="background: rgba(255,255,255,0.05); font-weight: bold;"><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">TOTAL AVG. SCORE</td><td style="text-align:center;">57%</td><td style="text-align:center;">52%</td><td style="text-align:center; color: #22c55e;">96%</td></tr>
+            </tbody>
+        </table>
+
+        <h3>4. Interpretation of Findings</h3>
+        <h4>4.1 Moving Beyond Policy Prompting</h4>
+        <p>Our previous production baseline (52%) proves that simply giving an LLM a policy manual is insufficient. Policy manuals describe <em>what</em> to do, but not <em>how to think</em>. The automated CTA captures the "Think-Aloud" logic that professionals use to resolve ambiguity—knowledge that currently does not exist in the training sets of general models.</p>
+        
+        <h4>4.2 Human vs. Machine Fallibility</h4>
+        <p>The Human Adjudicator (57%) is limited by cognitive load and natural bias. Humans "hallucinate" based on their own prejudices or fatigue. By automating the capture of human expertise and running it through a foundation model, we eliminate human error while retaining human intuition. The result is a <strong>High-Fidelity Epistemic Scaffold</strong> that outperforms both the source (human) and the engine (LLM).</p>
+
+        <h3>5. Discussion: The Obsolescence Risk</h3>
+        <p>A valid critique of this approach is the "Obsolescence Risk": will future models (Claude 5, GPT-6) eventually ingest this tacit knowledge? While foundation models will improve, on-the-job expertise is a moving target. It is built through peer-to-peer interaction and institutional history that is rarely documented. Until models can participate in the physical and social reality of a workplace, Performance Engineering remains the only way to achieve "Super-Expert" reliability.</p>
+
+        <h3>6. Conclusion: Performance Engineering is the Goal</h3>
+        <p>We must move beyond AGI as a misleading rhetorical concept. Whether a machine is "intelligent" depends on its definition; if intelligence is the ability to learn and execute, our automated CTA feedback loop achieves this today. The future is not a generalist machine, but an <strong>Engineered Expert</strong> that scales human wisdom without human fallibility.</p>
+    `
+},{
         id: "ai-assisted-supervision-louvre",
         category: "AI & Security",
         date: "Nov 01, 2025",
