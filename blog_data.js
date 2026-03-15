@@ -1,5 +1,120 @@
 const blogPosts = [
     {
+    "id": "decision-making-construct-human-judgment",
+    "category": "Decision Science",
+    "date": "Mar 15, 2026",
+    "title": "Decision Making: The Construct of Human Judgment",
+    "summary": "An exploration of decision making through the Human Information Processing model, decomposing human judgment into cognitive micro-tasks—and how AI agents can be applied to augment or automate each one.",
+    "content": `
+        <p><strong>By: Francois Aubin</strong></p>
+
+        <h3>Abstract</h3>
+        <p>The study of decision making is rooted in the principles of the Human Information Processing (HIP) model, providing a structured framework for understanding how individuals transition from sensing the environment to executing a final action. Within this process, human judgment emerges as a critical and pervasive construct, acting as an evaluation engine that underlies both simple, rapid responses and complex, deliberative choices.</p>
+
+        <h3>1. The Human Information Processing Model and Decision Making</h3>
+        <p>The HIP model outlines a series of processing stages that characterize human interaction with technology and the environment:</p>
+        <ol>
+            <li><strong>Sensory Processing and Perception:</strong> The process begins as stimuli are processed by the senses and held briefly in the short-term sensory store (STSS). Perception then determines the meaning of the sensory signal, drawing heavily on long-term memory for past experience, knowledge, and pattern recognition.</li>
+            <li><strong>Action Pathways (Response Selection and Execution):</strong>
+                <ul>
+                    <li><strong>Skill-Based / Direct Actions:</strong> A perceived situation may trigger an immediate, pre-programmed response—a fast link from perception to Response Selection and Response Execution. This aligns with skill-based, high-speed reactions.</li>
+                    <li><strong>Complex Cognition and Deliberation:</strong> Alternatively, the information moves to Working Memory (cognition), where it is temporarily retained and actively analyzed. This is the domain of complex decision making.</li>
+                </ul>
+            </li>
+            <li><strong>The Decision Loop:</strong> Complex decision making—such as diagnosis—requires analysis based on perceived information and the retrieval of associations, benchmarks, and knowledge from long-term memory. The process involves discriminating between alternatives and selecting an action. The critical component is <strong>Feedback</strong>, where the executed action changes the environment, providing new sensory input for a revised assessment and initiating the next iteration of the decision-making loop.</li>
+        </ol>
+
+        <h3>2. The Construct of Human Judgment</h3>
+        <p>In the context of the HIP model, judgment is not a single, monolithic act but a composite of numerous micro-tasks or sub-tasks that occur throughout the information flow.</p>
+        <p>Judgment acts as the human evaluation of cues on a scale, often related to <strong>Diagnosis and Situation Assessment</strong>. This involves:</p>
+        <ul>
+            <li><strong>Estimating Cues:</strong> Evaluating and perceiving affirmations or information variables.</li>
+            <li><strong>Evidence Accumulation:</strong> Selectively attending to cues, seeking additional information, and forming hypotheses.</li>
+            <li><strong>Expectations:</strong> The role of long-term memory and cognitive heuristics (like representativeness or availability) in shaping the interpretation of the current situation.</li>
+        </ul>
+
+        <h3>3. Micro-Judgment Examples Across Domains</h3>
+
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">
+            <thead>
+                <tr style="background: rgba(34, 197, 94, 0.1);">
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Domain</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Decision Task</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Micro-Judgment Task (Cue Estimation)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Finance (Loan Officer)</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Deciding whether to approve a loan application.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Estimating Cues:</strong> Judging the stability of the applicant's proof of income based on multiple, varying documents (pay stubs, tax forms).<br><br><strong>Evidence Accumulation:</strong> Deciding if three months of pay stubs are sufficient evidence of continuous employment, or if an additional bank statement is required.</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.03);">
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Driving (Lane Change)</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Deciding if it is safe to merge into the adjacent lane.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Estimating Cues:</strong> Judging the speed and distance of the vehicle approaching from the rear using the side and rear-view mirrors.<br><br><strong>Expectations:</strong> Interpreting a sudden flash of headlights as an aggressive maneuver, triggering a judgment to wait (a heuristic influenced by prior experience).</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Mechanical Repair (Diagnosis)</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Identifying the cause of a machine malfunction.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Estimating Cues:</strong> Judging the severity of a grinding noise on a scale (minor, moderate, critical).<br><br><strong>Evidence Accumulation:</strong> Determining if a single high-temperature reading must be corroborated by a pressure drop reading before forming a definitive hypothesis.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4. Judgment, Skill, and Expertise</h3>
+        <p>These micro-judgments are skills developed over years of practice. As individuals gain expertise, their ability to perform these cognitive micro-tasks becomes more efficient and accurate, allowing them to rapidly associate a perceived pattern with a suitable knowledge base and arrive at a more effective choice.</p>
+
+        <h3>5. AI Agent Applications to Micro-Judgments</h3>
+        <p>The decomposition of human judgment into micro-tasks provides a clear roadmap for applying specific AI agents to enhance or automate portions of the decision-making process. By targeting these individual cognitive sub-tasks, AI can act as a force multiplier for human expertise, managing data-intensive and probabilistic components.</p>
+
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">
+            <thead>
+                <tr style="background: rgba(34, 197, 94, 0.1);">
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Domain</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Micro-Judgment Task</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">AI Agent Application</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Finance</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Estimating income stability from multiple documents.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>OCR & Document Verification Agent:</strong> Uses OCR to extract and parse data from pay stubs, tax forms, and bank statements, automatically cross-referencing and flagging inconsistencies. An ML model generates a normalized "Income Stability Score" as a direct input for the loan officer.</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.03);">
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Finance</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Deciding if evidence of employment is sufficient.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Rules-Based / Workflow Agent:</strong> Pre-programmed with dynamic policy rules. If initial evidence is flagged as high volatility risk, the agent automatically triggers a request for additional documentation, eliminating the manual judgment of sufficiency.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Driving</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Judging speed and distance of approaching vehicle.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Computer Vision & Sensor Fusion Agent:</strong> Utilizes radar, lidar, and cameras to calculate precise speed, distance, and closing rate. Runs a Kalman Filter to provide an accurate, real-time Time-to-Collision (TTC) value rather than a subjective judgment.</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.03);">
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Driving</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Interpreting headlight flash as aggressive behavior.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Pattern Recognition & Threat Assessment Agent:</strong> An ML model trained on driving behaviors classifies the observed pattern as a "High Aggression/Hazard State," bypassing reliance on potentially biased individual heuristics.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Mechanical Repair</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Judging severity of a grinding noise.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Acoustic Analysis & Classification Agent:</strong> Deep Learning models (CNNs for audio) trained on machine failure sounds generate a probabilistic "Grinding Severity Score" (e.g., 90% probability of a critical fault), eliminating subjective human judgment.</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.03);">
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Mechanical Repair</strong></td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Determining if a temperature reading needs corroboration.</td>
+                    <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Bayesian Network / Causal Inference Agent:</strong> Maintains a dynamic probabilistic model of machine components. Based on the initial cue, the network calculates the change in probability of various failure hypotheses and determines if the information gain from a secondary measurement justifies the cost.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>6. Conclusion</h3>
+        <p>The decomposition of human judgment into micro-tasks—Estimating Cues, Evidence Accumulation, and Expectations / Hypothesis Formation—provides a practical and actionable lens for both cognitive science and applied AI design. By understanding decision making not as a monolithic act but as a series of sequential, interconnected cognitive operations, we can precisely identify where AI agents deliver the greatest impact: as force multipliers that manage data-intensive, probabilistic, and attention-demanding components of human expertise.</p>
+        <p>This framework does not seek to replace human judgment but to scaffold and augment it—preserving the strategic reasoning and contextual intuition of the expert while eliminating the noise introduced by fatigue, bias, and information overload.</p>
+    `,
+    },{
     "id": "beyond-the-illusion-of-generality",
     "category": "Cognitive Engineering",
     "date": "Jan 12, 2026",
