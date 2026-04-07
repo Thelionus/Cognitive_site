@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enseignement | Yves Daoust</title>
+
+    <!-- SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/enseignement.html">
+
+    <!-- SÉCURITÉ : Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TRACKING : Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #020617;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --accent: #22C55E;
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- FIXED HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: 90px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo img { height: 30px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+
+        nav a {
+            color: var(--text-muted); text-decoration: none; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 600; transition: 0.3s;
+        }
+        nav a:hover { color: var(--text-main); }
+
+        nav a.active-link {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .btn-header {
+            background-color: #FFFFFF;
+            color: #020617 !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            text-transform: none !important;
+            letter-spacing: 0.5px;
+        }
+        .btn-header:hover {
+            background-color: var(--accent);
+            color: #FFFFFF !important;
+        }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        /* --- HERO --- */
+        .hero-small {
+            padding: 180px 10% 80px; text-align: center;
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero-small h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .hero-small p { color: var(--text-muted); max-width: 680px; margin: 0 auto; font-size: 18px; line-height: 1.7; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
+
+        /* --- SECTIONS --- */
+        section { padding: 6rem 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        h2 { font-size: 36px; font-weight: 800; color: white; margin-bottom: 16px; }
+        h3 { font-size: 20px; color: white; margin-bottom: 12px; font-weight: 700; }
+        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; font-size: 16px; }
+
+        /* --- SECTION INTRO --- */
+        .section-intro { max-width: 760px; margin-bottom: 60px; }
+        .section-intro p { font-size: 17px; }
+
+        /* --- TESTIMONIAL GRID --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- TESTIMONIAL CARD --- */
+        .testimonial-card {
+            background: var(--card-bg);
+            border: var(--card-border);
+            border-radius: 6px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .testimonial-card:hover {
+            border-color: var(--accent);
+            background: rgba(34, 197, 94, 0.04);
+        }
+
+        .card-author {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .author-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .quote-highlight {
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 300;
+            color: white;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .testimonial-body p {
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+        .testimonial-body p:last-child { margin-bottom: 0; }
+
+        /* --- KEY POINTS LIST --- */
+        .key-points {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.04);
+            border-radius: 4px;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-points li {
+            color: var(--text-muted);
+            font-size: 14px;
+            padding: 5px 0 5px 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .key-points li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            header { height: 80px; }
+            .hamburger { display: block; }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center; }
+            .hero-small { padding-top: 140px; }
+            h1 { font-size: 36px; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="product.html">Produits</a></li>
+                <li><a href="success.html">Références</a></li>
+                <li><a href="about.html">À Propos</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="enseignement.html" class="active-link">Enseignement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="lang-item"><a href="../about.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-small">
+        <div class="container">
+            <span class="mono-tag">Enseignement</span>
+            <h1>L'Art de Transmettre<br>le Son</h1>
+            <p>Ce que d'anciens étudiants retiennent du cours d'Yves Daoust — une pédagogie fondée sur la liberté, l'ouverture et le développement de l'idée.</p>
+        </div>
+    </div>
+
+    <!-- TÉMOIGNAGES -->
+    <section>
+        <div class="container">
+            <div class="section-intro">
+                <span class="mono-tag">Témoignages</span>
+                <h2>Ce qu'en disent les anciens étudiants</h2>
+                <p>Compositeurs, chercheurs et praticiens partagent leur expérience du cours d'Yves Daoust — un espace de pensée libre où chacun apprenait à développer sa propre démarche artistique.</p>
+            </div>
+
+            <div class="testimonial-grid">
+
+                <!-- MARC TREMBLAY -->
+                <div class="testimonial-card">
+                    <div class="card-author">
+                        <span class="author-name">Marc Tremblay</span>
+                        <span class="author-tag">Compositeur · Ancien étudiant</span>
+                    </div>
+                    <p class="quote-highlight">« Un espace où l'on peut envisager la création musicale dans toute son ampleur, sans refus préalable. »</p>
+                    <div class="testimonial-body">
+                        <p>L'enseignement d'Yves Daoust repose sur l'idée du <strong>« total sonore »</strong> : tout peut devenir matériau de composition. Il n'y a pas de hiérarchie rigide entre les sons, les références ou les appartenances esthétiques. Rien n'est exclu au départ.</p>
+                        <p>Son cours prend la forme d'un <strong>atelier vivant</strong>, presque un laboratoire de pensée. C'est un espace de discussion libre, de mise en commun des idées, de questionnement et d'exploration collective. L'enseignement n'est pas dogmatique — il cherche à provoquer la pensée et à faire circuler les points de vue.</p>
+                        <p>Un aspect fondamental est le <strong>développement de l'idée</strong> : apprendre à faire évoluer une intuition de départ, à la transformer, à en tirer plusieurs dimensions — mélodiques, conceptuelles, sonores ou structurelles.</p>
+                        <p>Daoust faisait aussi entendre des œuvres avec lesquelles il n'était pas nécessairement lui-même d'accord, simplement pour exposer les étudiants à d'autres sensibilités et d'autres critères de valeur.</p>
+                    </div>
+                    <div class="key-points">
+                        <ul>
+                            <li>Lieu d'ouverture radicale — le « total sonore »</li>
+                            <li>Atelier de discussion et de recherche collective</li>
+                            <li>Apprentissage du développement des idées</li>
+                            <li>Pédagogie fondée sur la liberté artistique</li>
+                            <li>Invitation à écouter au-delà de ses préférences</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SYLVAIN CARETTE -->
+                <div class="testimonial-card">
+                    <div class="card-author">
+                        <span class="author-name">Sylvain Carette</span>
+                        <span class="author-tag">Compositeur · Ancien étudiant</span>
+                    </div>
+                    <p class="quote-highlight">« À force de répétition, le son cesse d'être seulement "le son de quelque chose" et devient une matière sonore en soi. »</p>
+                    <div class="testimonial-body">
+                        <p>Ce qui marque chez Carette, c'est l'importance de la <strong>boucle</strong>. Son univers pédagogique est fortement lié au travail du son répété, mis en loop, jusqu'à ce qu'il se transforme par l'écoute prolongée. La boucle retire peu à peu au son son caractère anecdotique ou référentiel : il perd son anecdote pour devenir un objet d'écoute plus abstrait, plus pur.</p>
+                        <p>Sur le plan esthétique, il ressort aussi un côté <strong>naïf et ludique</strong> — une forme de simplicité assumée, un rapport direct aux objets sonores et aux images qu'ils peuvent évoquer.</p>
+                        <p>Mais ce qui ressort surtout de son enseignement, c'est qu'il ne cherche pas à imposer une manière de faire. Il <strong>stimule les étudiants à faire ce qu'ils veulent faire</strong>, et reste en arrière-plan comme guide, disponible pour orienter et accompagner la réflexion.</p>
+                        <p>Il insistait aussi sur la nécessité d'une <strong>approche objective</strong> plutôt que purement subjective. Il ne suffisait pas de dire « j'aime » ou « je n'aime pas » — il fallait pouvoir expliquer pourquoi, formuler des raisons, développer un jugement fondé.</p>
+                    </div>
+                    <div class="key-points">
+                        <ul>
+                            <li>Travail de la boucle et transformation perceptive</li>
+                            <li>Approche naïve, ludique et directe</li>
+                            <li>Pédagogie de stimulation et d'accompagnement</li>
+                            <li>Respect de l'autonomie créatrice de l'étudiant</li>
+                            <li>Exigence d'un jugement objectif et argumenté</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FRANÇOIS AUBIN -->
+                <div class="testimonial-card">
+                    <div class="card-author">
+                        <span class="author-name">François Aubin</span>
+                        <span class="author-tag">Compositeur · Ancien étudiant</span>
+                    </div>
+                    <p class="quote-highlight">« Le cours le plus marquant que j'aie suivi de toute ma vie. »</p>
+                    <div class="testimonial-body">
+                        <p>J'ai eu la chance de suivre le cours d'Yves pendant deux ans, et cela demeure le cours le plus marquant que j'aie suivi de toute ma vie. C'était un enseignement qui prenait la forme d'un véritable <strong>atelier</strong>, dans un esprit très proche de la relation maître-élève.</p>
+                        <p>Les étudiants y étaient libres de créer, d'explorer et de partager leurs démarches, tout en bénéficiant de l'accompagnement d'un maître qui transmettait généreusement son savoir.</p>
+                        <p>Ce qui frappait chez Yves, c'était son <strong>ouverture totale</strong>. Il ne se limitait pas à présenter sa propre vision : il nous exposait aussi à d'autres courants, à d'autres façons de concevoir la musique, y compris à des approches avec lesquelles il n'était pas toujours lui-même en accord.</p>
+                        <p>Cette attitude donnait au cours une grande <strong>liberté intellectuelle et artistique</strong>, et nous apprenait à écouter, à réfléchir et à construire notre propre jugement.</p>
+                    </div>
+                    <div class="key-points">
+                        <ul>
+                            <li>Esprit atelier — relation maître-élève vivante</li>
+                            <li>Liberté totale de créer et d'explorer</li>
+                            <li>Transmission généreuse du savoir</li>
+                            <li>Ouverture à d'autres courants et esthétiques</li>
+                            <li>Formation d'un jugement critique personnel</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Notre Héritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="blog.html" class="footer-link">Recherche &amp; Base de Connaissances</a>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
