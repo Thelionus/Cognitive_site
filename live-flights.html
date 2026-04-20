@@ -6,7 +6,7 @@
     <title>Live Flight Tracker | Cognitive Group</title>
     <meta name="description" content="Real-time ADS-B flight tracking powered by airplanes.live. Live aircraft positions, altitude, speed, and heading data.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://api.airplanes.live https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://api.airplanes.live https://api.adsb.lol https://corsproxy.io https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -506,23 +506,26 @@
             });
         }
 
-        // ── Fetch one zone ────────────────────────────────────────────────────
+        // ── Fetch one zone (direct → proxy fallback) ─────────────────────────
         async function fetchZone(lat, lon, radius) {
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), 9000);
-            try {
-                const res = await fetch(
-                    `https://api.airplanes.live/v2/point/${lat}/${lon}/${radius}`,
-                    { signal: controller.signal }
-                );
-                clearTimeout(timer);
-                if (!res.ok) return [];
-                const data = await res.json();
-                return data.ac || [];
-            } catch {
-                clearTimeout(timer);
-                return [];
+            const apiUrl = `https://api.adsb.lol/v2/point/${lat}/${lon}/${radius}`;
+            const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`;
+
+            for (const url of [apiUrl, proxyUrl]) {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 9000);
+                try {
+                    const res = await fetch(url, { signal: controller.signal });
+                    clearTimeout(timer);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+                    const ac = data.ac || [];
+                    if (ac.length > 0) return ac;
+                } catch {
+                    clearTimeout(timer);
+                }
             }
+            return [];
         }
 
         // ── Fetch all zones for current region ────────────────────────────────
@@ -534,18 +537,18 @@
             dot.className = 'loading';
             status.textContent = 'Fetching…';
 
-            try {
-                const { centers } = REGIONS[currentRegion];
-                const radius = currentRegion === 'montreal' ? 200 : 250;
+            const { centers } = REGIONS[currentRegion];
+            const radius = currentRegion === 'montreal' ? 200 : 250;
 
-                const results = await Promise.all(
-                    centers.map(([la, lo]) => fetchZone(la, lo, radius))
-                );
+            const results = await Promise.all(
+                centers.map(([la, lo]) => fetchZone(la, lo, radius))
+            );
 
-                const byHex = {};
-                results.flat().forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
-                const unique = Object.values(byHex);
+            const byHex = {};
+            results.flat().forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+            const unique = Object.values(byHex);
 
+            if (unique.length > 0) {
                 renderFlights(unique);
                 notice.style.display = 'none';
                 dot.className = '';
@@ -553,11 +556,10 @@
                 document.getElementById('flight-count').textContent = unique.length;
                 document.getElementById('last-updated').textContent =
                     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-            } catch (err) {
+            } else {
                 dot.className = 'error';
-                status.textContent = 'Error';
-                notice.textContent = `⚠ ${err.message}`;
+                status.textContent = 'No data';
+                notice.textContent = '⚠ API unreachable — retrying in 10 s';
                 notice.style.display = 'block';
             }
         }
