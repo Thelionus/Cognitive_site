@@ -280,6 +280,52 @@
             display: none;
         }
 
+        /* Credentials inputs */
+        .cred-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin: 12px -20px;
+        }
+        .cred-input {
+            display: block;
+            width: 100%;
+            padding: 7px 9px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            font-family: 'Manrope', sans-serif;
+            margin-bottom: 6px;
+            outline: none;
+        }
+        .cred-input:focus { border-color: var(--accent); }
+        .cred-input::placeholder { color: #475569; }
+        .cred-btn {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background: var(--accent);
+            color: #000;
+            font-weight: 700;
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: 0.2s;
+        }
+        .cred-btn:hover { background: #16a34a; }
+        .cred-link {
+            display: block;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+        .cred-link:hover { color: var(--accent); }
+
         /* Custom plane marker */
         .plane-icon {
             width: 24px;
@@ -377,6 +423,13 @@
             <span class="stat-label">Updated</span>
             <span class="stat-value" id="last-updated">—</span>
         </div>
+        <hr class="cred-divider">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">OpenSky Login</div>
+        <div id="cred-connected" style="display:none;font-size:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">✓ Authenticated</div>
+        <input type="text" id="cred-user" class="cred-input" placeholder="Username" autocomplete="username">
+        <input type="password" id="cred-pass" class="cred-input" placeholder="Password" autocomplete="current-password">
+        <button class="cred-btn" onclick="saveCredentials()">Connect</button>
+        <a class="cred-link" href="https://opensky-network.org/register" target="_blank" rel="noopener">Register free at opensky-network.org →</a>
     </div>
 
     <!-- REGION SELECTOR -->
@@ -507,6 +560,30 @@
             });
         }
 
+        // ── Credentials ───────────────────────────────────────────────────────
+        let authHeader = null;
+
+        function saveCredentials() {
+            const user = document.getElementById('cred-user').value.trim();
+            const pass = document.getElementById('cred-pass').value;
+            if (!user || !pass) return;
+            authHeader = 'Basic ' + btoa(unescape(encodeURIComponent(user + ':' + pass)));
+            sessionStorage.setItem('osky_auth', authHeader);
+            document.getElementById('cred-connected').style.display = 'block';
+            document.getElementById('cred-user').value = '';
+            document.getElementById('cred-pass').value = '';
+            document.getElementById('notice').style.display = 'none';
+            fetchFlights();
+        }
+
+        (function restoreCredentials() {
+            const saved = sessionStorage.getItem('osky_auth');
+            if (saved) {
+                authHeader = saved;
+                document.getElementById('cred-connected').style.display = 'block';
+            }
+        })();
+
         // ── Fetch flights ─────────────────────────────────────────────────────
         async function fetchFlights() {
             const dot    = document.getElementById('status-dot');
@@ -522,15 +599,32 @@
                 Object.entries(region.bbox).forEach(([k, v]) => url.searchParams.set(k, v));
             }
 
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 9000);
+
+            const options = { signal: controller.signal };
+            if (authHeader) options.headers = { 'Authorization': authHeader };
+
             try {
-                const res = await fetch(url.toString());
+                const res = await fetch(url.toString(), options);
+                clearTimeout(timer);
+
+                if (res.status === 401) {
+                    dot.className = 'error';
+                    status.textContent = 'Auth failed';
+                    notice.textContent = '⚠ Wrong username or password — check your OpenSky credentials';
+                    notice.style.display = 'block';
+                    authHeader = null;
+                    sessionStorage.removeItem('osky_auth');
+                    document.getElementById('cred-connected').style.display = 'none';
+                    return;
+                }
 
                 if (res.status === 429) {
                     notice.textContent = '⚠ Rate limited by OpenSky — retrying in 10 s';
                     notice.style.display = 'block';
                     dot.className = 'error';
                     status.textContent = 'Rate limited';
-                    retryCount++;
                     return;
                 }
 
@@ -539,7 +633,6 @@
                 }
 
                 notice.style.display = 'none';
-                retryCount = 0;
 
                 const data = await res.json();
                 const states = data.states || [];
@@ -554,9 +647,15 @@
                     d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
             } catch (err) {
+                clearTimeout(timer);
                 dot.className = 'error';
-                status.textContent = 'Error';
-                notice.textContent = `⚠ ${err.message} — retrying in 10 s`;
+                if (err.name === 'AbortError') {
+                    status.textContent = 'Timeout';
+                    notice.textContent = '⚠ OpenSky did not respond — enter your credentials below to connect';
+                } else {
+                    status.textContent = 'Error';
+                    notice.textContent = `⚠ ${err.message} — enter credentials or retry`;
+                }
                 notice.style.display = 'block';
             }
         }
