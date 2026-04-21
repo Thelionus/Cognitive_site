@@ -6,7 +6,7 @@
     <title>Live Flight Tracker | Cognitive Group</title>
     <meta name="description" content="Real-time ADS-B flight tracking powered by airplanes.live. Live aircraft positions, altitude, speed, and heading data.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://api.adsb.lol https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -433,6 +433,10 @@
             <span class="stat-value" id="threat-count" style="color:#ef4444">—</span>
         </div>
         <div class="stat-row">
+            <span class="stat-label">Source</span>
+            <span class="stat-value" id="data-source">—</span>
+        </div>
+        <div class="stat-row">
             <span class="stat-label">Updated</span>
             <span class="stat-value" id="last-updated">—</span>
         </div>
@@ -558,7 +562,9 @@
         }).addTo(map);
 
         // ── State ─────────────────────────────────────────────────────────────
-        const DATA_URL = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+        const FALLBACK_URL  = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+        const THREATS_URL   = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
+        const ADSB_ZONES    = [[42,-74,250],[51,-20,250],[52,8,250],[35,140,250],[45.5,-73.7,200]];
 
         const REGIONS = {
             world:        { bbox: null,                                                      view: [20, 0],      zoom: 2  },
@@ -573,11 +579,12 @@
                 && ac.lon >= bbox.minLon && ac.lon <= bbox.maxLon;
         }
 
-        let currentRegion = 'world';
-        let allAircraft   = [];
-        let markers       = {};
-        let pollTimer     = null;
-        let threatOnly    = false;
+        let currentRegion  = 'world';
+        let allAircraft    = [];
+        let markers        = {};
+        let pollTimer      = null;
+        let threatOnly     = false;
+        let threatsOverlay = [];
 
         // ── Custom plane icon ─────────────────────────────────────────────────
         const THREAT_FILL = ['#22C55E', '#F59E0B', '#EF4444'];
@@ -598,36 +605,80 @@
             });
         }
 
-        // ── Fetch from GitHub raw (guaranteed CORS) ───────────────────────────
+        // ── Live fetch helpers ────────────────────────────────────────────────
+        async function loadThreats() {
+            try {
+                const res = await fetch(THREATS_URL + '?t=' + Date.now());
+                if (res.ok) threatsOverlay = await res.json();
+            } catch {}
+        }
+
+        async function fetchZone(lat, lon, dist) {
+            const ctrl  = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 8000);
+            try {
+                const res = await fetch(
+                    `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
+                    { signal: ctrl.signal }
+                );
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                return data.ac || [];
+            } finally { clearTimeout(timer); }
+        }
+
         async function fetchFlights() {
             const dot    = document.getElementById('status-dot');
             const status = document.getElementById('status-text');
+            const srcEl  = document.getElementById('data-source');
             const notice = document.getElementById('notice');
 
             dot.className = 'loading';
-            status.textContent = 'Fetching…';
 
+            let aircraft  = [];
+            let live      = false;
+            let fetchedAt = Date.now();
+
+            // Try live ADS-B direct (CORS open on api.adsb.lol)
             try {
-                const res = await fetch(DATA_URL + '?t=' + Date.now());
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                allAircraft = (data.ac || []).filter(a => a.lat != null && a.lon != null);
-
-                applyRegion();
-
-                dot.className = '';
-                status.textContent = 'Live';
-                const age = Math.round((Date.now() - data.timestamp) / 1000);
-                document.getElementById('last-updated').textContent =
-                    age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
-                notice.style.display = 'none';
-
-            } catch (err) {
-                dot.className = 'error';
-                status.textContent = 'Error';
-                notice.textContent = `⚠ ${err.message}`;
-                notice.style.display = 'block';
+                const results = await Promise.all(
+                    ADSB_ZONES.map(([la, lo, d]) => fetchZone(la, lo, d))
+                );
+                const byHex = {};
+                results.flat().forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+                aircraft = Object.values(byHex);
+                live = true;
+            } catch {
+                // Fall back to GitHub Actions cached file
+                try {
+                    const res = await fetch(FALLBACK_URL + '?t=' + Date.now());
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const data = await res.json();
+                    aircraft  = data.ac || [];
+                    fetchedAt = data.timestamp || Date.now();
+                } catch (err) {
+                    dot.className = 'error';
+                    status.textContent = 'Error';
+                    notice.textContent = `⚠ ${err.message}`;
+                    notice.style.display = 'block';
+                    return;
+                }
             }
+
+            // Overlay synthetic threats — always win over real data for same hex
+            const threatHexes = new Set(threatsOverlay.map(t => t.hex));
+            aircraft = aircraft.filter(a => !threatHexes.has(a.hex)).concat(threatsOverlay);
+
+            allAircraft = aircraft.filter(a => a.lat != null && a.lon != null);
+            applyRegion();
+
+            dot.className = '';
+            status.textContent = live ? 'Live' : 'Cached';
+            if (srcEl) srcEl.textContent = live ? 'ADS-B Direct' : 'Pipeline';
+            const age = Math.round((Date.now() - fetchedAt) / 1000);
+            document.getElementById('last-updated').textContent =
+                age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
+            notice.style.display = 'none';
         }
 
         function applyRegion() {
@@ -746,8 +797,11 @@
         }
 
         // ── Start ─────────────────────────────────────────────────────────────
-        fetchFlights();
-        pollTimer = setInterval(fetchFlights, 30000);
+        loadThreats().then(() => {
+            fetchFlights();
+            pollTimer = setInterval(fetchFlights, 10000);
+            setInterval(loadThreats, 60000);  // re-sync threats every minute
+        });
     </script>
 </body>
 </html>
