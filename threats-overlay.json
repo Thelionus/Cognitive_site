@@ -1,27 +1,110 @@
 [
   {
-    "hex": "a000f1", "flight": "", "lat": 45.56, "lon": -73.72,
-    "alt_baro": 8200, "gs": 210, "track": 220, "t": "B738", "squawk": "1200",
+    "hex": "a000f1", "flight": "UNKN001",
+    "lat": 45.56, "lon": -73.72, "alt_baro": 8200, "gs": 210, "track": 220,
+    "t": "B738", "squawk": "1200",
+    "registration": "N000F1", "operator": "Unknown Operator",
+    "country": "USA", "role": "Commercial — unverified identity",
+    "mil": false, "pia": false, "ladd": false,
     "threat_level": 2, "threat_reason": "ICAO24 not in FAA registry"
   },
   {
-    "hex": "a3c9e2", "flight": "N3C9E2", "lat": 45.42, "lon": -73.58,
-    "alt_baro": 5400, "gs": 145, "track": 305, "t": "C172", "squawk": "7700",
+    "hex": "a3c9e2", "flight": "N3C9E2",
+    "lat": 45.42, "lon": -73.58, "alt_baro": 5400, "gs": 145, "track": 305,
+    "t": "C172", "squawk": "7700",
+    "registration": "N3C9E2", "operator": "Private",
+    "country": "USA", "role": "General Aviation — EMERGENCY declared",
+    "mil": false, "pia": false, "ladd": false,
     "threat_level": 2, "threat_reason": "Squawk 7700"
   },
   {
-    "hex": "a8b411", "flight": "TEST75", "lat": 45.62, "lon": -73.45,
-    "alt_baro": 12000, "gs": 380, "track": 95, "t": "A320", "squawk": "7500",
+    "hex": "a8b411", "flight": "TEST75",
+    "lat": 45.62, "lon": -73.45, "alt_baro": 12000, "gs": 380, "track": 95,
+    "t": "A320", "squawk": "7500",
+    "registration": "N8B411", "operator": "Unknown",
+    "country": "USA", "role": "Narrowbody jet — HIJACK squawk active",
+    "mil": false, "pia": false, "ladd": false,
     "threat_level": 2, "threat_reason": "Squawk 7500"
   },
   {
-    "hex": "a66d23", "flight": "N66D23", "lat": 45.38, "lon": -73.90,
-    "alt_baro": 3800, "gs": 110, "track": 135, "t": "PA28", "squawk": "1200",
-    "threat_level": 1, "threat_reason": "Registration X"
+    "hex": "a66d23", "flight": "N66D23",
+    "lat": 45.38, "lon": -73.90, "alt_baro": 3800, "gs": 110, "track": 135,
+    "t": "PA28", "squawk": "1200",
+    "registration": "N66D23", "operator": "Private",
+    "country": "USA", "role": "General Aviation — Piper Cherokee",
+    "mil": false, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Registration X (deregistered)"
   },
   {
-    "hex": "a12f45", "flight": "", "lat": 45.72, "lon": -73.85,
-    "alt_baro": 7000, "gs": 190, "track": 60, "t": "BE36", "squawk": "2200",
+    "hex": "a12f45", "flight": "",
+    "lat": 45.72, "lon": -73.85, "alt_baro": 7000, "gs": 190, "track": 60,
+    "t": "BE36", "squawk": "2200",
+    "registration": "N12F45", "operator": "Private",
+    "country": "USA", "role": "General Aviation — Beechcraft Bonanza",
+    "mil": false, "pia": false, "ladd": false,
     "threat_level": 1, "threat_reason": "No callsign"
+  },
+  {
+    "hex": "ae1234", "flight": "RCH123",
+    "lat": 45.50, "lon": -73.60, "alt_baro": 28000, "gs": 430, "track": 270,
+    "t": "C17", "squawk": "5501",
+    "registration": "07-7182", "operator": "US Air Force — Air Mobility Command",
+    "country": "USA", "role": "C-17A Globemaster III — Strategic Airlifter",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
+  },
+  {
+    "hex": "ae5678", "flight": "NAVY701",
+    "lat": 45.80, "lon": -74.10, "alt_baro": 24000, "gs": 400, "track": 180,
+    "t": "P8", "squawk": "4410",
+    "registration": "169015", "operator": "US Navy — Patrol Squadron VP-30",
+    "country": "USA", "role": "P-8A Poseidon — Maritime Patrol / Anti-Submarine Warfare",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
+  },
+  {
+    "hex": "ae9abc", "flight": "MAGIC01",
+    "lat": 46.10, "lon": -73.30, "alt_baro": 29000, "gs": 460, "track": 310,
+    "t": "E3CF", "squawk": "5510",
+    "registration": "77-0354", "operator": "US Air Force — 552nd Air Control Wing",
+    "country": "USA", "role": "E-3G Sentry — Airborne Warning & Control System (AWACS)",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
+  },
+  {
+    "hex": "aef000", "flight": "COBRA77",
+    "lat": 45.90, "lon": -72.80, "alt_baro": 35000, "gs": 500, "track": 85,
+    "t": "RC35", "squawk": "5520",
+    "registration": "64-14841", "operator": "US Air Force — 55th Wing, Offutt AFB",
+    "country": "USA", "role": "RC-135V/W Rivet Joint — Strategic Reconnaissance / SIGINT",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 2, "threat_reason": "Military reconnaissance aircraft"
+  },
+  {
+    "hex": "c00001", "flight": "CFC130",
+    "lat": 45.32, "lon": -73.75, "alt_baro": 18000, "gs": 290, "track": 230,
+    "t": "C130", "squawk": "3401",
+    "registration": "130324", "operator": "Royal Canadian Air Force — 436 Transport Squadron",
+    "country": "Canada", "role": "CC-130J Hercules — Tactical Transport / Search & Rescue",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
+  },
+  {
+    "hex": "43c6ac", "flight": "FAF001",
+    "lat": 45.65, "lon": -73.15, "alt_baro": 31000, "gs": 510, "track": 120,
+    "t": "MRTT", "squawk": "2710",
+    "registration": "032", "operator": "French Air & Space Force — GRV 2/91 Landes",
+    "country": "France", "role": "A330 MRTT Phénix — Air-to-Air Refuelling / Strategic Transport",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
+  },
+  {
+    "hex": "43f001", "flight": "COTAM01",
+    "lat": 45.20, "lon": -72.60, "alt_baro": 37000, "gs": 520, "track": 50,
+    "t": "A400", "squawk": "2720",
+    "registration": "0113", "operator": "French Air & Space Force — COTAM, BA 123 Orléans",
+    "country": "France", "role": "A400M Atlas — Tactical & Strategic Military Transport",
+    "mil": true, "pia": false, "ladd": false,
+    "threat_level": 1, "threat_reason": "Military aircraft"
   }
 ]
