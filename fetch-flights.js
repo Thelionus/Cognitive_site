@@ -28,20 +28,31 @@ function fetchZone(lat, lon, dist) {
 function classify(ac, whitelist) {
   const hex    = (ac.hex || '').toLowerCase();
   const squawk = ac.squawk || '';
+  const entry  = whitelist[hex];
 
+  // Emergency squawk — always Level 2
   if (['7500', '7600', '7700'].includes(squawk)) {
     return { threat_level: 2, threat_reason: `Squawk ${squawk}` };
+  }
+
+  // FAA PIA — aircraft deliberately obscured its ICAO identity — Level 2
+  if (entry?.pia) {
+    return { threat_level: 2, threat_reason: 'FAA Privacy ICAO Address (identity obscured)' };
+  }
+
+  // FAA LADD — operator requested data suppression — Level 1
+  if (entry?.ladd) {
+    return { threat_level: 1, threat_reason: 'FAA LADD (data display blocked)' };
   }
 
   const isUS = hex.length === 6 && hex[0] === 'a';
 
   if (isUS) {
-    const entry = whitelist[hex];
     if (!entry) {
       return { threat_level: 2, threat_reason: 'ICAO24 not in FAA registry' };
     }
-    if (entry.status !== 'V') {
-      return { threat_level: 1, threat_reason: `Registration ${entry.status || 'unknown'}` };
+    if (entry.status && entry.status !== 'V') {
+      return { threat_level: 1, threat_reason: `Registration ${entry.status}` };
     }
     if (!(ac.flight || '').trim()) {
       return { threat_level: 1, threat_reason: 'No callsign' };
