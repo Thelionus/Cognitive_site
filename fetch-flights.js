@@ -11,16 +11,25 @@ const ZONES = [
 
 function fetchZone(lat, lon, dist) {
   return new Promise(resolve => {
-    const url = `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`;
-    const req = https.get(url, { timeout: 10000 }, res => {
-      let raw = '';
-      res.on('data', c => raw += c);
-      res.on('end', () => {
-        try { resolve(JSON.parse(raw).ac || []); } catch { resolve([]); }
-      });
-    });
-    req.on('error', () => resolve([]));
-    req.on('timeout', () => { req.destroy(); resolve([]); });
+    let settled = false;
+    const settle = v => { if (!settled) { settled = true; resolve(v); } };
+
+    const req = https.get(
+      `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
+      { timeout: 12000 },
+      res => {
+        if (res.statusCode !== 200) { res.resume(); return settle([]); }
+        const chunks = [];
+        res.on('data', c => chunks.push(c));
+        res.on('end', () => {
+          try { settle(JSON.parse(Buffer.concat(chunks).toString()).ac || []); }
+          catch { settle([]); }
+        });
+        res.on('error', () => settle([]));
+      }
+    );
+    req.on('error',   () => settle([]));
+    req.on('timeout', () => { req.destroy(); settle([]); });
   });
 }
 
@@ -76,9 +85,11 @@ async function main() {
     console.warn('whitelist.json not found — threat classification limited');
   }
 
-  const all = await Promise.all(ZONES.map(([la, lo, d]) => fetchZone(la, lo, d)));
+  const results = await Promise.allSettled(ZONES.map(([la, lo, d]) => fetchZone(la, lo, d)));
   const byHex = {};
-  all.flat().forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+  results.forEach(r => {
+    if (r.status === 'fulfilled') r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+  });
 
   Object.values(byHex).forEach(ac => {
     const { threat_level, threat_reason } = classify(ac, whitelist);
