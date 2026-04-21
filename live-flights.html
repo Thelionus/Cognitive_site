@@ -641,10 +641,11 @@
                     `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
                     { signal: ctrl.signal }
                 );
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) return [];
                 const data = await res.json();
                 return data.ac || [];
-            } finally { clearTimeout(timer); }
+            } catch { return []; }
+            finally { clearTimeout(timer); }
         }
 
         async function fetchFlights() {
@@ -659,17 +660,19 @@
             let live      = false;
             let fetchedAt = Date.now();
 
-            // Try live ADS-B direct (CORS open on api.adsb.lol)
-            try {
-                const results = await Promise.all(
-                    ADSB_ZONES.map(([la, lo, d]) => fetchZone(la, lo, d))
-                );
-                const byHex = {};
-                results.flat().forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
-                aircraft = Object.values(byHex);
-                live = true;
-            } catch {
-                // Fall back to GitHub Actions cached file
+            // Try live ADS-B direct — each zone is independent, partial success is fine
+            const settled = await Promise.allSettled(
+                ADSB_ZONES.map(([la, lo, d]) => fetchZone(la, lo, d))
+            );
+            const byHex = {};
+            settled.forEach(r => {
+                if (r.status === 'fulfilled') r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+            });
+            aircraft = Object.values(byHex);
+            live = aircraft.length > 0;
+
+            // If all zones returned empty, fall back to GitHub Actions cached file
+            if (!live) {
                 try {
                     const res = await fetch(FALLBACK_URL + '?t=' + Date.now());
                     if (!res.ok) throw new Error(`HTTP ${res.status}`);
