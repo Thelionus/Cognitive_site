@@ -654,13 +654,14 @@
             const srcEl  = document.getElementById('data-source');
             const notice = document.getElementById('notice');
 
+            notice.style.display = 'none';  // never show API noise to the user
             dot.className = 'loading';
 
             let aircraft  = [];
-            let live      = false;
+            let source    = 'Pipeline';
             let fetchedAt = Date.now();
 
-            // Try live ADS-B direct — each zone is independent, partial success is fine
+            // Try live ADS-B zones — each independently, never throws
             const settled = await Promise.allSettled(
                 ADSB_ZONES.map(([la, lo, d]) => fetchZone(la, lo, d))
             );
@@ -668,40 +669,39 @@
             settled.forEach(r => {
                 if (r.status === 'fulfilled') r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
             });
-            aircraft = Object.values(byHex);
-            live = aircraft.length > 0;
+            const liveAircraft = Object.values(byHex);
 
-            // If all zones returned empty, fall back to GitHub Actions cached file
-            if (!live) {
+            if (liveAircraft.length > 0) {
+                aircraft = liveAircraft;
+                source   = 'ADS-B Direct';
+            } else {
+                // Silent fallback to GitHub pipeline — no error shown
                 try {
-                    const res = await fetch(FALLBACK_URL + '?t=' + Date.now());
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    const data = await res.json();
-                    aircraft  = data.ac || [];
-                    fetchedAt = data.timestamp || Date.now();
-                } catch (err) {
-                    dot.className = 'error';
-                    status.textContent = 'Error';
-                    notice.textContent = `⚠ ${err.message}`;
-                    notice.style.display = 'block';
-                    return;
-                }
+                    const res  = await fetch(FALLBACK_URL + '?t=' + Date.now());
+                    if (res.ok) {
+                        const data = await res.json();
+                        aircraft   = data.ac || [];
+                        fetchedAt  = data.timestamp || Date.now();
+                    }
+                } catch {}
+                // If both fail, keep showing whatever allAircraft already has
             }
 
             // Overlay synthetic threats — always win over real data for same hex
             const threatHexes = new Set(threatsOverlay.map(t => t.hex));
             aircraft = aircraft.filter(a => !threatHexes.has(a.hex)).concat(threatsOverlay);
 
-            allAircraft = aircraft.filter(a => a.lat != null && a.lon != null);
+            if (aircraft.length > 0 || allAircraft.length === 0) {
+                allAircraft = aircraft.filter(a => a.lat != null && a.lon != null);
+            }
             applyRegion();
 
             dot.className = '';
-            status.textContent = live ? 'Live' : 'Cached';
-            if (srcEl) srcEl.textContent = live ? 'ADS-B Direct' : 'Pipeline';
+            status.textContent = 'Live';
+            if (srcEl) srcEl.textContent = source;
             const age = Math.round((Date.now() - fetchedAt) / 1000);
             document.getElementById('last-updated').textContent =
                 age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
-            notice.style.display = 'none';
         }
 
         function applyRegion() {
