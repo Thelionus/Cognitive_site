@@ -490,6 +490,14 @@
             <span class="detail-key">On Ground</span>
             <span class="detail-val" id="d-ground">—</span>
         </div>
+        <div class="detail-row" id="d-operator-row" style="display:none">
+            <span class="detail-key">Operator</span>
+            <span class="detail-val" id="d-operator" style="font-size:11px">—</span>
+        </div>
+        <div class="detail-row" id="d-flags-row" style="display:none">
+            <span class="detail-key">Flags</span>
+            <span class="detail-val" id="d-flags" style="font-size:11px;letter-spacing:1px">—</span>
+        </div>
         <div class="detail-row">
             <span class="detail-key">Threat</span>
             <span class="detail-val" id="d-threat">—</span>
@@ -722,8 +730,12 @@
                 const headingDeg = ac.track || 0;
                 const threatLevel  = ac.threat_level  || 0;
                 const threatReason = ac.threat_reason || '';
+                const operator     = ac.operator || ac.ownOp || '';
+                const mil          = !!ac.mil;
+                const pia          = !!ac.pia;
+                const ladd         = !!ac.ladd;
 
-                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason };
+                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason, operator, mil, pia, ladd };
 
                 if (markers[icao24]) {
                     markers[icao24].setLatLng([lat, lon]);
@@ -773,6 +785,26 @@
                 reasonRow.style.display = 'flex';
             } else {
                 reasonRow.style.display = 'none';
+            }
+
+            const opRow = document.getElementById('d-operator-row');
+            if (f.operator) {
+                document.getElementById('d-operator').textContent = f.operator;
+                opRow.style.display = 'flex';
+            } else {
+                opRow.style.display = 'none';
+            }
+
+            const flagsRow = document.getElementById('d-flags-row');
+            const flagParts = [];
+            if (f.mil)  flagParts.push('MIL');
+            if (f.pia)  flagParts.push('PIA');
+            if (f.ladd) flagParts.push('LADD');
+            if (flagParts.length) {
+                document.getElementById('d-flags').textContent = flagParts.join(' · ');
+                flagsRow.style.display = 'flex';
+            } else {
+                flagsRow.style.display = 'none';
             }
         }
 
