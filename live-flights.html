@@ -490,9 +490,21 @@
             <span class="detail-key">On Ground</span>
             <span class="detail-val" id="d-ground">—</span>
         </div>
+        <div class="detail-row" id="d-reg-row" style="display:none">
+            <span class="detail-key">Reg</span>
+            <span class="detail-val" id="d-reg">—</span>
+        </div>
         <div class="detail-row" id="d-operator-row" style="display:none">
             <span class="detail-key">Operator</span>
             <span class="detail-val" id="d-operator" style="font-size:11px">—</span>
+        </div>
+        <div class="detail-row" id="d-country-row" style="display:none">
+            <span class="detail-key">Country</span>
+            <span class="detail-val" id="d-country-val">—</span>
+        </div>
+        <div class="detail-row" id="d-role-row" style="display:none">
+            <span class="detail-key">Role</span>
+            <span class="detail-val" id="d-role" style="font-size:11px;color:#94A3B8">—</span>
         </div>
         <div class="detail-row" id="d-flags-row" style="display:none">
             <span class="detail-key">Flags</span>
@@ -731,11 +743,14 @@
                 const threatLevel  = ac.threat_level  || 0;
                 const threatReason = ac.threat_reason || '';
                 const operator     = ac.operator || ac.ownOp || '';
+                const registration = ac.registration || ac.r || '';
+                const country      = ac.country || '';
+                const role         = ac.role    || '';
                 const mil          = !!ac.mil;
                 const pia          = !!ac.pia;
                 const ladd         = !!ac.ladd;
 
-                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason, operator, mil, pia, ladd };
+                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason, operator, registration, country, role, mil, pia, ladd };
 
                 if (markers[icao24]) {
                     markers[icao24].setLatLng([lat, lon]);
@@ -787,21 +802,24 @@
                 reasonRow.style.display = 'none';
             }
 
-            const opRow = document.getElementById('d-operator-row');
-            if (f.operator) {
-                document.getElementById('d-operator').textContent = f.operator;
-                opRow.style.display = 'flex';
-            } else {
-                opRow.style.display = 'none';
-            }
+            const showRow = (rowId, valId, val) => {
+                const row = document.getElementById(rowId);
+                if (val) { document.getElementById(valId).textContent = val; row.style.display = 'flex'; }
+                else row.style.display = 'none';
+            };
+
+            showRow('d-reg-row',     'd-reg',         f.registration);
+            showRow('d-operator-row','d-operator',     f.operator);
+            showRow('d-country-row', 'd-country-val',  f.country);
+            showRow('d-role-row',    'd-role',          f.role);
 
             const flagsRow = document.getElementById('d-flags-row');
             const flagParts = [];
-            if (f.mil)  flagParts.push('MIL');
-            if (f.pia)  flagParts.push('PIA');
-            if (f.ladd) flagParts.push('LADD');
+            if (f.mil)  flagParts.push('🪖 MIL');
+            if (f.pia)  flagParts.push('🔒 PIA');
+            if (f.ladd) flagParts.push('🚫 LADD');
             if (flagParts.length) {
-                document.getElementById('d-flags').textContent = flagParts.join(' · ');
+                document.getElementById('d-flags').textContent = flagParts.join('  ');
                 flagsRow.style.display = 'flex';
             } else {
                 flagsRow.style.display = 'none';
