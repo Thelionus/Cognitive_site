@@ -1,0 +1,27 @@
+[
+  {
+    "hex": "a000f1", "flight": "", "lat": 45.56, "lon": -73.72,
+    "alt_baro": 8200, "gs": 210, "track": 220, "t": "B738", "squawk": "1200",
+    "threat_level": 2, "threat_reason": "ICAO24 not in FAA registry"
+  },
+  {
+    "hex": "a3c9e2", "flight": "N3C9E2", "lat": 45.42, "lon": -73.58,
+    "alt_baro": 5400, "gs": 145, "track": 305, "t": "C172", "squawk": "7700",
+    "threat_level": 2, "threat_reason": "Squawk 7700"
+  },
+  {
+    "hex": "a8b411", "flight": "TEST75", "lat": 45.62, "lon": -73.45,
+    "alt_baro": 12000, "gs": 380, "track": 95, "t": "A320", "squawk": "7500",
+    "threat_level": 2, "threat_reason": "Squawk 7500"
+  },
+  {
+    "hex": "a66d23", "flight": "N66D23", "lat": 45.38, "lon": -73.90,
+    "alt_baro": 3800, "gs": 110, "track": 135, "t": "PA28", "squawk": "1200",
+    "threat_level": 1, "threat_reason": "Registration X"
+  },
+  {
+    "hex": "a12f45", "flight": "", "lat": 45.72, "lon": -73.85,
+    "alt_baro": 7000, "gs": 190, "track": 60, "t": "BE36", "squawk": "2200",
+    "threat_level": 1, "threat_reason": "No callsign"
+  }
+]
