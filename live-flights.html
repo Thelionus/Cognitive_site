@@ -6,7 +6,7 @@
     <title>Live Flight Tracker | Cognitive Group</title>
     <meta name="description" content="Real-time ADS-B flight tracking powered by airplanes.live. Live aircraft positions, altitude, speed, and heading data.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://api.adsb.lol https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -407,6 +407,7 @@
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="live-flights.html" class="active-link" onclick="closeMenu()">Live Flights</a></li>
+                <li><a href="tactical.html" onclick="closeMenu()">Tactical</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
@@ -431,10 +432,6 @@
         <div class="stat-row">
             <span class="stat-label">Threats</span>
             <span class="stat-value" id="threat-count" style="color:#ef4444">—</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Source</span>
-            <span class="stat-value" id="data-source">—</span>
         </div>
         <div class="stat-row">
             <span class="stat-label">Updated</span>
@@ -489,26 +486,6 @@
         <div class="detail-row">
             <span class="detail-key">On Ground</span>
             <span class="detail-val" id="d-ground">—</span>
-        </div>
-        <div class="detail-row" id="d-reg-row" style="display:none">
-            <span class="detail-key">Reg</span>
-            <span class="detail-val" id="d-reg">—</span>
-        </div>
-        <div class="detail-row" id="d-operator-row" style="display:none">
-            <span class="detail-key">Operator</span>
-            <span class="detail-val" id="d-operator" style="font-size:11px">—</span>
-        </div>
-        <div class="detail-row" id="d-country-row" style="display:none">
-            <span class="detail-key">Country</span>
-            <span class="detail-val" id="d-country-val">—</span>
-        </div>
-        <div class="detail-row" id="d-role-row" style="display:none">
-            <span class="detail-key">Role</span>
-            <span class="detail-val" id="d-role" style="font-size:11px;color:#94A3B8">—</span>
-        </div>
-        <div class="detail-row" id="d-flags-row" style="display:none">
-            <span class="detail-key">Flags</span>
-            <span class="detail-val" id="d-flags" style="font-size:11px;letter-spacing:1px">—</span>
         </div>
         <div class="detail-row">
             <span class="detail-key">Threat</span>
@@ -582,9 +559,8 @@
         }).addTo(map);
 
         // ── State ─────────────────────────────────────────────────────────────
-        const FALLBACK_URL  = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
-        const THREATS_URL   = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
-        const ADSB_ZONES    = [[42,-74,250],[51,-20,250],[52,8,250],[35,140,250],[45.5,-73.7,200]];
+        const DATA_URL     = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+        const THREATS_URL  = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 
         const REGIONS = {
             world:        { bbox: null,                                                      view: [20, 0],      zoom: 2  },
@@ -601,10 +577,10 @@
 
         let currentRegion  = 'world';
         let allAircraft    = [];
+        let threatsOverlay = [];
         let markers        = {};
         let pollTimer      = null;
         let threatOnly     = false;
-        let threatsOverlay = [];
 
         // ── Custom plane icon ─────────────────────────────────────────────────
         const THREAT_FILL = ['#22C55E', '#F59E0B', '#EF4444'];
@@ -625,83 +601,47 @@
             });
         }
 
-        // ── Live fetch helpers ────────────────────────────────────────────────
-        async function loadThreats() {
+        // ── Fetch threats overlay once on load ────────────────────────────────
+        async function loadThreatsOverlay() {
             try {
                 const res = await fetch(THREATS_URL + '?t=' + Date.now());
                 if (res.ok) threatsOverlay = await res.json();
-            } catch {}
+            } catch { /* silently ignore */ }
         }
 
-        async function fetchZone(lat, lon, dist) {
-            const ctrl  = new AbortController();
-            const timer = setTimeout(() => ctrl.abort(), 8000);
-            try {
-                const res = await fetch(
-                    `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
-                    { signal: ctrl.signal }
-                );
-                if (!res.ok) return [];
-                const data = await res.json();
-                return data.ac || [];
-            } catch { return []; }
-            finally { clearTimeout(timer); }
-        }
-
+        // ── Fetch from GitHub raw (guaranteed CORS, no direct API calls) ──────
         async function fetchFlights() {
             const dot    = document.getElementById('status-dot');
             const status = document.getElementById('status-text');
-            const srcEl  = document.getElementById('data-source');
-            const notice = document.getElementById('notice');
 
-            notice.style.display = 'none';  // never show API noise to the user
             dot.className = 'loading';
+            status.textContent = 'Fetching…';
 
-            let aircraft  = [];
-            let source    = 'Pipeline';
-            let fetchedAt = Date.now();
+            try {
+                const res = await fetch(DATA_URL + '?t=' + Date.now());
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                let aircraft = (data.ac || []).filter(a => a.lat != null && a.lon != null);
 
-            // Try live ADS-B zones — each independently, never throws
-            const settled = await Promise.allSettled(
-                ADSB_ZONES.map(([la, lo, d]) => fetchZone(la, lo, d))
-            );
-            const byHex = {};
-            settled.forEach(r => {
-                if (r.status === 'fulfilled') r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
-            });
-            const liveAircraft = Object.values(byHex);
+                // Merge threats overlay — overlay entries always win by hex
+                if (threatsOverlay.length > 0) {
+                    const overHexes = new Set(threatsOverlay.map(t => t.hex));
+                    aircraft = aircraft.filter(a => !overHexes.has(a.hex)).concat(threatsOverlay);
+                }
 
-            if (liveAircraft.length > 0) {
-                aircraft = liveAircraft;
-                source   = 'ADS-B Direct';
-            } else {
-                // Silent fallback to GitHub pipeline — no error shown
-                try {
-                    const res  = await fetch(FALLBACK_URL + '?t=' + Date.now());
-                    if (res.ok) {
-                        const data = await res.json();
-                        aircraft   = data.ac || [];
-                        fetchedAt  = data.timestamp || Date.now();
-                    }
-                } catch {}
-                // If both fail, keep showing whatever allAircraft already has
+                allAircraft = aircraft;
+                applyRegion();
+
+                dot.className = '';
+                status.textContent = 'Live';
+                const age = Math.round((Date.now() - data.timestamp) / 1000);
+                document.getElementById('last-updated').textContent =
+                    age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
+
+            } catch (err) {
+                dot.className = 'error';
+                status.textContent = 'Error';
             }
-
-            // Overlay synthetic threats — always win over real data for same hex
-            const threatHexes = new Set(threatsOverlay.map(t => t.hex));
-            aircraft = aircraft.filter(a => !threatHexes.has(a.hex)).concat(threatsOverlay);
-
-            if (aircraft.length > 0 || allAircraft.length === 0) {
-                allAircraft = aircraft.filter(a => a.lat != null && a.lon != null);
-            }
-            applyRegion();
-
-            dot.className = '';
-            status.textContent = 'Live';
-            if (srcEl) srcEl.textContent = source;
-            const age = Math.round((Date.now() - fetchedAt) / 1000);
-            document.getElementById('last-updated').textContent =
-                age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
         }
 
         function applyRegion() {
@@ -745,15 +685,8 @@
                 const headingDeg = ac.track || 0;
                 const threatLevel  = ac.threat_level  || 0;
                 const threatReason = ac.threat_reason || '';
-                const operator     = ac.operator || ac.ownOp || '';
-                const registration = ac.registration || ac.r || '';
-                const country      = ac.country || '';
-                const role         = ac.role    || '';
-                const mil          = !!ac.mil;
-                const pia          = !!ac.pia;
-                const ladd         = !!ac.ladd;
 
-                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason, operator, registration, country, role, mil, pia, ladd };
+                const flight = { icao24, callsign, type, altitude, speed, heading, onGround: onGround ? 'Yes' : 'No', threatLevel, threatReason };
 
                 if (markers[icao24]) {
                     markers[icao24].setLatLng([lat, lon]);
@@ -804,29 +737,6 @@
             } else {
                 reasonRow.style.display = 'none';
             }
-
-            const showRow = (rowId, valId, val) => {
-                const row = document.getElementById(rowId);
-                if (val) { document.getElementById(valId).textContent = val; row.style.display = 'flex'; }
-                else row.style.display = 'none';
-            };
-
-            showRow('d-reg-row',     'd-reg',         f.registration);
-            showRow('d-operator-row','d-operator',     f.operator);
-            showRow('d-country-row', 'd-country-val',  f.country);
-            showRow('d-role-row',    'd-role',          f.role);
-
-            const flagsRow = document.getElementById('d-flags-row');
-            const flagParts = [];
-            if (f.mil)  flagParts.push('🪖 MIL');
-            if (f.pia)  flagParts.push('🔒 PIA');
-            if (f.ladd) flagParts.push('🚫 LADD');
-            if (flagParts.length) {
-                document.getElementById('d-flags').textContent = flagParts.join('  ');
-                flagsRow.style.display = 'flex';
-            } else {
-                flagsRow.style.display = 'none';
-            }
         }
 
         function closeDetail() {
@@ -850,11 +760,8 @@
         }
 
         // ── Start ─────────────────────────────────────────────────────────────
-        loadThreats().then(() => {
-            fetchFlights();
-            pollTimer = setInterval(fetchFlights, 10000);
-            setInterval(loadThreats, 60000);  // re-sync threats every minute
-        });
+        loadThreatsOverlay().then(fetchFlights);
+        pollTimer = setInterval(fetchFlights, 10000);
     </script>
 </body>
 </html>

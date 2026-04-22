@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TACTICAL — Cognitive Systems</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--crt-green:#00ff41;--crt-dim:#00aa2a;--crt-amber:#f59e0b;--crt-red:#ef4444;--crt-blue:#3b82f6;--crt-bg:#000800;--panel-bg:rgba(0,12,0,0.88);--panel-border:#00ff4144}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--crt-bg);color:var(--crt-green);font-family:'Courier New',monospace;font-size:12px;overflow:hidden;height:100vh}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:9999}
+#map{position:fixed;inset:0;z-index:1;filter:hue-rotate(90deg) saturate(0.4) brightness(0.45)}
+#radar-canvas{position:fixed;inset:0;z-index:100;pointer-events:none}
+.tac-nav{position:fixed;top:0;left:0;right:0;height:36px;background:rgba(0,8,0,0.95);border-bottom:1px solid var(--panel-border);display:flex;align-items:center;padding:0 12px;z-index:1000;gap:20px}
+.tac-nav .logo{color:var(--crt-green);font-weight:bold;font-size:14px;letter-spacing:2px}
+.tac-nav a{color:var(--crt-dim);text-decoration:none;font-size:11px;letter-spacing:1px}
+.tac-nav a:hover,.tac-nav a.active{color:var(--crt-green)}
+.panel{position:fixed;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 12px;z-index:500;backdrop-filter:blur(4px)}
+.panel-title{color:var(--crt-green);font-size:10px;letter-spacing:2px;border-bottom:1px solid var(--panel-border);padding-bottom:4px;margin-bottom:8px;font-weight:bold}
+.sl{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
+.sl .lbl{color:var(--crt-dim)}.sl .val{color:var(--crt-green)}
+.val-r{color:var(--crt-red)!important}.val-a{color:var(--crt-amber)!important}.val-b{color:var(--crt-blue)!important}
+#panel-radar{top:46px;left:10px;width:220px}
+#panel-agents{top:46px;right:10px;width:240px}
+#panel-track{top:46px;right:260px;width:260px;display:none}
+#panel-legend{bottom:10px;left:10px;width:220px}
+.ag-row{margin-bottom:6px}
+.ag-hdr{display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px}
+.ag-nm{color:var(--crt-dim)}.ag-pct{color:var(--crt-green)}
+.ag-bar{height:4px;background:rgba(0,255,65,0.15);border:1px solid var(--panel-border)}
+.ag-fill{height:100%;background:var(--crt-green);transition:width 0.5s}
+.fusion{border-top:1px solid var(--panel-border);padding-top:6px;margin-top:6px;font-size:11px;display:flex;justify-content:space-between}
+.tr-row{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
+.tr-lbl{color:var(--crt-dim)}.tr-val{color:var(--crt-green)}
+.tr-val.h{color:var(--crt-red)}.tr-val.p{color:var(--crt-amber)}.tr-val.f{color:var(--crt-blue)}
+.cbanner{text-align:center;padding:4px;margin:6px 0;font-size:12px;font-weight:bold;letter-spacing:2px;border:1px solid}
+.cbanner.BLUE{color:var(--crt-blue);border-color:var(--crt-blue);background:rgba(59,130,246,0.1)}
+.cbanner.RED{color:var(--crt-red);border-color:var(--crt-red);background:rgba(239,68,68,0.1)}
+.cbanner.AMBER{color:var(--crt-amber);border-color:var(--crt-amber);background:rgba(245,158,11,0.1)}
+.cbanner.GREEN{color:var(--crt-green);border-color:var(--crt-green);background:rgba(0,255,65,0.05)}
+.leg-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px}
+.leg-sym{width:18px;text-align:center;font-size:13px}
+@keyframes blink{50%{opacity:0}}
+.blink{animation:blink 1s step-end infinite}
+.leaflet-control-attribution,.leaflet-control-zoom{display:none}
+</style>
+</head>
+<body>
+<nav class="tac-nav">
+  <span class="logo">COGNITV / TAC</span>
+  <a href="index.html">HOME</a>
+  <a href="live-flights.html">LIVE FLIGHTS</a>
+  <a href="tactical.html" class="active">TACTICAL</a>
+  <a href="contact.html">CONTACT</a>
+  <span style="margin-left:auto;color:var(--crt-dim);font-size:10px" id="sys-clock">--:--:-- UTC</span>
+</nav>
+
+<div id="map"></div>
+<canvas id="radar-canvas"></canvas>
+
+<div class="panel" id="panel-radar">
+  <div class="panel-title">RADAR STATUS</div>
+  <div class="sl"><span class="lbl">STATUS</span><span class="val">ACTIVE <span class="blink">█</span></span></div>
+  <div class="sl"><span class="lbl">MODE</span><span class="val">SEARCH</span></div>
+  <div class="sl"><span class="lbl">RANGE</span><span class="val">140 km</span></div>
+  <div class="sl"><span class="lbl">SWEEP</span><span class="val">6 RPM</span></div>
+  <div class="sl"><span class="lbl">FREQ</span><span class="val">S-BAND 3GHz</span></div>
+  <div class="sl"><span class="lbl">PRF</span><span class="val">1200 Hz</span></div>
+  <div style="border-top:1px solid var(--panel-border);margin-top:6px;padding-top:4px">
+    <div class="sl"><span class="lbl">TRACKS</span><span class="val" id="r-tracks">—</span></div>
+    <div class="sl"><span class="lbl">HOSTILE</span><span class="val val-r" id="r-hostile">—</span></div>
+    <div class="sl"><span class="lbl">PENDING</span><span class="val val-a" id="r-pending">—</span></div>
+    <div class="sl"><span class="lbl">FRIENDLY</span><span class="val val-b" id="r-friendly">—</span></div>
+    <div class="sl"><span class="lbl">UPDATED</span><span class="val" id="r-updated">—</span></div>
+  </div>
+</div>
+
+<div class="panel" id="panel-agents">
+  <div class="panel-title">AI FUSION AGENTS</div>
+  <div class="ag-row">
+    <div class="ag-hdr"><span class="ag-nm">KINEMATIC</span><span class="ag-nm">35%</span><span class="ag-pct" id="a-kin-pct">—%</span></div>
+    <div class="ag-bar"><div class="ag-fill" id="a-kin-bar" style="width:0%"></div></div>
+  </div>
+  <div class="ag-row">
+    <div class="ag-hdr"><span class="ag-nm">SIGNATURE/IFF</span><span class="ag-nm">45%</span><span class="ag-pct" id="a-sig-pct">—%</span></div>
+    <div class="ag-bar"><div class="ag-fill" id="a-sig-bar" style="width:0%"></div></div>
+  </div>
+  <div class="ag-row">
+    <div class="ag-hdr"><span class="ag-nm">CONTEXT</span><span class="ag-nm">20%</span><span class="ag-pct" id="a-ctx-pct">—%</span></div>
+    <div class="ag-bar"><div class="ag-fill" id="a-ctx-bar" style="width:0%"></div></div>
+  </div>
+  <div class="fusion">
+    <span style="color:var(--crt-dim)">FUSION THREAT</span>
+    <span id="a-fusion" style="color:var(--crt-green)">—%</span>
+  </div>
+  <div style="margin-top:4px;font-size:10px;color:var(--crt-dim)" id="a-basis">NO TRACK SELECTED — FLEET AVG</div>
+</div>
+
+<div class="panel" id="panel-track">
+  <div class="panel-title">TRACK DETAIL <span style="float:right;cursor:pointer;color:var(--crt-dim)" onclick="clearTrack()">✕</span></div>
+  <div class="cbanner GREEN" id="t-class-banner">—</div>
+  <div class="tr-row"><span class="tr-lbl">TRACK ID</span><span class="tr-val" id="t-hex">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">CALLSIGN</span><span class="tr-val" id="t-call">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">RANGE</span><span class="tr-val" id="t-range">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">AZIMUTH</span><span class="tr-val" id="t-azm">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">DOPPLER</span><span class="tr-val" id="t-dop">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">RCS</span><span class="tr-val" id="t-rcs">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">IFF</span><span class="tr-val" id="t-iff">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">ALTITUDE</span><span class="tr-val" id="t-alt">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">SPEED</span><span class="tr-val" id="t-gs">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">HEADING</span><span class="tr-val" id="t-hdg">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">REG</span><span class="tr-val" id="t-reg">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">OPERATOR</span><span class="tr-val" id="t-op">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">COUNTRY</span><span class="tr-val" id="t-ctry">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">ROLE</span><span class="tr-val" id="t-role">—</span></div>
+  <div style="border-top:1px solid var(--panel-border);margin-top:4px;padding-top:4px">
+    <div class="tr-row"><span class="tr-lbl">HOSTILE %</span><span class="tr-val" id="t-hostile-pct">—</span></div>
+  </div>
+</div>
+
+<div class="panel" id="panel-legend">
+  <div class="panel-title">NATO CLASSIFICATION</div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-blue)">⊕</span><span>BLUE — Friendly (military)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-red)">◆</span><span>RED — Hostile (threat)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">◌</span><span>AMBER — Pending (review)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">·</span><span>GREEN — Clear (civil)</span></div>
+  <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
+    ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const YUL_LAT=45.4706,YUL_LON=-73.7408;
+const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
+const R_EARTH=6371;
+const NATO_COLOR={BLUE:'#3b82f6',RED:'#ef4444',AMBER:'#f59e0b',GREEN:'#00ff41'};
+
+const map=L.map('map',{zoomControl:false,attributionControl:false}).setView([YUL_LAT,YUL_LON],7);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19}).addTo(map);
+
+const canvas=document.getElementById('radar-canvas');
+const ctx=canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+
+let sweepAngle=0;
+const SWEEP_SPEED=(2*Math.PI)/(10*60);
+
+function toRad(d){return d*Math.PI/180;}
+function haversine(la1,lo1,la2,lo2){const dLa=toRad(la2-la1),dLo=toRad(lo2-lo1),a=Math.sin(dLa/2)**2+Math.cos(toRad(la1))*Math.cos(toRad(la2))*Math.sin(dLo/2)**2;return R_EARTH*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+function bearing(la1,lo1,la2,lo2){const dLo=toRad(lo2-lo1),y=Math.sin(dLo)*Math.cos(toRad(la2)),x=Math.cos(toRad(la1))*Math.sin(toRad(la2))-Math.sin(toRad(la1))*Math.cos(toRad(la2))*Math.cos(dLo);return(Math.atan2(y,x)*180/Math.PI+360)%360;}
+function getRCS(ac){const t=(ac.t||ac.type||'').toUpperCase(),tbl={A320:30,A319:28,A321:32,A330:45,A350:50,A380:80,B737:25,B738:25,B752:30,B763:40,B777:55,B788:50,C17:60,C130:35,E3:55,P8:20};for(const[k,v]of Object.entries(tbl))if(t.includes(k))return v;return 15;}
+function getDoppler(ac,azm){return Math.round((ac.gs||0)*Math.cos(toRad((ac.track||0)-azm)));}
+function getIFF(ac){if((ac.mil===true||ac.mil===1)&&(ac.flight||'').trim())return'MODE 4/5 IFF';if(ac.threat_level===0)return'MODE 3/S';if((ac.flight||'').trim())return'MODE 3 ONLY';return'NO RESPONSE';}
+
+function scoreKinematic(ac){let s=0;if((ac.gs||0)>550)s+=30;if((ac.alt_baro||0)>40000)s+=20;const azm=bearing(YUL_LAT,YUL_LON,ac.lat,ac.lon);if(getDoppler(ac,azm)<-400)s+=20;return Math.min(s,100);}
+function scoreSignature(ac){let s=0;if(getIFF(ac)==='NO RESPONSE')s+=50;if(ac.threat_level===2)s+=40;else if(ac.threat_level===1)s+=20;if(ac.mil===true||ac.mil===1)s+=10;if(getRCS(ac)<5)s+=30;return Math.min(s,100);}
+function scoreContext(ac){let s=0;const r=haversine(YUL_LAT,YUL_LON,ac.lat,ac.lon);if(r<15&&!(ac.flight||'').trim())s+=40;if(ac.ladd===true||ac.ladd===1)s+=20;if(['7500','7600','7700'].includes(ac.squawk||''))s+=30;return Math.min(s,100);}
+function computeFusion(ac){const k=scoreKinematic(ac),s=scoreSignature(ac),c=scoreContext(ac);return{k,s,c,pct:Math.min(Math.round(0.35*k+0.45*s+0.20*c),100)};}
+function getNATO(ac,f){if((ac.mil===true||ac.mil===1)&&ac.threat_level<2)return'BLUE';if(f.pct>=60||ac.threat_level===2)return'RED';if(f.pct>=30)return'AMBER';return'GREEN';}
+
+function kmToPx(km){const c=map.latLngToContainerPoint([YUL_LAT,YUL_LON]),n=map.latLngToContainerPoint([YUL_LAT+km/111.32,YUL_LON]);return Math.abs(c.y-n.y);}
+
+function drawRadar(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const cp=map.latLngToContainerPoint([YUL_LAT,YUL_LON]),cx=cp.x,cy=cp.y;
+  const rings=[{km:15,col:'#00ff4166',dash:[],lbl:'CTR 15km'},{km:60,col:'#f59e0b55',dash:[8,6],lbl:'TMA 60km'},{km:140,col:'#6b7280aa',dash:[4,8],lbl:'ACC 140km'}];
+  rings.forEach(({km,col,dash,lbl})=>{const r=kmToPx(km);ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.strokeStyle=col;ctx.lineWidth=1;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=col;ctx.font='10px Courier New';ctx.fillText(lbl,cx+r*0.71+4,cy-r*0.71-2);});
+  const r140=kmToPx(140);ctx.font='11px Courier New';ctx.fillStyle='#00ff4188';ctx.textAlign='center';ctx.fillText('N',cx,cy-r140-8);ctx.fillText('S',cx,cy+r140+14);ctx.textAlign='left';ctx.fillText('E',cx+r140+6,cy+4);ctx.textAlign='right';ctx.fillText('W',cx-r140-6,cy+4);ctx.textAlign='left';
+  ctx.beginPath();ctx.arc(cx,cy,4,0,2*Math.PI);ctx.fillStyle='#00ff4199';ctx.fill();ctx.fillStyle='#00ff4166';ctx.font='9px Courier New';ctx.fillText('YUL',cx+7,cy+3);
+  sweepAngle=(sweepAngle+SWEEP_SPEED)%(2*Math.PI);
+  const sa=sweepAngle-Math.PI/2,ws=12*Math.PI/180,maxR=r140+20;
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,maxR,sa,sa+ws);ctx.closePath();
+  const gx=cx+maxR*Math.cos(sa+ws/2),gy=cy+maxR*Math.sin(sa+ws/2);
+  const sg=ctx.createLinearGradient(cx,cy,gx,gy);sg.addColorStop(0,'rgba(0,255,65,0.3)');sg.addColorStop(1,'rgba(0,255,65,0)');ctx.fillStyle=sg;ctx.fill();
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+maxR*Math.cos(sa+ws),cy+maxR*Math.sin(sa+ws));ctx.strokeStyle='rgba(0,255,65,0.6)';ctx.lineWidth=1.5;ctx.stroke();
+}
+
+function natoIcon(nato){
+  const col=NATO_COLOR[nato];
+  let svg='';
+  if(nato==='BLUE')svg=`<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" fill="none" stroke="${col}" stroke-width="1.8"/><line x1="11" y1="2" x2="11" y2="20" stroke="${col}" stroke-width="1.5"/><line x1="2" y1="11" x2="20" y2="11" stroke="${col}" stroke-width="1.5"/></svg>`;
+  else if(nato==='RED')svg=`<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><polygon points="11,2 20,11 11,20 2,11" fill="rgba(239,68,68,0.15)" stroke="${col}" stroke-width="1.8"/><line x1="6" y1="6" x2="16" y2="16" stroke="${col}" stroke-width="1.5"/><line x1="16" y1="6" x2="6" y2="16" stroke="${col}" stroke-width="1.5"/></svg>`;
+  else if(nato==='AMBER')svg=`<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" fill="none" stroke="${col}" stroke-width="1.8" stroke-dasharray="4 3"/></svg>`;
+  else svg=`<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="3" fill="${col}" opacity="0.7"/></svg>`;
+  const sz=nato==='GREEN'?10:22;
+  return L.divIcon({html:svg,className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
+}
+
+let allAircraft=[],threatsOverlay=[],markers={},selectedHex=null,dataTimestamp=null;
+
+async function loadThreatsOverlay(){try{const r=await fetch(THREATS_URL+'?t='+Date.now());if(r.ok)threatsOverlay=await r.json();}catch{}}
+
+async function fetchFlights(){
+  try{
+    const r=await fetch(DATA_URL+'?t='+Date.now());if(!r.ok)return;
+    const d=await r.json();dataTimestamp=d.timestamp;
+    let ac=(d.ac||[]).filter(a=>a.lat!=null&&a.lon!=null);
+    if(threatsOverlay.length>0){const oh=new Set(threatsOverlay.map(t=>t.hex));ac=ac.filter(a=>!oh.has(a.hex)).concat(threatsOverlay);}
+    allAircraft=ac;renderTracks();
+  }catch{}
+}
+
+function setAgentUI(k,s,c,pct,track){
+  document.getElementById('a-kin-pct').textContent=k+'%';document.getElementById('a-sig-pct').textContent=s+'%';document.getElementById('a-ctx-pct').textContent=c+'%';
+  document.getElementById('a-kin-bar').style.width=k+'%';document.getElementById('a-sig-bar').style.width=s+'%';document.getElementById('a-ctx-bar').style.width=c+'%';
+  const el=document.getElementById('a-fusion');el.textContent=pct+'%';el.style.color=pct>=60?'var(--crt-red)':pct>=30?'var(--crt-amber)':'var(--crt-green)';
+  document.getElementById('a-basis').textContent=track?'SHOWING SELECTED TRACK':'NO TRACK SELECTED — FLEET AVG';
+}
+
+function fleetAvg(){
+  if(!allAircraft.length)return;
+  let sk=0,ss=0,sc=0,sp=0;allAircraft.forEach(a=>{const f=computeFusion(a);sk+=f.k;ss+=f.s;sc+=f.c;sp+=f.pct;});
+  const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
+}
+
+function renderTracks(){
+  const seen=new Set();let hostile=0,pending=0,friendly=0;
+  allAircraft.forEach(ac=>{
+    if(!ac.lat||!ac.lon)return;
+    const hex=ac.hex;seen.add(hex);
+    const f=computeFusion(ac),nato=getNATO(ac,f);
+    if(nato==='RED')hostile++;if(nato==='AMBER')pending++;if(nato==='BLUE')friendly++;
+    if(markers[hex]){markers[hex].setLatLng([ac.lat,ac.lon]);markers[hex].setIcon(natoIcon(nato));markers[hex]._tac={ac,f,nato};}
+    else{const m=L.marker([ac.lat,ac.lon],{icon:natoIcon(nato)}).addTo(map).on('click',()=>selectTrack(hex));m._tac={ac,f,nato};markers[hex]=m;}
+  });
+  Object.keys(markers).forEach(h=>{if(!seen.has(h)){markers[h].remove();delete markers[h];}});
+  document.getElementById('r-tracks').textContent=allAircraft.length;
+  document.getElementById('r-hostile').textContent=hostile;
+  document.getElementById('r-pending').textContent=pending;
+  document.getElementById('r-friendly').textContent=friendly;
+  const age=dataTimestamp?Math.round((Date.now()-dataTimestamp)/1000):null;
+  document.getElementById('r-updated').textContent=age!=null?(age<60?age+'s ago':Math.round(age/60)+'m ago'):'—';
+  if(!selectedHex)fleetAvg();else if(markers[selectedHex])setAgentUI(markers[selectedHex]._tac.f.k,markers[selectedHex]._tac.f.s,markers[selectedHex]._tac.f.c,markers[selectedHex]._tac.f.pct,true);
+}
+
+function selectTrack(hex){
+  selectedHex=hex;const m=markers[hex];if(!m)return;
+  const{ac,f,nato}=m._tac;
+  document.getElementById('panel-track').style.display='block';
+  const azm=bearing(YUL_LAT,YUL_LON,ac.lat,ac.lon),range=haversine(YUL_LAT,YUL_LON,ac.lat,ac.lon),dop=getDoppler(ac,azm),rcs=getRCS(ac),iff=getIFF(ac);
+  const b=document.getElementById('t-class-banner');
+  b.textContent=nato+' — '+{BLUE:'FRIENDLY',RED:'HOSTILE',AMBER:'PENDING',GREEN:'CLEAR'}[nato];
+  b.className='cbanner '+nato;
+  const sv=(id,v,cls='')=>{const e=document.getElementById(id);e.textContent=v||'—';e.className='tr-val '+(cls||'');};
+  sv('t-hex',hex.toUpperCase());sv('t-call',(ac.flight||'').trim()||'NO CALLSIGN',(ac.flight||'').trim()?'':'h');
+  sv('t-range',range.toFixed(1)+' km');sv('t-azm',Math.round(azm)+'°T');
+  sv('t-dop',dop+' kts '+(dop<0?'(CLOSING)':dop>0?'(RECEDING)':''));
+  sv('t-rcs','~'+rcs+' m²');sv('t-iff',iff,iff==='NO RESPONSE'?'h':'');
+  sv('t-alt',ac.alt_baro?ac.alt_baro.toLocaleString()+' ft':'—');sv('t-gs',ac.gs?ac.gs+' kts':'—');sv('t-hdg',ac.track?Math.round(ac.track)+'°':'—');
+  sv('t-reg',ac.registration||ac.r||'—');sv('t-op',ac.operator||ac.ownOp||'—');sv('t-ctry',ac.country||'—');sv('t-role',ac.role||'—');
+  const pe=document.getElementById('t-hostile-pct');pe.textContent=f.pct+'%';pe.className='tr-val '+(f.pct>=60?'h':f.pct>=30?'p':'');
+  setAgentUI(f.k,f.s,f.c,f.pct,true);
+}
+
+function clearTrack(){selectedHex=null;document.getElementById('panel-track').style.display='none';fleetAvg();}
+
+function updateClock(){const u=new Date().toUTCString().match(/(\d{2}:\d{2}:\d{2})/);if(u)document.getElementById('sys-clock').textContent=u[1]+' UTC';}
+setInterval(updateClock,1000);updateClock();
+
+function animate(){drawRadar();requestAnimationFrame(animate);}
+
+loadThreatsOverlay().then(()=>{fetchFlights();setInterval(fetchFlights,10000);});
+animate();
+</script>
+</body>
+</html>
