@@ -407,6 +407,7 @@
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="live-flights.html" class="active-link" onclick="closeMenu()">Live Flights</a></li>
+                <li><a href="tactical.html" onclick="closeMenu()">Tactical</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
@@ -558,7 +559,8 @@
         }).addTo(map);
 
         // ── State ─────────────────────────────────────────────────────────────
-        const DATA_URL = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+        const DATA_URL     = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
+        const THREATS_URL  = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 
         const REGIONS = {
             world:        { bbox: null,                                                      view: [20, 0],      zoom: 2  },
@@ -573,11 +575,12 @@
                 && ac.lon >= bbox.minLon && ac.lon <= bbox.maxLon;
         }
 
-        let currentRegion = 'world';
-        let allAircraft   = [];
-        let markers       = {};
-        let pollTimer     = null;
-        let threatOnly    = false;
+        let currentRegion  = 'world';
+        let allAircraft    = [];
+        let threatsOverlay = [];
+        let markers        = {};
+        let pollTimer      = null;
+        let threatOnly     = false;
 
         // ── Custom plane icon ─────────────────────────────────────────────────
         const THREAT_FILL = ['#22C55E', '#F59E0B', '#EF4444'];
@@ -598,11 +601,18 @@
             });
         }
 
-        // ── Fetch from GitHub raw (guaranteed CORS) ───────────────────────────
+        // ── Fetch threats overlay once on load ────────────────────────────────
+        async function loadThreatsOverlay() {
+            try {
+                const res = await fetch(THREATS_URL + '?t=' + Date.now());
+                if (res.ok) threatsOverlay = await res.json();
+            } catch { /* silently ignore */ }
+        }
+
+        // ── Fetch from GitHub raw (guaranteed CORS, no direct API calls) ──────
         async function fetchFlights() {
             const dot    = document.getElementById('status-dot');
             const status = document.getElementById('status-text');
-            const notice = document.getElementById('notice');
 
             dot.className = 'loading';
             status.textContent = 'Fetching…';
@@ -611,8 +621,15 @@
                 const res = await fetch(DATA_URL + '?t=' + Date.now());
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
-                allAircraft = (data.ac || []).filter(a => a.lat != null && a.lon != null);
+                let aircraft = (data.ac || []).filter(a => a.lat != null && a.lon != null);
 
+                // Merge threats overlay — overlay entries always win by hex
+                if (threatsOverlay.length > 0) {
+                    const overHexes = new Set(threatsOverlay.map(t => t.hex));
+                    aircraft = aircraft.filter(a => !overHexes.has(a.hex)).concat(threatsOverlay);
+                }
+
+                allAircraft = aircraft;
                 applyRegion();
 
                 dot.className = '';
@@ -620,13 +637,10 @@
                 const age = Math.round((Date.now() - data.timestamp) / 1000);
                 document.getElementById('last-updated').textContent =
                     age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`;
-                notice.style.display = 'none';
 
             } catch (err) {
                 dot.className = 'error';
                 status.textContent = 'Error';
-                notice.textContent = `⚠ ${err.message}`;
-                notice.style.display = 'block';
             }
         }
 
@@ -746,8 +760,8 @@
         }
 
         // ── Start ─────────────────────────────────────────────────────────────
-        fetchFlights();
-        pollTimer = setInterval(fetchFlights, 30000);
+        loadThreatsOverlay().then(fetchFlights);
+        pollTimer = setInterval(fetchFlights, 10000);
     </script>
 </body>
 </html>
