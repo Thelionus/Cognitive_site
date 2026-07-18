@@ -141,7 +141,7 @@ const blogPosts = [
         <h3>2. Methodology: The Automated CTA Pipeline</h3>
         <p>To evaluate the limits of generality, we compared three agents in a <strong>Personal</strong> Loan Adjudication domain. Crucially, the baseline used was not a "strawman," but our previous production-standard model.</p>
         <ul>
-            <li><strong>Anthropic 4.5 (Prev. Production):</strong> The standard model used in banking environments, provided with full policy manuals and standard chain-of-thought prompts. This was our high-water mark prior to this research.</li>
+            <li><strong>Anthropic (Prev. Production):</strong> The standard model used in banking environments, provided with full policy manuals and standard chain-of-thought prompts. This was our high-water mark prior to this research.</li>
             <li><strong>Human Adjudicator:</strong> A senior professional (10+ years). While highly skilled, humans are fallible, subject to fatigue, cognitive bias, and their own versions of "hallucination."</li>
             <li><strong>LLM + Cognitive Models (Automated CTA):</strong> Unlike manual expert systems of the past, this system utilizes an <strong>automated capture pipeline</strong>. As experts work, their "Think-Aloud" protocols are captured via speech-to-text and automatically distilled into reasoning scaffolds. This allows the system to "learn" the expert's mental map without labor-intensive manual coding.</li>
         </ul>
@@ -154,7 +154,7 @@ const blogPosts = [
                 <tr style="background: rgba(34, 197, 94, 0.1);">
                     <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">Criteria</th>
                     <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Human Adjudic</th>
-                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Anthropic 4.5</th>
+                    <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">Anthropic</th>
                     <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">LLM + Cognitive Models</th>
                 </tr>
             </thead>
