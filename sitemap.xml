@@ -192,6 +192,21 @@
   <lastmod>2026-01-25T03:23:01+00:00</lastmod>
   <priority>0.41</priority>
 </url>
+<url>
+  <loc>https://cognitivegroup.com/privacy.html</loc>
+  <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+  <priority>0.20</priority>
+</url>
+<url>
+  <loc>https://cognitivegroup.com/terms.html</loc>
+  <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+  <priority>0.20</priority>
+</url>
+<url>
+  <loc>https://cognitivegroup.com/security.html</loc>
+  <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+  <priority>0.20</priority>
+</url>
 
 
 </urlset>

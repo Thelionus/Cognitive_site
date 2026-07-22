@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- PRIVACY: Google Consent Mode default (analytics denied until visitor consents) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    </script>
     <!-- 1. SEO: Mobile-First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -13,6 +20,18 @@
     
     <!-- 4. SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/">
+
+    <!-- SEO: Open Graph / Twitter Card -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cognitive Group">
+    <meta property="og:title" content="Cognitive Banking | Secure Decision Infrastructure">
+    <meta property="og:description" content="The only AI-enabled platform designed for transparency, traceability, and operational control in regulated banking. Basel IV compliant infrastructure.">
+    <meta property="og:url" content="https://www.cognitivegroup.com/">
+    <meta property="og:image" content="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cognitive Banking | Secure Decision Infrastructure">
+    <meta name="twitter:description" content="The only AI-enabled platform designed for transparency, traceability, and operational control in regulated banking. Basel IV compliant infrastructure.">
+    <meta name="twitter:image" content="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
@@ -181,6 +200,37 @@
         .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
+        /* CLIENT LOGO STRIP: evenly spaced grid with dividers */
+        .logo-grid { display: grid; grid-template-columns: repeat(6, 1fr); }
+        .client-logo { justify-content: center; padding: 0 20px; border-left: 1px solid rgba(255,255,255,0.08); }
+        .client-logo:first-child { border-left: none; }
+        .client-logo::before { display: none; }
+
+        /* LATEST INSIGHTS PREVIEW */
+        .insights-preview { padding: 8rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; }
+        .insights-header { max-width: 700px; margin: 0 auto 60px; text-align: center; }
+        .insights-header h1 { font-size: 36px; margin-top: 16px; margin-bottom: 0; }
+        .grid-3 { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card {
+            background: var(--card-bg); border: var(--card-border);
+            padding: 30px; border-radius: 6px; transition: all 0.3s ease;
+            display: flex; flex-direction: column; align-items: flex-start; text-decoration: none;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(34, 197, 94, 0.05); }
+        .card .mono-tag { margin-bottom: 15px; }
+        .card h2 {
+            font-size: 19px; line-height: 1.4; margin-bottom: 15px; color: white; font-weight: 800;
+            text-transform: none; letter-spacing: normal; background: none; border: none; padding: 0; border-radius: 0; display: block;
+        }
+        .card p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; flex-grow: 1; line-height: 1.6; }
+        .card .read-btn { color: var(--accent); font-size: 13px; font-weight: 700; }
+        .insights-cta { text-align: center; margin-top: 50px; }
+
+        /* CLOSING CTA BANNER */
+        .closing-cta { padding: 7rem 10%; text-align: center; background: radial-gradient(circle at center, rgba(34, 197, 94, 0.12), transparent 60%); border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; }
+        .closing-cta h1 { font-size: 40px; margin-bottom: 15px; }
+        .closing-cta p { color: var(--text-muted); font-size: 18px; margin-bottom: 35px; }
+
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -193,14 +243,55 @@
             .content { padding-top: 20px; }
             h1 { font-size: 38px; }
             .logo-strip { margin-top: 40px; padding-bottom: 40px;}
-            .logo-grid { gap: 20px 30px; }
+            .logo-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 0; }
+            .client-logo { border-left: none; padding: 10px 0; justify-content: flex-start; }
             #foundry { justify-content: flex-start; }
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .insights-preview, .closing-cta { padding: 5rem 6%; }
+            .closing-cta h1 { font-size: 30px; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Cookie consent banner -->
+    <div id="cookieBanner" style="display:none; position:fixed; left:0; right:0; bottom:0; z-index:3000; background:#0F172A; border-top:1px solid rgba(255,255,255,0.12); padding:20px 5%; box-shadow:0 -10px 30px rgba(0,0,0,0.4); font-family:'Manrope', sans-serif;">
+        <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+            <p style="color:#94A3B8; font-size:14px; line-height:1.6; margin:0; max-width:640px;">
+                We use cookies for analytics to understand how this site is used. No analytics cookies are set until you accept. See our <a href="privacy.html" style="color:#22C55E;">Privacy Policy</a>.
+            </p>
+            <div style="display:flex; gap:12px; flex-shrink:0;">
+                <button onclick="cognitiveCookieChoice('denied')" style="background:transparent; border:1px solid rgba(255,255,255,0.25); color:#fff; padding:10px 20px; border-radius:4px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; cursor:pointer;">Reject</button>
+                <button onclick="cognitiveCookieChoice('granted')" style="background:#22C55E; border:none; color:#000; padding:10px 20px; border-radius:4px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; cursor:pointer;">Accept</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var KEY = 'cognitive_cookie_consent';
+        function applyConsent(choice) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', { 'analytics_storage': choice, 'ad_storage': choice });
+            }
+        }
+        window.cognitiveCookieChoice = function(choice) {
+            localStorage.setItem(KEY, choice);
+            applyConsent(choice);
+            document.getElementById('cookieBanner').style.display = 'none';
+        };
+        window.cognitiveOpenCookieSettings = function() {
+            document.getElementById('cookieBanner').style.display = 'block';
+        };
+        var stored = localStorage.getItem(KEY);
+        if (stored === 'granted' || stored === 'denied') {
+            applyConsent(stored);
+        } else {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+    })();
+    </script>
 
     <!-- NAV -->
     <header>
@@ -219,9 +310,9 @@
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Products</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="clients.html" onclick="closeMenu()">Clients</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
-                <li><a href="live-flights.html" onclick="closeMenu()">Live Flights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
@@ -293,6 +384,45 @@
         </div>
     </section>
 
+    <!-- LATEST INSIGHTS PREVIEW -->
+    <div class="insights-preview">
+        <div class="insights-header">
+            <span class="mono-tag">Latest Insights</span>
+            <h1>Strategic Intelligence for Regulated AI</h1>
+        </div>
+        <div class="grid-3">
+            <a href="blog.html?id=decision-making-construct-human-judgment" class="card">
+                <span class="mono-tag">Decision Science</span>
+                <h2>Decision Making: The Construct of Human Judgment</h2>
+                <p>An exploration of decision making through the Human Information Processing model, decomposing human judgment into cognitive micro-tasks—and how AI agents can be applied to augment or automate each one.</p>
+                <span class="read-btn">Read White Paper &rarr;</span>
+            </a>
+            <a href="blog.html?id=beyond-the-illusion-of-generality" class="card">
+                <span class="mono-tag">Cognitive Engineering</span>
+                <h2>Beyond the Illusion of Generality: Cognitive Engineering vs. Raw Foundation Models</h2>
+                <p>This paper proposes a shift from abstract AGI narratives to "Performance Engineering," demonstrating an automated pipeline that captures "dark matter" expertise to outperform both raw LLMs and fallible human specialists.</p>
+                <span class="read-btn">Read White Paper &rarr;</span>
+            </a>
+            <a href="blog.html?id=ai-assisted-supervision-louvre" class="card">
+                <span class="mono-tag">AI &amp; Security</span>
+                <h2>AI-Assisted Supervision of Abnormal Situations: Lessons from the 2025 Louvre Burglary</h2>
+                <p>This paper explores how AI can support human supervision by detecting deviations from normality that humans typically overlook, using the October 2025 Louvre Museum burglary as a case study.</p>
+                <span class="read-btn">Read White Paper &rarr;</span>
+            </a>
+        </div>
+        <div class="insights-cta">
+            <a href="blog.html" class="btn btn-outline">View All Insights</a>
+        </div>
+    </div>
+
+    <!-- CLOSING CTA BANNER -->
+    <div class="closing-cta">
+        <span class="mono-tag">One Deterministic Platform</span>
+        <h1>Every Regulated Decision, Fully Traceable.</h1>
+        <p>See how Cognitive Core, AI Workbench, and Cognitive Foundry work together in a live briefing tailored to your institution.</p>
+        <a href="#" onclick="openModal()" class="btn">Schedule Briefing</a>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
@@ -318,7 +448,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2026 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
 
