@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Security | Cognitive Group</title>
+    <meta name="description" content="How Cognitive Group's Glass Box architecture, audit trails, and infrastructure controls keep deterministic AI decisions secure for regulated financial institutions.">
+    <link rel="canonical" href="https://www.cognitivegroup.com/security.html">
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cognitive Group">
+    <meta property="og:title" content="Security | Cognitive Group">
+    <meta property="og:description" content="How Cognitive Group's Glass Box architecture, audit trails, and infrastructure controls keep deterministic AI decisions secure for regulated financial institutions.">
+    <meta property="og:url" content="https://www.cognitivegroup.com/security.html">
+    <meta property="og:image" content="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L9N7RPQDDB');
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #020617; --text-main: #FFFFFF; --text-muted: #94A3B8;
+            --accent: #22C55E; --card-bg: rgba(255, 255, 255, 0.03); --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+        header { position: fixed; top: 0; width: 100%; height: 90px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; z-index: 1000; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo img { height: 30px; width: auto; display: block; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--text-main); }
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+        .btn-header { background-color: #FFFFFF; color: #020617 !important; padding: 12px 24px; border-radius: 4px; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.5px; cursor: pointer; transition: 0.3s; }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        .hero-small { padding: 180px 10% 60px; text-align: center; background: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 50%); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .hero-small h1 { font-size: 48px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
+
+        .legal-content { max-width: 820px; margin: 0 auto; padding: 5rem 10%; }
+        .legal-content h2 { font-size: 24px; color: white; margin: 2.5rem 0 1rem; font-weight: 800; }
+        .legal-content h2:first-child { margin-top: 0; }
+        .legal-content p, .legal-content li { color: var(--text-muted); font-size: 16px; line-height: 1.8; margin-bottom: 1rem; }
+        .legal-content ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+        .legal-content strong { color: white; }
+        .updated-tag { color: #475569; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: block; text-align: center; padding-top: 2rem; }
+
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        @media (max-width: 968px) {
+            header { height: 80px; }
+            .hamburger { display: block; }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; }
+            .hero-small h1 { font-size: 32px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="clients.html" onclick="closeMenu()">Clients</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-small">
+        <div class="container">
+            <span class="mono-tag">Legal</span>
+            <h1>Security</h1>
+        </div>
+    </div>
+
+    <div class="legal-content">
+        <p>Security at Cognitive Group starts with the same principle behind our product: nothing should operate as a black box. Every architectural and operational control below exists to keep decisions auditable, data isolated, and access traceable — for both our corporate systems and the platform we deploy inside client environments.</p>
+
+        <h2>Glass Box Architecture</h2>
+        <p>Cognitive Core's lending and underwriting decisions are made by a deterministic rules engine, not a generative model — every decision produces a fully traceable audit log showing exactly which rule, threshold, and data point drove the outcome. AI (via AI Workbench) is scoped strictly to document and data capture, never to the final decision itself.</p>
+
+        <h2>Data Isolation</h2>
+        <p>Each client deployment is logically isolated. No underwriting data, model output, or decision logic from one institution is ever visible to, or used to train systems for, another client.</p>
+
+        <h2>Multi-Model Cross-Validation</h2>
+        <p>Where AI Workbench uses large language models (e.g. Claude, GPT-4, Gemini, Mistral) for document and data extraction, outputs are cross-checked against each other. Disagreements are automatically escalated to a human reviewer rather than silently resolved — reducing the risk of a single model's hallucination reaching a decision.</p>
+
+        <h2>Access Controls &amp; Monitoring</h2>
+        <ul>
+            <li>Role-based access control for every user of the platform, aligned to each institution's existing entitlement model.</li>
+            <li>Full audit logging of configuration changes to deployed decision workflows.</li>
+            <li>Encryption of data in transit and at rest.</li>
+        </ul>
+
+        <h2>Regulatory Alignment</h2>
+        <p>Cognitive's deterministic, fully-auditable decision trail is designed to support institutions' own compliance obligations under frameworks such as Basel IV and OSFI guidance. Cognitive does not itself certify an institution's regulatory compliance — each client's compliance and risk teams remain responsible for validating a deployment against their specific regulatory requirements.</p>
+
+        <h2>Responsible Disclosure</h2>
+        <p>If you believe you've found a security vulnerability affecting our website or platform, please report it to <a href="mailto:security@cognitivegroup.com" style="color: var(--accent);">security@cognitivegroup.com</a>. We ask researchers to give us a reasonable opportunity to investigate and remediate before public disclosure.</p>
+
+        <h2>Contact</h2>
+        <p>For security documentation requests as part of a vendor risk assessment, contact Cognitive Group at <a href="mailto:security@cognitivegroup.com" style="color: var(--accent);">security@cognitivegroup.com</a>.</p>
+
+        <span class="updated-tag">Last updated: July 2026</span>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Our Heritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Institutional Links</h4>
+                <a href="product.html" class="footer-link">The Cognitive Suite</a>
+                <a href="success.html" class="footer-link">Success Stories</a>
+                <a href="about.html" class="footer-link">Our History</a>
+                <a href="blog.html" class="footer-link">Knowledge Base</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Legal</h4>
+                <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                <a href="terms.html" class="footer-link">Terms of Service</a>
+                <a href="security.html" class="footer-link">Security</a>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 Cognitive Group. All Rights Reserved.</div>
+    </footer>
+
+    <div id="bookingModal" class="modal-overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative;">
+            <span class="close-modal" onclick="closeModal()" aria-label="Close Modal" style="position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Executive Briefing</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <input type="text" id="g-name" required placeholder="Full Name" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white; border-radius:4px;">
+                <input type="email" id="g-email" required placeholder="Work Email" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white; border-radius:4px;">
+                <input type="text" id="g-org" required placeholder="Organization" style="width:100%; padding:12px; margin:10px 0; background:#020617; border:1px solid #334155; color:white; border-radius:4px;">
+                <button type="submit" style="width:100%; padding:14px; background:var(--accent); color:black; font-weight:700; border:none; margin-top:20px; cursor:pointer; border-radius:4px;">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        function closeMenu() { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
