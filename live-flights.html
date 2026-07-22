@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- PRIVACY: Google Consent Mode default (analytics denied until visitor consents) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Flight Tracker | Cognitive Group</title>
     <meta name="description" content="Real-time ADS-B flight tracking powered by airplanes.live. Live aircraft positions, altitude, speed, and heading data.">
@@ -387,6 +394,43 @@
     </style>
 </head>
 <body>
+
+    <!-- Cookie consent banner -->
+    <div id="cookieBanner" style="display:none; position:fixed; left:0; right:0; bottom:0; z-index:3000; background:#0F172A; border-top:1px solid rgba(255,255,255,0.12); padding:20px 5%; box-shadow:0 -10px 30px rgba(0,0,0,0.4); font-family:'Manrope', sans-serif;">
+        <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+            <p style="color:#94A3B8; font-size:14px; line-height:1.6; margin:0; max-width:640px;">
+                We use cookies for analytics to understand how this site is used. No analytics cookies are set until you accept. See our <a href="privacy.html" style="color:#22C55E;">Privacy Policy</a>.
+            </p>
+            <div style="display:flex; gap:12px; flex-shrink:0;">
+                <button onclick="cognitiveCookieChoice('denied')" style="background:transparent; border:1px solid rgba(255,255,255,0.25); color:#fff; padding:10px 20px; border-radius:4px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; cursor:pointer;">Reject</button>
+                <button onclick="cognitiveCookieChoice('granted')" style="background:#22C55E; border:none; color:#000; padding:10px 20px; border-radius:4px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; cursor:pointer;">Accept</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var KEY = 'cognitive_cookie_consent';
+        function applyConsent(choice) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', { 'analytics_storage': choice, 'ad_storage': choice });
+            }
+        }
+        window.cognitiveCookieChoice = function(choice) {
+            localStorage.setItem(KEY, choice);
+            applyConsent(choice);
+            document.getElementById('cookieBanner').style.display = 'none';
+        };
+        window.cognitiveOpenCookieSettings = function() {
+            document.getElementById('cookieBanner').style.display = 'block';
+        };
+        var stored = localStorage.getItem(KEY);
+        if (stored === 'granted' || stored === 'denied') {
+            applyConsent(stored);
+        } else {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+    })();
+    </script>
 
     <!-- HEADER -->
     <header>
