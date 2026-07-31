@@ -58,6 +58,9 @@
     document.addEventListener('error', function (event) {
         var img = event.target;
         if (!img || img.tagName !== 'IMG' || img.dataset.fallbackApplied) return;
+        // Leaflet manages its own tile images (retries, empty tiles on failure);
+        // let it handle its own load errors instead of swapping in our placeholder.
+        if (img.classList.contains('leaflet-tile') || img.closest('.leaflet-container')) return;
         img.dataset.fallbackApplied = 'true';
         img.removeAttribute('srcset');
         img.src = isPortrait(img) ? portraitPlaceholder(img.getAttribute('alt')) : genericPlaceholder();
