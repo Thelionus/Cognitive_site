@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 2. SEO: Optimized Title (Under 60 chars) -->
-    <title>Cognitive Banking | Secure Decision Infrastructure</title>
-    
+    <title>AI Workbench + BusinessBANKER | Cognitive Group</title>
+
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="The only AI-enabled platform designed for transparency, traceability, and operational control in regulated banking. Basel IV compliant infrastructure.">
+    <meta name="description" content="Governed AI adjudication for commercial lending, on the systems your bank already runs. Model-agnostic, bank-controlled, audit-ready. 96% measured accuracy vs. 57% human baseline.">
     
     <!-- 4. SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/">
@@ -37,7 +37,7 @@
       "name": "Cognitive Group",
       "url": "https://www.cognitivegroup.com",
       "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png",
-      "description": "The first AI platform for regulated industries specializing in deterministic decision logic.",
+      "description": "Governed AI adjudication for commercial lending. AI Workbench reasons, BusinessBANKER executes and audits, on infrastructure the bank controls.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "1155 René-Lévesque Blvd West",
@@ -182,6 +182,26 @@
         .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
+        .compact-section {
+            min-height: auto; flex-direction: column; align-items: flex-start;
+            padding: 110px 10%; background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .compact-section .content { max-width: 980px; }
+        .compact-section h1 { font-size: 40px; }
+
+        .win-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; }
+        .win-card { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; }
+        .win-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.2px; }
+        .win-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+        .disclaimer { font-size: 13px; color: #64748B; margin-top: 30px; line-height: 1.6; max-width: 700px; }
+
+        .pilot-bar { display: flex; flex-wrap: wrap; border: var(--card-border); border-radius: 8px; overflow: hidden; margin: 40px 0 30px; width: 100%; }
+        .pilot-bar-item { flex: 1; min-width: 150px; text-align: center; padding: 26px 12px; border-right: 1px solid rgba(255,255,255,0.08); }
+        .pilot-bar-item:last-child { border-right: none; }
+        .pilot-bar-item .val { font-size: 26px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .pilot-bar-item .lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -198,6 +218,9 @@
             #foundry { justify-content: flex-start; }
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .compact-section { padding: 80px 5%; }
+            .compact-section h1 { font-size: 30px; }
+            .pilot-bar-item { min-width: 45%; border-bottom: 1px solid rgba(255,255,255,0.08); }
         }
     </style>
 </head>
@@ -233,15 +256,15 @@
     <!-- SECTION 1: HERO -->
     <section id="hero">
         <div class="content">
-            <h2>Basel IV Compliant Infrastructure</h2>
-            <h1>The First AI Platform for Regulated Industries</h1>
+            <h2>AI Workbench + BusinessBANKER</h2>
+            <h1>AI Adjudication for Commercial Lending</h1>
             <p class="description">
-                The only AI-enabled platform designed to meet business expectations for transparency, traceability, and operational control—without model drift or black-box risk.
+                Multi-agent adjudication built from your own credit experts' judgment — deployed on infrastructure you control, overlaid on the systems you already run. No model lock-in. No system replacement. Every recommendation audited before it becomes an action.
             </p>
-            <a href="product.html" class="btn btn-outline">View Platform Architecture</a>
+            <a href="product.html" class="btn btn-outline">See the Two-Layer Architecture</a>
 
             <div class="logo-strip">
-                <span class="logo-label">Some clients</span>
+                <span class="logo-label">Proven in production</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
@@ -257,13 +280,13 @@
     <!-- SECTION 2: FOUNDRY -->
     <section id="foundry">
         <div class="content">
-            <h2>"Glass Box" Logic Model</h2>
-            <h1>Cognitive Foundry</h1>
+            <h2>The Reasoning Layer</h2>
+            <h1>AI Workbench</h1>
             <p class="description">
-                Cognitive Foundry compiles expert human judgment, credit policy, compliance rules—into deterministic decision logic that executes consistently across all channels.
+                Multi-agent adjudication — extraction, analysis, recommendation, human validation — built from your bank's own credit experts' judgment. Model-agnostic: swap any LLM per agent without rewriting the workflow. Source-accessible. Deployed in your cloud. Overlays your existing LOS and core; nothing is replaced.
             </p>
-            
-            <a href="foundry.html" class="btn btn-outline">Explore Compliance Logic</a>
+
+            <a href="workbench.html" class="btn btn-outline">Explore AI Workbench</a>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -285,12 +308,62 @@
     <!-- SECTION 3: WORKBENCH -->
     <section id="workbench">
         <div class="content">
-            <h2>Orchestration Infrastructure</h2>
-            <h1>Controlled Automation Layer</h1>
+            <h2>The Execution Layer</h2>
+            <h1>BusinessBANKER</h1>
             <p class="description">
-                AI Workbench digitizes the most error-prone part of banking operations: document interpretation and data capture—while keeping all decisions under deterministic control.
+                The governed system of record that captures, versions, reviews and audits what the agents produce — and executes the resulting actions where the incumbent LOS cannot. AI Workbench is to BusinessBANKER what Claude Code is to GitHub: one reasons and does the work; the other governs and records it.
             </p>
-            <a href="workbench.html" class="btn btn-outline">View Infrastructure Specs</a>
+            <a href="case-study-businessbanker.html" class="btn btn-outline">See BusinessBANKER in the Field</a>
+        </div>
+    </section>
+
+    <!-- SECTION 4: WHY WE WIN -->
+    <section class="compact-section" id="why-we-win">
+        <div class="content">
+            <h2>Why We Win</h2>
+            <h1>Measured, Not Promised</h1>
+            <div class="win-grid">
+                <div class="win-card">
+                    <h4>Measured, not promised</h4>
+                    <p>Published benchmark: 96% system accuracy vs. 57% for a senior human adjudicator. Every engagement starts in shadow mode against your own analysts.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Control</h4>
+                    <p>No model lock-in, no vendor-hosted black box — runs in your own AWS. The objection nCino, Zest AI, Aloan and Kaaj cannot answer.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Governance built in</h4>
+                    <p>Audit trail, confidence thresholds, and an automation-threshold specification aligned with OSFI E-23 — delivered as a model-governance pack, not a roadmap item.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Execution, not just insight</h4>
+                    <p>Recommendations become governed, auditable actions in a system of record — the gap every bolt-on AI tool leaves to the bank.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Proven in production</h4>
+                    <p>RBC, Desjardins, DUCA and eleven institutions across Canada; live Fiserv DNA integration; SOC 2 Type 2 hosting; SSO, MFA, RBAC.</p>
+                </div>
+            </div>
+            <p class="disclaimer">What we don't claim: best-in-class depth in every point vertical — CRE valuation, consumer scoring, document forensics. Those are partners, not battles. The claim is breadth, governance and control in one platform, from one vendor.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 5: HOW YOU BUY -->
+    <section class="compact-section" id="how-you-buy">
+        <div class="content">
+            <h2>How You Buy</h2>
+            <h1>Start With a Shadow-Mode Pilot</h1>
+            <p class="description" style="margin-bottom: 0;">
+                10–12-week fixed-fee shadow-mode pilot &rarr; go/no-go &rarr; AI Workbench in production on your existing workflow &rarr; annual platform fee plus a fee per approved transaction &rarr; BusinessBANKER execution layer where the LOS falls short.
+            </p>
+            <div class="pilot-bar">
+                <div class="pilot-bar-item"><span class="val">12 wks</span><span class="lbl">Pilot duration</span></div>
+                <div class="pilot-bar-item"><span class="val">$75K CAD</span><span class="lbl">Fixed fee</span></div>
+                <div class="pilot-bar-item"><span class="val">&ge;40%</span><span class="lbl">Target reduction</span></div>
+                <div class="pilot-bar-item"><span class="val">0</span><span class="lbl">Systems replaced</span></div>
+                <div class="pilot-bar-item"><span class="val">1</span><span class="lbl">Decision at the end</span></div>
+            </div>
+            <a href="#" onclick="openModal()" class="btn btn-outline">Schedule a Briefing</a>
         </div>
     </section>
 
@@ -298,16 +371,18 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Our Approach</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    AI Workbench reasons. BusinessBANKER executes and governs. Both run on the infrastructure your bank already controls — overlaid, not replaced.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Regulatory Research</a>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
+                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="case-study-businessbanker.html" class="footer-link">BusinessBANKER</a>
+                <a href="product.html" class="footer-link">Platform Overview</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
+                <a href="blog.html" class="footer-link">Regulatory Research</a>
             </div>
             <div>
                 <h4 class="footer-h4">Global Headquarters</h4>
