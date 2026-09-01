@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 2. SEO: Unique Title (Under 60 chars) -->
-    <title>Commercial Credit AI Modules | Cognitive Banking Platform</title>
-    
+    <title>AI Workbench &amp; BusinessBANKER | Cognitive Group</title>
+
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="Explore Cognitive Core, AI Workbench, and Cognitive Foundry. Deterministic AI infrastructure for commercial credit, loan origination, and banking automation.">
+    <meta name="description" content="AI Workbench reasons, BusinessBANKER executes. Governed, model-agnostic AI adjudication for commercial lending — deployed on your infrastructure, overlaid on your existing LOS.">
     
     <!-- 4. SEO: Canonical Link -->
     <link rel="canonical" href="https://www.cognitivegroup.com/product.html">
@@ -34,7 +34,7 @@
       "name": "Cognitive Banking Platform",
       "operatingSystem": "Web-based",
       "applicationCategory": "FinanceApplication",
-      "description": "Deterministic AI modules for commercial credit and loan origination.",
+      "description": "AI Workbench (the reasoning layer) and BusinessBANKER (the execution layer) — governed AI adjudication for commercial lending, deployed on the bank's own infrastructure.",
       "offers": {
         "@type": "Offer",
         "price": "0.00",
@@ -226,6 +226,20 @@
         .cs-metric .m-after { font-size: 14px; color: var(--accent); font-weight: 800; }
         .cs-metric .m-arrow { color: rgba(255,255,255,0.2); font-size: 12px; }
 
+        /* WHY WE WIN */
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 20px; }
+        .why-card { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; }
+        .why-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.2px; }
+        .why-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 100%; }
+        .disclaimer { font-size: 13px; color: #64748B; margin-top: 30px; line-height: 1.6; max-width: 780px; }
+
+        /* HOW YOU BUY */
+        .pilot-bar { display: flex; flex-wrap: wrap; border: var(--card-border); border-radius: 8px; overflow: hidden; margin: 40px 0 30px; }
+        .pilot-bar-item { flex: 1; min-width: 150px; text-align: center; padding: 26px 12px; border-right: 1px solid rgba(255,255,255,0.08); }
+        .pilot-bar-item:last-child { border-right: none; }
+        .pilot-bar-item .val { font-size: 26px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .pilot-bar-item .lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
         @media (max-width: 968px) {
             header { height: 80px; }
             .hamburger { display: block; }
@@ -239,6 +253,7 @@
             .cs-card { grid-template-columns: 1fr; }
             .cs-card-visual { border-left: none; border-top: 1px solid rgba(255,255,255,0.05); }
             .cs-stats { flex-wrap: wrap; gap: 20px; }
+            .pilot-bar-item { min-width: 45%; border-bottom: 1px solid rgba(255,255,255,0.08); }
         }
     </style>
 </head>
@@ -270,30 +285,52 @@
 
     <div class="page-hero">
         <div class="container">
-            <span class="mono-tag">The Next Evolution</span>
-            <h1>Commercial Credit,<br><span>Reinvented.</span></h1>
+            <span class="mono-tag">Governed AI Adjudication</span>
+            <h1>The Reasoning Layer.<br><span>The Execution Layer.</span></h1>
             <p class="hero-lead">
-                Three modules. Radical simplicity. Absolute certainty.<br>
-                This is what happens when AI finally works for regulated finance.
+                AI Workbench reasons. BusinessBANKER executes and governs.<br>
+                Deployed on the systems your bank already runs — nothing replaced.
             </p>
         </div>
     </div>
 
-    <!-- MODULE 1: COGNITIVE CORE -->
+    <!-- MODULE 1: AI WORKBENCH -->
+    <section id="workbench">
+        <div class="grid-2 reverse-mobile">
+            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
+            <div>
+                <span class="section-tag">Module 01</span>
+                <h2>AI Workbench</h2>
+                <h3>The Reasoning Layer — Multi-Agent Adjudication</h3>
+                <p><strong>Extraction, analysis, recommendation, human validation.</strong> Built from your own credit experts' judgment — not a generic model fine-tuned on someone else's portfolio.</p>
+                <p>Model-agnostic: any LLM, swapped per agent, without rewriting the workflow. Source-accessible. Deployed in your cloud.</p>
+                <p><strong>Overlays your existing LOS and core.</strong> Nothing is replaced.</p>
+                <div class="feature-pills">
+                    <span class="pill">Model-Agnostic</span>
+                    <span class="pill">Source-Accessible</span>
+                    <span class="pill">Bank-Controlled Deployment</span>
+                </div>
+                <a href="workbench.html" class="btn-arrow">See the Architecture &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 2: BUSINESSBANKER -->
     <section id="core">
         <div class="grid-2">
             <div>
-                <span class="section-tag">Module 01</span>
-                <h2>Cognitive Core</h2>
-                <h3>Loan Origination — Simplified to the Extreme</h3>
-                <p><strong>100% no-code.</strong> Your credit team builds workflows, not your IT department. Application intake to disbursement — one unified system.</p>
-                <p>We train your people once. Then we step back. You own it completely.</p>
+                <span class="section-tag">Module 02</span>
+                <h2>BusinessBANKER</h2>
+                <h3>The Execution Layer — Governed System of Record</h3>
+                <p><strong>Captures, versions, reviews and audits</strong> what the agents produce, then executes the resulting actions — documents, workflow, booking — where the incumbent LOS cannot.</p>
+                <p>Built on Cognitive Core, our no-code workflow engine. Your credit team configures it; nothing is IT-dependent.</p>
+                <p><strong>AI Workbench is to BusinessBANKER what Claude Code is to GitHub:</strong> one reasons and does the work, the other governs and records it.</p>
                 <div class="feature-pills">
                     <span class="pill">Zero IT Dependency</span>
-                    <span class="pill">Deploy in Weeks</span>
                     <span class="pill">Full Audit Trail</span>
+                    <span class="pill">Deploy in Weeks</span>
                 </div>
-                <a href="workflow.html" class="btn-arrow">Explore Cognitive Core &rarr;</a>
+                <a href="case-study-businessbanker.html" class="btn-arrow">See BusinessBANKER in the Field &rarr;</a>
             </div>
             <div class="core-visual">
                 <img src="/assets/product/cognitive-core-workflow.png" alt="Cognitive Core no-code workflow network: an origination flow with role-gated task steps, conditional branches, and permission controls." loading="lazy">
@@ -301,36 +338,15 @@
         </div>
     </section>
 
-    <!-- MODULE 2: AI WORKBENCH -->
-    <section id="workbench">
-        <div class="grid-2 reverse-mobile">
-            <img src="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png" class="product-img" alt="AI Workbench Interface">
-            <div>
-                <span class="section-tag">Module 02</span>
-                <h2>AI Workbench</h2>
-                <h3>The End of AI Hallucination</h3>
-                <p><strong>Multiple agents. One truth.</strong> We run the same document through independent AI models. Claude. GPT-4. Gemini. Mistral.</p>
-                <p>Our multiplexer compares outputs using strict JSON schemas. Apple to apple. Field by field.</p>
-                <p><strong>If they agree</strong> — statistically validated extraction.<br><strong>If they diverge</strong> — instant human escalation.</p>
-                <div class="feature-pills">
-                    <span class="pill">Multi-Agent Consensus</span>
-                    <span class="pill">Human-in-the-Loop</span>
-                    <span class="pill">0% Hallucination Risk</span>
-                </div>
-                <a href="workbench.html" class="btn-arrow">See the Architecture &rarr;</a>
-            </div>
-        </div>
-    </section> 
-
     <!-- MODULE 3: COGNITIVE FOUNDRY -->
     <section id="foundry">
         <div class="grid-2">
             <div>
                 <span class="section-tag">Module 03</span>
                 <h2>Cognitive Foundry</h2>
-                <h3>30 Years of Expertise. Captured Forever.</h3>
+                <h3>The Judgment Behind Every Agent</h3>
                 <p><strong>Your best credit officer retires in 18 months.</strong> Their judgment, edge cases, and intuition — do they walk out the door?</p>
-                <p>Not anymore. We've captured <strong>1,000+ hours of Cognitive Task Analysis</strong> from senior analysts.</p>
+                <p>Not anymore. We've captured <strong>1,000+ hours of Cognitive Task Analysis</strong> from senior analysts — this is the expertise AI Workbench's agents are built from.</p>
                 <div class="stats-row">
                     <div class="stat-item"><div class="stat-number">1,000+</div><div class="stat-label">Hours of CTA</div></div>
                     <div class="stat-item"><div class="stat-number">30</div><div class="stat-label">Years Encoded</div></div>
@@ -415,20 +431,71 @@
         </a>
     </section>
 
+    <!-- WHY WE WIN -->
+    <section id="why-we-win">
+        <div class="cs-header">
+            <span class="section-tag">Why We Win</span>
+            <h2>Measured, Not Promised</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <h4>Measured, not promised</h4>
+                <p>Published benchmark: 96% system accuracy vs. 57% for a senior human adjudicator. Every engagement starts in shadow mode against your own analysts.</p>
+            </div>
+            <div class="why-card">
+                <h4>Control</h4>
+                <p>No model lock-in, no vendor-hosted black box — runs in your own AWS. The objection nCino, Zest AI, Aloan and Kaaj cannot answer.</p>
+            </div>
+            <div class="why-card">
+                <h4>Governance built in</h4>
+                <p>Audit trail, confidence thresholds, and an automation-threshold specification aligned with OSFI E-23 — delivered as a model-governance pack, not a roadmap item.</p>
+            </div>
+            <div class="why-card">
+                <h4>Execution, not just insight</h4>
+                <p>Recommendations become governed, auditable actions in a system of record — the gap every bolt-on AI tool leaves to the bank.</p>
+            </div>
+            <div class="why-card">
+                <h4>Proven in production</h4>
+                <p>RBC, Desjardins, DUCA and eleven institutions across Canada; live Fiserv DNA integration; SOC 2 Type 2 hosting; SSO, MFA, RBAC.</p>
+            </div>
+        </div>
+        <p class="disclaimer">What we don't claim: best-in-class depth in every point vertical — CRE valuation, consumer scoring, document forensics. Those are partners, not battles. The claim is breadth, governance and control in one platform, from one vendor.</p>
+    </section>
+
+    <!-- HOW YOU BUY -->
+    <section id="how-you-buy">
+        <div class="cs-header">
+            <span class="section-tag">How You Buy</span>
+            <h2>Start With a Shadow-Mode Pilot</h2>
+        </div>
+        <p style="max-width: 720px; margin: 0 auto 0; text-align: center;">
+            10–12-week fixed-fee shadow-mode pilot &rarr; go/no-go &rarr; AI Workbench in production on your existing workflow &rarr; annual platform fee plus a fee per approved transaction &rarr; BusinessBANKER execution layer where the LOS falls short.
+        </p>
+        <div class="pilot-bar">
+            <div class="pilot-bar-item"><span class="val">12 wks</span><span class="lbl">Pilot duration</span></div>
+            <div class="pilot-bar-item"><span class="val">$75K CAD</span><span class="lbl">Fixed fee</span></div>
+            <div class="pilot-bar-item"><span class="val">&ge;40%</span><span class="lbl">Target reduction</span></div>
+            <div class="pilot-bar-item"><span class="val">0</span><span class="lbl">Systems replaced</span></div>
+            <div class="pilot-bar-item"><span class="val">1</span><span class="lbl">Decision at the end</span></div>
+        </div>
+        <div style="text-align: center;">
+            <a href="#" onclick="openModal()" class="btn-arrow" style="justify-content: center;">Schedule a Briefing &rarr;</a>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">The Standard for Commercial Credit</h4>
-                <!-- FIX: Removed Founded 1995 -->
+                <h4 class="footer-h4">The Reasoning Layer + The Execution Layer</h4>
                 <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    Cognitive builds deterministic AI infrastructure for the world's most regulated financial institutions. Montréal.
+                    Cognitive Group builds governed AI adjudication for commercial lending — deployed on infrastructure the world's most regulated financial institutions already control. Montréal.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Platform</h4>
-                <a href="workflow.html" class="footer-link">Cognitive Core</a>
                 <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="case-study-businessbanker.html" class="footer-link">BusinessBANKER</a>
                 <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
                 <a href="success.html" class="footer-link">Client Results</a>
             </div>
