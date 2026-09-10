@@ -9,7 +9,12 @@ const ZONES = [
   [45.5, -73.7, 200],
 ];
 
-function fetchZone(lat, lon, dist) {
+const MAX_ATTEMPTS   = 5;
+const RETRY_DELAY_MS = 1500;
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+function fetchZoneOnce(lat, lon, dist) {
   return new Promise(resolve => {
     let settled = false;
     const settle = v => { if (!settled) { settled = true; resolve(v); } };
@@ -18,19 +23,45 @@ function fetchZone(lat, lon, dist) {
       `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
       { timeout: 12000 },
       res => {
-        if (res.statusCode !== 200) { res.resume(); return settle([]); }
         const chunks = [];
         res.on('data', c => chunks.push(c));
         res.on('end', () => {
-          try { settle(JSON.parse(Buffer.concat(chunks).toString()).ac || []); }
-          catch { settle([]); }
+          const body = Buffer.concat(chunks).toString();
+          if (res.statusCode !== 200) {
+            return settle({ ok: false, reason: `HTTP ${res.statusCode}: ${body.slice(0, 200)}` });
+          }
+          try {
+            const parsed = JSON.parse(body);
+            if (!Array.isArray(parsed.ac)) {
+              return settle({ ok: false, reason: `unexpected response shape: ${body.slice(0, 200)}` });
+            }
+            settle({ ok: true, ac: parsed.ac });
+          } catch (e) {
+            settle({ ok: false, reason: `parse error: ${e.message}` });
+          }
         });
-        res.on('error', () => settle([]));
+        res.on('error', e => settle({ ok: false, reason: `response error: ${e.message}` }));
       }
     );
-    req.on('error',   () => settle([]));
-    req.on('timeout', () => { req.destroy(); settle([]); });
+    req.on('error',   e => settle({ ok: false, reason: `request error: ${e.message}` }));
+    req.on('timeout', () => { req.destroy(); settle({ ok: false, reason: 'timeout' }); });
   });
+}
+
+// Verify a zone's feed up to MAX_ATTEMPTS times (e.g. transient auth/rate-limit
+// errors from the upstream API) before giving up on it for this run.
+// Returns null (distinct from an empty array) when verification never succeeds,
+// so callers can tell "zone had no aircraft" apart from "zone fetch failed".
+async function fetchZone(lat, lon, dist) {
+  let lastReason = 'unknown';
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const result = await fetchZoneOnce(lat, lon, dist);
+    if (result.ok) return result.ac;
+    lastReason = result.reason;
+    if (attempt < MAX_ATTEMPTS) await sleep(RETRY_DELAY_MS * attempt);
+  }
+  console.warn(`Zone [${lat}, ${lon}] failed verification after ${MAX_ATTEMPTS} attempts: ${lastReason}`);
+  return null;
 }
 
 // US ICAO24 range: A00000–AFFFFF
@@ -87,9 +118,18 @@ async function main() {
 
   const results = await Promise.allSettled(ZONES.map(([la, lo, d]) => fetchZone(la, lo, d)));
   const byHex = {};
+  let zonesOk = 0;
   results.forEach(r => {
-    if (r.status === 'fulfilled') r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+    if (r.status === 'fulfilled' && r.value !== null) {
+      zonesOk++;
+      r.value.forEach(ac => { if (ac.hex) byHex[ac.hex] = ac; });
+    }
   });
+
+  if (zonesOk === 0) {
+    console.error(`All ${ZONES.length} zones failed verification — leaving existing flights.json untouched.`);
+    return;
+  }
 
   Object.values(byHex).forEach(ac => {
     const { threat_level, threat_reason } = classify(ac, whitelist);
@@ -99,7 +139,7 @@ async function main() {
 
   const result = { timestamp: Date.now(), ac: Object.values(byHex) };
   fs.writeFileSync('flights.json', JSON.stringify(result));
-  console.log(`Saved ${result.ac.length} aircraft`);
+  console.log(`Saved ${result.ac.length} aircraft (${zonesOk}/${ZONES.length} zones verified)`);
 }
 
 main();
