@@ -6,7 +6,7 @@
     <title>Live Flight Tracker | Cognitive Group</title>
     <meta name="description" content="Real-time ADS-B flight tracking powered by airplanes.live. Live aircraft positions, altitude, speed, and heading data.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.basemaps.cartocdn.com; connect-src 'self' https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://i.postimg.cc https://unpkg.com https://*.tile.openstreetmap.org; connect-src 'self' https://raw.githubusercontent.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;">
     <script src="/assets/js/img-fallback.js"></script>
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -553,11 +553,14 @@
         // ── Map init ──────────────────────────────────────────────────────────
         const map = L.map('map', { zoomControl: true }).setView([30, 10], 3);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-            subdomains: 'abcd',
+        // Plain OSM tiles + a CSS filter on the tile pane only (markers/panes
+        // stay unaffected) — avoids depending on CARTO's now key-gated basemap.
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: 'abc',
             maxZoom: 19
         }).addTo(map);
+        map.getPane('tilePane').style.filter = 'invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)';
 
         // ── State ─────────────────────────────────────────────────────────────
         const DATA_URL     = 'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
