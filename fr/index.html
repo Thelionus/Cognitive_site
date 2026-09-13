@@ -130,9 +130,20 @@
         .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        #hero { 
-            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); 
-            background-position: center top; 
+        #decision-systems {
+            background-color: var(--bg-body);
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.06) 39px, rgba(34,197,94,0.06) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.06) 39px, rgba(34,197,94,0.06) 40px),
+                repeating-radial-gradient(circle at 78% 42%, transparent 0px, transparent 54px, rgba(34,197,94,0.16) 55px, rgba(34,197,94,0.16) 56px, transparent 57px, transparent 128px),
+                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.22) 0%, transparent 42%),
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.14) 0%, transparent 45%);
+        }
+        #decision-systems::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+
+        #hero {
+            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop');
+            background-position: center top;
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
@@ -256,14 +267,21 @@
         </nav>
     </header>
 
-    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-bottom: 1px solid rgba(34,197,94,0.15);">
+    <section id="decision-systems">
         <div class="content">
             <h2>Intelligence Décisionnelle pour la Défense</h2>
             <h1>L'IA au Service des Systèmes de Décision</h1>
             <p class="description">
-                Le prêt commercial est notre preuve à grande échelle. Le même moteur de raisonnement multi-agents, gouverné — fusionner chaque source de données, générer la recommandation, laisser le commandement humain trancher, tout auditer après coup — est exactement ce dont le commandement militaire moderne a besoin : un système de décision, pas un tableau de bord de plus. C'est la direction que prend la plateforme.
+                Le même moteur de raisonnement multi-agents, gouverné, que nous exploitons à grande échelle dans le prêt commercial — fusionner chaque source de données, générer la recommandation, laisser le commandement humain trancher, tout auditer après coup — conçu pour le commandement militaire.
             </p>
             <a href="../tactical.html" class="btn btn-outline">Voir en Action</a>
+        </div>
+    </section>
+
+    <section class="compact-section" id="decision-systems-detail">
+        <div class="content">
+            <h2>Prochaine Étape</h2>
+            <h1>Planification de Mission &amp; Identification des Menaces en Temps Réel</h1>
             <div class="win-grid" style="margin-top: 40px;">
                 <div class="win-card">
                     <h4>IA de Planification de Mission — En Développement</h4>
