@@ -154,6 +154,17 @@
         .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
+        #decision-systems {
+            background-color: var(--bg-body);
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.06) 39px, rgba(34,197,94,0.06) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.06) 39px, rgba(34,197,94,0.06) 40px),
+                repeating-radial-gradient(circle at 78% 42%, transparent 0px, transparent 54px, rgba(34,197,94,0.16) 55px, rgba(34,197,94,0.16) 56px, transparent 57px, transparent 128px),
+                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.22) 0%, transparent 42%),
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.14) 0%, transparent 45%);
+        }
+        #decision-systems::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+
         #hero { background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); background-position: center top; }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
@@ -259,14 +270,22 @@
     </header>
 
     <!-- SECTION 1: DECISION SYSTEMS / DEFENSE -->
-    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-bottom: 1px solid rgba(34,197,94,0.15);">
+    <section id="decision-systems">
         <div class="content">
             <h2>Decision Intelligence for Defense</h2>
             <h1>AI for Decision Systems</h1>
             <p class="description">
-                Commercial lending is where we've proven it at scale. The same governed, multi-agent reasoning engine — fuse every data source, generate the recommendation, keep a human in command of the final call, audit every step after the fact — is exactly what modern mission command needs: a decision system, not another dashboard. This is where we're taking the platform next.
+                The same governed, multi-agent reasoning engine we run at scale in commercial lending — fuse every data source, generate the recommendation, keep a human in command of the final call, audit every step after the fact — built for mission command.
             </p>
             <a href="tactical.html" class="btn btn-outline">See It in Action</a>
+        </div>
+    </section>
+
+    <!-- SECTION 1B: DECISION SYSTEMS DETAIL -->
+    <section class="compact-section" id="decision-systems-detail">
+        <div class="content">
+            <h2>What's Next</h2>
+            <h1>Mission Planning &amp; Real-Time Threat Identification</h1>
             <div class="win-grid" style="margin-top: 40px;">
                 <div class="win-card">
                     <h4>Mission Planning AI — In Development</h4>
