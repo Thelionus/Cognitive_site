@@ -66,15 +66,15 @@
         
         .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        
-        nav a { 
-            color: var(--text-muted); text-decoration: none; 
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; flex-wrap: nowrap; }
+
+        nav a {
+            color: var(--text-muted); text-decoration: none;
             font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-            font-weight: 600; transition: 0.3s;
+            font-weight: 600; transition: 0.3s; white-space: nowrap;
         }
         nav a:hover { color: var(--text-main); }
-        
+
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
         .btn-header {
@@ -83,8 +83,10 @@
             padding: 12px 24px;
             border-radius: 4px;
             font-weight: 700 !important;
-            text-transform: none !important; 
+            text-transform: none !important;
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .btn-header:hover {
             background-color: var(--accent);
@@ -185,7 +187,23 @@
         }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
-        @media (max-width: 968px) {
+        .compact-section {
+            min-height: auto; flex-direction: column; align-items: flex-start;
+            padding: 110px 10%; background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .compact-section .content { max-width: 980px; }
+        .compact-section h1 { font-size: 40px; }
+
+        .win-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; }
+        .win-card { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; }
+        .win-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.2px; }
+        .win-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+        .card-link { display: inline-block; margin-top: 14px; color: var(--accent); font-size: 12.5px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; }
+        .card-link:hover { text-decoration: underline; }
+
+        @media (max-width: 1300px) {
             header { height: 80px; }
             .hamburger { display: block; }
             nav {
@@ -206,6 +224,8 @@
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
             #hero { background-position: center top; }
+            .compact-section { padding: 80px 5%; }
+            .compact-section h1 { font-size: 30px; }
         }
     </style>
 </head>
@@ -236,6 +256,28 @@
         </nav>
     </header>
 
+    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-bottom: 1px solid rgba(34,197,94,0.15);">
+        <div class="content">
+            <h2>Intelligence Décisionnelle pour la Défense</h2>
+            <h1>L'IA au Service des Systèmes de Décision</h1>
+            <p class="description">
+                Le prêt commercial est notre preuve à grande échelle. Le même moteur de raisonnement multi-agents, gouverné — fusionner chaque source de données, générer la recommandation, laisser le commandement humain trancher, tout auditer après coup — est exactement ce dont le commandement militaire moderne a besoin : un système de décision, pas un tableau de bord de plus. C'est la direction que prend la plateforme.
+            </p>
+            <a href="../tactical.html" class="btn btn-outline">Voir en Action</a>
+            <div class="win-grid" style="margin-top: 40px;">
+                <div class="win-card">
+                    <h4>IA de Planification de Mission — En Développement</h4>
+                    <p>Un système qui regroupe le renseignement, la logistique, le terrain et l'état des unités en une seule vue opérationnelle, et qui laisse l'IA rédiger, simuler et mettre à jour le plan de mission en continu — avec l'approbation du commandant à chaque point de décision.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Identification des Menaces en Temps Réel — Actif</h4>
+                    <p>Fusion multi-agents — cinématique, signature/IFF et contexte — classifiant les pistes en temps réel selon la convention OTAN BLEU/ROUGE/AMBRE/VERT. Actif dès aujourd'hui sur notre démo radar tactique.</p>
+                    <a href="../tactical.html" class="card-link">Voir la Démo Tactique &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="hero">
         <div class="content">
             <h2>Conformité Bâle IV & IFRS 9</h2>
@@ -253,27 +295,6 @@
                     <div class="client-logo">BNC</div>
                     <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-top: 1px solid rgba(34,197,94,0.15); border-bottom: 1px solid rgba(34,197,94,0.15);">
-        <div class="content">
-            <h2>Intelligence Décisionnelle pour la Défense</h2>
-            <h1>L'IA au Service des Systèmes de Décision</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Le prêt commercial est notre preuve à grande échelle. Le même moteur de raisonnement multi-agents, gouverné — fusionner chaque source de données, générer la recommandation, laisser le commandement humain trancher, tout auditer après coup — est exactement ce dont le commandement militaire moderne a besoin : un système de décision, pas un tableau de bord de plus. C'est la direction que prend la plateforme.
-            </p>
-            <div class="win-grid" style="margin-top: 40px;">
-                <div class="win-card">
-                    <h4>IA de Planification de Mission — En Développement</h4>
-                    <p>Un système qui regroupe le renseignement, la logistique, le terrain et l'état des unités en une seule vue opérationnelle, et qui laisse l'IA rédiger, simuler et mettre à jour le plan de mission en continu — avec l'approbation du commandant à chaque point de décision.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Identification des Menaces en Temps Réel — Actif</h4>
-                    <p>Fusion multi-agents — cinématique, signature/IFF et contexte — classifiant les pistes en temps réel selon la convention OTAN BLEU/ROUGE/AMBRE/VERT. Actif dès aujourd'hui sur notre démo radar tactique.</p>
-                    <a href="../tactical.html" class="card-link">Voir la Démo Tactique &rarr;</a>
                 </div>
             </div>
         </div>
