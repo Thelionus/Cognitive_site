@@ -94,8 +94,8 @@
             width: auto; display: block; 
         }
 
-        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; flex-wrap: nowrap; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; white-space: nowrap; }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
@@ -105,8 +105,10 @@
             padding: 12px 24px;
             border-radius: 4px;
             font-weight: 700 !important;
-            text-transform: none !important; 
+            text-transform: none !important;
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
@@ -205,7 +207,7 @@
         .pilot-bar-item .val { font-size: 26px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
         .pilot-bar-item .lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        @media (max-width: 968px) {
+        @media (max-width: 1300px) {
             header { height: 80px; }
             .hamburger { display: block; }
             nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
@@ -256,7 +258,30 @@
         </nav>
     </header>
 
-    <!-- SECTION 1: HERO -->
+    <!-- SECTION 1: DECISION SYSTEMS / DEFENSE -->
+    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-bottom: 1px solid rgba(34,197,94,0.15);">
+        <div class="content">
+            <h2>Decision Intelligence for Defense</h2>
+            <h1>AI for Decision Systems</h1>
+            <p class="description">
+                Commercial lending is where we've proven it at scale. The same governed, multi-agent reasoning engine — fuse every data source, generate the recommendation, keep a human in command of the final call, audit every step after the fact — is exactly what modern mission command needs: a decision system, not another dashboard. This is where we're taking the platform next.
+            </p>
+            <a href="tactical.html" class="btn btn-outline">See It in Action</a>
+            <div class="win-grid" style="margin-top: 40px;">
+                <div class="win-card">
+                    <h4>Mission Planning AI — In Development</h4>
+                    <p>A system that pulls intelligence, logistics, terrain and unit-status feeds into a single operating picture, and lets AI draft, war-game and continuously update the mission plan itself — with commander approval built into every decision point, not a form filled out after the fact.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Real-Time Threat Identification — Live</h4>
+                    <p>Multi-agent fusion — kinematic, signature/IFF, and context — classifying tracks in real time against BLUE/RED/AMBER/GREEN NATO convention. Running today on our tactical radar demo.</p>
+                    <a href="tactical.html" class="card-link">View Tactical Demo &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1B: HERO -->
     <section id="hero">
         <div class="content">
             <h2>AI Workbench + BusinessBANKER</h2>
@@ -275,28 +300,6 @@
                     <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
                     <div class="client-logo">CMC</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 1B: DECISION SYSTEMS / DEFENSE -->
-    <section class="compact-section" id="decision-systems" style="background: rgba(34,197,94,0.03); border-top: 1px solid rgba(34,197,94,0.15); border-bottom: 1px solid rgba(34,197,94,0.15);">
-        <div class="content">
-            <h2>Decision Intelligence for Defense</h2>
-            <h1>AI for Decision Systems</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Commercial lending is where we've proven it at scale. The same governed, multi-agent reasoning engine — fuse every data source, generate the recommendation, keep a human in command of the final call, audit every step after the fact — is exactly what modern mission command needs: a decision system, not another dashboard. This is where we're taking the platform next.
-            </p>
-            <div class="win-grid" style="margin-top: 40px;">
-                <div class="win-card">
-                    <h4>Mission Planning AI — In Development</h4>
-                    <p>A system that pulls intelligence, logistics, terrain and unit-status feeds into a single operating picture, and lets AI draft, war-game and continuously update the mission plan itself — with commander approval built into every decision point, not a form filled out after the fact.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Real-Time Threat Identification — Live</h4>
-                    <p>Multi-agent fusion — kinematic, signature/IFF, and context — classifying tracks in real time against BLUE/RED/AMBER/GREEN NATO convention. Running today on our tactical radar demo.</p>
-                    <a href="tactical.html" class="card-link">View Tactical Demo &rarr;</a>
                 </div>
             </div>
         </div>
