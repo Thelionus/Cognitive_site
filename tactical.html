@@ -7,7 +7,7 @@
 <title>TACTICAL — Cognitive Systems</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-:root{--crt-green:#00ff41;--crt-dim:#00aa2a;--crt-amber:#f59e0b;--crt-red:#ef4444;--crt-blue:#3b82f6;--crt-bg:#000800;--panel-bg:rgba(0,12,0,0.88);--panel-border:#00ff4144}
+:root{--crt-green:#00ff41;--crt-dim:#00aa2a;--crt-amber:#f59e0b;--crt-red:#ef4444;--crt-blue:#3b82f6;--crt-grey:#8b98a5;--crt-bg:#000800;--panel-bg:rgba(0,12,0,0.88);--panel-border:#00ff4144}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--crt-bg);color:var(--crt-green);font-family:'Courier New',monospace;font-size:12px;overflow:hidden;height:100vh}
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:9999}
@@ -17,21 +17,27 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tac-nav .logo{color:var(--crt-green);font-weight:bold;font-size:14px;letter-spacing:2px}
 .tac-nav a{color:var(--crt-dim);text-decoration:none;font-size:11px;letter-spacing:1px}
 .tac-nav a:hover,.tac-nav a.active{color:var(--crt-green)}
+.mode-tabs{display:flex;gap:2px;margin-left:8px}
+.mode-tab{background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-family:'Courier New',monospace;font-size:10px;letter-spacing:1px;padding:5px 10px;cursor:pointer}
+.mode-tab.active{color:var(--crt-bg);background:var(--crt-green);border-color:var(--crt-green);font-weight:bold}
 .panel{position:fixed;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 12px;z-index:500;backdrop-filter:blur(4px)}
-.panel-title{color:var(--crt-green);font-size:10px;letter-spacing:2px;border-bottom:1px solid var(--panel-border);padding-bottom:4px;margin-bottom:8px;font-weight:bold}
+.panel-title{color:var(--crt-green);font-size:10px;letter-spacing:2px;border-bottom:1px solid var(--panel-border);padding-bottom:4px;margin-bottom:8px;font-weight:bold;display:flex;justify-content:space-between}
 .sl{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
 .sl .lbl{color:var(--crt-dim)}.sl .val{color:var(--crt-green)}
-.val-r{color:var(--crt-red)!important}.val-a{color:var(--crt-amber)!important}.val-b{color:var(--crt-blue)!important}
+.val-r{color:var(--crt-red)!important}.val-a{color:var(--crt-amber)!important}.val-b{color:var(--crt-blue)!important}.val-g{color:var(--crt-grey)!important}
 #panel-radar{top:46px;left:10px;width:220px}
 #panel-agents{top:46px;right:10px;width:260px}
 #panel-track{top:46px;right:260px;width:260px;display:none}
 #panel-legend{bottom:10px;left:10px;width:220px}
+#panel-layers{top:46px;left:240px;width:200px;display:none}
+#panel-evidence{top:46px;right:10px;width:300px;display:none;max-height:calc(100vh - 130px);overflow-y:auto}
 .ag-row{margin-bottom:6px}
 .ag-hdr{display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px;gap:4px}
 .ag-nm{color:var(--crt-dim)}.ag-pct{color:var(--crt-green)}
 .ag-bar{height:4px;background:rgba(0,255,65,0.15);border:1px solid var(--panel-border)}
 .ag-fill{height:100%;background:var(--crt-green);transition:width 0.5s}
 .fusion{border-top:1px solid var(--panel-border);padding-top:6px;margin-top:6px;font-size:11px;display:flex;justify-content:space-between}
+.disclaimer{margin-top:6px;font-size:9.5px;color:var(--crt-dim);line-height:1.5;border-top:1px solid var(--panel-border);padding-top:5px}
 .tr-row{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
 .tr-lbl{color:var(--crt-dim)}.tr-val{color:var(--crt-green)}
 .tr-val.h{color:var(--crt-red)}.tr-val.p{color:var(--crt-amber)}.tr-val.f{color:var(--crt-blue)}
@@ -40,51 +46,92 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .cbanner.RED{color:var(--crt-red);border-color:var(--crt-red);background:rgba(239,68,68,0.1)}
 .cbanner.AMBER{color:var(--crt-amber);border-color:var(--crt-amber);background:rgba(245,158,11,0.1)}
 .cbanner.GREEN{color:var(--crt-green);border-color:var(--crt-green);background:rgba(0,255,65,0.05)}
+.cbanner.GREY{color:var(--crt-grey);border-color:var(--crt-grey);background:rgba(139,152,165,0.08)}
 .leg-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px}
 .leg-sym{width:18px;text-align:center;font-size:13px}
 @keyframes blink{50%{opacity:0}}
 .blink{animation:blink 1s step-end infinite}
 .leaflet-control-attribution,.leaflet-control-zoom{display:none}
+
+/* --- SCENARIO MODE --- */
+#scenario-banner{position:fixed;top:36px;left:0;right:0;z-index:900;display:none;background:rgba(245,158,11,0.12);border-bottom:1px solid var(--crt-amber);color:var(--crt-amber);text-align:center;padding:5px 10px;font-size:10.5px;letter-spacing:1px}
+#scenario-banner b{letter-spacing:1.5px}
+.evd-field{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--panel-border)}
+.evd-field:last-of-type{border-bottom:none}
+.evd-k{font-size:9.5px;color:var(--crt-dim);letter-spacing:1px;display:flex;justify-content:space-between;margin-bottom:2px}
+.evd-v{font-size:12.5px;color:var(--crt-green);font-weight:bold}
+.conf-tag{font-size:8.5px;padding:1px 6px;border-radius:8px;letter-spacing:0.5px;font-weight:bold}
+.conf-observed{background:rgba(0,255,65,0.15);color:var(--crt-green);border:1px solid var(--crt-green)}
+.conf-inferred{background:rgba(245,158,11,0.15);color:var(--crt-amber);border:1px solid var(--crt-amber)}
+.conf-simulated{background:rgba(59,130,246,0.15);color:var(--crt-blue);border:1px solid var(--crt-blue)}
+.conf-missing{background:rgba(139,152,165,0.15);color:var(--crt-grey);border:1px solid var(--crt-grey)}
+.evd-src{font-size:9.5px;color:var(--crt-dim);margin-top:2px}
+.evd-log-title{font-size:10px;color:var(--crt-green);letter-spacing:1px;margin:10px 0 6px;border-top:1px solid var(--panel-border);padding-top:8px}
+.evd-log-row{font-size:10.5px;line-height:1.5;margin-bottom:7px;padding-left:8px;border-left:2px solid var(--panel-border)}
+.evd-log-t{color:var(--crt-dim);font-size:9.5px;display:block}
+.evd-empty{font-size:10.5px;color:var(--crt-dim);text-align:center;padding:20px 0}
+.layer-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:11px;cursor:pointer}
+.layer-row input{accent-color:var(--crt-green)}
+.layer-count{margin-left:auto;color:var(--crt-dim);font-size:10px}
+
+#timeline-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:800;display:none;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 16px;width:min(760px,88vw);backdrop-filter:blur(4px)}
+.tl-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#tl-play{background:transparent;border:1px solid var(--crt-green);color:var(--crt-green);font-family:'Courier New',monospace;font-size:11px;padding:4px 10px;cursor:pointer;letter-spacing:1px}
+#tl-scrub{flex:1;accent-color:var(--crt-green)}
+#tl-clock{font-size:11px;color:var(--crt-green);min-width:68px;text-align:right}
+.tl-act{font-size:10px;color:var(--crt-amber);letter-spacing:1.5px;text-align:center}
+.tl-desc{font-size:10px;color:var(--crt-dim);text-align:center;margin-top:3px;line-height:1.5}
+
+@media (max-width:900px){
+  #panel-agents,#panel-track,#panel-evidence{right:10px;left:auto}
+  #panel-layers{left:10px;top:220px}
+  #panel-radar{display:none}
+  #timeline-bar{width:92vw}
+}
 </style>
 </head>
 <body>
 <nav class="tac-nav">
   <span class="logo">COGNITV / TAC</span>
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-live" onclick="setMode('live')">LIVE TRAFFIC</button>
+    <button class="mode-tab" id="tab-scenario" onclick="setMode('scenario')">SCENARIO: OPS CENTER</button>
+  </div>
   <a href="index.html">HOME</a>
   <a href="live-flights.html">LIVE FLIGHTS</a>
-  <a href="tactical.html" class="active">TACTICAL</a>
   <a href="contact.html">CONTACT</a>
   <span style="margin-left:auto;color:var(--crt-dim);font-size:10px" id="sys-clock">--:--:-- UTC</span>
 </nav>
 
+<div id="scenario-banner">⚠ <b>SIMULATED SCENARIO</b> — every track, event and source below is scripted for demonstration. No real sensor, unit or location is represented.</div>
+
 <div id="map"></div>
 <canvas id="radar-canvas"></canvas>
 
+<!-- LIVE MODE PANELS -->
 <div class="panel" id="panel-radar">
-  <div class="panel-title">RADAR STATUS</div>
+  <div class="panel-title"><span>RADAR STATUS</span></div>
   <div class="sl"><span class="lbl">STATUS</span><span class="val">ACTIVE <span class="blink">█</span></span></div>
-  <div class="sl"><span class="lbl">MODE</span><span class="val">SEARCH</span></div>
+  <div class="sl"><span class="lbl">SOURCE</span><span class="val">ADS-B (adsb.lol)</span></div>
   <div class="sl"><span class="lbl">RANGE</span><span class="val">140 km</span></div>
-  <div class="sl"><span class="lbl">SWEEP</span><span class="val">6 RPM</span></div>
-  <div class="sl"><span class="lbl">FREQ</span><span class="val">S-BAND 3GHz</span></div>
-  <div class="sl"><span class="lbl">PRF</span><span class="val">1200 Hz</span></div>
+  <div class="sl"><span class="lbl">SWEEP</span><span class="val">6 RPM (cosmetic)</span></div>
   <div style="border-top:1px solid var(--panel-border);margin-top:6px;padding-top:4px">
     <div class="sl"><span class="lbl">TRACKS</span><span class="val" id="r-tracks">—</span></div>
-    <div class="sl"><span class="lbl">HOSTILE</span><span class="val val-r" id="r-hostile">—</span></div>
-    <div class="sl"><span class="lbl">PENDING</span><span class="val val-a" id="r-pending">—</span></div>
-    <div class="sl"><span class="lbl">FRIENDLY</span><span class="val val-b" id="r-friendly">—</span></div>
+    <div class="sl"><span class="lbl">FLAGGED</span><span class="val val-r" id="r-hostile">—</span></div>
+    <div class="sl"><span class="lbl">WATCH</span><span class="val val-a" id="r-pending">—</span></div>
+    <div class="sl"><span class="lbl">MIL-FLAGGED</span><span class="val val-b" id="r-friendly">—</span></div>
     <div class="sl"><span class="lbl">UPDATED</span><span class="val" id="r-updated">—</span></div>
   </div>
 </div>
 
 <div class="panel" id="panel-agents">
-  <div class="panel-title">AI FUSION AGENTS</div>
+  <div class="panel-title"><span>FUSION SCORE (HEURISTIC)</span></div>
   <div class="ag-row">
     <div class="ag-hdr"><span class="ag-nm">KINEMATIC</span><span class="ag-nm">35%</span><span class="ag-pct" id="a-kin-pct">—%</span></div>
     <div class="ag-bar"><div class="ag-fill" id="a-kin-bar" style="width:0%"></div></div>
   </div>
   <div class="ag-row">
-    <div class="ag-hdr"><span class="ag-nm">SIGNATURE/IFF</span><span class="ag-nm">45%</span><span class="ag-pct" id="a-sig-pct">—%</span></div>
+    <div class="ag-hdr"><span class="ag-nm">REGISTRY/ID</span><span class="ag-nm">45%</span><span class="ag-pct" id="a-sig-pct">—%</span></div>
     <div class="ag-bar"><div class="ag-fill" id="a-sig-bar" style="width:0%"></div></div>
   </div>
   <div class="ag-row">
@@ -92,22 +139,23 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <div class="ag-bar"><div class="ag-fill" id="a-ctx-bar" style="width:0%"></div></div>
   </div>
   <div class="fusion">
-    <span style="color:var(--crt-dim)">FUSION THREAT</span>
+    <span style="color:var(--crt-dim)">FUSION SCORE</span>
     <span id="a-fusion" style="color:var(--crt-green)">—%</span>
   </div>
   <div style="margin-top:4px;font-size:10px;color:var(--crt-dim)" id="a-basis">NO TRACK SELECTED — FLEET AVG</div>
+  <div class="disclaimer">Score is computed client-side from public ADS-B fields (speed, altitude, registry match). It is not a military sensor output.</div>
 </div>
 
 <div class="panel" id="panel-track">
-  <div class="panel-title">TRACK DETAIL <span style="float:right;cursor:pointer;color:var(--crt-dim)" onclick="clearTrack()">✕</span></div>
+  <div class="panel-title"><span>TRACK DETAIL</span><span style="cursor:pointer;color:var(--crt-dim)" onclick="clearTrack()">✕</span></div>
   <div class="cbanner GREEN" id="t-class-banner">—</div>
   <div class="tr-row"><span class="tr-lbl">TRACK ID</span><span class="tr-val" id="t-hex">—</span></div>
   <div class="tr-row"><span class="tr-lbl">CALLSIGN</span><span class="tr-val" id="t-call">—</span></div>
   <div class="tr-row"><span class="tr-lbl">RANGE</span><span class="tr-val" id="t-range">—</span></div>
   <div class="tr-row"><span class="tr-lbl">AZIMUTH</span><span class="tr-val" id="t-azm">—</span></div>
-  <div class="tr-row"><span class="tr-lbl">DOPPLER</span><span class="tr-val" id="t-dop">—</span></div>
-  <div class="tr-row"><span class="tr-lbl">RCS</span><span class="tr-val" id="t-rcs">—</span></div>
-  <div class="tr-row"><span class="tr-lbl">IFF</span><span class="tr-val" id="t-iff">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">CLOSING RATE†</span><span class="tr-val" id="t-dop">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">EST. RCS‡</span><span class="tr-val" id="t-rcs">—</span></div>
+  <div class="tr-row"><span class="tr-lbl">REGISTRY MATCH§</span><span class="tr-val" id="t-iff">—</span></div>
   <div class="tr-row"><span class="tr-lbl">ALTITUDE</span><span class="tr-val" id="t-alt">—</span></div>
   <div class="tr-row"><span class="tr-lbl">SPEED</span><span class="tr-val" id="t-gs">—</span></div>
   <div class="tr-row"><span class="tr-lbl">HEADING</span><span class="tr-val" id="t-hdg">—</span></div>
@@ -116,19 +164,47 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="tr-row"><span class="tr-lbl">COUNTRY</span><span class="tr-val" id="t-ctry">—</span></div>
   <div class="tr-row"><span class="tr-lbl">ROLE</span><span class="tr-val" id="t-role">—</span></div>
   <div style="border-top:1px solid var(--panel-border);margin-top:4px;padding-top:4px">
-    <div class="tr-row"><span class="tr-lbl">HOSTILE %</span><span class="tr-val" id="t-hostile-pct">—</span></div>
+    <div class="tr-row"><span class="tr-lbl">FUSION SCORE</span><span class="tr-val" id="t-hostile-pct">—</span></div>
   </div>
+  <div class="disclaimer">Position, altitude, speed and heading are observed (ADS-B). † derived from reported velocity, not a radar return. ‡ estimated from aircraft type, not measured. § a registry/callsign check, not a military IFF interrogation.</div>
 </div>
 
 <div class="panel" id="panel-legend">
-  <div class="panel-title">NATO CLASSIFICATION</div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-blue)">⊕</span><span>BLUE — Friendly (military)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-red)">◆</span><span>RED — Hostile (threat)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">◌</span><span>AMBER — Pending (review)</span></div>
+  <div class="panel-title"><span>NATO CLASSIFICATION</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-blue)">⊕</span><span>BLUE — Military-flagged (registry)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-red)">◆</span><span>RED — Flagged (review)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">◌</span><span>AMBER — Watch (review)</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">·</span><span>GREEN — Clear (civil)</span></div>
   <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
     ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
   </div>
+</div>
+
+<!-- SCENARIO MODE PANELS -->
+<div class="panel" id="panel-layers">
+  <div class="panel-title"><span>LAYERS</span></div>
+  <label class="layer-row"><input type="checkbox" checked data-layer="drone" onchange="toggleLayer(this)"><span>Drones</span><span class="layer-count" id="lc-drone">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-layer="missile" onchange="toggleLayer(this)"><span>Missile Alerts</span><span class="layer-count" id="lc-missile">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-layer="troop" onchange="toggleLayer(this)"><span>Troops</span><span class="layer-count" id="lc-troop">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-layer="vehicle" onchange="toggleLayer(this)"><span>Vehicles / Convoys</span><span class="layer-count" id="lc-vehicle">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-layer="mobile" onchange="toggleLayer(this)"><span>Mobile Assets</span><span class="layer-count" id="lc-mobile">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-layer="infra" onchange="toggleLayer(this)"><span>Fixed Infrastructure</span><span class="layer-count" id="lc-infra">—</span></label>
+  <div class="disclaimer">All positions are simulated unit reports and vehicle telemetry, each carrying its own timestamp and confidence.</div>
+</div>
+
+<div class="panel" id="panel-evidence">
+  <div class="panel-title"><span>EVIDENCE PANEL</span><span style="cursor:pointer;color:var(--crt-dim)" onclick="clearScenarioSelection()">✕</span></div>
+  <div id="evd-body"><div class="evd-empty">Select any object on the map to see what was observed, inferred, or missing — and why the assessment changed.</div></div>
+</div>
+
+<div id="timeline-bar">
+  <div class="tl-top">
+    <button id="tl-play" onclick="togglePlay()">▶ PLAY</button>
+    <input type="range" id="tl-scrub" min="0" max="200" value="0" oninput="scrubTo(this.value)">
+    <span id="tl-clock">14:00:00</span>
+  </div>
+  <div class="tl-act" id="tl-act">ACT 1 · NORMAL OPERATIONS</div>
+  <div class="tl-desc" id="tl-desc">Troop transports and supply vehicles move on schedule while known drones operate overhead.</div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -137,7 +213,9 @@ const YUL_LAT=45.4706,YUL_LON=-73.7408;
 const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
 const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 const R_EARTH=6371;
-const NATO_COLOR={BLUE:'#3b82f6',RED:'#ef4444',AMBER:'#f59e0b',GREEN:'#00ff41'};
+const NATO_COLOR={BLUE:'#3b82f6',RED:'#ef4444',AMBER:'#f59e0b',GREEN:'#00ff41',GREY:'#8b98a5'};
+
+let mode='live';
 
 const map=L.map('map',{zoomControl:false,attributionControl:false}).setView([YUL_LAT,YUL_LON],7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(map);
@@ -154,12 +232,18 @@ const SWEEP_SPEED=(2*Math.PI)/(10*60);
 function toRad(d){return d*Math.PI/180;}
 function haversine(la1,lo1,la2,lo2){const dLa=toRad(la2-la1),dLo=toRad(lo2-lo1),a=Math.sin(dLa/2)**2+Math.cos(toRad(la1))*Math.cos(toRad(la2))*Math.sin(dLo/2)**2;return R_EARTH*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
 function bearing(la1,lo1,la2,lo2){const dLo=toRad(lo2-lo1),y=Math.sin(dLo)*Math.cos(toRad(la2)),x=Math.cos(toRad(la1))*Math.sin(toRad(la2))-Math.sin(toRad(la1))*Math.cos(toRad(la2))*Math.cos(dLo);return(Math.atan2(y,x)*180/Math.PI+360)%360;}
+
+/* ============================================================
+   LIVE MODE — real ADS-B feed. RCS/closing-rate/registry check
+   are all derived client-side from public fields; none of this
+   is a real radar or IFF reading (see panel disclaimers).
+   ============================================================ */
 function getRCS(ac){const t=(ac.t||ac.type||'').toUpperCase(),tbl={A320:30,A319:28,A321:32,A330:45,A350:50,A380:80,B737:25,B738:25,B752:30,B763:40,B777:55,B788:50,C17:60,C130:35,E3:55,P8:20};for(const[k,v]of Object.entries(tbl))if(t.includes(k))return v;return 15;}
 function getDoppler(ac,azm){return Math.round((ac.gs||0)*Math.cos(toRad((ac.track||0)-azm)));}
-function getIFF(ac){if((ac.mil===true||ac.mil===1)&&(ac.flight||'').trim())return'MODE 4/5 IFF';if(ac.threat_level===0)return'MODE 3/S';if((ac.flight||'').trim())return'MODE 3 ONLY';return'NO RESPONSE';}
+function getIFF(ac){if((ac.mil===true||ac.mil===1)&&(ac.flight||'').trim())return'MATCHED (military-flagged)';if(ac.threat_level===0)return'MATCHED (civil)';if((ac.flight||'').trim())return'PARTIAL (no registry match)';return'UNMATCHED (no callsign)';}
 
 function scoreKinematic(ac){let s=0;if((ac.gs||0)>550)s+=30;if((ac.alt_baro||0)>40000)s+=20;const azm=bearing(YUL_LAT,YUL_LON,ac.lat,ac.lon);if(getDoppler(ac,azm)<-400)s+=20;return Math.min(s,100);}
-function scoreSignature(ac){let s=0;if(getIFF(ac)==='NO RESPONSE')s+=50;if(ac.threat_level===2)s+=40;else if(ac.threat_level===1)s+=20;if(ac.mil===true||ac.mil===1)s+=10;if(getRCS(ac)<5)s+=30;return Math.min(s,100);}
+function scoreSignature(ac){let s=0;if(getIFF(ac)==='UNMATCHED (no callsign)')s+=50;if(ac.threat_level===2)s+=40;else if(ac.threat_level===1)s+=20;if(ac.mil===true||ac.mil===1)s+=10;if(getRCS(ac)<5)s+=30;return Math.min(s,100);}
 function scoreContext(ac){let s=0;const r=haversine(YUL_LAT,YUL_LON,ac.lat,ac.lon);if(r<15&&!(ac.flight||'').trim())s+=40;if(ac.ladd===true||ac.ladd===1)s+=20;if(['7500','7600','7700'].includes(ac.squawk||''))s+=30;return Math.min(s,100);}
 function computeFusion(ac){const k=scoreKinematic(ac),s=scoreSignature(ac),c=scoreContext(ac);return{k,s,c,pct:Math.min(Math.round(0.35*k+0.45*s+0.20*c),100)};}
 function getNATO(ac,f){if((ac.mil===true||ac.mil===1)&&ac.threat_level<2)return'BLUE';if(f.pct>=60||ac.threat_level===2)return'RED';if(f.pct>=30)return'AMBER';return'GREEN';}
@@ -220,6 +304,7 @@ function fleetAvg(){
 }
 
 function renderTracks(){
+  if(mode!=='live')return;
   const seen=new Set();let hostile=0,pending=0,friendly=0;
   allAircraft.forEach(ac=>{
     if(!ac.lat||!ac.lon)return;
@@ -240,18 +325,19 @@ function renderTracks(){
 }
 
 function selectTrack(hex){
+  if(mode!=='live')return;
   selectedHex=hex;const m=markers[hex];if(!m)return;
   const{ac,f,nato}=m._tac;
   document.getElementById('panel-track').style.display='block';
   const azm=bearing(YUL_LAT,YUL_LON,ac.lat,ac.lon),range=haversine(YUL_LAT,YUL_LON,ac.lat,ac.lon),dop=getDoppler(ac,azm),rcs=getRCS(ac),iff=getIFF(ac);
   const b=document.getElementById('t-class-banner');
-  b.textContent=nato+' — '+{BLUE:'FRIENDLY',RED:'HOSTILE',AMBER:'PENDING',GREEN:'CLEAR'}[nato];
+  b.textContent=nato+' — '+{BLUE:'MIL-FLAGGED',RED:'FLAGGED',AMBER:'WATCH',GREEN:'CLEAR'}[nato];
   b.className='cbanner '+nato;
   const sv=(id,v,cls='')=>{const e=document.getElementById(id);e.textContent=v||'—';e.className='tr-val '+(cls||'');};
   sv('t-hex',hex.toUpperCase());sv('t-call',(ac.flight||'').trim()||'NO CALLSIGN',(ac.flight||'').trim()?'':'h');
   sv('t-range',range.toFixed(1)+' km');sv('t-azm',Math.round(azm)+'°T');
   sv('t-dop',dop+' kts '+(dop<0?'(CLOSING)':dop>0?'(RECEDING)':''));
-  sv('t-rcs','~'+rcs+' m²');sv('t-iff',iff,iff==='NO RESPONSE'?'h':'');
+  sv('t-rcs','~'+rcs+' m²');sv('t-iff',iff,iff.startsWith('UNMATCHED')?'h':'');
   sv('t-alt',ac.alt_baro?ac.alt_baro.toLocaleString()+' ft':'—');sv('t-gs',ac.gs?ac.gs+' kts':'—');sv('t-hdg',ac.track?Math.round(ac.track)+'°':'—');
   sv('t-reg',ac.registration||ac.r||'—');sv('t-op',ac.operator||ac.ownOp||'—');sv('t-ctry',ac.country||'—');sv('t-role',ac.role||'—');
   const pe=document.getElementById('t-hostile-pct');pe.textContent=f.pct+'%';pe.className='tr-val '+(f.pct>=60?'h':f.pct>=30?'p':'');
@@ -267,6 +353,230 @@ function animate(){drawRadar();requestAnimationFrame(animate);}
 
 loadThreatsOverlay().then(()=>{fetchFlights();setInterval(fetchFlights,10000);});
 animate();
+
+/* ============================================================
+   SCENARIO MODE — fully scripted, fictional operations-center
+   demo. Nothing here is sourced from a live feed. Every keyframe
+   carries its own timestamp, source label and confidence
+   (observed / inferred / simulated / missing) so the evidence
+   panel can show exactly what changed and why.
+   ============================================================ */
+const SCENARIO_LEN=200; // seconds of fictional scenario time
+const ACTS=[
+  {start:0,  end:50, label:'ACT 1 · NORMAL OPERATIONS', desc:'Troop transports and supply vehicles move on schedule while known drones operate overhead.'},
+  {start:50, end:100,label:'ACT 2 · ALERT DEVELOPS',     desc:'An unidentified drone appears and a missile alert is reported. The panel shows what supports it.'},
+  {start:100,end:150,label:'ACT 3 · PICTURE BECOMES AMBIGUOUS', desc:'A convoy stops reporting, a drone track drops, and two sources disagree on a position.'},
+  {start:150,end:SCENARIO_LEN,label:'ACT 4 · EVIDENCE CHANGES THE ASSESSMENT', desc:'Delayed reports and follow-up checks revise earlier calls. The log explains each revision.'}
+];
+
+// aff: BLUE/RED/AMBER/GREEN/GREY   conf: observed/inferred/simulated/missing
+const ENTITIES=[
+ {id:'D-701',type:'drone',label:'D-701 · Recon UAS',kf:[
+   {t:0,lat:45.480,lon:-73.760,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)',note:'On patrol, nominal fuel state.'},
+   {t:50,lat:45.475,lon:-73.745,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)'},
+   {t:62,lat:45.475,lon:-73.745,aff:'BLUE',conf:'missing',status:'Datalink dropout',source:'Own UAS telemetry (sim)',note:'No telemetry received for 45s. Last known position shown.'},
+   {t:150,lat:45.470,lon:-73.730,aff:'BLUE',conf:'observed',status:'Reacquired',source:'Own UAS telemetry (sim)',note:'Datalink restored automatically; position updated.'}
+ ]},
+ {id:'D-702',type:'drone',label:'D-702 · Unidentified UAS',kf:[
+   {t:52,lat:45.500,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Unknown contact',source:'Ground observer report (sim)',note:'Small UAS reported by a single observer near the perimeter.'},
+   {t:90,lat:45.495,lon:-73.710,aff:'AMBER',conf:'inferred',status:'Corroborated',source:'2nd ground observer (sim)',note:'Second, independent observer reports a matching track.'},
+   {t:172,lat:45.490,lon:-73.715,aff:'GREEN',conf:'observed',status:'Cleared — civil',source:'Operator registry cross-check (sim)',note:'Flight path matches a registered utility-survey operator. Reclassified from AMBER to GREEN.'}
+ ]},
+ {id:'D-703',type:'drone',label:'D-703 · Passive contact',kf:[
+   {t:106,lat:45.460,lon:-73.775,aff:'AMBER',conf:'inferred',status:'Passive detection',source:'Passive RF sensor (sim)',note:'Detected by emissions only; no visual or ADS-B correlation.'},
+   {t:128,lat:45.460,lon:-73.775,aff:'GREY',conf:'missing',status:'Contact lost',source:'Passive RF sensor (sim)',note:'No further detections. Track dropped — status remains unresolved for the rest of this scenario.'}
+ ]},
+ {id:'MSL-1',type:'missile',label:'MSL-1 · Reported aerial threat',kf:[
+   {t:56,lat:45.510,lon:-73.690,aff:'AMBER',conf:'inferred',status:'Reported',threat:'Possible inbound (unconfirmed)',source:'Acoustic sensor net (sim)',note:'Single acoustic sensor reports a launch signature. Confidence: low.'},
+   {t:102,lat:45.508,lon:-73.686,aff:'AMBER',conf:'inferred',status:'Disputed',threat:'Possible inbound (bearing disputed)',source:'2nd acoustic node (sim)',note:'A second sensor node reports a conflicting bearing for the same event window.'},
+   {t:162,lat:45.508,lon:-73.686,aff:'GREEN',conf:'observed',status:'Resolved — false alarm',threat:'Cleared: decoy/flare, not a missile',source:'Visual confirmation (sim)',note:'A ground observer visually confirms the source was a flare deployment, not a missile. Assessment downgraded from AMBER to GREEN.'}
+ ]},
+ {id:'TRP-ALPHA',type:'troop',label:'Unit Alpha (BLUE)',kf:[
+   {t:0,lat:45.472,lon:-73.755,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
+   {t:50,lat:45.468,lon:-73.740,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
+   {t:104,lat:45.468,lon:-73.740,aff:'BLUE',conf:'missing',status:'No report — comms blackout',source:'Unit position report (sim)',note:'Last confirmed position held. No report received for over 60s.'},
+   {t:174,lat:45.465,lon:-73.725,aff:'BLUE',conf:'observed',status:'Moving — comms restored',source:'Unit position report (sim, delayed ~70s)',note:'A delayed report arrives and restores current position.'}
+ ]},
+ {id:'TRP-BRAVO',type:'troop',label:'Unit Bravo (BLUE)',kf:[
+   {t:0,lat:45.478,lon:-73.770,aff:'BLUE',conf:'observed',status:'Garrisoned',source:'Unit position report (sim)'}
+ ]},
+ {id:'CONVOY-1',type:'vehicle',label:'Convoy 1 · Logistics resupply',kf:[
+   {t:0,lat:45.485,lon:-73.735,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
+   {t:60,lat:45.480,lon:-73.720,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
+   {t:112,lat:45.480,lon:-73.720,aff:'BLUE',conf:'missing',status:'Stopped reporting',source:'Vehicle telemetry (sim)',note:'Telemetry stopped mid-route. Cause unknown at this point.'},
+   {t:168,lat:45.478,lon:-73.715,aff:'BLUE',conf:'observed',status:'Moving — status restored',source:'Vehicle telemetry (sim, delayed)',note:'A delayed status message restores the convoy’s position and confirms it resumed movement.'}
+ ]},
+ {id:'CONVOY-2',type:'vehicle',label:'Convoy 2 · Unidentified group',kf:[
+   {t:58,lat:45.455,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Moving',source:'Satellite pass (sim)'},
+   {t:107,lat:45.450,lon:-73.705,aff:'AMBER',conf:'inferred',status:'Position disputed',source:'Satellite pass vs. ground observer (sim)',note:'Satellite pass places the group ~700m from where a ground observer reports it at the same timestamp. Sources disagree.'},
+   {t:171,lat:45.449,lon:-73.700,aff:'AMBER',conf:'observed',status:'Reconciled',source:'Sensor fusion, timestamp-corrected (sim)',note:'Re-checking observation times shows the ground report was logged 40s late; positions actually agree once corrected.'}
+ ]},
+ {id:'COMMS-1',type:'mobile',label:'Comms Vehicle 1 (BLUE)',kf:[
+   {t:0,lat:45.482,lon:-73.768,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)'},
+   {t:112,lat:45.482,lon:-73.768,aff:'BLUE',conf:'inferred',status:'Degraded',source:'Network status feed (sim)',note:'Signal interference reported in this sector.'},
+   {t:170,lat:45.482,lon:-73.768,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)',note:'Connectivity restored.'}
+ ]},
+ {id:'MEDIC-1',type:'mobile',label:'Medical Support 1 (BLUE)',kf:[
+   {t:0,lat:45.490,lon:-73.780,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)'},
+   {t:54,lat:45.475,lon:-73.750,aff:'BLUE',conf:'observed',status:'Deployed',source:'Unit status (sim)',note:'Deployed forward in response to the developing situation.'},
+   {t:164,lat:45.490,lon:-73.780,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)',note:'Returned to standby.'}
+ ]},
+ {id:'HOSP-1',type:'infra',label:'Hospital 1',kf:[
+   {t:0,lat:45.492,lon:-73.745,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'},
+   {t:112,lat:45.492,lon:-73.745,aff:'AMBER',conf:'inferred',status:'Minor incident',source:'Facility status feed (sim)',note:'Power fluctuation reported; no impact confirmed yet.'},
+   {t:170,lat:45.492,lon:-73.745,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)',note:'Fluctuation resolved; no impact to operations.'}
+ ]},
+ {id:'BRIDGE-1',type:'infra',label:'Bridge 1 · Critical route',kf:[
+   {t:0,lat:45.465,lon:-73.700,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'},
+   {t:101,lat:45.465,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Unconfirmed damage report',source:'Field report (sim)',note:'Unverified report of structural damage; route flagged pending inspection.'},
+   {t:161,lat:45.465,lon:-73.700,aff:'GREEN',conf:'observed',status:'Normal — inspected',source:'Field inspection (sim)',note:'On-site inspection finds no damage. Earlier report retracted.'}
+ ]},
+ {id:'POWER-1',type:'infra',label:'Power Facility 1',kf:[
+   {t:0,lat:45.500,lon:-73.760,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'}
+ ]},
+ {id:'COMMS-TWR-1',type:'infra',label:'Comms Tower 1',kf:[
+   {t:0,lat:45.458,lon:-73.720,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'}
+ ]}
+];
+
+let simT=0,playing=false,playTimer=null,selectedEntity=null;
+let scenarioMarkers={};
+const layerVisible={drone:true,missile:true,troop:true,vehicle:true,mobile:true,infra:true};
+
+function stateAt(entity,t){
+  const past=entity.kf.filter(k=>k.t<=t);
+  return past.length?past[past.length-1]:entity.kf[0];
+}
+function historyAt(entity,t){return entity.kf.filter(k=>k.t<=t);}
+
+function fmtClock(t){
+  const base=14*3600; const s=base+Math.floor(t);
+  const hh=String(Math.floor(s/3600)%24).padStart(2,'0');
+  const mm=String(Math.floor((s%3600)/60)).padStart(2,'0');
+  const ss=String(Math.floor(s%60)).padStart(2,'0');
+  return `${hh}:${mm}:${ss}`;
+}
+
+const TYPE_LETTER={drone:'D',missile:'!',troop:'T',vehicle:'V',mobile:'A',infra:'I'};
+function scenarioIcon(type,aff,conf){
+  const col=NATO_COLOR[aff]||NATO_COLOR.GREY;
+  const faded=(conf==='missing');
+  const dashed=(conf==='inferred');
+  const op=faded?0.4:1;
+  const dash=dashed?'stroke-dasharray="3 2"':'';
+  let shape='';
+  if(type==='drone')shape=`<polygon points="11,2 20,11 11,20 2,11" fill="none" stroke="${col}" stroke-width="1.6" ${dash}/>`;
+  else if(type==='missile')shape=`<polygon points="11,2 20,19 2,19" fill="rgba(245,158,11,0.12)" stroke="${col}" stroke-width="1.8" ${dash}/>`;
+  else if(type==='troop')shape=`<rect x="3" y="5" width="16" height="12" fill="none" stroke="${col}" stroke-width="1.8" ${dash}/>`;
+  else if(type==='vehicle')shape=`<rect x="2" y="7" width="18" height="9" rx="2" fill="none" stroke="${col}" stroke-width="1.8" ${dash}/>`;
+  else if(type==='mobile')shape=`<circle cx="11" cy="11" r="9" fill="none" stroke="${col}" stroke-width="1.8" ${dash}/>`;
+  else shape=`<rect x="3" y="3" width="16" height="16" fill="none" stroke="${col}" stroke-width="1.8" ${dash}/>`;
+  const svg=`<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" style="opacity:${op}">${shape}<text x="11" y="14.5" font-size="8" font-family="monospace" text-anchor="middle" fill="${col}">${TYPE_LETTER[type]}</text></svg>`;
+  return L.divIcon({html:svg,className:'',iconSize:[22,22],iconAnchor:[11,11]});
+}
+
+function renderScenario(t){
+  if(mode!=='scenario')return;
+  simT=t;
+  const counts={drone:0,missile:0,troop:0,vehicle:0,mobile:0,infra:0};
+  ENTITIES.forEach(e=>{
+    counts[e.type]++;
+    const st=stateAt(e,t);
+    const visible=layerVisible[e.type];
+    if(scenarioMarkers[e.id]){
+      if(!visible){scenarioMarkers[e.id].remove();delete scenarioMarkers[e.id];return;}
+      scenarioMarkers[e.id].setLatLng([st.lat,st.lon]);
+      scenarioMarkers[e.id].setIcon(scenarioIcon(e.type,st.aff,st.conf));
+    }else if(visible){
+      const m=L.marker([st.lat,st.lon],{icon:scenarioIcon(e.type,st.aff,st.conf)}).addTo(map).on('click',()=>selectEntity(e.id));
+      scenarioMarkers[e.id]=m;
+    }
+  });
+  Object.keys(counts).forEach(k=>{const el=document.getElementById('lc-'+k);if(el)el.textContent=counts[k];});
+  document.getElementById('tl-scrub').value=t;
+  document.getElementById('tl-clock').textContent=fmtClock(t);
+  const act=ACTS.find(a=>t>=a.start&&t<a.end)||ACTS[ACTS.length-1];
+  document.getElementById('tl-act').textContent=act.label;
+  document.getElementById('tl-desc').textContent=act.desc;
+  if(selectedEntity)renderEvidence(selectedEntity);
+}
+
+const CONF_LABEL={observed:'OBSERVED',inferred:'INFERRED',simulated:'SIMULATED',missing:'MISSING'};
+
+function selectEntity(id){selectedEntity=id;document.getElementById('panel-evidence').style.display='block';renderEvidence(id);}
+function clearScenarioSelection(){selectedEntity=null;document.getElementById('evd-body').innerHTML='<div class="evd-empty">Select any object on the map to see what was observed, inferred, or missing — and why the assessment changed.</div>';}
+
+function renderEvidence(id){
+  const e=ENTITIES.find(x=>x.id===id);if(!e)return;
+  const st=stateAt(e,simT);
+  const hist=historyAt(e,simT).slice().reverse();
+  const affLabel={BLUE:'Friendly (BLUE)',RED:'Hostile (RED)',AMBER:'Watch (AMBER)',GREEN:'Cleared (GREEN)',GREY:'Unknown (no contact)'}[st.aff]||st.aff;
+  const threatOrStatus = st.threat ? {k:'ASSESSED THREAT',v:st.threat} : {k:'STATUS', v:st.status};
+  const html=`
+    <div class="evd-field">
+      <div class="evd-k"><span>OBJECT TYPE</span><span class="conf-tag conf-${st.conf}">${CONF_LABEL[st.conf]}</span></div>
+      <div class="evd-v">${e.label}</div>
+      <div class="evd-src">Source: ${st.source}</div>
+    </div>
+    <div class="evd-field">
+      <div class="evd-k"><span>AFFILIATION</span><span class="conf-tag conf-${st.conf}">${CONF_LABEL[st.conf]}</span></div>
+      <div class="evd-v">${affLabel}</div>
+      <div class="evd-src">As of ${fmtClock(st.t)}</div>
+    </div>
+    <div class="evd-field">
+      <div class="evd-k"><span>${threatOrStatus.k}</span><span class="conf-tag conf-${st.conf}">${CONF_LABEL[st.conf]}</span></div>
+      <div class="evd-v">${threatOrStatus.v}</div>
+      <div class="evd-src">${st.note?st.note:'No change since last report.'}</div>
+    </div>
+    <div class="evd-log-title">ASSESSMENT HISTORY (${hist.length})</div>
+    ${hist.map(k=>`<div class="evd-log-row"><span class="evd-log-t">${fmtClock(k.t)} — ${k.source}</span>${k.note||k.status}</div>`).join('')}
+  `;
+  document.getElementById('evd-body').innerHTML=html;
+}
+
+function toggleLayer(input){
+  layerVisible[input.dataset.layer]=input.checked;
+  renderScenario(simT);
+}
+
+function togglePlay(){
+  playing=!playing;
+  document.getElementById('tl-play').textContent=playing?'❚❚ PAUSE':'▶ PLAY';
+  if(playing){
+    playTimer=setInterval(()=>{
+      let t=simT+1;
+      if(t>SCENARIO_LEN){t=0;}
+      renderScenario(t);
+    },250); // 1 sim-second per 250ms wall-clock -> full 200s scenario in 50s
+  }else{
+    clearInterval(playTimer);
+  }
+}
+function scrubTo(v){renderScenario(Number(v));}
+
+function clearScenarioMarkers(){Object.values(scenarioMarkers).forEach(m=>m.remove());scenarioMarkers={};}
+function clearLiveMarkers(){Object.values(markers).forEach(m=>m.remove());markers={};selectedHex=null;}
+
+function setMode(m){
+  mode=m;
+  document.getElementById('tab-live').classList.toggle('active',m==='live');
+  document.getElementById('tab-scenario').classList.toggle('active',m==='scenario');
+  document.getElementById('scenario-banner').style.display=m==='scenario'?'block':'none';
+  document.getElementById('panel-layers').style.display=m==='scenario'?'block':'none';
+  document.getElementById('panel-evidence').style.display=(m==='scenario'&&selectedEntity)?'block':'none';
+  document.getElementById('timeline-bar').style.display=m==='scenario'?'block':'none';
+  ['panel-radar','panel-agents','panel-legend'].forEach(id=>{document.getElementById(id).style.display=m==='live'?'block':'none';});
+  if(m==='live'){
+    document.getElementById('panel-track').style.display=selectedHex?'block':'none';
+    if(playing){clearInterval(playTimer);playing=false;document.getElementById('tl-play').textContent='▶ PLAY';}
+    clearScenarioMarkers();
+    renderTracks();
+  }else{
+    document.getElementById('panel-track').style.display='none';
+    clearLiveMarkers();
+    renderScenario(simT);
+  }
+}
 </script>
 </body>
 </html>
