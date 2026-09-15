@@ -211,12 +211,14 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const YUL_LAT=45.4706,YUL_LON=-73.7408;
+const AOI_LAT=50.30,AOI_LON=30.60; // fictional Scenario-mode AOI center only — Live mode always uses YUL
 const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
 const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#3b82f6',RED:'#ef4444',AMBER:'#f59e0b',GREEN:'#00ff41',GREY:'#8b98a5'};
 
 let mode='live';
+let radarCenter=[YUL_LAT,YUL_LON],radarLabel='YUL';
 
 const map=L.map('map',{zoomControl:false,attributionControl:false}).setView([YUL_LAT,YUL_LON],7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(map);
@@ -249,15 +251,15 @@ function scoreContext(ac){let s=0;const r=haversine(YUL_LAT,YUL_LON,ac.lat,ac.lo
 function computeFusion(ac){const k=scoreKinematic(ac),s=scoreSignature(ac),c=scoreContext(ac);return{k,s,c,pct:Math.min(Math.round(0.35*k+0.45*s+0.20*c),100)};}
 function getNATO(ac,f){if((ac.mil===true||ac.mil===1)&&ac.threat_level<2)return'BLUE';if(f.pct>=60||ac.threat_level===2)return'RED';if(f.pct>=30)return'AMBER';return'GREEN';}
 
-function kmToPx(km){const c=map.latLngToContainerPoint([YUL_LAT,YUL_LON]),n=map.latLngToContainerPoint([YUL_LAT+km/111.32,YUL_LON]);return Math.abs(c.y-n.y);}
+function kmToPx(km){const c=map.latLngToContainerPoint(radarCenter),n=map.latLngToContainerPoint([radarCenter[0]+km/111.32,radarCenter[1]]);return Math.abs(c.y-n.y);}
 
 function drawRadar(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  const cp=map.latLngToContainerPoint([YUL_LAT,YUL_LON]),cx=cp.x,cy=cp.y;
+  const cp=map.latLngToContainerPoint(radarCenter),cx=cp.x,cy=cp.y;
   const rings=[{km:15,col:'#00ff4166',dash:[],lbl:'CTR 15km'},{km:60,col:'#f59e0b55',dash:[8,6],lbl:'TMA 60km'},{km:140,col:'#6b7280aa',dash:[4,8],lbl:'ACC 140km'}];
   rings.forEach(({km,col,dash,lbl})=>{const r=kmToPx(km);ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.strokeStyle=col;ctx.lineWidth=1;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=col;ctx.font='10px Courier New';ctx.fillText(lbl,cx+r*0.71+4,cy-r*0.71-2);});
   const r140=kmToPx(140);ctx.font='11px Courier New';ctx.fillStyle='#00ff4188';ctx.textAlign='center';ctx.fillText('N',cx,cy-r140-8);ctx.fillText('S',cx,cy+r140+14);ctx.textAlign='left';ctx.fillText('E',cx+r140+6,cy+4);ctx.textAlign='right';ctx.fillText('W',cx-r140-6,cy+4);ctx.textAlign='left';
-  ctx.beginPath();ctx.arc(cx,cy,4,0,2*Math.PI);ctx.fillStyle='#00ff4199';ctx.fill();ctx.fillStyle='#00ff4166';ctx.font='9px Courier New';ctx.fillText('YUL',cx+7,cy+3);
+  ctx.beginPath();ctx.arc(cx,cy,4,0,2*Math.PI);ctx.fillStyle='#00ff4199';ctx.fill();ctx.fillStyle='#00ff4166';ctx.font='9px Courier New';ctx.fillText(radarLabel,cx+7,cy+3);
   sweepAngle=(sweepAngle+SWEEP_SPEED)%(2*Math.PI);
   const sa=sweepAngle-Math.PI/2,ws=12*Math.PI/180,maxR=r140+20;
   ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,maxR,sa,sa+ws);ctx.closePath();
@@ -373,70 +375,70 @@ const ACTS=[
 // aff: BLUE/RED/AMBER/GREEN/GREY   conf: observed/inferred/simulated/missing
 const ENTITIES=[
  {id:'D-701',type:'drone',label:'D-701 · Recon UAS',kf:[
-   {t:0,lat:45.480,lon:-73.760,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)',note:'On patrol, nominal fuel state.'},
-   {t:50,lat:45.475,lon:-73.745,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)'},
-   {t:62,lat:45.475,lon:-73.745,aff:'BLUE',conf:'missing',status:'Datalink dropout',source:'Own UAS telemetry (sim)',note:'No telemetry received for 45s. Last known position shown.'},
-   {t:150,lat:45.470,lon:-73.730,aff:'BLUE',conf:'observed',status:'Reacquired',source:'Own UAS telemetry (sim)',note:'Datalink restored automatically; position updated.'}
+   {t:0,lat:50.3094,lon:30.5808,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)',note:'On patrol, nominal fuel state.'},
+   {t:50,lat:50.3044,lon:30.5958,aff:'BLUE',conf:'observed',status:'On station',source:'Own UAS telemetry (sim)'},
+   {t:62,lat:50.3044,lon:30.5958,aff:'BLUE',conf:'missing',status:'Datalink dropout',source:'Own UAS telemetry (sim)',note:'No telemetry received for 45s. Last known position shown.'},
+   {t:150,lat:50.2994,lon:30.6108,aff:'BLUE',conf:'observed',status:'Reacquired',source:'Own UAS telemetry (sim)',note:'Datalink restored automatically; position updated.'}
  ]},
  {id:'D-702',type:'drone',label:'D-702 · Unidentified UAS',kf:[
-   {t:52,lat:45.500,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Unknown contact',source:'Ground observer report (sim)',note:'Small UAS reported by a single observer near the perimeter.'},
-   {t:90,lat:45.495,lon:-73.710,aff:'AMBER',conf:'inferred',status:'Corroborated',source:'2nd ground observer (sim)',note:'Second, independent observer reports a matching track.'},
-   {t:172,lat:45.490,lon:-73.715,aff:'GREEN',conf:'observed',status:'Cleared — civil',source:'Operator registry cross-check (sim)',note:'Flight path matches a registered utility-survey operator. Reclassified from AMBER to GREEN.'}
+   {t:52,lat:50.3294,lon:30.6408,aff:'AMBER',conf:'inferred',status:'Unknown contact',source:'Ground observer report (sim)',note:'Small UAS reported by a single observer near the perimeter.'},
+   {t:90,lat:50.3244,lon:30.6308,aff:'AMBER',conf:'inferred',status:'Corroborated',source:'2nd ground observer (sim)',note:'Second, independent observer reports a matching track.'},
+   {t:172,lat:50.3194,lon:30.6258,aff:'GREEN',conf:'observed',status:'Cleared — civil',source:'Operator registry cross-check (sim)',note:'Flight path matches a registered utility-survey operator. Reclassified from AMBER to GREEN.'}
  ]},
  {id:'D-703',type:'drone',label:'D-703 · Passive contact',kf:[
-   {t:106,lat:45.460,lon:-73.775,aff:'AMBER',conf:'inferred',status:'Passive detection',source:'Passive RF sensor (sim)',note:'Detected by emissions only; no visual or ADS-B correlation.'},
-   {t:128,lat:45.460,lon:-73.775,aff:'GREY',conf:'missing',status:'Contact lost',source:'Passive RF sensor (sim)',note:'No further detections. Track dropped — status remains unresolved for the rest of this scenario.'}
+   {t:106,lat:50.2894,lon:30.5658,aff:'AMBER',conf:'inferred',status:'Passive detection',source:'Passive RF sensor (sim)',note:'Detected by emissions only; no visual or ADS-B correlation.'},
+   {t:128,lat:50.2894,lon:30.5658,aff:'GREY',conf:'missing',status:'Contact lost',source:'Passive RF sensor (sim)',note:'No further detections. Track dropped — status remains unresolved for the rest of this scenario.'}
  ]},
  {id:'MSL-1',type:'missile',label:'MSL-1 · Reported aerial threat',kf:[
-   {t:56,lat:45.510,lon:-73.690,aff:'AMBER',conf:'inferred',status:'Reported',threat:'Possible inbound (unconfirmed)',source:'Acoustic sensor net (sim)',note:'Single acoustic sensor reports a launch signature. Confidence: low.'},
-   {t:102,lat:45.508,lon:-73.686,aff:'AMBER',conf:'inferred',status:'Disputed',threat:'Possible inbound (bearing disputed)',source:'2nd acoustic node (sim)',note:'A second sensor node reports a conflicting bearing for the same event window.'},
-   {t:162,lat:45.508,lon:-73.686,aff:'GREEN',conf:'observed',status:'Resolved — false alarm',threat:'Cleared: decoy/flare, not a missile',source:'Visual confirmation (sim)',note:'A ground observer visually confirms the source was a flare deployment, not a missile. Assessment downgraded from AMBER to GREEN.'}
+   {t:56,lat:50.3394,lon:30.6508,aff:'AMBER',conf:'inferred',status:'Reported',threat:'Possible inbound (unconfirmed)',source:'Acoustic sensor net (sim)',note:'Single acoustic sensor reports a launch signature. Confidence: low.'},
+   {t:102,lat:50.3374,lon:30.6548,aff:'AMBER',conf:'inferred',status:'Disputed',threat:'Possible inbound (bearing disputed)',source:'2nd acoustic node (sim)',note:'A second sensor node reports a conflicting bearing for the same event window.'},
+   {t:162,lat:50.3374,lon:30.6548,aff:'GREEN',conf:'observed',status:'Resolved — false alarm',threat:'Cleared: decoy/flare, not a missile',source:'Visual confirmation (sim)',note:'A ground observer visually confirms the source was a flare deployment, not a missile. Assessment downgraded from AMBER to GREEN.'}
  ]},
  {id:'TRP-ALPHA',type:'troop',label:'Unit Alpha (BLUE)',kf:[
-   {t:0,lat:45.472,lon:-73.755,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
-   {t:50,lat:45.468,lon:-73.740,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
-   {t:104,lat:45.468,lon:-73.740,aff:'BLUE',conf:'missing',status:'No report — comms blackout',source:'Unit position report (sim)',note:'Last confirmed position held. No report received for over 60s.'},
-   {t:174,lat:45.465,lon:-73.725,aff:'BLUE',conf:'observed',status:'Moving — comms restored',source:'Unit position report (sim, delayed ~70s)',note:'A delayed report arrives and restores current position.'}
+   {t:0,lat:50.3014,lon:30.5858,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
+   {t:50,lat:50.2974,lon:30.6008,aff:'BLUE',conf:'observed',status:'Moving',source:'Unit position report (sim)'},
+   {t:104,lat:50.2974,lon:30.6008,aff:'BLUE',conf:'missing',status:'No report — comms blackout',source:'Unit position report (sim)',note:'Last confirmed position held. No report received for over 60s.'},
+   {t:174,lat:50.2944,lon:30.6158,aff:'BLUE',conf:'observed',status:'Moving — comms restored',source:'Unit position report (sim, delayed ~70s)',note:'A delayed report arrives and restores current position.'}
  ]},
  {id:'TRP-BRAVO',type:'troop',label:'Unit Bravo (BLUE)',kf:[
-   {t:0,lat:45.478,lon:-73.770,aff:'BLUE',conf:'observed',status:'Garrisoned',source:'Unit position report (sim)'}
+   {t:0,lat:50.3074,lon:30.5708,aff:'BLUE',conf:'observed',status:'Garrisoned',source:'Unit position report (sim)'}
  ]},
  {id:'CONVOY-1',type:'vehicle',label:'Convoy 1 · Logistics resupply',kf:[
-   {t:0,lat:45.485,lon:-73.735,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
-   {t:60,lat:45.480,lon:-73.720,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
-   {t:112,lat:45.480,lon:-73.720,aff:'BLUE',conf:'missing',status:'Stopped reporting',source:'Vehicle telemetry (sim)',note:'Telemetry stopped mid-route. Cause unknown at this point.'},
-   {t:168,lat:45.478,lon:-73.715,aff:'BLUE',conf:'observed',status:'Moving — status restored',source:'Vehicle telemetry (sim, delayed)',note:'A delayed status message restores the convoy’s position and confirms it resumed movement.'}
+   {t:0,lat:50.3144,lon:30.6058,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
+   {t:60,lat:50.3094,lon:30.6208,aff:'BLUE',conf:'observed',status:'Moving',source:'Vehicle telemetry (sim)'},
+   {t:112,lat:50.3094,lon:30.6208,aff:'BLUE',conf:'missing',status:'Stopped reporting',source:'Vehicle telemetry (sim)',note:'Telemetry stopped mid-route. Cause unknown at this point.'},
+   {t:168,lat:50.3074,lon:30.6258,aff:'BLUE',conf:'observed',status:'Moving — status restored',source:'Vehicle telemetry (sim, delayed)',note:'A delayed status message restores the convoy’s position and confirms it resumed movement.'}
  ]},
  {id:'CONVOY-2',type:'vehicle',label:'Convoy 2 · Unidentified group',kf:[
-   {t:58,lat:45.455,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Moving',source:'Satellite pass (sim)'},
-   {t:107,lat:45.450,lon:-73.705,aff:'AMBER',conf:'inferred',status:'Position disputed',source:'Satellite pass vs. ground observer (sim)',note:'Satellite pass places the group ~700m from where a ground observer reports it at the same timestamp. Sources disagree.'},
-   {t:171,lat:45.449,lon:-73.700,aff:'AMBER',conf:'observed',status:'Reconciled',source:'Sensor fusion, timestamp-corrected (sim)',note:'Re-checking observation times shows the ground report was logged 40s late; positions actually agree once corrected.'}
+   {t:58,lat:50.2844,lon:30.6408,aff:'AMBER',conf:'inferred',status:'Moving',source:'Satellite pass (sim)'},
+   {t:107,lat:50.2794,lon:30.6358,aff:'AMBER',conf:'inferred',status:'Position disputed',source:'Satellite pass vs. ground observer (sim)',note:'Satellite pass places the group ~700m from where a ground observer reports it at the same timestamp. Sources disagree.'},
+   {t:171,lat:50.2784,lon:30.6408,aff:'AMBER',conf:'observed',status:'Reconciled',source:'Sensor fusion, timestamp-corrected (sim)',note:'Re-checking observation times shows the ground report was logged 40s late; positions actually agree once corrected.'}
  ]},
  {id:'COMMS-1',type:'mobile',label:'Comms Vehicle 1 (BLUE)',kf:[
-   {t:0,lat:45.482,lon:-73.768,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)'},
-   {t:112,lat:45.482,lon:-73.768,aff:'BLUE',conf:'inferred',status:'Degraded',source:'Network status feed (sim)',note:'Signal interference reported in this sector.'},
-   {t:170,lat:45.482,lon:-73.768,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)',note:'Connectivity restored.'}
+   {t:0,lat:50.3114,lon:30.5728,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)'},
+   {t:112,lat:50.3114,lon:30.5728,aff:'BLUE',conf:'inferred',status:'Degraded',source:'Network status feed (sim)',note:'Signal interference reported in this sector.'},
+   {t:170,lat:50.3114,lon:30.5728,aff:'BLUE',conf:'observed',status:'Connected',source:'Network status feed (sim)',note:'Connectivity restored.'}
  ]},
  {id:'MEDIC-1',type:'mobile',label:'Medical Support 1 (BLUE)',kf:[
-   {t:0,lat:45.490,lon:-73.780,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)'},
-   {t:54,lat:45.475,lon:-73.750,aff:'BLUE',conf:'observed',status:'Deployed',source:'Unit status (sim)',note:'Deployed forward in response to the developing situation.'},
-   {t:164,lat:45.490,lon:-73.780,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)',note:'Returned to standby.'}
+   {t:0,lat:50.3194,lon:30.5608,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)'},
+   {t:54,lat:50.3044,lon:30.5908,aff:'BLUE',conf:'observed',status:'Deployed',source:'Unit status (sim)',note:'Deployed forward in response to the developing situation.'},
+   {t:164,lat:50.3194,lon:30.5608,aff:'BLUE',conf:'observed',status:'Available',source:'Unit status (sim)',note:'Returned to standby.'}
  ]},
  {id:'HOSP-1',type:'infra',label:'Hospital 1',kf:[
-   {t:0,lat:45.492,lon:-73.745,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'},
-   {t:112,lat:45.492,lon:-73.745,aff:'AMBER',conf:'inferred',status:'Minor incident',source:'Facility status feed (sim)',note:'Power fluctuation reported; no impact confirmed yet.'},
-   {t:170,lat:45.492,lon:-73.745,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)',note:'Fluctuation resolved; no impact to operations.'}
+   {t:0,lat:50.3214,lon:30.5958,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'},
+   {t:112,lat:50.3214,lon:30.5958,aff:'AMBER',conf:'inferred',status:'Minor incident',source:'Facility status feed (sim)',note:'Power fluctuation reported; no impact confirmed yet.'},
+   {t:170,lat:50.3214,lon:30.5958,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)',note:'Fluctuation resolved; no impact to operations.'}
  ]},
  {id:'BRIDGE-1',type:'infra',label:'Bridge 1 · Critical route',kf:[
-   {t:0,lat:45.465,lon:-73.700,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'},
-   {t:101,lat:45.465,lon:-73.700,aff:'AMBER',conf:'inferred',status:'Unconfirmed damage report',source:'Field report (sim)',note:'Unverified report of structural damage; route flagged pending inspection.'},
-   {t:161,lat:45.465,lon:-73.700,aff:'GREEN',conf:'observed',status:'Normal — inspected',source:'Field inspection (sim)',note:'On-site inspection finds no damage. Earlier report retracted.'}
+   {t:0,lat:50.2944,lon:30.6408,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'},
+   {t:101,lat:50.2944,lon:30.6408,aff:'AMBER',conf:'inferred',status:'Unconfirmed damage report',source:'Field report (sim)',note:'Unverified report of structural damage; route flagged pending inspection.'},
+   {t:161,lat:50.2944,lon:30.6408,aff:'GREEN',conf:'observed',status:'Normal — inspected',source:'Field inspection (sim)',note:'On-site inspection finds no damage. Earlier report retracted.'}
  ]},
  {id:'POWER-1',type:'infra',label:'Power Facility 1',kf:[
-   {t:0,lat:45.500,lon:-73.760,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'}
+   {t:0,lat:50.3294,lon:30.5808,aff:'GREEN',conf:'observed',status:'Normal',source:'Facility status feed (sim)'}
  ]},
  {id:'COMMS-TWR-1',type:'infra',label:'Comms Tower 1',kf:[
-   {t:0,lat:45.458,lon:-73.720,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'}
+   {t:0,lat:50.2874,lon:30.6208,aff:'GREEN',conf:'observed',status:'Normal',source:'Infrastructure monitoring (sim)'}
  ]}
 ];
 
@@ -571,12 +573,14 @@ function setMode(m){
     document.getElementById('panel-track').style.display=selectedHex?'block':'none';
     if(playing){clearInterval(playTimer);playing=false;document.getElementById('tl-play').textContent='▶ PLAY';}
     clearScenarioMarkers();
+    radarCenter=[YUL_LAT,YUL_LON];radarLabel='YUL';
     map.setView([YUL_LAT,YUL_LON],7);
     renderTracks();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
-    map.setView([YUL_LAT,YUL_LON],12);
+    radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
+    map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
   }
 }
