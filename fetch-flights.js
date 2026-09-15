@@ -21,7 +21,12 @@ function fetchZoneOnce(lat, lon, dist) {
 
     const req = https.get(
       `https://api.adsb.lol/v2/point/${lat}/${lon}/${dist}`,
-      { timeout: 12000 },
+      {
+        timeout: 12000,
+        headers: {
+          'User-Agent': 'CognitiveGroupTacticalDemo/1.0 (+https://www.cognitivegroup.com; contact: info@cognitivegroup.com)'
+        }
+      },
       res => {
         const chunks = [];
         res.on('data', c => chunks.push(c));
