@@ -834,9 +834,10 @@ function renderRoadworks(){
     if(roadworkMarkers[rw.id])return;
     const m=L.marker([rw.lat,rw.lon],{icon:roadworkIcon()}).addTo(map);
     const lines=[`<b>${rw.description}</b>`];
-    if(rw.route)lines.push(`Route: ${rw.route}`);
+    if(rw.location)lines.push(rw.location);
+    if(rw.route)lines.push(`Route ${rw.route}`);
     if(rw.nature)lines.push(rw.nature);
-    if(rw.dateDebut||rw.dateFin)lines.push(`${rw.dateDebut||'?'} → ${rw.dateFin||'ongoing'}`);
+    if(rw.dateDebut||rw.dateFin)lines.push(`${(rw.dateDebut||'?').split(' ')[0]} → ${rw.dateFin?rw.dateFin.split(' ')[0]:'ongoing'}`);
     lines.push(`<span style="font-size:11px">Québec 511 MTMD. Not tracked by any sensor of ours.</span>`);
     m.bindPopup(lines.join('<br>'),{maxWidth:260});
     roadworkMarkers[rw.id]=m;
