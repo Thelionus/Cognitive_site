@@ -259,8 +259,16 @@ const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',
 // X-Frame-Options/Cloudflare wall, so this is the one source that actually
 // plays inline in the popup instead of just linking out. Confirmed live and
 // embeddable via YouTube's public oEmbed API before being added here.
+//
+// Caveat: a YouTube live broadcast gets a brand-new video ID every time the
+// broadcaster restarts the stream, so a hardcoded ID here can go stale
+// ("Video unavailable") independent of anything in this codebase — it just
+// needs a fresh ID swapped in when that happens. Two entries from the same
+// airport (different runways, so different broadcasts) are kept so one
+// going stale doesn't take out the whole layer.
 const YOUTUBE_CAMS=[
-  {id:'yul-cyul',title:'Montréal–Trudeau Airport (CYUL), Runway 24L',videoId:'iJxeutc3QCI',lat:YUL_LAT,lon:YUL_LON}
+  {id:'yul-24l',title:'Montréal–Trudeau Airport (CYUL), Runway 24L',videoId:'Vvq37CnY0iY',channelUrl:'https://www.youtube.com/@mooreequipmentltd.3428',lat:YUL_LAT,lon:YUL_LON},
+  {id:'yul-24r',title:'Montréal–Trudeau Airport (CYUL), Runway 24R',videoId:'hoz0vk-9ww8',channelUrl:'https://www.youtube.com/@mooreequipmentltd.3428',lat:YUL_LAT+0.004,lon:YUL_LON+0.004}
 ];
 
 let mode='live';
@@ -887,7 +895,7 @@ function renderYoutubeCams(){
     if(ytCamMarkers[cam.id])return;
     const m=L.marker([cam.lat,cam.lon],{icon:ytCamIcon()}).addTo(map);
     m.on('click',()=>{
-      m.bindPopup(`<b>${cam.title}</b><br><iframe width="320" height="180" src="https://www.youtube.com/embed/${cam.videoId}" style="border:0;margin:4px 0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe><br><span style="font-size:11px">Public YouTube live stream. Not tracked by any sensor of ours.</span>`,{maxWidth:340}).openPopup();
+      m.bindPopup(`<b>${cam.title}</b><br><iframe width="320" height="180" src="https://www.youtube.com/embed/${cam.videoId}" style="border:0;margin:4px 0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe><br><a href="${cam.channelUrl}" target="_blank" rel="noopener" style="font-size:11px">If this stream looks offline, check the channel directly ↗</a><br><span style="font-size:11px">Public YouTube live stream. Not tracked by any sensor of ours.</span>`,{maxWidth:340}).openPopup();
     });
     ytCamMarkers[cam.id]=m;
   });
