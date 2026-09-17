@@ -69,18 +69,22 @@ async function main() {
   const data = await fetchJson(ROADWORKS_URL);
   const features = data.features || [];
 
+  let anyFieldMatched = false;
   const roadworks = features.map((f, i) => {
     const props = f.properties || {};
     const coord = firstCoord(f.geometry);
     if (!coord) return null;
     const [lon, lat] = coord;
     if (lat < MTL_BBOX.minLat || lat > MTL_BBOX.maxLat || lon < MTL_BBOX.minLon || lon > MTL_BBOX.maxLon) return null;
-    const description = pick(props, ['DescriptionLocalisationFr', 'DescriptionLocalisationEn', 'Description', 'description', 'Localisation']) || `Roadwork ${i + 1}`;
+    const descriptionFound = pick(props, ['DescriptionLocalisationFr', 'DescriptionLocalisationEn', 'Description', 'description', 'Localisation']);
     const route = pick(props, ['NumeroRoute', 'NomRoute', 'Route', 'route']);
     const nature = pick(props, ['NatureTravaux', 'TypeTravaux', 'Nature', 'Type', 'type']);
     const dateDebut = pick(props, ['DateDebut', 'DateDebutTravaux', 'DateDebutDiffusion']);
     const dateFin = pick(props, ['DateFin', 'DateFinTravaux', 'DateFinDiffusion']);
-    const id = pick(props, ['IDChantier', 'NoChantier', 'ID_Chantier', 'IdChantier', 'id']) || String(i + 1);
+    const idFound = pick(props, ['IDChantier', 'NoChantier', 'ID_Chantier', 'IdChantier', 'id']);
+    if (descriptionFound || route || nature || dateDebut || dateFin || idFound) anyFieldMatched = true;
+    const description = descriptionFound || `Roadwork ${i + 1}`;
+    const id = idFound || String(i + 1);
     return { id: String(id), description: String(description), route, nature, dateDebut, dateFin, lat, lon };
   }).filter(Boolean);
 
@@ -88,6 +92,14 @@ async function main() {
     console.error(`No roadworks parsed from ${features.length} features (after the Montréal-area filter) — leaving existing roadworks.json untouched (feed schema may have changed).`);
     if (features[0]) console.error('First feature for schema debugging:', JSON.stringify(features[0]));
     return;
+  }
+
+  // Coordinates can parse fine while every descriptive field guess misses —
+  // that's not an empty result (so the guard above won't catch it), but it's
+  // just as much a schema mismatch worth surfacing immediately.
+  if (!anyFieldMatched) {
+    const sample = features.find(f => f.properties) || features[0];
+    console.error(`Coordinates parsed for ${roadworks.length} roadworks, but no descriptive field guess matched anything — every entry fell back to a generic label. Raw feature for schema debugging:`, JSON.stringify(sample));
   }
 
   fs.writeFileSync('roadworks.json', JSON.stringify({ timestamp: Date.now(), source: ROADWORKS_URL, roadworks }));
