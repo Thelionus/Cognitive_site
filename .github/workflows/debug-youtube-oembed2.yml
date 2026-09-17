@@ -18,5 +18,5 @@ jobs:
           IFS=',' read -ra IDS <<< "${{ github.event.inputs.video_ids }}"
           for id in "${IDS[@]}"; do
             echo "=== $id ==="
-            node debug-youtube-oembed.js "$id"
+            node debug-youtube-oembed2.js "$id"
           done
