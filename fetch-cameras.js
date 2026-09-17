@@ -10,7 +10,11 @@ const fs = require('fs');
 // script running often.
 const SOURCE_URL = 'https://ville.montreal.qc.ca/circulation/sites/ville.montreal.qc.ca.circulation/files/cameras-de-circulation.json';
 
-function fetchJson(url) {
+// The city has redirected this feed before (e.g. a path move or https
+// upgrade) without warning, so redirects are followed rather than treated
+// as failures — a hardcoded URL would otherwise silently break on the next
+// one too.
+function fetchJson(url, redirectsLeft = 5) {
   return new Promise((resolve, reject) => {
     const req = https.get(
       url,
@@ -21,6 +25,12 @@ function fetchJson(url) {
         }
       },
       res => {
+        if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
+          res.resume();
+          if (redirectsLeft <= 0) return reject(new Error('too many redirects'));
+          const next = new URL(res.headers.location, url).toString();
+          return resolve(fetchJson(next, redirectsLeft - 1));
+        }
         const chunks = [];
         res.on('data', c => chunks.push(c));
         res.on('end', () => {
