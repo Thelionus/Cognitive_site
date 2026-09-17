@@ -18,7 +18,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tac-nav a{color:var(--crt-dim);text-decoration:none;font-size:11px;letter-spacing:1px}
 .tac-nav a:hover,.tac-nav a.active{color:var(--crt-green)}
 .mode-tabs{display:flex;gap:2px;margin-left:8px}
-.mode-tab{background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-family:'Courier New',monospace;font-size:10px;letter-spacing:1px;padding:5px 10px;cursor:pointer}
+.mode-tab{display:inline-block;background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-family:'Courier New',monospace;font-size:10px;letter-spacing:1px;padding:5px 10px;cursor:pointer}
 .mode-tab.active{color:var(--crt-bg);background:var(--crt-green);border-color:var(--crt-green);font-weight:bold}
 .panel{position:fixed;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 12px;z-index:500;backdrop-filter:blur(4px)}
 .panel-title{color:var(--crt-green);font-size:10px;letter-spacing:2px;border-bottom:1px solid var(--panel-border);padding-bottom:4px;margin-bottom:8px;font-weight:bold;display:flex;justify-content:space-between}
@@ -97,6 +97,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-live" onclick="setMode('live')">LIVE TRAFFIC</button>
     <button class="mode-tab" id="tab-scenario" onclick="setMode('scenario')">SCENARIO: OPS CENTER</button>
+    <a class="mode-tab" id="tab-godseye" href="http://localhost:4173" target="_blank" rel="noopener" title="Opens God's Eye View (github.com/bilawalsidhu/gods-eye-view) — run it locally with `npm run dev`, default port 4173">GLOBAL 3D VIEW ↗</a>
   </div>
   <a href="index.html">HOME</a>
   <a href="live-flights.html">LIVE FLIGHTS</a>
