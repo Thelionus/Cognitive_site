@@ -75,6 +75,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .layer-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:11px;cursor:pointer}
 .layer-row input{accent-color:var(--crt-green)}
 .layer-count{margin-left:auto;color:var(--crt-dim);font-size:10px}
+.layer-locate{background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-size:11px;line-height:1;padding:2px 5px;cursor:pointer;font-family:inherit}
+.layer-locate:hover{border-color:#ff00c8;color:#ff00c8}
 
 #timeline-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:800;display:none;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 16px;width:min(760px,88vw);backdrop-filter:blur(4px)}
 .tl-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -172,11 +174,19 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </div>
 
 <div class="panel" id="panel-legend">
-  <div class="panel-title"><span>NATO CLASSIFICATION</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-blue)">⊕</span><span>BLUE — Military-flagged (registry)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-red)">◆</span><span>RED — Flagged (review)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">◌</span><span>AMBER — Watch (review)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">·</span><span>GREEN — Clear (civil)</span></div>
+  <div class="panel-title"><span>LEGEND</span></div>
+  <div style="font-size:9.5px;color:var(--crt-dim);letter-spacing:1px;margin-bottom:3px">AIRCRAFT (NATO CLASS)</div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-blue)">✈</span><span>BLUE — Military-flagged (registry)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-red)">✈</span><span>RED — Flagged (review), badge = alert</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">✈</span><span>AMBER — Watch (dashed outline)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">✈</span><span>GREEN — Clear (civil)</span></div>
+  <div style="font-size:9px;color:var(--crt-dim);margin:-2px 0 6px 26px">Icon points along true track/heading</div>
+  <div style="font-size:9.5px;color:var(--crt-dim);letter-spacing:1px;margin-bottom:3px;border-top:1px solid var(--panel-border);padding-top:6px">OTHER LIVE LAYERS</div>
+  <div class="leg-row"><span class="leg-sym" style="color:#ff9100">●</span><span>Earthquake M6+ (24h, USGS)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">●</span><span>Earthquake M4–6</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">●</span><span>Earthquake M2.5–4</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#ffffff">✦</span><span>Satellite (station, SGP4)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#ff00c8">▣</span><span>Traffic camera (Montréal) — click for live snapshot</span></div>
   <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
     ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
   </div>
@@ -187,7 +197,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="aircraft" onchange="toggleLiveLayer(this)"><span>Aircraft</span><span class="layer-count" id="lc-live-aircraft">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="earthquakes" onchange="toggleLiveLayer(this)"><span>Earthquakes (M2.5+, 24h)</span><span class="layer-count" id="lc-live-earthquakes">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4) — not tracked by any sensor of ours.</div>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="cameras" onchange="toggleLiveLayer(this)"><span>Traffic Cameras (Montréal)</span><span class="layer-count" id="lc-live-cameras">—</span><button type="button" class="layer-locate" title="Zoom to cameras" onclick="event.preventDefault();locateCameras()">⌖</button></label>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Cameras: Ville de Montréal, live snapshots — click ⌖ to zoom to them (magenta, clustered downtown). Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -225,15 +236,32 @@ const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/
 const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 const EARTHQUAKE_URL='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson'; // USGS, public, no key
 const CELESTRAK_URL='https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle'; // CelesTrak, public, no key
+const CAMERAS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras.json'; // Ville de Montréal traffic cams, fetched server-side via GitHub Action (see fetch-cameras.js)
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',GREY:'#b0bec5'};
+// RED is reserved for actual threat/danger classification (aircraft/scenario).
+// Other live layers get their own distinct saturated colors so nothing else
+// borrows that meaning.
+const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8'};
 
 let mode='live';
 let radarCenter=[YUL_LAT,YUL_LON],radarLabel='YUL';
 
-const map=L.map('map',{zoomControl:false,attributionControl:false}).setView([YUL_LAT,YUL_LON],7);
+const map=L.map('map',{zoomControl:false,attributionControl:false,preferCanvas:true}).setView([YUL_LAT,YUL_LON],7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(map);
 map.getPane('tilePane').style.filter='invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)';
+
+// Large point layers (1000+ aircraft globally, 250 cameras) were making
+// pan/zoom janky — Leaflet has to reposition every DOM marker on every
+// frame of the zoom animation even when most are off-screen. Only
+// rendering what's within the current view (plus a margin so markers
+// don't pop in/out right at the edge) keeps the on-screen marker count
+// bounded regardless of how much data is loaded.
+let zooming=false;
+map.on('zoomstart',()=>{zooming=true});
+map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();}});
+map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();}});
+function inView(lat,lon){return map.getBounds().pad(0.25).contains([lat,lon]);}
 
 const canvas=document.getElementById('radar-canvas');
 const ctx=canvas.getContext('2d');
@@ -279,14 +307,20 @@ function drawRadar(){
   ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+maxR*Math.cos(sa+ws),cy+maxR*Math.sin(sa+ws));ctx.strokeStyle='rgba(0,255,65,0.6)';ctx.lineWidth=1.5;ctx.stroke();
 }
 
-function natoIcon(nato){
+// Top-down aircraft silhouette, nose-up at 0deg; rotated to true track so
+// heading reads at a glance instead of needing the track readout in the
+// side panel. NATO class still carries the color plus a non-color cue
+// (dashed outline for AMBER, a fixed alert badge for RED) so classification
+// doesn't rely on color alone.
+const PLANE_PATH='M12,2 L13.2,8 L21,14.5 L21,16.8 L13.4,14.3 L13.7,19.3 L16.8,21.3 L16.8,22.4 L12,21.1 L7.2,22.4 L7.2,21.3 L10.3,19.3 L10.6,14.3 L3,16.8 L3,14.5 L10.8,8 Z';
+function natoIcon(nato,track){
   const col=NATO_COLOR[nato];
-  let svg='';
-  if(nato==='BLUE')svg=`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11.5" fill="#000"/><circle cx="12" cy="12" r="9.5" fill="none" stroke="${col}" stroke-width="2.6"/><line x1="12" y1="3" x2="12" y2="21" stroke="${col}" stroke-width="2.2"/><line x1="3" y1="12" x2="21" y2="12" stroke="${col}" stroke-width="2.2"/></svg>`;
-  else if(nato==='RED')svg=`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11.5" fill="#000"/><polygon points="12,3 21,12 12,21 3,12" fill="none" stroke="${col}" stroke-width="2.6"/><line x1="7" y1="7" x2="17" y2="17" stroke="${col}" stroke-width="2.2"/><line x1="17" y1="7" x2="7" y2="17" stroke="${col}" stroke-width="2.2"/></svg>`;
-  else if(nato==='AMBER')svg=`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11.5" fill="#000"/><circle cx="12" cy="12" r="9.5" fill="none" stroke="${col}" stroke-width="2.6" stroke-dasharray="4 3"/></svg>`;
-  else svg=`<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.5" fill="#000"/><circle cx="10" cy="10" r="6.5" fill="none" stroke="${col}" stroke-width="2.2"/><circle cx="10" cy="10" r="2.8" fill="${col}"/></svg>`;
+  const rot=track||0;
+  const dash=nato==='AMBER'?'stroke-dasharray="3 2"':'';
+  const sw=nato==='RED'?2.4:nato==='GREEN'?1.6:2;
   const sz=nato==='GREEN'?20:24;
+  const badge=nato==='RED'?`<circle cx="19.3" cy="4.7" r="3.4" fill="#000" stroke="${col}" stroke-width="1"/><text x="19.3" y="6.3" font-size="5.5" font-weight="bold" font-family="monospace" text-anchor="middle" fill="${col}">!</text>`:'';
+  const svg=`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11.5" fill="#000"/><g transform="rotate(${rot} 12 12)"><path d="${PLANE_PATH}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linejoin="round" ${dash}/></g>${badge}</svg>`;
   return L.divIcon({html:svg,className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
 }
 
@@ -317,12 +351,13 @@ function fleetAvg(){
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
 }
 
-const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true};
+const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true};
 function toggleLiveLayer(input){
   liveLayerVisible[input.dataset.liveLayer]=input.checked;
   if(input.dataset.liveLayer==='aircraft')renderTracks();
   if(input.dataset.liveLayer==='earthquakes')renderEarthquakes();
   if(input.dataset.liveLayer==='satellites')renderSatellites();
+  if(input.dataset.liveLayer==='cameras')renderCameras();
 }
 
 function renderTracks(){
@@ -332,11 +367,13 @@ function renderTracks(){
   const seen=new Set();let hostile=0,pending=0,friendly=0;
   allAircraft.forEach(ac=>{
     if(!ac.lat||!ac.lon)return;
-    const hex=ac.hex;seen.add(hex);
+    const hex=ac.hex;
     const f=computeFusion(ac),nato=getNATO(ac,f);
     if(nato==='RED')hostile++;if(nato==='AMBER')pending++;if(nato==='BLUE')friendly++;
-    if(markers[hex]){markers[hex].setLatLng([ac.lat,ac.lon]);markers[hex].setIcon(natoIcon(nato));markers[hex]._tac={ac,f,nato};}
-    else{const m=L.marker([ac.lat,ac.lon],{icon:natoIcon(nato)}).addTo(map).on('click',()=>selectTrack(hex));m._tac={ac,f,nato};markers[hex]=m;}
+    if(!inView(ac.lat,ac.lon))return; // counted in fleet stats above, but not worth a marker off-screen
+    seen.add(hex);
+    if(markers[hex]){markers[hex].setLatLng([ac.lat,ac.lon]);markers[hex].setIcon(natoIcon(nato,ac.track));markers[hex]._tac={ac,f,nato};}
+    else{const m=L.marker([ac.lat,ac.lon],{icon:natoIcon(nato,ac.track)}).addTo(map).on('click',()=>selectTrack(hex));m._tac={ac,f,nato};markers[hex]=m;}
   });
   Object.keys(markers).forEach(h=>{if(!seen.has(h)){markers[h].remove();delete markers[h];}});
   document.getElementById('r-tracks').textContent=allAircraft.length;
@@ -373,12 +410,13 @@ function clearTrack(){selectedHex=null;document.getElementById('panel-track').st
 function updateClock(){const u=new Date().toUTCString().match(/(\d{2}:\d{2}:\d{2})/);if(u)document.getElementById('sys-clock').textContent=u[1]+' UTC';}
 setInterval(updateClock,1000);updateClock();
 
-function animate(){drawRadar();requestAnimationFrame(animate);}
+function animate(){if(!zooming)drawRadar();requestAnimationFrame(animate);}
 
 loadThreatsOverlay().then(()=>{fetchFlights();setInterval(fetchFlights,10000);});
 fetchEarthquakes();setInterval(fetchEarthquakes,120000);
 setInterval(fetchSatelliteTLEs,4*60*60*1000);
 setInterval(renderSatellites,5000);
+fetchCameras();setInterval(fetchCameras,30*60*1000);
 animate();
 
 /* ============================================================
@@ -484,7 +522,10 @@ function fmtClock(t){
   return `${hh}:${mm}:${ss}`;
 }
 
-const TYPE_LETTER={drone:'D',missile:'!',troop:'T',vehicle:'V',mobile:'A',infra:'I'};
+// Literal pictographs (quadcopter, rocket, person, car, dish, tower) instead
+// of abstract badge shapes — reads at a glance without the legend. Affiliation
+// color plus a dashed outline (inferred) / dimmed opacity (missing) still
+// carry the evidence-confidence cue independent of the shape.
 function scenarioIcon(type,aff,conf){
   const col=NATO_COLOR[aff]||NATO_COLOR.GREY;
   const faded=(conf==='missing');
@@ -492,13 +533,13 @@ function scenarioIcon(type,aff,conf){
   const op=faded?0.55:1;
   const dash=dashed?'stroke-dasharray="3 2"':'';
   let shape='';
-  if(type==='drone')shape=`<polygon points="12,3 21,12 12,21 3,12" fill="none" stroke="${col}" stroke-width="2.4" ${dash}/>`;
-  else if(type==='missile')shape=`<polygon points="12,3 21,20 3,20" fill="none" stroke="${col}" stroke-width="2.6" ${dash}/>`;
-  else if(type==='troop')shape=`<rect x="4" y="6" width="16" height="12" fill="none" stroke="${col}" stroke-width="2.6" ${dash}/>`;
-  else if(type==='vehicle')shape=`<rect x="3" y="8" width="18" height="9" rx="2" fill="none" stroke="${col}" stroke-width="2.6" ${dash}/>`;
-  else if(type==='mobile')shape=`<circle cx="12" cy="12" r="9" fill="none" stroke="${col}" stroke-width="2.6" ${dash}/>`;
-  else shape=`<rect x="4" y="4" width="16" height="16" fill="none" stroke="${col}" stroke-width="2.6" ${dash}/>`;
-  const svg=`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="opacity:${op}"><circle cx="12" cy="12" r="11.5" fill="#000"/>${shape}<text x="12" y="15.5" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle" fill="${col}">${TYPE_LETTER[type]}</text></svg>`;
+  if(type==='drone')shape=`<g stroke="${col}" stroke-width="1.6" fill="none" ${dash}><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="18" r="2.6"/><rect x="9.3" y="9.3" width="5.4" height="5.4" rx="1"/></g>`;
+  else if(type==='missile')shape=`<g stroke="${col}" stroke-width="2" fill="none" ${dash}><path d="M12,2 L15,11 L15,17 L9,17 L9,11 Z"/><path d="M9,15 L4,20 L9,18 Z"/><path d="M15,15 L20,20 L15,18 Z"/></g>`;
+  else if(type==='troop')shape=`<g stroke="${col}" stroke-width="1.8" fill="none" ${dash}><circle cx="12" cy="6.5" r="2.6"/><path d="M6,20 L8,11 L16,11 L18,20"/></g>`;
+  else if(type==='vehicle')shape=`<g stroke="${col}" stroke-width="1.8" fill="none" ${dash}><rect x="4" y="7" width="16" height="10" rx="3"/><line x1="8" y1="7" x2="8" y2="17"/><line x1="16" y1="7" x2="16" y2="17"/></g>`;
+  else if(type==='mobile')shape=`<g stroke="${col}" stroke-width="1.8" fill="none" ${dash}><path d="M5,16 A9,9 0 0 1 19,16"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/><circle cx="12" cy="8" r="1.6" fill="${col}"/></g>`;
+  else shape=`<g stroke="${col}" stroke-width="1.8" fill="none" ${dash}><rect x="7" y="4" width="10" height="16"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="14" x2="17" y2="14"/></g>`;
+  const svg=`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="opacity:${op}"><circle cx="12" cy="12" r="11.5" fill="#000"/>${shape}</svg>`;
   return L.divIcon({html:svg,className:'',iconSize:[24,24],iconAnchor:[12,12]});
 }
 
@@ -593,7 +634,7 @@ function clearLiveMarkers(){Object.values(markers).forEach(m=>m.remove());marker
    ============================================================ */
 let earthquakeMarkers={},satelliteMarkers={},satrecs=[];
 
-function quakeColor(mag){return mag>=6?NATO_COLOR.RED:mag>=4?NATO_COLOR.AMBER:NATO_COLOR.GREEN;}
+function quakeColor(mag){return mag>=6?LAYER_COLOR.QUAKE_HIGH:mag>=4?LAYER_COLOR.QUAKE_MED:LAYER_COLOR.QUAKE_LOW;}
 
 function clearEarthquakeMarkers(){Object.values(earthquakeMarkers).forEach(m=>m.remove());earthquakeMarkers={};}
 
@@ -625,7 +666,8 @@ function renderEarthquakes(){
 function clearSatelliteMarkers(){Object.values(satelliteMarkers).forEach(m=>m.remove());satelliteMarkers={};}
 
 function satIcon(){
-  return L.divIcon({html:`<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8.5" fill="#000"/><rect x="7.3" y="3.5" width="3.4" height="11" fill="#fff" stroke="#000" stroke-width="0.5"/><rect x="1" y="7.3" width="4.5" height="3.4" fill="#fff" stroke="#000" stroke-width="0.4"/><rect x="12.5" y="7.3" width="4.5" height="3.4" fill="#fff" stroke="#000" stroke-width="0.4"/></svg>`,className:'',iconSize:[18,18],iconAnchor:[9,9]});
+  const col=LAYER_COLOR.SATELLITE;
+  return L.divIcon({html:`<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8.5" fill="#000"/><rect x="7.3" y="3.5" width="3.4" height="11" fill="${col}" stroke="#000" stroke-width="0.5"/><rect x="1" y="7.3" width="4.5" height="3.4" fill="${col}" stroke="#000" stroke-width="0.4"/><rect x="12.5" y="7.3" width="4.5" height="3.4" fill="${col}" stroke="#000" stroke-width="0.4"/></svg>`,className:'',iconSize:[18,18],iconAnchor:[9,9]});
 }
 
 async function fetchSatelliteTLEs(){
@@ -665,6 +707,57 @@ function renderSatellites(){
   Object.keys(satelliteMarkers).forEach(n=>{if(!seen.has(n)){satelliteMarkers[n].remove();delete satelliteMarkers[n];}});
 }
 
+let cameraMarkers={},allCameras=[];
+
+function clearCameraMarkers(){Object.values(cameraMarkers).forEach(m=>m.remove());cameraMarkers={};}
+
+function cameraIcon(){
+  const col=LAYER_COLOR.CAMERA;
+  return L.divIcon({html:`<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8.5" fill="#000"/><rect x="2.5" y="6" width="9" height="6.5" rx="1" fill="none" stroke="${col}" stroke-width="1.6"/><circle cx="7" cy="9.25" r="1.9" fill="none" stroke="${col}" stroke-width="1.2"/><polygon points="11.5,7.8 15.5,5.8 15.5,12.7 11.5,10.7" fill="${col}"/></svg>`,className:'',iconSize:[18,18],iconAnchor:[9,9]});
+}
+
+async function fetchCameras(){
+  try{
+    const r=await fetch(CAMERAS_URL+'?t='+Date.now());if(!r.ok)return;
+    const d=await r.json();
+    allCameras=d.cameras||[];
+    renderCameras();
+  }catch{}
+}
+
+// Cameras are ~250 fixed dots over Montréal; at the fleet-wide zoom level
+// they're easy to miss among the aircraft. Jump straight to their footprint
+// and make sure the layer is actually on.
+function locateCameras(){
+  if(mode!=='live')return;
+  if(!allCameras.length)return;
+  const cb=document.querySelector('[data-live-layer="cameras"]');
+  if(cb&&!cb.checked){cb.checked=true;liveLayerVisible.cameras=true;}
+  const lat=allCameras.reduce((s,c)=>s+c.lat,0)/allCameras.length;
+  const lon=allCameras.reduce((s,c)=>s+c.lon,0)/allCameras.length;
+  map.setView([lat,lon],13);
+}
+
+function renderCameras(){
+  if(mode!=='live')return;
+  document.getElementById('lc-live-cameras').textContent=allCameras.length;
+  if(!liveLayerVisible.cameras){clearCameraMarkers();return;}
+  const seen=new Set();
+  allCameras.forEach(cam=>{
+    if(cam.lat==null||cam.lon==null)return;
+    if(!inView(cam.lat,cam.lon))return;
+    seen.add(cam.id);
+    if(cameraMarkers[cam.id])return;
+    const m=L.marker([cam.lat,cam.lon],{icon:cameraIcon()}).addTo(map);
+    m.on('click',()=>{
+      const fresh=cam.imageUrl+(cam.imageUrl.includes('?')?'&':'?')+'_t='+Date.now();
+      m.bindPopup(`<b>${cam.name}</b><br><img src="${fresh}" style="max-width:240px;display:block;margin:4px 0" onerror="this.replaceWith(document.createTextNode('Image unavailable right now.'))"><span style="font-size:11px">Live snapshot — Ville de Montréal, refreshes ~every 5 min. Not tracked by any sensor of ours.</span>`,{maxWidth:260}).openPopup();
+    });
+    cameraMarkers[cam.id]=m;
+  });
+  Object.keys(cameraMarkers).forEach(id=>{if(!seen.has(id)){cameraMarkers[id].remove();delete cameraMarkers[id];}});
+}
+
 function setMode(m){
   mode=m;
   document.getElementById('tab-live').classList.toggle('active',m==='live');
@@ -683,11 +776,13 @@ function setMode(m){
     renderTracks();
     renderEarthquakes();
     renderSatellites();
+    renderCameras();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
     clearEarthquakeMarkers();
     clearSatelliteMarkers();
+    clearCameraMarkers();
     radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
     map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
