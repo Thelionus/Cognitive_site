@@ -30,6 +30,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 #panel-track{top:46px;right:260px;width:260px;display:none}
 #panel-legend{bottom:10px;left:10px;width:220px}
 #panel-layers{top:46px;left:240px;width:200px;display:none}
+#panel-live-layers{top:46px;left:240px;width:220px}
 #panel-evidence{top:46px;right:10px;width:300px;display:none;max-height:calc(100vh - 130px);overflow-y:auto}
 .ag-row{margin-bottom:6px}
 .ag-hdr{display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px;gap:4px}
@@ -85,7 +86,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 @media (max-width:900px){
   #panel-agents,#panel-track,#panel-evidence{right:10px;left:auto}
-  #panel-layers{left:10px;top:220px}
+  #panel-layers,#panel-live-layers{left:10px;top:220px}
   #panel-radar{display:none}
   #timeline-bar{width:92vw}
 }
@@ -97,7 +98,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-live" onclick="setMode('live')">LIVE TRAFFIC</button>
     <button class="mode-tab" id="tab-scenario" onclick="setMode('scenario')">SCENARIO: OPS CENTER</button>
-    <a class="mode-tab" id="tab-godseye" href="godseye.html" title="Launch page for God's Eye View (github.com/bilawalsidhu/gods-eye-view)">GLOBAL 3D VIEW</a>
   </div>
   <a href="index.html">HOME</a>
   <a href="live-flights.html">LIVE FLIGHTS</a>
@@ -182,6 +182,14 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   </div>
 </div>
 
+<div class="panel" id="panel-live-layers">
+  <div class="panel-title"><span>LIVE LAYERS</span></div>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="aircraft" onchange="toggleLiveLayer(this)"><span>Aircraft</span><span class="layer-count" id="lc-live-aircraft">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="earthquakes" onchange="toggleLiveLayer(this)"><span>Earthquakes (M2.5+, 24h)</span><span class="layer-count" id="lc-live-earthquakes">—</span></label>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4) — not tracked by any sensor of ours.</div>
+</div>
+
 <!-- SCENARIO MODE PANELS -->
 <div class="panel" id="panel-layers">
   <div class="panel-title"><span>LAYERS</span></div>
@@ -215,6 +223,8 @@ const YUL_LAT=45.4706,YUL_LON=-73.7408;
 const AOI_LAT=50.30,AOI_LON=30.60; // fictional Scenario-mode AOI center only — Live mode always uses YUL
 const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/flights.json';
 const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
+const EARTHQUAKE_URL='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson'; // USGS, public, no key
+const CELESTRAK_URL='https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle'; // CelesTrak, public, no key
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#3b82f6',RED:'#ef4444',AMBER:'#f59e0b',GREEN:'#00ff41',GREY:'#8b98a5'};
 
@@ -307,8 +317,18 @@ function fleetAvg(){
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
 }
 
+const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true};
+function toggleLiveLayer(input){
+  liveLayerVisible[input.dataset.liveLayer]=input.checked;
+  if(input.dataset.liveLayer==='aircraft')renderTracks();
+  if(input.dataset.liveLayer==='earthquakes')renderEarthquakes();
+  if(input.dataset.liveLayer==='satellites')renderSatellites();
+}
+
 function renderTracks(){
   if(mode!=='live')return;
+  document.getElementById('lc-live-aircraft').textContent=allAircraft.length;
+  if(!liveLayerVisible.aircraft){clearLiveMarkers();document.getElementById('r-tracks').textContent=0;document.getElementById('r-hostile').textContent=0;document.getElementById('r-pending').textContent=0;document.getElementById('r-friendly').textContent=0;return;}
   const seen=new Set();let hostile=0,pending=0,friendly=0;
   allAircraft.forEach(ac=>{
     if(!ac.lat||!ac.lon)return;
@@ -356,6 +376,9 @@ setInterval(updateClock,1000);updateClock();
 function animate(){drawRadar();requestAnimationFrame(animate);}
 
 loadThreatsOverlay().then(()=>{fetchFlights();setInterval(fetchFlights,10000);});
+fetchEarthquakes();setInterval(fetchEarthquakes,120000);
+setInterval(fetchSatelliteTLEs,4*60*60*1000);
+setInterval(renderSatellites,5000);
 animate();
 
 /* ============================================================
@@ -561,6 +584,87 @@ function scrubTo(v){renderScenario(Number(v));}
 function clearScenarioMarkers(){Object.values(scenarioMarkers).forEach(m=>m.remove());scenarioMarkers={};}
 function clearLiveMarkers(){Object.values(markers).forEach(m=>m.remove());markers={};selectedHex=null;}
 
+/* ============================================================
+   LIVE LAYERS — Earthquakes (USGS, real, public, no key) and
+   Satellites (CelesTrak TLEs, real orbital elements, positions
+   computed client-side via SGP4 — not tracked by any sensor of
+   ours). Both are genuine public data, fetched directly; no
+   proxy needed since both providers allow cross-origin requests.
+   ============================================================ */
+let earthquakeMarkers={},satelliteMarkers={},satrecs=[];
+
+function quakeColor(mag){return mag>=6?'#ef4444':mag>=4?'#f59e0b':'#00ff41';}
+
+function clearEarthquakeMarkers(){Object.values(earthquakeMarkers).forEach(m=>m.remove());earthquakeMarkers={};}
+
+async function fetchEarthquakes(){
+  try{
+    const r=await fetch(EARTHQUAKE_URL);if(!r.ok)return;
+    const d=await r.json();
+    window._quakeFeatures=d.features||[];
+    renderEarthquakes();
+  }catch{}
+}
+
+function renderEarthquakes(){
+  if(mode!=='live')return;
+  clearEarthquakeMarkers();
+  const feats=window._quakeFeatures||[];
+  document.getElementById('lc-live-earthquakes').textContent=feats.length;
+  if(!liveLayerVisible.earthquakes)return;
+  feats.forEach(f=>{
+    const[lon,lat,depth]=f.geometry.coordinates,mag=f.properties.mag;
+    if(mag==null)return;
+    const m=L.circleMarker([lat,lon],{radius:3+mag*1.8,color:quakeColor(mag),weight:1.5,fillColor:quakeColor(mag),fillOpacity:0.25}).addTo(map);
+    const when=new Date(f.properties.time).toUTCString().replace('GMT','UTC');
+    m.bindPopup(`<b>M${mag.toFixed(1)}</b> — ${f.properties.place}<br>Depth: ${depth.toFixed(0)} km<br>${when}<br><a href="${f.properties.url}" target="_blank" rel="noopener">USGS event page</a>`);
+    earthquakeMarkers[f.id]=m;
+  });
+}
+
+function clearSatelliteMarkers(){Object.values(satelliteMarkers).forEach(m=>m.remove());satelliteMarkers={};}
+
+function satIcon(){
+  return L.divIcon({html:`<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="6.5" fill="rgba(0,0,0,0.5)"/><rect x="6.5" y="3" width="3" height="10" fill="#8b98a5" stroke="#fff" stroke-width="0.5"/><rect x="1" y="6.5" width="4" height="3" fill="#8b98a5" stroke="#fff" stroke-width="0.4"/><rect x="11" y="6.5" width="4" height="3" fill="#8b98a5" stroke="#fff" stroke-width="0.4"/></svg>`,className:'',iconSize:[16,16],iconAnchor:[8,8]});
+}
+
+async function fetchSatelliteTLEs(){
+  try{
+    const r=await fetch(CELESTRAK_URL);if(!r.ok)return;
+    const text=await r.text();
+    const lines=text.split('\n').map(l=>l.trimEnd()).filter(l=>l.length>0);
+    satrecs=[];
+    for(let i=0;i+2<lines.length;i+=3){
+      const name=lines[i].trim(),l1=lines[i+1],l2=lines[i+2];
+      if(!l1.startsWith('1 ')||!l2.startsWith('2 '))continue;
+      try{const rec=satellite.twoline2satrec(l1,l2);satrecs.push({name,rec});}catch{}
+    }
+    renderSatellites();
+  }catch{}
+}
+
+function renderSatellites(){
+  if(mode!=='live')return;
+  document.getElementById('lc-live-satellites').textContent=satrecs.length;
+  if(!liveLayerVisible.satellites||!satrecs.length){clearSatelliteMarkers();return;}
+  const now=new Date(),gmst=satellite.gstime(now);
+  const seen=new Set();
+  satrecs.forEach(({name,rec})=>{
+    const pv=satellite.propagate(rec,now);
+    if(!pv||!pv.position)return;
+    const geo=satellite.eciToGeodetic(pv.position,gmst);
+    const lat=satellite.degreesLat(geo.latitude),lon=satellite.degreesLong(geo.longitude);
+    seen.add(name);
+    if(satelliteMarkers[name]){satelliteMarkers[name].setLatLng([lat,lon]);}
+    else{
+      const m=L.marker([lat,lon],{icon:satIcon()}).addTo(map);
+      m.bindPopup(`<b>${name}</b><br>Alt: ${geo.height.toFixed(0)} km<br>Source: CelesTrak TLE, propagated client-side (SGP4)`);
+      satelliteMarkers[name]=m;
+    }
+  });
+  Object.keys(satelliteMarkers).forEach(n=>{if(!seen.has(n)){satelliteMarkers[n].remove();delete satelliteMarkers[n];}});
+}
+
 function setMode(m){
   mode=m;
   document.getElementById('tab-live').classList.toggle('active',m==='live');
@@ -569,7 +673,7 @@ function setMode(m){
   document.getElementById('panel-layers').style.display=m==='scenario'?'block':'none';
   document.getElementById('panel-evidence').style.display=(m==='scenario'&&selectedEntity)?'block':'none';
   document.getElementById('timeline-bar').style.display=m==='scenario'?'block':'none';
-  ['panel-radar','panel-agents','panel-legend'].forEach(id=>{document.getElementById(id).style.display=m==='live'?'block':'none';});
+  ['panel-radar','panel-agents','panel-legend','panel-live-layers'].forEach(id=>{document.getElementById(id).style.display=m==='live'?'block':'none';});
   if(m==='live'){
     document.getElementById('panel-track').style.display=selectedHex?'block':'none';
     if(playing){clearInterval(playTimer);playing=false;document.getElementById('tl-play').textContent='▶ PLAY';}
@@ -577,14 +681,30 @@ function setMode(m){
     radarCenter=[YUL_LAT,YUL_LON];radarLabel='YUL';
     map.setView([YUL_LAT,YUL_LON],7);
     renderTracks();
+    renderEarthquakes();
+    renderSatellites();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
+    clearEarthquakeMarkers();
+    clearSatelliteMarkers();
     radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
     map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
   }
 }
+</script>
+<script type="module">
+// satellite.js ships ESM-only (no UMD/global bundle), so it's loaded here via
+// a CDN's ESM endpoint and attached to window for the classic script above to
+// use. Module scripts execute after the document has parsed (deferred by
+// spec), which is after the classic script above has already run and defined
+// fetchSatelliteTLEs as a global — this is what actually triggers the first
+// TLE fetch, since the classic script's own init calls above intentionally
+// don't call fetchSatelliteTLEs() (window.satellite wouldn't exist yet then).
+import * as satelliteLib from 'https://cdn.jsdelivr.net/npm/satellite.js@7.1.0/+esm';
+window.satellite = satelliteLib;
+fetchSatelliteTLEs();
 </script>
 </body>
 </html>
