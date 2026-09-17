@@ -130,6 +130,7 @@ async function main() {
 
   if (!cameras.length) {
     console.error(`No cameras parsed from ${features.length} features — leaving existing cameras.json untouched (feed schema may have changed).`);
+    if (features[0]) console.error('First feature for schema debugging:', JSON.stringify(features[0]));
     return;
   }
 
