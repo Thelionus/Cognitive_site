@@ -767,12 +767,12 @@ function renderCameras(){
     if(cameraMarkers[cam.id])return;
     const m=L.marker([cam.lat,cam.lon],{icon:cameraIcon()}).addTo(map);
     m.on('click',()=>{
-      // Embedded directly so one click shows the live view — Québec 511's
-      // own viewer page is a small "window" (its URL literally says
-      // Fenetre/window), which is exactly what it's meant to be embedded
-      // as. The new-tab link stays as a fallback in case the site ever
-      // blocks framing, so there's always a working path to the camera.
-      m.bindPopup(`<b>${cam.name}</b><br><iframe src="${cam.viewUrl}" style="width:320px;height:240px;border:1px solid #333;margin:4px 0" loading="lazy"></iframe><br><a href="${cam.viewUrl}" target="_blank" rel="noopener" style="font-size:11px">Open in new tab ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`,{maxWidth:340}).openPopup();
+      // Québec 511's viewer page blocks iframe embedding (confirmed via a
+      // broken-frame result in production), so this links out instead of
+      // trying to embed the full HTML page. Embedding the raw snapshot
+      // image directly (no iframe, no framing restriction) is possible if
+      // that URL gets confirmed later.
+      m.bindPopup(`<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`,{maxWidth:260}).openPopup();
     });
     cameraMarkers[cam.id]=m;
   });
