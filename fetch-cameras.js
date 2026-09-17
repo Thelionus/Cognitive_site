@@ -8,7 +8,14 @@ const fs = require('fs');
 // in sync occasionally; freshness of the actual image comes from the
 // viewer's browser cache-busting that URL at view time, not from this
 // script running often.
-const SOURCE_URL = 'https://ville.montreal.qc.ca/circulation/sites/ville.montreal.qc.ca.circulation/files/cameras-de-circulation.json';
+//
+// The direct static-file URL below started 403'ing (after a 301 redirect)
+// some time after this was first written — the city's site frontend
+// appears to have grown bot/WAF protection on that path. The city's own
+// open-data catalogue (CKAN) is the fallback: its file-store URLs sit on
+// a different host and are meant for programmatic access.
+const DIRECT_URL = 'https://ville.montreal.qc.ca/circulation/sites/ville.montreal.qc.ca.circulation/files/cameras-de-circulation.json';
+const CKAN_PACKAGE_URL = 'https://donnees.montreal.ca/api/3/action/package_show?id=cameras-observation-routiere';
 
 // The city has redirected this feed before (e.g. a path move or https
 // upgrade) without warning, so redirects are followed rather than treated
@@ -51,12 +58,14 @@ function fetchJson(url, redirectsLeft = 5) {
 }
 
 // The exact property names on this feed's features aren't documented
-// anywhere public we could confirm from this environment — only the
-// image-URL field name (URLImageEnDirect) is confirmed, via a working
-// third-party tool that already parses this same feed. Camera name/ID
-// field names are best-effort guesses across common French/English
-// variants; this stays robust to whichever one is actually present,
-// and falls back to a positional label rather than failing outright.
+// anywhere public we could confirm from this environment. The image-URL
+// field name is confirmed two ways: `URLImageEnDirect` via a working
+// third-party tool that parses the direct static file, and the CKAN
+// catalogue's own kebab-case convention (`url-image-en-direct`) for the
+// same underlying dataset. Camera name/ID field names are best-effort
+// guesses across common French/English/kebab-case variants; this stays
+// robust to whichever one is actually present, and falls back to a
+// positional label rather than failing outright.
 function pick(props, candidates) {
   for (const c of candidates) {
     if (props[c] != null && props[c] !== '') return props[c];
@@ -64,19 +73,33 @@ function pick(props, candidates) {
   return null;
 }
 
+async function resolveFeatures() {
+  try {
+    const data = await fetchJson(DIRECT_URL);
+    return { sourceUrl: DIRECT_URL, features: data.features || [] };
+  } catch (e) {
+    console.error(`direct feed failed (${e.message}) — falling back to the open-data catalogue`);
+  }
+  const pkg = await fetchJson(CKAN_PACKAGE_URL);
+  const resources = (pkg.result && pkg.result.resources) || [];
+  const resource = resources.find(r => /json/i.test(r.format || '')) || resources[0];
+  if (!resource || !resource.url) throw new Error('CKAN package has no usable resource');
+  const data = await fetchJson(resource.url);
+  return { sourceUrl: resource.url, features: data.features || [] };
+}
+
 async function main() {
-  const data = await fetchJson(SOURCE_URL);
-  const features = data.features || [];
+  const { sourceUrl, features } = await resolveFeatures();
 
   const cameras = features.map((f, i) => {
     const props = f.properties || {};
     const coords = f.geometry && f.geometry.coordinates;
     if (!coords || coords.length < 2) return null;
     const [lon, lat] = coords;
-    const imageUrl = pick(props, ['URLImageEnDirect', 'urlImageEnDirect', 'url_image_en_direct', 'image', 'Image', 'IMAGE']);
+    const imageUrl = pick(props, ['URLImageEnDirect', 'urlImageEnDirect', 'url_image_en_direct', 'url-image-en-direct', 'image', 'Image', 'IMAGE']);
     if (!imageUrl) return null;
-    const name = pick(props, ['Nom_Camera', 'nom_camera', 'NOM_CAM', 'nom', 'Nom', 'description', 'Description', 'name', 'Name']) || `Camera ${i + 1}`;
-    const id = pick(props, ['ID_CAM', 'id_camera', 'CAM_ID', 'id', 'Id', 'ID']) || String(i + 1);
+    const name = pick(props, ['Nom_Camera', 'nom_camera', 'NOM_CAM', 'nom', 'Nom', 'titre', 'Titre', 'description', 'Description', 'name', 'Name']) || `Camera ${i + 1}`;
+    const id = pick(props, ['ID_CAM', 'id_camera', 'CAM_ID', 'id-camera', 'id', 'Id', 'ID']) || String(i + 1);
     return { id: String(id), name: String(name), lat, lon, imageUrl };
   }).filter(Boolean);
 
@@ -85,8 +108,8 @@ async function main() {
     return;
   }
 
-  fs.writeFileSync('cameras.json', JSON.stringify({ timestamp: Date.now(), source: SOURCE_URL, cameras }));
-  console.log(`Saved ${cameras.length} cameras (of ${features.length} features seen)`);
+  fs.writeFileSync('cameras.json', JSON.stringify({ timestamp: Date.now(), source: sourceUrl, cameras }));
+  console.log(`Saved ${cameras.length} cameras (of ${features.length} features seen) from ${sourceUrl}`);
 }
 
 main().catch(e => {
