@@ -186,7 +186,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="leg-row"><span class="leg-sym" style="color:var(--crt-amber)">●</span><span>Earthquake M4–6</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:var(--crt-green)">●</span><span>Earthquake M2.5–4</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:#ffffff">✦</span><span>Satellite (station, SGP4)</span></div>
-  <div class="leg-row"><span class="leg-sym" style="color:#ff00c8">▣</span><span>Traffic camera (Montréal) — click for live snapshot</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#ff00c8">▣</span><span>Traffic camera — click to open live view</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#00b0ff">▦</span><span>Weather radar — precipitation intensity</span></div>
   <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
     ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
   </div>
@@ -198,7 +199,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="earthquakes" onchange="toggleLiveLayer(this)"><span>Earthquakes (M2.5+, 24h)</span><span class="layer-count" id="lc-live-earthquakes">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="cameras" onchange="toggleLiveLayer(this)"><span>Traffic Cameras (Montréal)</span><span class="layer-count" id="lc-live-cameras">—</span><button type="button" class="layer-locate" title="Zoom to cameras" onclick="event.preventDefault();locateCameras()">⌖</button></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Nothing here is tracked by any sensor of ours.</div>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="wxradar" onchange="toggleLiveLayer(this)"><span>Weather Radar (precip)</span><span class="layer-count" id="lc-live-wxradar">—</span></label>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -237,6 +239,7 @@ const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/da
 const EARTHQUAKE_URL='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson'; // USGS, public, no key
 const CELESTRAK_URL='https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle'; // CelesTrak, public, no key
 const CAMERAS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras.json'; // Montréal-area traffic cams (Québec 511), fetched server-side via GitHub Action (see fetch-cameras.js)
+const RAINVIEWER_URL='https://api.rainviewer.com/public/weather-maps.json'; // RainViewer, public, no key — CORS-friendly, fetched client-side like earthquakes/satellites
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',GREY:'#b0bec5'};
 // RED is reserved for actual threat/danger classification (aircraft/scenario).
@@ -250,6 +253,13 @@ let radarCenter=[YUL_LAT,YUL_LON],radarLabel='YUL';
 const map=L.map('map',{zoomControl:false,attributionControl:false,preferCanvas:true}).setView([YUL_LAT,YUL_LON],7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(map);
 map.getPane('tilePane').style.filter='invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)';
+// Its own pane, above the base tiles but below markers, and deliberately
+// NOT touched by the tilePane filter above — the filter is applied to
+// that pane's DOM element specifically, so radar's true precipitation
+// colors (green/yellow/red intensity) stay legible instead of inverting
+// into misleading hues.
+map.createPane('wxRadarPane');
+map.getPane('wxRadarPane').style.zIndex=350;
 
 // Large point layers (1000+ aircraft globally, 250 cameras) were making
 // pan/zoom janky — Leaflet has to reposition every DOM marker on every
@@ -351,13 +361,14 @@ function fleetAvg(){
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
 }
 
-const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true};
+const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true};
 function toggleLiveLayer(input){
   liveLayerVisible[input.dataset.liveLayer]=input.checked;
   if(input.dataset.liveLayer==='aircraft')renderTracks();
   if(input.dataset.liveLayer==='earthquakes')renderEarthquakes();
   if(input.dataset.liveLayer==='satellites')renderSatellites();
   if(input.dataset.liveLayer==='cameras')renderCameras();
+  if(input.dataset.liveLayer==='wxradar')renderWxRadar();
 }
 
 function renderTracks(){
@@ -417,6 +428,7 @@ fetchEarthquakes();setInterval(fetchEarthquakes,120000);
 setInterval(fetchSatelliteTLEs,4*60*60*1000);
 setInterval(renderSatellites,5000);
 fetchCameras();setInterval(fetchCameras,30*60*1000);
+fetchWxRadar();setInterval(fetchWxRadar,10*60*1000);
 animate();
 
 /* ============================================================
@@ -757,6 +769,36 @@ function renderCameras(){
   Object.keys(cameraMarkers).forEach(id=>{if(!seen.has(id)){cameraMarkers[id].remove();delete cameraMarkers[id];}});
 }
 
+// RainViewer radar: a raster tile overlay, not point markers, so it needs
+// none of the inView() culling above — Leaflet's tile layer already only
+// draws tiles inside the current viewport. Swapping to the newest frame is
+// just re-pointing the same tile layer's URL template.
+let wxRadarLayer=null,wxRadarHost=null,wxRadarFrame=null;
+
+function clearWxRadar(){if(wxRadarLayer){map.removeLayer(wxRadarLayer);wxRadarLayer=null;}}
+
+async function fetchWxRadar(){
+  try{
+    const r=await fetch(RAINVIEWER_URL+'?t='+Date.now());if(!r.ok)return;
+    const d=await r.json();
+    const past=(d.radar&&d.radar.past)||[];
+    if(!past.length)return;
+    wxRadarHost=d.host;
+    wxRadarFrame=past[past.length-1];
+    renderWxRadar();
+  }catch{}
+}
+
+function renderWxRadar(){
+  if(mode!=='live')return;
+  const el=document.getElementById('lc-live-wxradar');
+  if(el)el.textContent=wxRadarFrame?Math.max(0,Math.round((Date.now()/1000-wxRadarFrame.time)/60))+'m ago':'—';
+  if(!liveLayerVisible.wxradar||!wxRadarFrame){clearWxRadar();return;}
+  clearWxRadar();
+  const url=wxRadarHost+wxRadarFrame.path+'/256/{z}/{x}/{y}/2/1_1.png';
+  wxRadarLayer=L.tileLayer(url,{pane:'wxRadarPane',opacity:0.55,maxNativeZoom:7,maxZoom:19}).addTo(map);
+}
+
 function setMode(m){
   mode=m;
   document.getElementById('tab-live').classList.toggle('active',m==='live');
@@ -776,12 +818,14 @@ function setMode(m){
     renderEarthquakes();
     renderSatellites();
     renderCameras();
+    renderWxRadar();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
     clearEarthquakeMarkers();
     clearSatelliteMarkers();
     clearCameraMarkers();
+    clearWxRadar();
     radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
     map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
