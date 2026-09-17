@@ -1,0 +1,22 @@
+name: Debug YouTube oEmbed (temporary)
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_ids:
+        description: 'Comma-separated YouTube video IDs to check'
+        required: true
+        default: 'iJxeutc3QCI'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check oEmbed for each video ID
+        run: |
+          IFS=',' read -ra IDS <<< "${{ github.event.inputs.video_ids }}"
+          for id in "${IDS[@]}"; do
+            echo "=== $id ==="
+            node debug-youtube-oembed.js "$id"
+          done
