@@ -16,6 +16,10 @@ const fs = require('fs');
 // a different host and are meant for programmatic access.
 const DIRECT_URL = 'https://ville.montreal.qc.ca/circulation/sites/ville.montreal.qc.ca.circulation/files/cameras-de-circulation.json';
 const CKAN_PACKAGE_URL = 'https://donnees.montreal.ca/api/3/action/package_show?id=cameras-observation-routiere';
+// Third fallback: a community-run OpenDataSoft mirror of the same dataset,
+// on OpenDataSoft's own SaaS infrastructure rather than a city-owned host —
+// worth trying if both city-owned paths above are behind the same WAF.
+const OPENDATASOFT_URL = 'https://do101mtl.opendatasoft.com/api/records/1.0/search/?dataset=cameras-de-circulation-ville-de-montreal&rows=1000';
 
 // The city has redirected this feed before (e.g. a path move or https
 // upgrade) without warning, so redirects are followed rather than treated
@@ -80,12 +84,33 @@ async function resolveFeatures() {
   } catch (e) {
     console.error(`direct feed failed (${e.message}) — falling back to the open-data catalogue`);
   }
-  const pkg = await fetchJson(CKAN_PACKAGE_URL);
-  const resources = (pkg.result && pkg.result.resources) || [];
-  const resource = resources.find(r => /json/i.test(r.format || '')) || resources[0];
-  if (!resource || !resource.url) throw new Error('CKAN package has no usable resource');
-  const data = await fetchJson(resource.url);
-  return { sourceUrl: resource.url, features: data.features || [] };
+  try {
+    const pkg = await fetchJson(CKAN_PACKAGE_URL);
+    const resources = (pkg.result && pkg.result.resources) || [];
+    const resource = resources.find(r => /json/i.test(r.format || '')) || resources[0];
+    if (!resource || !resource.url) throw new Error('CKAN package has no usable resource');
+    const data = await fetchJson(resource.url);
+    return { sourceUrl: resource.url, features: data.features || [] };
+  } catch (e) {
+    console.error(`open-data catalogue failed (${e.message}) — falling back to the OpenDataSoft mirror`);
+  }
+  // OpenDataSoft's fixed response envelope wraps each record's properties in
+  // `fields` and its position in `geometry.coordinates` (GeoJSON [lon,lat])
+  // or, lacking that, `fields.geo_point_2d` ([lat,lon] — reversed). Normalize
+  // both into the same {properties, geometry} shape the other two sources
+  // already produce so the rest of this script doesn't need to care which
+  // source actually answered.
+  const ods = await fetchJson(OPENDATASOFT_URL);
+  const records = ods.records || [];
+  const features = records.map(r => {
+    const fields = r.fields || {};
+    let coords = r.geometry && r.geometry.coordinates;
+    if ((!coords || coords.length < 2) && Array.isArray(fields.geo_point_2d)) {
+      coords = [fields.geo_point_2d[1], fields.geo_point_2d[0]];
+    }
+    return { properties: fields, geometry: { coordinates: coords } };
+  });
+  return { sourceUrl: OPENDATASOFT_URL, features };
 }
 
 async function main() {
