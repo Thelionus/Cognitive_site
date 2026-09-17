@@ -198,7 +198,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="earthquakes" onchange="toggleLiveLayer(this)"><span>Earthquakes (M2.5+, 24h)</span><span class="layer-count" id="lc-live-earthquakes">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="cameras" onchange="toggleLiveLayer(this)"><span>Traffic Cameras (Montréal)</span><span class="layer-count" id="lc-live-cameras">—</span><button type="button" class="layer-locate" title="Zoom to cameras" onclick="event.preventDefault();locateCameras()">⌖</button></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Cameras: Ville de Montréal, live snapshots — click ⌖ to zoom to them (magenta, clustered downtown). Nothing here is tracked by any sensor of ours.</div>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -236,7 +236,7 @@ const DATA_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/
 const THREATS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/threats-overlay.json';
 const EARTHQUAKE_URL='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson'; // USGS, public, no key
 const CELESTRAK_URL='https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle'; // CelesTrak, public, no key
-const CAMERAS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras.json'; // Ville de Montréal traffic cams, fetched server-side via GitHub Action (see fetch-cameras.js)
+const CAMERAS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras.json'; // Montréal-area traffic cams (Québec 511), fetched server-side via GitHub Action (see fetch-cameras.js)
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',GREY:'#b0bec5'};
 // RED is reserved for actual threat/danger classification (aircraft/scenario).
@@ -750,8 +750,7 @@ function renderCameras(){
     if(cameraMarkers[cam.id])return;
     const m=L.marker([cam.lat,cam.lon],{icon:cameraIcon()}).addTo(map);
     m.on('click',()=>{
-      const fresh=cam.imageUrl+(cam.imageUrl.includes('?')?'&':'?')+'_t='+Date.now();
-      m.bindPopup(`<b>${cam.name}</b><br><img src="${fresh}" style="max-width:240px;display:block;margin:4px 0" onerror="this.replaceWith(document.createTextNode('Image unavailable right now.'))"><span style="font-size:11px">Live snapshot — Ville de Montréal, refreshes ~every 5 min. Not tracked by any sensor of ours.</span>`,{maxWidth:260}).openPopup();
+      m.bindPopup(`<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`,{maxWidth:260}).openPopup();
     });
     cameraMarkers[cam.id]=m;
   });
