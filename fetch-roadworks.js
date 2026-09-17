@@ -42,11 +42,11 @@ function fetchJson(url, redirectsLeft = 5) {
   });
 }
 
-// This dataset's exact field names aren't confirmed from this environment
-// (same reachability limits as the camera feed), so — same approach that
-// got that feed's real schema diagnosed in one round — this tries several
-// plausible French/English variants per field and logs the first raw
-// feature if nothing matches, rather than guessing blind across many runs.
+// Confirmed live via the diagnostic log below (chantiers_mtmdet uses its own
+// camelCase French field names, unrelated to infos_cameras' PascalCase):
+// identifiantChantier, identificationDesTravaux, localisation, routeAutoroute,
+// entraveType, debut, fin. Older PascalCase guesses stay as a fallback in
+// case a future schema revision reintroduces that convention.
 function pick(props, candidates) {
   for (const c of candidates) {
     if (props[c] != null && props[c] !== '') return props[c];
@@ -76,16 +76,17 @@ async function main() {
     if (!coord) return null;
     const [lon, lat] = coord;
     if (lat < MTL_BBOX.minLat || lat > MTL_BBOX.maxLat || lon < MTL_BBOX.minLon || lon > MTL_BBOX.maxLon) return null;
-    const descriptionFound = pick(props, ['DescriptionLocalisationFr', 'DescriptionLocalisationEn', 'Description', 'description', 'Localisation']);
-    const route = pick(props, ['NumeroRoute', 'NomRoute', 'Route', 'route']);
-    const nature = pick(props, ['NatureTravaux', 'TypeTravaux', 'Nature', 'Type', 'type']);
-    const dateDebut = pick(props, ['DateDebut', 'DateDebutTravaux', 'DateDebutDiffusion']);
-    const dateFin = pick(props, ['DateFin', 'DateFinTravaux', 'DateFinDiffusion']);
-    const idFound = pick(props, ['IDChantier', 'NoChantier', 'ID_Chantier', 'IdChantier', 'id']);
-    if (descriptionFound || route || nature || dateDebut || dateFin || idFound) anyFieldMatched = true;
+    const descriptionFound = pick(props, ['identificationDesTravaux', 'DescriptionLocalisationFr', 'DescriptionLocalisationEn', 'Description', 'description']);
+    const location = pick(props, ['localisation', 'Localisation']);
+    const route = pick(props, ['routeAutoroute', 'NumeroRoute', 'NomRoute', 'Route', 'route']);
+    const nature = pick(props, ['entraveType', 'entrave', 'NatureTravaux', 'TypeTravaux', 'Nature', 'Type', 'type']);
+    const dateDebut = pick(props, ['debut', 'DateDebut', 'DateDebutTravaux', 'DateDebutDiffusion']);
+    const dateFin = pick(props, ['fin', 'DateFin', 'DateFinTravaux', 'DateFinDiffusion']);
+    const idFound = pick(props, ['identifiantChantier', 'identifiant', 'IDChantier', 'NoChantier', 'ID_Chantier', 'IdChantier', 'id']);
+    if (descriptionFound || location || route || nature || dateDebut || dateFin || idFound) anyFieldMatched = true;
     const description = descriptionFound || `Roadwork ${i + 1}`;
     const id = idFound || String(i + 1);
-    return { id: String(id), description: String(description), route, nature, dateDebut, dateFin, lat, lon };
+    return { id: String(id), description: String(description), location, route, nature, dateDebut, dateFin, lat, lon };
   }).filter(Boolean);
 
   if (!roadworks.length) {
