@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/assets/js/img-fallback.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOBAL 3D VIEW — Cognitive Systems</title>
+<style>
+:root{--crt-green:#00ff41;--crt-dim:#00aa2a;--crt-amber:#f59e0b;--crt-red:#ef4444;--crt-bg:#000800;--panel-bg:rgba(0,12,0,0.88);--panel-border:#00ff4144}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--crt-bg);color:var(--crt-green);font-family:'Courier New',monospace;font-size:14px;line-height:1.6;min-height:100vh}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:9999}
+.tac-nav{position:sticky;top:0;height:36px;background:rgba(0,8,0,0.95);border-bottom:1px solid var(--panel-border);display:flex;align-items:center;padding:0 12px;z-index:1000;gap:20px}
+.tac-nav .logo{color:var(--crt-green);font-weight:bold;font-size:14px;letter-spacing:2px}
+.tac-nav a{color:var(--crt-dim);text-decoration:none;font-size:11px;letter-spacing:1px}
+.tac-nav a:hover,.tac-nav a.active{color:var(--crt-green)}
+main{max-width:720px;margin:0 auto;padding:60px 20px 100px}
+h1{font-size:28px;letter-spacing:1px;margin-bottom:6px}
+.sub{color:var(--crt-dim);font-size:13px;margin-bottom:30px;letter-spacing:1px}
+.panel{background:var(--panel-bg);border:1px solid var(--panel-border);padding:20px 22px;margin-bottom:22px}
+.panel h2{font-size:12px;letter-spacing:2px;color:var(--crt-green);margin-bottom:12px;text-transform:uppercase}
+.panel p{color:var(--crt-dim);font-size:13px;margin-bottom:10px}
+.panel p:last-child{margin-bottom:0}
+.panel a{color:var(--crt-green)}
+.panel a.launch{color:var(--crt-bg)}
+pre{background:#001200;border:1px solid var(--panel-border);padding:14px 16px;font-size:12.5px;color:var(--crt-green);overflow-x:auto;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-family:inherit;font-size:10px;letter-spacing:1px;padding:3px 8px;cursor:pointer}
+.copy-btn:hover{color:var(--crt-green);border-color:var(--crt-green)}
+.launch{display:inline-block;background:var(--crt-green);color:var(--crt-bg);font-family:inherit;font-weight:bold;letter-spacing:1px;font-size:14px;padding:14px 28px;text-decoration:none;border:none;cursor:pointer}
+.launch:hover{background:#fff}
+.launch[disabled]{opacity:0.5;cursor:not-allowed}
+.note{font-size:11.5px;color:var(--crt-dim);margin-top:10px}
+</style>
+</head>
+<body>
+
+<nav class="tac-nav">
+  <span class="logo">COGNITV / TAC</span>
+  <a href="index.html">HOME</a>
+  <a href="tactical.html">TACTICAL</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<main>
+  <h1>🌐 GLOBAL 3D VIEW</h1>
+  <div class="sub">POWERED BY GOD'S EYE VIEW — AN OPEN-SOURCE PROJECT, NOT OURS</div>
+
+  <div class="panel">
+    <h2>Open it</h2>
+    <p>Only works once it's running locally (see below) — otherwise this opens a blank/refused connection.</p>
+    <a class="launch" id="launch-btn" href="http://localhost:4173" target="_blank" rel="noopener">▶ OPEN GLOBAL 3D VIEW</a>
+    <div class="note">We can't reliably detect from this page whether it's running on your machine, so this button can't warn you first — if it fails, start it with the commands below and try again.</div>
+  </div>
+
+  <div class="panel">
+    <h2>What this is</h2>
+    <p>A photorealistic 3D globe with live aircraft, ships, satellites, earthquakes, and public cameras — built by <a href="https://github.com/bilawalsidhu" target="_blank" rel="noopener">Bilawal Sidhu</a> as <a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">gods-eye-view</a> (MIT licensed). It's not part of the Cognitive Group platform — this page just points to it.</p>
+    <p>It runs as its own local app, not something we host here: its live-data proxying is built into its dev server, so it needs to actually be running on your machine (or wherever you choose to deploy it) for the button above to go anywhere.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Run it locally</h2>
+    <p>Requires Node.js 24.x or 26.x. First time only:</p>
+    <pre id="cmd-clone">git clone https://github.com/bilawalsidhu/gods-eye-view.git
+cd gods-eye-view
+npm ci<button class="copy-btn" data-target="cmd-clone">COPY</button></pre>
+    <p style="margin-top:16px">Then, every time you want to use it:</p>
+    <pre id="cmd-run">npm run dev<button class="copy-btn" data-target="cmd-run">COPY</button></pre>
+    <p>It opens at <code>http://localhost:4173</code> and runs keyless by default — live flights, ships, satellites, earthquakes and cameras all work without an account. Add a Cesium ion token or Google Maps key later, from inside the app's own "POWER UP" panel, for photorealistic 3D tiles.</p>
+  </div>
+</main>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const pre=document.getElementById(btn.dataset.target);
+    const text=pre.textContent.replace('COPY','').trim();
+    navigator.clipboard.writeText(text).then(()=>{
+      const old=btn.textContent;btn.textContent='COPIED';setTimeout(()=>btn.textContent=old,1500);
+    }).catch(()=>{});
+  });
+});
+
+</script>
+
+</body>
+</html>
