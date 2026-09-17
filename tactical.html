@@ -189,6 +189,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="leg-row"><span class="leg-sym" style="color:#ff00c8">▣</span><span>Traffic camera — click to open live view</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:#00b0ff">▦</span><span>Weather radar — precipitation intensity</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:#aa00ff">▲</span><span>Roadwork / closure (Québec 511 MTMD)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#ccff00">▶</span><span>Live cam — click to play (YouTube)</span></div>
   <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
     ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
   </div>
@@ -202,7 +203,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="cameras" onchange="toggleLiveLayer(this)"><span>Traffic Cameras (Montréal)</span><span class="layer-count" id="lc-live-cameras">—</span><button type="button" class="layer-locate" title="Zoom to cameras" onclick="event.preventDefault();locateCameras()">⌖</button></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="wxradar" onchange="toggleLiveLayer(this)"><span>Weather Radar (precip)</span><span class="layer-count" id="lc-live-wxradar">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="roadworks" onchange="toggleLiveLayer(this)"><span>Roadwork / Closures</span><span class="layer-count" id="lc-live-roadworks">—</span></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Roadwork/closures: Québec 511 MTMD (violet). Nothing here is tracked by any sensor of ours.</div>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="ytcams" onchange="toggleLiveLayer(this)"><span>Live Cams (YouTube)</span><span class="layer-count" id="lc-live-ytcams">—</span></label>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -248,7 +250,18 @@ const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',G
 // RED is reserved for actual threat/danger classification (aircraft/scenario).
 // Other live layers get their own distinct saturated colors so nothing else
 // borrows that meaning.
-const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8',ROADWORK:'#aa00ff'};
+const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8',ROADWORK:'#aa00ff',YTCAM:'#ccff00'};
+
+// Hand-curated live YouTube streams — unlike every camera/roadwork source
+// above, there's no API that discovers "all live cams" this way, so this
+// stays a short, manually verified list rather than something fetched.
+// YouTube's own embed player (unlike every viewer page tried above) has no
+// X-Frame-Options/Cloudflare wall, so this is the one source that actually
+// plays inline in the popup instead of just linking out. Confirmed live and
+// embeddable via YouTube's public oEmbed API before being added here.
+const YOUTUBE_CAMS=[
+  {id:'yul-cyul',title:'Montréal–Trudeau Airport (CYUL), Runway 24L',videoId:'iJxeutc3QCI',lat:YUL_LAT,lon:YUL_LON}
+];
 
 let mode='live';
 let radarCenter=[YUL_LAT,YUL_LON],radarLabel='YUL';
@@ -272,8 +285,8 @@ map.getPane('wxRadarPane').style.zIndex=350;
 // bounded regardless of how much data is loaded.
 let zooming=false;
 map.on('zoomstart',()=>{zooming=true});
-map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();}});
-map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();}});
+map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();}});
+map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();}});
 function inView(lat,lon){return map.getBounds().pad(0.25).contains([lat,lon]);}
 
 const canvas=document.getElementById('radar-canvas');
@@ -364,7 +377,7 @@ function fleetAvg(){
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
 }
 
-const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true,roadworks:true};
+const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true,roadworks:true,ytcams:true};
 function toggleLiveLayer(input){
   liveLayerVisible[input.dataset.liveLayer]=input.checked;
   if(input.dataset.liveLayer==='aircraft')renderTracks();
@@ -373,6 +386,7 @@ function toggleLiveLayer(input){
   if(input.dataset.liveLayer==='cameras')renderCameras();
   if(input.dataset.liveLayer==='wxradar')renderWxRadar();
   if(input.dataset.liveLayer==='roadworks')renderRoadworks();
+  if(input.dataset.liveLayer==='ytcams')renderYoutubeCams();
 }
 
 function renderTracks(){
@@ -850,6 +864,41 @@ function renderRoadworks(){
   Object.keys(roadworkMarkers).forEach(id=>{if(!seen.has(id)){roadworkMarkers[id].remove();delete roadworkMarkers[id];}});
 }
 
+function ytCamIcon(){
+  const col=LAYER_COLOR.YTCAM;
+  return L.divIcon({html:`<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.5" fill="#000"/><circle cx="10" cy="10" r="7" fill="none" stroke="${col}" stroke-width="1.6"/><polygon points="8,6.5 14,10 8,13.5" fill="${col}"/></svg>`,className:'',iconSize:[20,20],iconAnchor:[10,10]});
+}
+
+let ytCamMarkers={};
+
+function clearYoutubeCamMarkers(){Object.values(ytCamMarkers).forEach(m=>m.remove());ytCamMarkers={};}
+
+// Static hand-curated list, not fetched — see YOUTUBE_CAMS above. Still
+// respects the viewport culling and live/scenario mode split every other
+// layer uses, so it behaves consistently even though the data never changes.
+function renderYoutubeCams(){
+  if(mode!=='live')return;
+  document.getElementById('lc-live-ytcams').textContent=YOUTUBE_CAMS.length;
+  if(!liveLayerVisible.ytcams){clearYoutubeCamMarkers();return;}
+  const seen=new Set();
+  YOUTUBE_CAMS.forEach(cam=>{
+    if(!inView(cam.lat,cam.lon))return;
+    seen.add(cam.id);
+    if(ytCamMarkers[cam.id])return;
+    const m=L.marker([cam.lat,cam.lon],{icon:ytCamIcon()}).addTo(map);
+    m.on('click',()=>{
+      m.bindPopup(`<b>${cam.title}</b><br><iframe width="320" height="180" src="https://www.youtube.com/embed/${cam.videoId}" style="border:0;margin:4px 0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe><br><span style="font-size:11px">Public YouTube live stream. Not tracked by any sensor of ours.</span>`,{maxWidth:340}).openPopup();
+    });
+    ytCamMarkers[cam.id]=m;
+  });
+  Object.keys(ytCamMarkers).forEach(id=>{if(!seen.has(id)){ytCamMarkers[id].remove();delete ytCamMarkers[id];}});
+}
+// Called here rather than in the init block above (with the other layers'
+// fetchX() calls) because this list is static, not fetched — an immediate
+// renderYoutubeCams() there would run before `let ytCamMarkers` on this line
+// initializes, throwing a temporal-dead-zone ReferenceError.
+renderYoutubeCams();
+
 function setMode(m){
   mode=m;
   document.getElementById('tab-live').classList.toggle('active',m==='live');
@@ -871,6 +920,7 @@ function setMode(m){
     renderCameras();
     renderWxRadar();
     renderRoadworks();
+    renderYoutubeCams();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
@@ -879,6 +929,7 @@ function setMode(m){
     clearCameraMarkers();
     clearWxRadar();
     clearRoadworkMarkers();
+    clearYoutubeCamMarkers();
     radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
     map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
