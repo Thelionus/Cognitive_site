@@ -9,16 +9,21 @@ const fs = require('fs');
 // viewer's browser cache-busting that URL at view time, not from this
 // script running often.
 //
-// The direct static-file URL below started 403'ing (after a 301 redirect)
-// some time after this was first written — the city's site frontend
-// appears to have grown bot/WAF protection on that path. The city's own
-// open-data catalogue (CKAN) is the fallback: its file-store URLs sit on
-// a different host and are meant for programmatic access.
+// Every ville.montreal.qc.ca / donnees.montreal.ca path here has been
+// confirmed (via live runs of this workflow) to 403 behind the city's own
+// WAF, city-wide — not just on one path. Try the Québec provincial
+// transport ministry's official WFS camera catalogue first instead: it's
+// independent infrastructure (a different government body entirely) and
+// covers Montréal-area cameras too. The old Montréal-specific URLs are
+// kept as fallbacks in case that changes, or in case the province ever
+// drops camera coverage the city dataset still has.
+const QUEBEC511_URL = 'https://ws.mapserver.transports.gouv.qc.ca/swtq?service=wfs&version=2.0.0&request=getfeature&typename=ms:infos_cameras&outfile=Camera&srsname=EPSG:4326&outputformat=geojson';
 const DIRECT_URL = 'https://ville.montreal.qc.ca/circulation/sites/ville.montreal.qc.ca.circulation/files/cameras-de-circulation.json';
 const CKAN_PACKAGE_URL = 'https://donnees.montreal.ca/api/3/action/package_show?id=cameras-observation-routiere';
-// Third fallback: a community-run OpenDataSoft mirror of the same dataset,
-// on OpenDataSoft's own SaaS infrastructure rather than a city-owned host —
-// worth trying if both city-owned paths above are behind the same WAF.
+// A community-run OpenDataSoft mirror of the same Montréal dataset, on
+// OpenDataSoft's own SaaS infrastructure rather than a city-owned host —
+// reachable (confirmed via a live run), but its field names don't match
+// any of our guesses yet; kept as a last resort pending that diagnosis.
 const OPENDATASOFT_URL = 'https://do101mtl.opendatasoft.com/api/records/1.0/search/?dataset=cameras-de-circulation-ville-de-montreal&rows=1000';
 
 // The city has redirected this feed before (e.g. a path move or https
@@ -79,6 +84,12 @@ function pick(props, candidates) {
 
 async function resolveFeatures() {
   try {
+    const data = await fetchJson(QUEBEC511_URL);
+    return { sourceUrl: QUEBEC511_URL, features: data.features || [] };
+  } catch (e) {
+    console.error(`Québec 511 WFS failed (${e.message}) — falling back to the Montréal direct feed`);
+  }
+  try {
     const data = await fetchJson(DIRECT_URL);
     return { sourceUrl: DIRECT_URL, features: data.features || [] };
   } catch (e) {
@@ -121,10 +132,10 @@ async function main() {
     const coords = f.geometry && f.geometry.coordinates;
     if (!coords || coords.length < 2) return null;
     const [lon, lat] = coords;
-    const imageUrl = pick(props, ['URLImageEnDirect', 'urlImageEnDirect', 'url_image_en_direct', 'url-image-en-direct', 'image', 'Image', 'IMAGE']);
+    const imageUrl = pick(props, ['URLImageEnDirect', 'urlImageEnDirect', 'url_image_en_direct', 'url-image-en-direct', 'url_image', 'urlImage', 'lien_image', 'image_url', 'camera_url', 'url_camera', 'image', 'Image', 'IMAGE']);
     if (!imageUrl) return null;
-    const name = pick(props, ['Nom_Camera', 'nom_camera', 'NOM_CAM', 'nom', 'Nom', 'titre', 'Titre', 'description', 'Description', 'name', 'Name']) || `Camera ${i + 1}`;
-    const id = pick(props, ['ID_CAM', 'id_camera', 'CAM_ID', 'id-camera', 'id', 'Id', 'ID']) || String(i + 1);
+    const name = pick(props, ['Nom_Camera', 'nom_camera', 'NOM_CAM', 'nom', 'Nom', 'titre', 'Titre', 'nom_route', 'route', 'localisation', 'description', 'Description', 'name', 'Name']) || `Camera ${i + 1}`;
+    const id = pick(props, ['ID_CAM', 'id_camera', 'CAM_ID', 'id-camera', 'no_camera', 'numero_camera', 'id', 'Id', 'ID']) || String(i + 1);
     return { id: String(id), name: String(name), lat, lon, imageUrl };
   }).filter(Boolean);
 
