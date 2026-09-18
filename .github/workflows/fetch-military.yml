@@ -1,0 +1,34 @@
+name: Fetch Military Sites
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy fetcher script
+        run: |
+          git fetch origin main
+          git checkout origin/main -- fetch-military.js
+
+      - name: Fetch military sites
+        run: node fetch-military.js
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add military.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore: update military sites"
+          git push origin data
