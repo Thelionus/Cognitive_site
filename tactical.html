@@ -25,7 +25,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .sl{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
 .sl .lbl{color:var(--crt-dim)}.sl .val{color:var(--crt-green)}
 .val-r{color:var(--crt-red)!important}.val-a{color:var(--crt-amber)!important}.val-b{color:var(--crt-blue)!important}.val-g{color:var(--crt-grey)!important}
-#panel-radar{top:46px;left:10px;width:220px}
+#panel-region{top:46px;left:10px;width:220px}
+#panel-region select{width:100%;background:var(--panel-bg);color:var(--crt-green);border:1px solid var(--panel-border);font-family:'Courier New',monospace;font-size:11px;padding:4px}
+#panel-radar{top:190px;left:10px;width:220px}
 #panel-agents{top:46px;right:10px;width:260px}
 #panel-track{top:46px;right:260px;width:260px;display:none}
 #panel-legend{bottom:10px;left:10px;width:220px}
@@ -119,6 +121,15 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <canvas id="radar-canvas"></canvas>
 
 <!-- LIVE MODE PANELS -->
+<div class="panel" id="panel-region">
+  <div class="panel-title"><span>REGION</span></div>
+  <select id="region-select" onchange="switchRegion(this.value)">
+    <option value="mtl">Montréal, Canada</option>
+    <option value="nyc">New York City, USA</option>
+  </select>
+  <div class="disclaimer">Aircraft, earthquakes, satellites and weather radar already cover any region. Military sites, population density, traffic cameras and roadwork are region-specific reference data — some layers show N/A where that region's dataset isn't built yet. Aircraft threat/fusion scoring stays anchored to Montréal–Trudeau (YUL) regardless of region.</div>
+</div>
+
 <div class="panel" id="panel-radar">
   <div class="panel-title"><span>RADAR STATUS</span></div>
   <div class="sl"><span class="lbl">STATUS</span><span class="val">ACTIVE <span class="blink">█</span></span></div>
@@ -268,6 +279,59 @@ const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',G
 // Other live layers get their own distinct saturated colors so nothing else
 // borrows that meaning.
 const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8',ROADWORK:'#aa00ff',YTCAM:'#ccff00',MILITARY:'#3d5afe',POPULATION:'#1de9b6'};
+
+// Reference-data region: switches the map's live-mode view plus which
+// server-side dataset the military/population/camera/roadwork layers pull
+// from. Aircraft, earthquakes, satellites and weather radar all already
+// cover any region (adsb.lol is queried across multiple global zones
+// including the New York area, USGS/CelesTrak/RainViewer are worldwide),
+// so only the four region-specific reference-data layers below need a
+// per-region dataset. This deliberately does NOT touch YUL_LAT/YUL_LON —
+// the aircraft fusion/threat scoring (scoreKinematic/scoreContext) stays
+// anchored to YUL as this demo's fixed "home base" regardless of which
+// region's reference data is on screen, so switching region changes what
+// you're looking at, not what "close to base" means for aircraft scoring.
+const REGIONS={
+  mtl:{
+    label:'Montréal, Canada',
+    center:[YUL_LAT,YUL_LON],
+    zoom:7,
+    radarLabel:'YUL',
+    militaryUrl:MILITARY_URL,
+    populationUrl:POPULATION_URL,
+    camerasUrl:CAMERAS_URL,
+    roadworksUrl:ROADWORKS_URL
+  },
+  nyc:{
+    label:'New York City, USA',
+    center:[40.7128,-74.0060],
+    zoom:10,
+    radarLabel:'NYC',
+    militaryUrl:'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/military-nyc.json',
+    populationUrl:'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/population-nyc.json',
+    camerasUrl:null, // NYC traffic-camera layer not built yet — webcams.nyctmc.org (NYC DOT) is the candidate source
+    roadworksUrl:null // NYC roadwork/closures layer not built yet — NYC Open Data street-closures dataset is the candidate source
+  }
+};
+let currentRegion='mtl';
+
+function switchRegion(key){
+  if(!REGIONS[key])return;
+  currentRegion=key;
+  const r=REGIONS[key];
+  clearMilitaryMarkers();allMilitarySites=[];
+  clearPopulationMarkers();allPopulationAreas=[];
+  clearCameraMarkers();allCameras=[];
+  clearRoadworkMarkers();allRoadworks=[];
+  if(mode==='live'){
+    radarCenter=r.center;radarLabel=r.radarLabel;
+    map.setView(r.center,r.zoom);
+  }
+  fetchMilitarySites();
+  fetchPopulationDensity();
+  fetchCameras();
+  fetchRoadworks();
+}
 
 // Hand-curated live YouTube streams — unlike every camera/roadwork source
 // above, there's no API that discovers "all live cams" this way, so this
@@ -777,8 +841,10 @@ function cameraIcon(){
 }
 
 async function fetchCameras(){
+  const url=REGIONS[currentRegion].camerasUrl;
+  if(!url){allCameras=[];renderCameras();return;}
   try{
-    const r=await fetch(CAMERAS_URL+'?t='+Date.now());if(!r.ok)return;
+    const r=await fetch(url+'?t='+Date.now());if(!r.ok)return;
     const d=await r.json();
     allCameras=d.cameras||[];
     renderCameras();
@@ -800,7 +866,7 @@ function locateCameras(){
 
 function renderCameras(){
   if(mode!=='live')return;
-  document.getElementById('lc-live-cameras').textContent=allCameras.length;
+  document.getElementById('lc-live-cameras').textContent=REGIONS[currentRegion].camerasUrl?allCameras.length:'N/A';
   if(!liveLayerVisible.cameras){clearCameraMarkers();return;}
   const seen=new Set();
   allCameras.forEach(cam=>{
@@ -909,8 +975,10 @@ let roadworkMarkers={},allRoadworks=[];
 function clearRoadworkMarkers(){Object.values(roadworkMarkers).forEach(m=>m.remove());roadworkMarkers={};}
 
 async function fetchRoadworks(){
+  const url=REGIONS[currentRegion].roadworksUrl;
+  if(!url){allRoadworks=[];renderRoadworks();return;}
   try{
-    const r=await fetch(ROADWORKS_URL+'?t='+Date.now());if(!r.ok)return;
+    const r=await fetch(url+'?t='+Date.now());if(!r.ok)return;
     const d=await r.json();
     allRoadworks=d.roadworks||[];
     renderRoadworks();
@@ -919,7 +987,7 @@ async function fetchRoadworks(){
 
 function renderRoadworks(){
   if(mode!=='live')return;
-  document.getElementById('lc-live-roadworks').textContent=allRoadworks.length;
+  document.getElementById('lc-live-roadworks').textContent=REGIONS[currentRegion].roadworksUrl?allRoadworks.length:'N/A';
   if(!liveLayerVisible.roadworks){clearRoadworkMarkers();return;}
   const seen=new Set();
   allRoadworks.forEach(rw=>{
@@ -986,7 +1054,7 @@ function clearMilitaryMarkers(){Object.values(militaryMarkers).forEach(m=>m.remo
 
 async function fetchMilitarySites(){
   try{
-    const r=await fetch(MILITARY_URL+'?t='+Date.now());if(!r.ok)return;
+    const r=await fetch(REGIONS[currentRegion].militaryUrl+'?t='+Date.now());if(!r.ok)return;
     const d=await r.json();
     allMilitarySites=d.sites||[];
     renderMilitarySites();
@@ -1029,7 +1097,7 @@ function clearPopulationMarkers(){Object.values(populationMarkers).forEach(m=>m.
 
 async function fetchPopulationDensity(){
   try{
-    const r=await fetch(POPULATION_URL+'?t='+Date.now());if(!r.ok)return;
+    const r=await fetch(REGIONS[currentRegion].populationUrl+'?t='+Date.now());if(!r.ok)return;
     const d=await r.json();
     allPopulationAreas=d.areas||[];
     renderPopulationDensity();
@@ -1067,13 +1135,13 @@ function setMode(m){
   document.getElementById('panel-layers').style.display=m==='scenario'?'block':'none';
   document.getElementById('panel-evidence').style.display=(m==='scenario'&&selectedEntity)?'block':'none';
   document.getElementById('timeline-bar').style.display=m==='scenario'?'block':'none';
-  ['panel-radar','panel-agents','panel-legend','panel-live-layers'].forEach(id=>{document.getElementById(id).style.display=m==='live'?'block':'none';});
+  ['panel-region','panel-radar','panel-agents','panel-legend','panel-live-layers'].forEach(id=>{document.getElementById(id).style.display=m==='live'?'block':'none';});
   if(m==='live'){
     document.getElementById('panel-track').style.display=selectedHex?'block':'none';
     if(playing){clearInterval(playTimer);playing=false;document.getElementById('tl-play').textContent='▶ PLAY';}
     clearScenarioMarkers();
-    radarCenter=[YUL_LAT,YUL_LON];radarLabel='YUL';
-    map.setView([YUL_LAT,YUL_LON],7);
+    radarCenter=REGIONS[currentRegion].center;radarLabel=REGIONS[currentRegion].radarLabel;
+    map.setView(REGIONS[currentRegion].center,REGIONS[currentRegion].zoom);
     renderTracks();
     renderEarthquakes();
     renderSatellites();

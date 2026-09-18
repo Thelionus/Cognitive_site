@@ -1,0 +1,32 @@
+name: Fetch Population Density NYC
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy fetcher script
+        run: |
+          git fetch origin main
+          git checkout origin/main -- fetch-population-nyc.js
+
+      - name: Fetch population density
+        run: node fetch-population-nyc.js
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add population-nyc.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore: update NYC population density"
+          git push origin data
