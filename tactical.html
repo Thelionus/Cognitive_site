@@ -947,6 +947,14 @@ function renderCameras(){
         // still 0, so that's checked too rather than assuming success.
         img.addEventListener('error',showFallback,{once:true});
         img.addEventListener('load',()=>{if(img.naturalWidth===0)showFallback();},{once:true});
+        // Neither event above is guaranteed: a browser-level content
+        // setting that blocks images for the site can suppress the request
+        // entirely, firing neither 'load' nor 'error' — the <img> just sits
+        // there empty forever with no signal at all. This timeout doesn't
+        // wait on an event; it just checks reality after a few seconds and
+        // shows the fallback if nothing ever rendered, so a genuinely
+        // blocked image doesn't stay a silent, unexplained blank gap.
+        setTimeout(()=>{if(img.isConnected&&img.naturalWidth===0)showFallback();},6000);
       }
     });
     cameraMarkers[cam.id]=m;
