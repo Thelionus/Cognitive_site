@@ -54,16 +54,8 @@ async function main() {
   console.log('final URL:', page.finalUrl);
   console.log('status:', page.status);
   console.log('page length:', page.body.length);
-  console.log('caching-relevant headers:', JSON.stringify({
-    'cache-control': page.headers['cache-control'],
-    'age': page.headers['age'],
-    'etag': page.headers['etag'],
-    'last-modified': page.headers['last-modified'],
-    'x-cache': page.headers['x-cache'],
-    'cf-cache-status': page.headers['cf-cache-status'],
-    'server': page.headers['server'],
-    'via': page.headers['via']
-  }, null, 2));
+  console.log('ALL response headers on the page itself:', JSON.stringify(page.headers, null, 2));
+  console.log('page has a CSP meta tag:', /<meta[^>]*http-equiv="Content-Security-Policy"/i.test(page.body));
   console.log('contains onerror fallback:', page.body.includes('Camera image unavailable right now'));
   console.log('contains loading="lazy" near camera img:', /imageUrl[\s\S]{0,80}loading="lazy"/.test(page.body));
   const cameraLineMatch = page.body.match(/const body=cam\.imageUrl[\s\S]*?openPopup\(\);/);
