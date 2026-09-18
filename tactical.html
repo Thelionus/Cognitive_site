@@ -190,6 +190,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <div class="leg-row"><span class="leg-sym" style="color:#00b0ff">▦</span><span>Weather radar — precipitation intensity</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:#aa00ff">▲</span><span>Roadwork / closure (Québec 511 MTMD)</span></div>
   <div class="leg-row"><span class="leg-sym" style="color:#ccff00">▶</span><span>Live cam — click to play (YouTube)</span></div>
+  <div class="leg-row"><span class="leg-sym" style="color:#3d5afe">◆</span><span>Military site (public data only, OSM)</span></div>
   <div style="margin-top:6px;border-top:1px solid var(--panel-border);padding-top:5px;font-size:10px;color:var(--crt-dim)">
     ○ CTR 15km &nbsp;── TMA 60km &nbsp;─ ACC 140km
   </div>
@@ -204,7 +205,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="wxradar" onchange="toggleLiveLayer(this)"><span>Weather Radar (precip)</span><span class="layer-count" id="lc-live-wxradar">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="roadworks" onchange="toggleLiveLayer(this)"><span>Roadwork / Closures</span><span class="layer-count" id="lc-live-roadworks">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="ytcams" onchange="toggleLiveLayer(this)"><span>Live Cams (YouTube)</span><span class="layer-count" id="lc-live-ytcams">—</span></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Nothing here is tracked by any sensor of ours.</div>
+  <label class="layer-row"><input type="checkbox" checked data-live-layer="military" onchange="toggleLiveLayer(this)"><span>Military Sites (public)</span><span class="layer-count" id="lc-live-military">—</span></label>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Military sites: publicly documented locations only (OpenStreetMap military=* tag, indigo) — not intelligence, nothing here is non-public. Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -244,13 +246,14 @@ const EARTHQUAKE_URL='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/
 const CELESTRAK_URL='https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle'; // CelesTrak, public, no key
 const CAMERAS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras.json'; // Montréal-area traffic cams (Québec 511), fetched server-side via GitHub Action (see fetch-cameras.js)
 const ROADWORKS_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/roadworks.json'; // Montréal-area roadwork/closures (Québec 511 MTMD), fetched server-side via GitHub Action (see fetch-roadworks.js)
+const MILITARY_URL='https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/military.json'; // Publicly documented military sites (OpenStreetMap military=* tag only), fetched server-side via GitHub Action (see fetch-military.js)
 const RAINVIEWER_URL='https://api.rainviewer.com/public/weather-maps.json'; // RainViewer, public, no key — CORS-friendly, fetched client-side like earthquakes/satellites
 const R_EARTH=6371;
 const NATO_COLOR={BLUE:'#00e5ff',RED:'#ff1744',AMBER:'#ffd600',GREEN:'#00ff41',GREY:'#b0bec5'};
 // RED is reserved for actual threat/danger classification (aircraft/scenario).
 // Other live layers get their own distinct saturated colors so nothing else
 // borrows that meaning.
-const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8',ROADWORK:'#aa00ff',YTCAM:'#ccff00'};
+const LAYER_COLOR={QUAKE_HIGH:'#ff9100',QUAKE_MED:'#ffd600',QUAKE_LOW:'#00ff41',SATELLITE:'#ffffff',CAMERA:'#ff00c8',ROADWORK:'#aa00ff',YTCAM:'#ccff00',MILITARY:'#3d5afe'};
 
 // Hand-curated live YouTube streams — unlike every camera/roadwork source
 // above, there's no API that discovers "all live cams" this way, so this
@@ -293,8 +296,8 @@ map.getPane('wxRadarPane').style.zIndex=350;
 // bounded regardless of how much data is loaded.
 let zooming=false;
 map.on('zoomstart',()=>{zooming=true});
-map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();}});
-map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();}});
+map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();renderMilitarySites();}});
+map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();renderMilitarySites();}});
 function inView(lat,lon){return map.getBounds().pad(0.25).contains([lat,lon]);}
 
 const canvas=document.getElementById('radar-canvas');
@@ -385,7 +388,7 @@ function fleetAvg(){
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
 }
 
-const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true,roadworks:true,ytcams:true};
+const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true,roadworks:true,ytcams:true,military:true};
 function toggleLiveLayer(input){
   liveLayerVisible[input.dataset.liveLayer]=input.checked;
   if(input.dataset.liveLayer==='aircraft')renderTracks();
@@ -395,6 +398,7 @@ function toggleLiveLayer(input){
   if(input.dataset.liveLayer==='wxradar')renderWxRadar();
   if(input.dataset.liveLayer==='roadworks')renderRoadworks();
   if(input.dataset.liveLayer==='ytcams')renderYoutubeCams();
+  if(input.dataset.liveLayer==='military')renderMilitarySites();
 }
 
 function renderTracks(){
@@ -456,6 +460,7 @@ setInterval(renderSatellites,5000);
 fetchCameras();setInterval(fetchCameras,30*60*1000);
 fetchWxRadar();setInterval(fetchWxRadar,10*60*1000);
 fetchRoadworks();setInterval(fetchRoadworks,20*60*1000);
+fetchMilitarySites();setInterval(fetchMilitarySites,6*60*60*1000);
 animate();
 
 /* ============================================================
@@ -907,6 +912,45 @@ function renderYoutubeCams(){
 // initializes, throwing a temporal-dead-zone ReferenceError.
 renderYoutubeCams();
 
+function militaryIcon(){
+  const col=LAYER_COLOR.MILITARY;
+  return L.divIcon({html:`<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8.5" fill="#000"/><path d="M9,2 L15,5 L15,9 C15,13 12,15.5 9,16.5 C6,15.5 3,13 3,9 L3,5 Z" fill="none" stroke="${col}" stroke-width="1.4" stroke-linejoin="round"/></svg>`,className:'',iconSize:[18,18],iconAnchor:[9,9]});
+}
+
+let militaryMarkers={},allMilitarySites=[];
+
+function clearMilitaryMarkers(){Object.values(militaryMarkers).forEach(m=>m.remove());militaryMarkers={};}
+
+async function fetchMilitarySites(){
+  try{
+    const r=await fetch(MILITARY_URL+'?t='+Date.now());if(!r.ok)return;
+    const d=await r.json();
+    allMilitarySites=d.sites||[];
+    renderMilitarySites();
+  }catch{}
+}
+
+function renderMilitarySites(){
+  if(mode!=='live')return;
+  document.getElementById('lc-live-military').textContent=allMilitarySites.length;
+  if(!liveLayerVisible.military){clearMilitaryMarkers();return;}
+  const seen=new Set();
+  allMilitarySites.forEach(site=>{
+    if(site.lat==null||site.lon==null)return;
+    if(!inView(site.lat,site.lon))return;
+    seen.add(site.id);
+    if(militaryMarkers[site.id])return;
+    const m=L.marker([site.lat,site.lon],{icon:militaryIcon()}).addTo(map);
+    const lines=[`<b>${site.name}</b>`];
+    if(site.kind)lines.push(`Type: ${site.kind}`);
+    if(site.operator)lines.push(`Operator: ${site.operator}`);
+    lines.push(`<span style="font-size:11px">Publicly documented location (OpenStreetMap). Not intelligence — nothing here is non-public.</span>`);
+    m.bindPopup(lines.join('<br>'),{maxWidth:260});
+    militaryMarkers[site.id]=m;
+  });
+  Object.keys(militaryMarkers).forEach(id=>{if(!seen.has(id)){militaryMarkers[id].remove();delete militaryMarkers[id];}});
+}
+
 function setMode(m){
   mode=m;
   document.getElementById('tab-live').classList.toggle('active',m==='live');
@@ -929,6 +973,7 @@ function setMode(m){
     renderWxRadar();
     renderRoadworks();
     renderYoutubeCams();
+    renderMilitarySites();
   }else{
     document.getElementById('panel-track').style.display='none';
     clearLiveMarkers();
@@ -938,6 +983,7 @@ function setMode(m){
     clearWxRadar();
     clearRoadworkMarkers();
     clearYoutubeCamMarkers();
+    clearMilitaryMarkers();
     radarCenter=[AOI_LAT,AOI_LON];radarLabel='AOI';
     map.setView([AOI_LAT,AOI_LON],12);
     renderScenario(simT);
