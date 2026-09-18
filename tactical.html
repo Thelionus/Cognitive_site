@@ -230,7 +230,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="ytcams" onchange="toggleLiveLayer(this)"><span>Live Cams (YouTube)</span><span class="layer-count" id="lc-live-ytcams">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="military" onchange="toggleLiveLayer(this)"><span>Military Sites (public)</span><span class="layer-count" id="lc-live-military">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="population" onchange="toggleLiveLayer(this)"><span>Population Density (public)</span><span class="layer-count" id="lc-live-population">—</span></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min — ▶ plays the last ~2h of past frames as a loop, or drag the slider to scrub to any single frame. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Military sites: publicly documented locations only (OpenStreetMap military=* tag, indigo) — not intelligence, nothing here is non-public. Population density: Statistics Canada 2021 Census of Population, official published borough/city figures (teal, circle size scales with density) — reference data, not live-updating. Nothing here is tracked by any sensor of ours.</div>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) in Montréal — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown); NYC DOT (webcams.nyctmc.org) in New York — snapshot image embeds directly in the popup, no click-through. Weather radar: RainViewer, public composite, refreshes ~every 10 min — ▶ plays the last ~2h of past frames as a loop, or drag the slider to scrub to any single frame. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Military sites: publicly documented locations only (OpenStreetMap military=* tag, indigo) — not intelligence, nothing here is non-public. Population density: Statistics Canada 2021 Census of Population, official published borough/city figures (teal, circle size scales with density) — reference data, not live-updating. Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -297,6 +297,7 @@ const REGIONS={
     center:[YUL_LAT,YUL_LON],
     zoom:7,
     radarLabel:'YUL',
+    bbox:{minLat:45.2,maxLat:45.75,minLon:-74.1,maxLon:-73.2},
     militaryUrl:MILITARY_URL,
     populationUrl:POPULATION_URL,
     camerasUrl:CAMERAS_URL,
@@ -307,25 +308,39 @@ const REGIONS={
     center:[40.7128,-74.0060],
     zoom:10,
     radarLabel:'NYC',
+    bbox:{minLat:40.49,maxLat:40.92,minLon:-74.27,maxLon:-73.68},
     militaryUrl:'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/military-nyc.json',
     populationUrl:'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/population-nyc.json',
-    camerasUrl:null, // NYC traffic-camera layer not built yet — webcams.nyctmc.org (NYC DOT) is the candidate source
+    camerasUrl:'https://raw.githubusercontent.com/Thelionus/Cognitive_site/data/cameras-nyc.json',
     roadworksUrl:null // NYC roadwork/closures layer not built yet — NYC Open Data street-closures dataset is the candidate source
   }
 };
 let currentRegion='mtl';
 
-function switchRegion(key){
+// Panning the map into a known region's bbox auto-switches its data, same
+// as picking it from the dropdown, just without recentering (the user just
+// moved there on purpose — snapping the view back would fight the pan).
+function regionForCenter(lat,lon){
+  for(const key in REGIONS){
+    const b=REGIONS[key].bbox;
+    if(b&&lat>=b.minLat&&lat<=b.maxLat&&lon>=b.minLon&&lon<=b.maxLon)return key;
+  }
+  return null;
+}
+
+function switchRegion(key,recenter=true){
   if(!REGIONS[key])return;
   currentRegion=key;
   const r=REGIONS[key];
+  const sel=document.getElementById('region-select');
+  if(sel)sel.value=key;
   clearMilitaryMarkers();allMilitarySites=[];
   clearPopulationMarkers();allPopulationAreas=[];
   clearCameraMarkers();allCameras=[];
   clearRoadworkMarkers();allRoadworks=[];
   if(mode==='live'){
     radarCenter=r.center;radarLabel=r.radarLabel;
-    map.setView(r.center,r.zoom);
+    if(recenter)map.setView(r.center,r.zoom);
   }
   fetchMilitarySites();
   fetchPopulationDensity();
@@ -375,7 +390,14 @@ map.getPane('wxRadarPane').style.zIndex=350;
 let zooming=false;
 map.on('zoomstart',()=>{zooming=true});
 map.on('zoomend',()=>{zooming=false;if(mode==='live'){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();renderMilitarySites();renderPopulationDensity();}});
-map.on('moveend',()=>{if(mode==='live'&&!zooming){renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();renderMilitarySites();renderPopulationDensity();}});
+map.on('moveend',()=>{
+  if(mode==='live'&&!zooming){
+    const c=map.getCenter();
+    const detected=regionForCenter(c.lat,c.lng);
+    if(detected&&detected!==currentRegion)switchRegion(detected,false);
+    renderTracks();renderCameras();renderRoadworks();renderYoutubeCams();renderMilitarySites();renderPopulationDensity();
+  }
+});
 function inView(lat,lon){return map.getBounds().pad(0.25).contains([lat,lon]);}
 
 const canvas=document.getElementById('radar-canvas');
@@ -877,11 +899,14 @@ function renderCameras(){
     const m=L.marker([cam.lat,cam.lon],{icon:cameraIcon()}).addTo(map);
     m.on('click',()=>{
       // Québec 511's viewer page blocks iframe embedding (confirmed via a
-      // broken-frame result in production), so this links out instead of
-      // trying to embed the full HTML page. Embedding the raw snapshot
-      // image directly (no iframe, no framing restriction) is possible if
-      // that URL gets confirmed later.
-      m.bindPopup(`<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`,{maxWidth:260}).openPopup();
+      // broken-frame result in production), so Montréal cameras link out
+      // instead of trying to embed the full HTML page. NYC DOT's API gives
+      // a direct snapshot image URL with no such wall, so those embed
+      // inline — no click-through needed to see the camera.
+      const body=cam.imageUrl
+        ? `<b>${cam.name}</b><br><img src="${cam.imageUrl}?t=${Date.now()}" alt="${cam.name}" style="max-width:300px;display:block;margin:4px 0" loading="lazy"><br><span style="font-size:11px">NYC DOT (webcams.nyctmc.org). Still snapshot, refreshes when reopened. Not tracked by any sensor of ours.</span>`
+        : `<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`;
+      m.bindPopup(body,{maxWidth:cam.imageUrl?320:260}).openPopup();
     });
     cameraMarkers[cam.id]=m;
   });
