@@ -903,8 +903,14 @@ function renderCameras(){
       // instead of trying to embed the full HTML page. NYC DOT's API gives
       // a direct snapshot image URL with no such wall, so those embed
       // inline — no click-through needed to see the camera.
+      // No loading="lazy" here — Leaflet popups are inserted already open
+      // (there's no scroll-into-view to defer for), and lazy-loading inside
+      // a dynamically-positioned overlay is a known way for the browser to
+      // never fire the actual image fetch. onerror covers the camera
+      // genuinely being offline, which does happen with individual DOT
+      // cameras, by swapping in a plain-text notice instead of a silent gap.
       const body=cam.imageUrl
-        ? `<b>${cam.name}</b><br><img src="${cam.imageUrl}?t=${Date.now()}" alt="${cam.name}" style="max-width:300px;display:block;margin:4px 0" loading="lazy"><br><span style="font-size:11px">NYC DOT (webcams.nyctmc.org). Still snapshot, refreshes when reopened. Not tracked by any sensor of ours.</span>`
+        ? `<b>${cam.name}</b><br><img src="${cam.imageUrl}?t=${Date.now()}" alt="${cam.name}" style="max-width:300px;display:block;margin:4px 0" onerror="this.outerHTML='<span style=&quot;font-size:11px;color:#ff6b6b&quot;>Camera image unavailable right now.</span>'"><br><span style="font-size:11px">NYC DOT (webcams.nyctmc.org). Still snapshot, refreshes when reopened. Not tracked by any sensor of ours.</span>`
         : `<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`;
       m.bindPopup(body,{maxWidth:cam.imageUrl?320:260}).openPopup();
     });
