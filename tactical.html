@@ -40,7 +40,10 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .ag-bar{height:4px;background:rgba(0,255,65,0.15);border:1px solid var(--panel-border)}
 .ag-fill{height:100%;background:var(--crt-green);transition:width 0.5s}
 .fusion{border-top:1px solid var(--panel-border);padding-top:6px;margin-top:6px;font-size:11px;display:flex;justify-content:space-between}
-.disclaimer{margin-top:6px;font-size:9.5px;color:var(--crt-dim);line-height:1.5;border-top:1px solid var(--panel-border);padding-top:5px}
+.disclaimer{display:none;margin-top:6px;font-size:9.5px;color:var(--crt-dim);line-height:1.5;border-top:1px solid var(--panel-border);padding-top:5px}
+.title-actions{display:flex;gap:8px;align-items:center}
+.info-toggle{cursor:pointer;color:var(--crt-dim);font-size:12px;user-select:none}
+.info-toggle:hover,.info-toggle.active{color:var(--crt-green)}
 .tr-row{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px}
 .tr-lbl{color:var(--crt-dim)}.tr-val{color:var(--crt-green)}
 .tr-val.h{color:var(--crt-red)}.tr-val.p{color:var(--crt-amber)}.tr-val.f{color:var(--crt-blue)}
@@ -122,7 +125,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 <!-- LIVE MODE PANELS -->
 <div class="panel" id="panel-region">
-  <div class="panel-title"><span>REGION</span></div>
+  <div class="panel-title"><span>REGION</span><span class="info-toggle" onclick="toggleDisclaimer(this)" title="Show/hide details">ⓘ</span></div>
   <select id="region-select" onchange="switchRegion(this.value)">
     <option value="mtl">Montréal, Canada</option>
     <option value="nyc">New York City, USA</option>
@@ -146,7 +149,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </div>
 
 <div class="panel" id="panel-agents">
-  <div class="panel-title"><span>FUSION SCORE (HEURISTIC)</span></div>
+  <div class="panel-title"><span>FUSION SCORE (HEURISTIC)</span><span class="info-toggle" onclick="toggleDisclaimer(this)" title="Show/hide details">ⓘ</span></div>
   <div class="ag-row">
     <div class="ag-hdr"><span class="ag-nm">KINEMATIC</span><span class="ag-nm">35%</span><span class="ag-pct" id="a-kin-pct">—%</span></div>
     <div class="ag-bar"><div class="ag-fill" id="a-kin-bar" style="width:0%"></div></div>
@@ -168,7 +171,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </div>
 
 <div class="panel" id="panel-track">
-  <div class="panel-title"><span>TRACK DETAIL</span><span style="cursor:pointer;color:var(--crt-dim)" onclick="clearTrack()">✕</span></div>
+  <div class="panel-title"><span>TRACK DETAIL</span><span class="title-actions"><span class="info-toggle" onclick="toggleDisclaimer(this)" title="Show/hide details">ⓘ</span><span style="cursor:pointer;color:var(--crt-dim)" onclick="clearTrack()">✕</span></span></div>
   <div class="cbanner GREEN" id="t-class-banner">—</div>
   <div class="tr-row"><span class="tr-lbl">TRACK ID</span><span class="tr-val" id="t-hex">—</span></div>
   <div class="tr-row"><span class="tr-lbl">CALLSIGN</span><span class="tr-val" id="t-call">—</span></div>
@@ -215,7 +218,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </div>
 
 <div class="panel" id="panel-live-layers">
-  <div class="panel-title"><span>LIVE LAYERS</span></div>
+  <div class="panel-title"><span>LIVE LAYERS</span><span class="info-toggle" onclick="toggleDisclaimer(this)" title="Show/hide details">ⓘ</span></div>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="aircraft" onchange="toggleLiveLayer(this)"><span>Aircraft</span><span class="layer-count" id="lc-live-aircraft">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="earthquakes" onchange="toggleLiveLayer(this)"><span>Earthquakes (M2.5+, 24h)</span><span class="layer-count" id="lc-live-earthquakes">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
@@ -235,7 +238,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 <!-- SCENARIO MODE PANELS -->
 <div class="panel" id="panel-layers">
-  <div class="panel-title"><span>LAYERS</span></div>
+  <div class="panel-title"><span>LAYERS</span><span class="info-toggle" onclick="toggleDisclaimer(this)" title="Show/hide details">ⓘ</span></div>
   <label class="layer-row"><input type="checkbox" checked data-layer="drone" onchange="toggleLayer(this)"><span>Drones</span><span class="layer-count" id="lc-drone">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-layer="missile" onchange="toggleLayer(this)"><span>Missile Alerts</span><span class="layer-count" id="lc-missile">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-layer="troop" onchange="toggleLayer(this)"><span>Troops</span><span class="layer-count" id="lc-troop">—</span></label>
@@ -486,6 +489,19 @@ function fleetAvg(){
   if(!allAircraft.length)return;
   let sk=0,ss=0,sc=0,sp=0;allAircraft.forEach(a=>{const f=computeFusion(a);sk+=f.k;ss+=f.s;sc+=f.c;sp+=f.pct;});
   const n=allAircraft.length;setAgentUI(Math.round(sk/n),Math.round(ss/n),Math.round(sc/n),Math.round(sp/n),false);
+}
+
+// Panel disclaimers default to hidden (see .disclaimer{display:none}) so
+// panels lead with their actual controls (checkboxes, the region select)
+// instead of a wall of explanatory text — the ⓘ toggle next to each
+// panel-title reveals it on demand instead.
+function toggleDisclaimer(btn){
+  const panel=btn.closest('.panel');
+  const d=panel&&panel.querySelector('.disclaimer');
+  if(!d)return;
+  const showing=d.style.display==='block';
+  d.style.display=showing?'none':'block';
+  btn.classList.toggle('active',!showing);
 }
 
 const liveLayerVisible={aircraft:true,earthquakes:true,satellites:true,cameras:true,wxradar:true,roadworks:true,ytcams:true,military:true,population:true};
@@ -906,13 +922,32 @@ function renderCameras(){
       // No loading="lazy" here — Leaflet popups are inserted already open
       // (there's no scroll-into-view to defer for), and lazy-loading inside
       // a dynamically-positioned overlay is a known way for the browser to
-      // never fire the actual image fetch. onerror covers the camera
-      // genuinely being offline, which does happen with individual DOT
-      // cameras, by swapping in a plain-text notice instead of a silent gap.
+      // never fire the actual image fetch.
       const body=cam.imageUrl
-        ? `<b>${cam.name}</b><br><img src="${cam.imageUrl}?t=${Date.now()}" alt="${cam.name}" style="max-width:300px;display:block;margin:4px 0" onerror="this.outerHTML='<span style=&quot;font-size:11px;color:#ff6b6b&quot;>Camera image unavailable right now.</span>'"><br><span style="font-size:11px">NYC DOT (webcams.nyctmc.org). Still snapshot, refreshes when reopened. Not tracked by any sensor of ours.</span>`
+        ? `<b>${cam.name}</b><br><img class="cam-snapshot" src="${cam.imageUrl}?t=${Date.now()}" alt="${cam.name}" style="max-width:300px;display:block;margin:4px 0"><br><span style="font-size:11px">NYC DOT (webcams.nyctmc.org). Still snapshot, refreshes when reopened. Not tracked by any sensor of ours.</span>`
         : `<b>${cam.name}</b><br><a href="${cam.viewUrl}" target="_blank" rel="noopener">View live camera ↗</a><br><span style="font-size:11px">Québec 511 (transports.gouv.qc.ca). Not tracked by any sensor of ours.</span>`;
       m.bindPopup(body,{maxWidth:cam.imageUrl?320:260}).openPopup();
+      // openPopup() has already inserted the popup's DOM synchronously by
+      // this point (its 'add' event fires during that call, before this
+      // line runs — a popup.once('add', ...) registered here would be too
+      // late), so the <img> can just be queried directly.
+      const img=cam.imageUrl&&m.getPopup().getElement().querySelector('.cam-snapshot');
+      if(img){
+        const showFallback=()=>{
+          if(!img.isConnected)return;
+          const span=document.createElement('span');
+          span.style.cssText='font-size:11px;color:#ff6b6b';
+          span.textContent='Camera image unavailable right now.';
+          img.replaceWith(span);
+        };
+        // A genuinely offline camera (individual DOT cameras do go down)
+        // fires 'error'. An ad-blocker or privacy extension silently
+        // no-oping the request instead — which does happen and wouldn't
+        // trigger 'error' at all — shows up as 'load' with naturalWidth
+        // still 0, so that's checked too rather than assuming success.
+        img.addEventListener('error',showFallback,{once:true});
+        img.addEventListener('load',()=>{if(img.naturalWidth===0)showFallback();},{once:true});
+      }
     });
     cameraMarkers[cam.id]=m;
   });
