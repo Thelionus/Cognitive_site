@@ -77,6 +77,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .layer-count{margin-left:auto;color:var(--crt-dim);font-size:10px}
 .layer-locate{background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-size:11px;line-height:1;padding:2px 5px;cursor:pointer;font-family:inherit}
 .layer-locate:hover{border-color:#ff00c8;color:#ff00c8}
+.radar-loop-row{display:none;align-items:center;gap:6px;margin:-3px 0 7px 24px}
+.radar-loop-row.active{display:flex}
+.radar-loop-row button{background:transparent;border:1px solid var(--panel-border);color:var(--crt-dim);font-family:inherit;font-size:10px;line-height:1;padding:3px 6px;cursor:pointer}
+.radar-loop-row button:hover{border-color:#00b0ff;color:#00b0ff}
+.radar-loop-row input[type=range]{flex:1;accent-color:#00b0ff}
+.radar-loop-row span{min-width:44px;text-align:right;color:var(--crt-dim);font-size:10px}
 
 #timeline-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:800;display:none;background:var(--panel-bg);border:1px solid var(--panel-border);padding:10px 16px;width:min(760px,88vw);backdrop-filter:blur(4px)}
 .tl-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -204,11 +210,16 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   <label class="layer-row"><input type="checkbox" checked data-live-layer="satellites" onchange="toggleLiveLayer(this)"><span>Satellites (stations)</span><span class="layer-count" id="lc-live-satellites">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="cameras" onchange="toggleLiveLayer(this)"><span>Traffic Cameras (Montréal)</span><span class="layer-count" id="lc-live-cameras">—</span><button type="button" class="layer-locate" title="Zoom to cameras" onclick="event.preventDefault();locateCameras()">⌖</button></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="wxradar" onchange="toggleLiveLayer(this)"><span>Weather Radar (precip)</span><span class="layer-count" id="lc-live-wxradar">—</span></label>
+  <div class="radar-loop-row" id="radar-loop-row">
+    <button type="button" id="wx-play" onclick="toggleWxPlay()" title="Play last ~2h of radar frames">▶</button>
+    <input type="range" id="wx-scrub" min="0" max="0" value="0" oninput="wxScrubTo(this.value)" title="Scrub through past radar frames">
+    <span id="wx-clock">—</span>
+  </div>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="roadworks" onchange="toggleLiveLayer(this)"><span>Roadwork / Closures</span><span class="layer-count" id="lc-live-roadworks">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="ytcams" onchange="toggleLiveLayer(this)"><span>Live Cams (YouTube)</span><span class="layer-count" id="lc-live-ytcams">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="military" onchange="toggleLiveLayer(this)"><span>Military Sites (public)</span><span class="layer-count" id="lc-live-military">—</span></label>
   <label class="layer-row"><input type="checkbox" checked data-live-layer="population" onchange="toggleLiveLayer(this)"><span>Population Density (public)</span><span class="layer-count" id="lc-live-population">—</span></label>
-  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Military sites: publicly documented locations only (OpenStreetMap military=* tag, indigo) — not intelligence, nothing here is non-public. Population density: Statistics Canada 2021 Census of Population, official published borough/city figures (teal, circle size scales with density) — reference data, not live-updating. Nothing here is tracked by any sensor of ours.</div>
+  <div class="disclaimer">Aircraft: ADS-B (adsb.lol). Earthquakes: USGS, real events, past 24h. Satellites: CelesTrak TLEs, positions computed client-side (SGP4). Traffic cameras: Québec 511 (transports.gouv.qc.ca) — click a marker to open the official live camera, click ⌖ to zoom to them (magenta, clustered downtown). Weather radar: RainViewer, public composite, refreshes ~every 10 min — ▶ plays the last ~2h of past frames as a loop, or drag the slider to scrub to any single frame. Roadwork/closures: Québec 511 MTMD (violet). Live cams: hand-picked public YouTube live streams (lime), embedded directly and playable in the popup. Military sites: publicly documented locations only (OpenStreetMap military=* tag, indigo) — not intelligence, nothing here is non-public. Population density: Statistics Canada 2021 Census of Population, official published borough/city figures (teal, circle size scales with density) — reference data, not live-updating. Nothing here is tracked by any sensor of ours.</div>
 </div>
 
 <!-- SCENARIO MODE PANELS -->
@@ -398,7 +409,7 @@ function toggleLiveLayer(input){
   if(input.dataset.liveLayer==='earthquakes')renderEarthquakes();
   if(input.dataset.liveLayer==='satellites')renderSatellites();
   if(input.dataset.liveLayer==='cameras')renderCameras();
-  if(input.dataset.liveLayer==='wxradar')renderWxRadar();
+  if(input.dataset.liveLayer==='wxradar'){if(!liveLayerVisible.wxradar)stopWxPlay();renderWxRadar();}
   if(input.dataset.liveLayer==='roadworks')renderRoadworks();
   if(input.dataset.liveLayer==='ytcams')renderYoutubeCams();
   if(input.dataset.liveLayer==='military')renderMilitarySites();
@@ -813,11 +824,47 @@ function renderCameras(){
 
 // RainViewer radar: a raster tile overlay, not point markers, so it needs
 // none of the inView() culling above — Leaflet's tile layer already only
-// draws tiles inside the current viewport. Swapping to the newest frame is
-// just re-pointing the same tile layer's URL template.
-let wxRadarLayer=null,wxRadarHost=null,wxRadarFrame=null;
+// draws tiles inside the current viewport. Swapping frames is just
+// re-pointing the same tile layer's URL template.
+//
+// RainViewer's response carries the last ~2h of frames (d.radar.past), not
+// just "now" — wxRadarFrames keeps the whole array so the scrubber/loop
+// below has real historical frames to move through, instead of only ever
+// showing the newest one.
+let wxRadarLayer=null,wxRadarHost=null,wxRadarFrames=[],wxRadarIndex=-1;
+let wxPlaying=false,wxPlayTimer=null;
 
 function clearWxRadar(){if(wxRadarLayer){map.removeLayer(wxRadarLayer);wxRadarLayer=null;}}
+
+function stopWxPlay(){
+  wxPlaying=false;
+  clearInterval(wxPlayTimer);
+  const btn=document.getElementById('wx-play');
+  if(btn)btn.textContent='▶';
+}
+
+function toggleWxPlay(){
+  if(wxPlaying){stopWxPlay();return;}
+  if(wxRadarFrames.length<2)return;
+  wxPlaying=true;
+  document.getElementById('wx-play').textContent='❚❚';
+  wxPlayTimer=setInterval(()=>{
+    wxRadarIndex=(wxRadarIndex+1)%wxRadarFrames.length;
+    const scrub=document.getElementById('wx-scrub');
+    if(scrub)scrub.value=wxRadarIndex;
+    renderWxRadar();
+  },700);
+}
+
+function wxScrubTo(v){
+  stopWxPlay();
+  wxRadarIndex=Number(v);
+  renderWxRadar();
+}
+
+function fmtWxTime(t){
+  return new Date(t*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
 
 async function fetchWxRadar(){
   try{
@@ -826,18 +873,29 @@ async function fetchWxRadar(){
     const past=(d.radar&&d.radar.past)||[];
     if(!past.length)return;
     wxRadarHost=d.host;
-    wxRadarFrame=past[past.length-1];
+    wxRadarFrames=past;
+    // A fresh fetch (every ~10 min) jumps the view back to "now" unless the
+    // user is actively playing the loop, so a manual scrub doesn't get
+    // silently reset out from under them mid-inspection.
+    if(!wxPlaying)wxRadarIndex=wxRadarFrames.length-1;
+    const scrub=document.getElementById('wx-scrub');
+    if(scrub){scrub.max=wxRadarFrames.length-1;scrub.value=wxRadarIndex;}
     renderWxRadar();
   }catch{}
 }
 
 function renderWxRadar(){
   if(mode!=='live')return;
+  const frame=wxRadarFrames[wxRadarIndex];
   const el=document.getElementById('lc-live-wxradar');
-  if(el)el.textContent=wxRadarFrame?Math.max(0,Math.round((Date.now()/1000-wxRadarFrame.time)/60))+'m ago':'—';
-  if(!liveLayerVisible.wxradar||!wxRadarFrame){clearWxRadar();return;}
+  if(el)el.textContent=frame?Math.max(0,Math.round((Date.now()/1000-frame.time)/60))+'m ago':'—';
+  const loopRow=document.getElementById('radar-loop-row');
+  if(loopRow)loopRow.classList.toggle('active',liveLayerVisible.wxradar&&wxRadarFrames.length>1);
+  const clockEl=document.getElementById('wx-clock');
+  if(clockEl)clockEl.textContent=frame?fmtWxTime(frame.time):'—';
+  if(!liveLayerVisible.wxradar||!frame){clearWxRadar();return;}
   clearWxRadar();
-  const url=wxRadarHost+wxRadarFrame.path+'/256/{z}/{x}/{y}/2/1_1.png';
+  const url=wxRadarHost+frame.path+'/256/{z}/{x}/{y}/2/1_1.png';
   wxRadarLayer=L.tileLayer(url,{pane:'wxRadarPane',opacity:0.55,maxNativeZoom:7,maxZoom:19}).addTo(map);
 }
 
@@ -1031,6 +1089,7 @@ function setMode(m){
     clearEarthquakeMarkers();
     clearSatelliteMarkers();
     clearCameraMarkers();
+    stopWxPlay();
     clearWxRadar();
     clearRoadworkMarkers();
     clearYoutubeCamMarkers();
