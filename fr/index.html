@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co; frame-src https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
     <script src="/assets/js/img-fallback.js"></script>
     
     <!-- 6. SECURITY: Referrer Policy -->
@@ -173,9 +173,6 @@
         .method-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 2px; display: block; margin-bottom: 12px; }
         .method-step h4 { font-size: 16px; margin-bottom: 10px; font-weight: 800; }
         .method-step p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
-        .method-video { margin-top: 40px; width: 100%; max-width: 820px; aspect-ratio: 16 / 9; border: var(--card-border); border-radius: 8px; overflow: hidden; background: #000; }
-        .method-video iframe, .method-video video { width: 100%; height: 100%; border: 0; display: block; }
-        .method-video[hidden] { display: none; }
 
         .footnotes { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); max-width: 820px; }
         .footnotes p { font-size: 12.5px; color: #64748B; line-height: 1.6; margin-bottom: 8px; }
@@ -296,7 +293,7 @@
             </div>
 
             <div class="trust-badges">
-                <span class="trust-badge"><strong>SOC 2 Type 2</strong> &middot; audit propre au Groupe Cognitive</span>
+                <span class="trust-badge"><strong>SOC 2 Type 2</strong> &middot; rapport propre au Groupe Cognitive, déc. 2025</span>
                 <span class="trust-badge">SSO &middot; MFA &middot; RBAC</span>
                 <span class="trust-badge">Déployé dans votre cloud</span>
             </div>
@@ -346,9 +343,6 @@
                     <p>Votre analyste voit la recommandation, les éléments qui la justifient et chaque signalement, puis approuve, modifie ou rejette. Cette décision est consignée dans BusinessBANKER.</p>
                 </div>
             </div>
-
-            <!-- Vidéo de supervision IA (90 s). Renseigner data-video-src (URL d'intégration YouTube/Vimeo ou .mp4) ; le bloc reste masqué tant qu'il est vide. -->
-            <div class="method-video" id="supervision-video" data-video-src="" hidden></div>
 
             <a href="foundry.html" class="btn btn-outline" style="margin-top: 40px;">Comment Cognitive Foundry Capte l'Expertise</a>
         </div>
@@ -402,7 +396,7 @@
             <div class="win-grid">
                 <div class="win-card">
                     <h4>Premier banc d'essai, petit échantillon</h4>
-                    <p>Dans une étude préliminaire portant sur 20 dossiers de prêt, le système a atteint la décision de référence dans 96 % des cas, contre 57 % pour un adjudicateur humain senior.<sup><a href="#fn-1">1</a></sup> Vingt dossiers constituent un petit échantillon : la marge d'erreur est large. C'est pourquoi chaque mandat commence en mode fantôme, sur vos propres dossiers.</p>
+                    <p>Dans une étude préliminaire portant sur 10 dossiers de prêt, le système a atteint la décision de référence dans 96 % des cas, contre 57 % pour un adjudicateur humain senior.<sup><a href="#fn-1">1</a></sup> Dix dossiers constituent un petit échantillon : la marge d'erreur est large. C'est pourquoi chaque mandat commence en mode fantôme, sur vos propres dossiers.</p>
                 </div>
                 <div class="win-card">
                     <h4>En production chez Al Rahma</h4>
@@ -419,12 +413,13 @@
                 </div>
                 <div class="win-card">
                     <h4>Sécurité</h4>
-                    <p>Le Groupe Cognitive détient son propre rapport SOC 2 Type 2. Il s'agit de notre audit, pas de celui de notre fournisseur cloud. SSO, MFA et contrôle d'accès par rôle, plus une intégration en production avec le core Fiserv DNA.</p>
+                    <p>Le Groupe Cognitive détient son propre rapport SOC 2 Type 2, daté du 31 décembre 2025.<sup><a href="#fn-3">3</a></sup> Il s'agit de notre audit, pas de celui de notre fournisseur cloud. SSO, MFA et contrôle d'accès par rôle, plus une intégration en production avec le core Fiserv DNA.</p>
                 </div>
             </div>
             <div class="footnotes">
-                <p id="fn-1">1. Groupe Cognitive, <a href="blog.html">« Beyond the Illusion of Generality »</a>, livre blanc préliminaire, janvier 2026. 20 dossiers de prêt notés par rapport à une décision de référence, comparant un adjudicateur senior (10 ans et plus) au système multi-agents. Non évalué par des pairs. Petit échantillon, marge d'erreur large.</p>
-                <p id="fn-2">2. Al Rahma, Sénégal, déploiement en production. Temps entre le début d'une demande et sa soumission sur la tablette terrain, et entre la demande et le décaissement, mesurés par Al Rahma.</p>
+                <p id="fn-1">1. Groupe Cognitive, <a href="blog.html">« Beyond the Illusion of Generality »</a>, livre blanc préliminaire, janvier 2026. 10 dossiers de prêt notés par rapport à une décision de référence, comparant un adjudicateur senior (10 ans et plus) au système multi-agents. Non évalué par des pairs. Petit échantillon, marge d'erreur large.</p>
+                <p id="fn-2">2. Al Rahma, Sénégal, déploiement en production. Temps entre le début d'une demande et sa soumission sur la tablette terrain, et entre la demande et le décaissement, mesurés par Al Rahma. Données en date de septembre 2026.</p>
+                <p id="fn-3">3. Rapport Service Organization Control 2 (SOC 2&reg;) de type 2 émis au Groupe Cognitive, daté du 31 décembre 2025.</p>
             </div>
             <p class="disclaimer">Ce que nous ne prétendons pas : être les meilleurs dans chaque créneau, comme l'évaluation immobilière commerciale, la notation de crédit à la consommation ou l'analyse forensique de documents. Là, nous travaillons avec des partenaires. Notre argument : l'étendue, la gouvernance et le contrôle, dans une seule plateforme.</p>
         </div>
@@ -531,24 +526,6 @@
 
     <!-- SCRIPTS -->
     <script>
-
-        // Supervision video: only shown once data-video-src is set.
-        (function() {
-            const box = document.getElementById('supervision-video');
-            const src = box && box.dataset.videoSrc;
-            if (!src) return;
-            if (/\.mp4($|\?)/i.test(src)) {
-                const v = document.createElement('video');
-                v.src = src; v.controls = true; v.preload = 'metadata';
-                box.appendChild(v);
-            } else {
-                const f = document.createElement('iframe');
-                f.src = src; f.title = 'La supervision IA en 90 secondes';
-                f.allow = 'fullscreen; picture-in-picture'; f.loading = 'lazy';
-                box.appendChild(f);
-            }
-            box.hidden = false;
-        })();
 
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
