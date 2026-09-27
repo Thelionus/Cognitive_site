@@ -2,29 +2,59 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. SEO: Mobile-First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banque Cognitive | Infrastructure de Décision</title>
     
-    <!-- SEO: Canonical Tag -->
+    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
+    <title>AI Workbench + BusinessBANKER | Groupe Cognitive</title>
+
+    <!-- 3. SEO: Unique Description (150-160 chars) -->
+    <meta name="description" content="Adjudication IA pour le crédit commercial, sur les systèmes que votre banque exploite déjà. Construite à partir du jugement de vos experts, vérifiée par des modèles indépendants, décidée par vos équipes. SOC 2 Type 2.">
+    
+    <!-- 4. SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
 
-    <!-- SÉCURITÉ : Content Security Policy (CSP) mise à jour pour GA4 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
+    <!-- 5. SECURITY: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co; frame-src https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com;">
     <script src="/assets/js/img-fallback.js"></script>
+    
+    <!-- 6. SECURITY: Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- TRACKING : Google Analytics (ID corrigé : G-L9N7RPQDDB) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L9N7RPQDDB');
+    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cognitive Group",
+      "url": "https://www.cognitivegroup.com",
+      "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png",
+      "description": "Adjudication IA gouvernée pour le crédit commercial. AI Workbench analyse, BusinessBANKER consigne et exécute, sur une infrastructure contrôlée par la banque.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1155 René-Lévesque Blvd West",
+        "addressLocality": "Montréal",
+        "addressRegion": "QC",
+        "postalCode": "H3B 2K4",
+        "addressCountry": "CA"
+      }
+    }
     </script>
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L9N7RPQDDB');
+</script>
 
     <style>
         :root {
@@ -43,16 +73,8 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            overflow-x: hidden;
-            width: 100%;
-        }
+        body { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); overflow-x: hidden; width: 100%; }
 
         header {
             position: fixed; top: 0; width: 100%; 
@@ -64,17 +86,14 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { height: 30px; width: auto; display: block; }
+        .logo img { 
+            height: 30px;
+            width: auto; display: block; 
+        }
 
         nav ul { display: flex; gap: 40px; list-style: none; align-items: center; flex-wrap: nowrap; }
-
-        nav a {
-            color: var(--text-muted); text-decoration: none;
-            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-            font-weight: 600; transition: 0.3s; white-space: nowrap;
-        }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; white-space: nowrap; }
         nav a:hover { color: var(--text-main); }
-
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
         .btn-header {
@@ -88,18 +107,21 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-        .btn-header:hover {
-            background-color: var(--accent);
-            color: #FFFFFF !important;
-        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
         .hamburger { display: none; cursor: pointer; z-index: 1001; }
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
         section {
-            min-height: 100vh; width: 100%; position: relative;
-            display: flex; align-items: center; padding: 120px 10%;
-            background-size: cover; background-position: center; background-repeat: no-repeat;
+            min-height: 100vh; 
+            width: 100%;
+            position: relative;
+            display: flex; 
+            align-items: center;
+            padding: 120px 10%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .content { position: relative; z-index: 2; max-width: 650px; }
@@ -111,17 +133,16 @@
             padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);
         }
         
-        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1.5px; }
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px; }
         .description { font-size: 18px; margin-bottom: 35px; font-weight: 400; color: var(--text-muted); line-height: 1.7; }
 
-        .btn {
-            display: inline-block; padding: 18px 45px; background: var(--text-main); color: var(--bg-body);
-            text-decoration: none; font-weight: 700; font-size: 14px; border-radius: 4px; transition: all 0.3s ease;
+        .btn, .btn-outline {
+            display: inline-block; padding: 18px 45px;
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            border-radius: 4px; transition: all 0.3s ease;
         }
-        .btn-outline {
-            background: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.3);
-            display: inline-block; padding: 18px 45px; text-decoration: none; font-weight: 700; font-size: 14px; border-radius: 4px; transition: all 0.3s ease;
-        }
+        .btn { background: var(--text-main); color: var(--bg-body); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.3); }
         .btn:hover, .btn-outline:hover { transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent); }
 
         .logo-strip { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%; }
@@ -130,31 +151,38 @@
         .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        #decision-systems {
+        #hero {
             background-color: var(--bg-body);
             background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.10) 39px, rgba(34,197,94,0.10) 40px),
-                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.10) 39px, rgba(34,197,94,0.10) 40px),
-                repeating-radial-gradient(circle at 78% 42%, transparent 0px, transparent 54px, rgba(34,197,94,0.24) 55px, rgba(34,197,94,0.24) 56px, transparent 57px, transparent 128px),
-                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.2) 0%, transparent 42%),
-                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%),
-                url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop');
-            background-position: center, center, center, center, center, center top;
-            background-size: 40px 40px, 40px 40px, auto, auto, auto, cover;
-            background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.18) 0%, transparent 42%),
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%);
+            background-size: 40px 40px, 40px 40px, auto, auto;
+            background-repeat: repeat, repeat, no-repeat, no-repeat;
         }
-        #decision-systems::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+        #hero::after { content: ''; position: absolute; inset:0; background: linear-gradient(to right, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 60%, rgba(2,6,23,0) 100%); z-index: 1; }
 
-        #hero {
-            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop');
-            background-position: center top;
-        }
-        #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+        .trust-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-main); border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.08); padding: 8px 14px; border-radius: 4px; letter-spacing: 0.5px; }
+        .trust-badge strong { color: var(--accent); }
 
-        #foundry { 
-            background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
-            justify-content: flex-end; text-align: right;
-        }
+        .method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; counter-reset: step; }
+        .method-step { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; position: relative; }
+        .method-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 2px; display: block; margin-bottom: 12px; }
+        .method-step h4 { font-size: 16px; margin-bottom: 10px; font-weight: 800; }
+        .method-step p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+        .method-video { margin-top: 40px; width: 100%; max-width: 820px; aspect-ratio: 16 / 9; border: var(--card-border); border-radius: 8px; overflow: hidden; background: #000; }
+        .method-video iframe, .method-video video { width: 100%; height: 100%; border: 0; display: block; }
+        .method-video[hidden] { display: none; }
+
+        .footnotes { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); max-width: 820px; }
+        .footnotes p { font-size: 12.5px; color: #64748B; line-height: 1.6; margin-bottom: 8px; }
+        .footnotes a { color: var(--text-muted); }
+        sup a { color: var(--accent); text-decoration: none; font-size: 11px; }
+
+        #foundry { background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); justify-content: flex-end; text-align: right; }
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
@@ -163,43 +191,22 @@
 
         .stats-grid { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
         #foundry .stats-grid { justify-content: flex-end; }
-        
-        .stat-item { text-align: inherit; }
         .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
         .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
 
-        footer { 
-            scroll-snap-align: start; padding: 6rem 10%; min-height: 60vh;
-            background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); 
-            position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center;
-        }
+        footer { padding: 6rem 10%; min-height: 60vh; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
         .footer-link:hover { color: var(--accent); }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
 
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
-        .form-input {
-            width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
-        }
-        .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
         .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
 
         .compact-section {
@@ -214,18 +221,21 @@
         .win-card { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; }
         .win-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.2px; }
         .win-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+        .disclaimer { font-size: 13px; color: #64748B; margin-top: 30px; line-height: 1.6; max-width: 700px; }
 
         .card-link { display: inline-block; margin-top: 14px; color: var(--accent); font-size: 12.5px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; }
         .card-link:hover { text-decoration: underline; }
 
+        .pilot-bar { display: flex; flex-wrap: wrap; border: var(--card-border); border-radius: 8px; overflow: hidden; margin: 40px 0 30px; width: 100%; }
+        .pilot-bar-item { flex: 1; min-width: 150px; text-align: center; padding: 26px 12px; border-right: 1px solid rgba(255,255,255,0.08); }
+        .pilot-bar-item:last-child { border-right: none; }
+        .pilot-bar-item .val { font-size: 26px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .pilot-bar-item .lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
         @media (max-width: 1300px) {
             header { height: 80px; }
             .hamburger { display: block; }
-            nav {
-                position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); 
-                width: 100%; height: 100vh; justify-content: center; align-items: center;
-                transition: 0.3s; z-index: 999; display: flex;
-            }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
@@ -238,20 +248,21 @@
             #foundry { justify-content: flex-start; }
             #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            #hero { background-position: center top; }
             .compact-section { padding: 80px 5%; }
             .compact-section h1 { font-size: 30px; }
+            .pilot-bar-item { min-width: 45%; border-bottom: 1px solid rgba(255,255,255,0.08); }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAV -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Groupe Cognitive" width="184" height="30"></a>
         </div>
-        
-        <div class="hamburger" id="hamburger">
+
+        <div class="hamburger" id="hamburger" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -260,111 +271,228 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="foundry.html" onclick="closeMenu()">Cognitive Foundry</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
                 <li class="lang-item"><a href="../index.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <!-- CORRECTION: Bouton renommé -->
                 <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="decision-systems">
-        <div class="content">
-            <h2>Intelligence Décisionnelle pour la Défense</h2>
-            <h1>L'IA au Service des Systèmes de Décision</h1>
-            <p class="description">
-                Nous captons l'expertise humaine par l'analyse cognitive et la traduisons en agents d'IA qui appuient ou automatisent les décisions. Plusieurs agents vérifient leurs résultats entre eux pour une fiabilité et une prévisibilité supérieures. Déjà en service dans la banque, l'aérospatiale et l'énergie; le commandement militaire est la prochaine étape.
-            </p>
-            <a href="../tactical.html" class="btn btn-outline">Voir en Action</a>
-        </div>
-    </section>
-
+    <!-- SECTION 1 : HERO (BANQUE) -->
     <section id="hero">
         <div class="content">
-            <h2>Conformité Bâle IV & IFRS 9</h2>
-            <h1>La première plateforme d’IA conçue pour les environnements réglementés</h1>
+            <h2>AI Workbench + BusinessBANKER</h2>
+            <h1>Adjudication IA pour le Crédit Commercial</h1>
             <p class="description">
-                IA explicable et auditable, avec transparence totale, traçabilité complète et contrôle strict sans dérive ni boîte noire.
+                Nous captons la façon dont vos meilleurs analystes de crédit décident, nous la traduisons en agents d'IA, et des modèles indépendants se vérifient mutuellement avant qu'une personne de votre équipe ne tranche. Le tout sur une infrastructure que vous contrôlez, par-dessus les systèmes de prêt et le core bancaire que vous avez déjà.
             </p>
-            <a href="product.html" class="btn btn-outline">Voir l'Architecture</a>
+            <div class="hero-actions">
+                <a href="#method" class="btn">Voir la Méthode</a>
+                <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
+            </div>
+
+            <div class="trust-badges">
+                <span class="trust-badge"><strong>SOC 2 Type 2</strong> &middot; audit propre au Groupe Cognitive</span>
+                <span class="trust-badge">SSO &middot; MFA &middot; RBAC</span>
+                <span class="trust-badge">Déployé dans votre cloud</span>
+            </div>
 
             <div class="logo-strip">
-                <span class="logo-label">Infrastructure Cœur pour Banques de Premier Rang</span>
+                <span class="logo-label">Banques et coopératives qui utilisent nos logiciels</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
                     <div class="client-logo">BNC</div>
                     <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
+                    <div class="client-logo">AL RAHMA</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="compact-section" id="decision-systems-detail">
+    <!-- SECTION 2 : LA MÉTHODE -->
+    <section class="compact-section" id="method">
         <div class="content">
-            <h2>Prochaine Étape</h2>
-            <h1>Planification de Mission &amp; Identification des Menaces en Temps Réel</h1>
-            <div class="win-grid" style="margin-top: 40px;">
-                <div class="win-card">
-                    <h4>IA de Planification de Mission — En Développement</h4>
-                    <p>Un système qui regroupe le renseignement, la logistique, le terrain et l'état des unités en une seule vue opérationnelle, et qui laisse l'IA rédiger, simuler et mettre à jour le plan de mission en continu — avec l'approbation du commandant à chaque point de décision.</p>
+            <h2>La Méthode</h2>
+            <h1>Quatre Étapes, du Jugement Expert à la Décision</h1>
+            <p class="description" style="margin-bottom: 0;">
+                Aucun modèle n'est cru sur parole. Chaque recommandation franchit les mêmes quatre étapes, et la décision finale revient toujours à vos équipes.
+            </p>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <h4>Observation des experts</h4>
+                    <p>Nous observons vos analystes seniors pendant qu'ils traitent de vrais dossiers et nous consignons leur raisonnement : ce qu'ils vérifient, dans quel ordre, et ce qui les fait s'arrêter. Cela devient le guide de l'agent.</p>
                 </div>
-                <div class="win-card">
-                    <h4>Identification des Menaces en Temps Réel — Actif</h4>
-                    <p>Fusion multi-agents — cinématique, signature/IFF et contexte — classifiant les pistes en temps réel selon la convention OTAN BLEU/ROUGE/AMBRE/VERT. Actif dès aujourd'hui sur notre démo radar tactique.</p>
-                    <a href="../tactical.html" class="card-link">Voir la Démo Tactique &rarr;</a>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <h4>Deux modèles se vérifient</h4>
+                    <p>Au moins deux agents, sur des modèles de fournisseurs différents, traitent le même dossier. Chacun doit produire une sortie JSON stricte selon le même schéma, et les sorties sont comparées champ par champ. Tout désaccord est signalé, jamais lissé.</p>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <h4>Superviseur IA</h4>
+                    <p>Un agent superviseur examine le dossier complet et les désaccords signalés, et fait remonter ce qui exige l'attention d'une personne. Il est en production aujourd'hui chez Al Rahma, au Sénégal.</p>
+                    <a href="case_study_alrahma.html" class="card-link">Étude de cas Al Rahma &rarr;</a>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <h4>L'humain décide</h4>
+                    <p>Votre analyste voit la recommandation, les éléments qui la justifient et chaque signalement, puis approuve, modifie ou rejette. Cette décision est consignée dans BusinessBANKER.</p>
                 </div>
             </div>
+
+            <!-- Vidéo de supervision IA (90 s). Renseigner data-video-src (URL d'intégration YouTube/Vimeo ou .mp4) ; le bloc reste masqué tant qu'il est vide. -->
+            <div class="method-video" id="supervision-video" data-video-src="" hidden></div>
+
+            <a href="foundry.html" class="btn btn-outline" style="margin-top: 40px;">Comment Cognitive Foundry Capte l'Expertise</a>
         </div>
     </section>
 
+    <!-- SECTION 3 : AI WORKBENCH -->
     <section id="foundry">
         <div class="content">
-            <h2>Modèle Logique « Boîte de Verre »</h2>
-            <h1>Cognitive Foundry</h1>
+            <h2>Là où se fait l'analyse</h2>
+            <h1>AI Workbench</h1>
             <p class="description">
-                Cognitive Foundry compile le jugement expert, les politiques de crédit et les règles de conformité en une logique décisionnelle déterministe qui s'exécute de manière cohérente sur tous les canaux.
+                Les agents qui extraient, analysent et recommandent, construits à partir du jugement de vos propres experts crédit. Vous choisissez le modèle de chaque agent et pouvez le changer sans réécrire le flux. Déployé dans votre cloud, par-dessus vos systèmes de prêt et votre core bancaire ; rien n'est remplacé.
             </p>
-            
-            <a href="foundry.html" class="btn btn-outline">Explorer la Logique</a>
+
+            <a href="workbench.html" class="btn btn-outline">Découvrir AI Workbench</a>
 
             <div class="stats-grid">
-                <div class="stat-item"><span class="stat-val">0%</span><span class="stat-label">Risque Boîte Noire</span></div>
-                <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Traçabilité d'Audit</span></div>
-                <div class="stat-item"><span class="stat-val">Tier-1</span><span class="stat-label">Validé</span></div>
+                <div class="stat-item">
+                    <span class="stat-val">2+</span>
+                    <span class="stat-label">Modèles par dossier</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val">JSON</span>
+                    <span class="stat-label">Schéma de sortie strict</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val">Journalisé</span>
+                    <span class="stat-label">Chaque désaccord</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- SECTION 4 : BUSINESSBANKER -->
     <section id="workbench">
         <div class="content">
-            <h2>Infrastructure d'Orchestration</h2>
-            <h1>Couche d'Automatisation Contrôlée</h1>
+            <h2>Là où la décision est consignée</h2>
+            <h1>BusinessBANKER</h1>
             <p class="description">
-                AI Workbench numérise la partie la plus critique des opérations bancaires : l'interprétation des documents et la saisie de données—tout en maintenant les décisions sous un contrôle strict.
+                AI Workbench prépare l'analyse. BusinessBANKER est l'endroit où votre équipe crédit la révise, l'approuve et en garde la trace : chaque version, chaque approbation, chaque modification, prêtes pour l'audit. Là où votre système de prêt actuel ne peut pas exécuter l'action qui en découle, BusinessBANKER s'en charge.
             </p>
-            <a href="workbench.html" class="btn btn-outline">Voir les Spécifications</a>
+            <a href="../case-study-businessbanker.html" class="btn btn-outline">BusinessBANKER sur le Terrain</a>
         </div>
     </section>
 
+    <!-- SECTION 5 : PREUVES -->
+    <section class="compact-section" id="why-we-win">
+        <div class="content">
+            <h2>Ce Que Nous Pouvons Montrer</h2>
+            <h1>Des Preuves, Avec Leurs Limites</h1>
+            <div class="win-grid">
+                <div class="win-card">
+                    <h4>Premier banc d'essai, petit échantillon</h4>
+                    <p>Dans une étude préliminaire portant sur 20 dossiers de prêt, le système a atteint la décision de référence dans 96 % des cas, contre 57 % pour un adjudicateur humain senior.<sup><a href="#fn-1">1</a></sup> Vingt dossiers constituent un petit échantillon : la marge d'erreur est large. C'est pourquoi chaque mandat commence en mode fantôme, sur vos propres dossiers.</p>
+                </div>
+                <div class="win-card">
+                    <h4>En production chez Al Rahma</h4>
+                    <p>Les demandes de prêt qui prenaient des heures à rédiger se font maintenant en une dizaine de minutes sur tablette, et les fonds parviennent à l'emprunteur en moins de quatre heures.<sup><a href="#fn-2">2</a></sup></p>
+                    <a href="case_study_alrahma.html" class="card-link">Lire l'étude de cas &rarr;</a>
+                </div>
+                <div class="win-card">
+                    <h4>Votre cloud, vos modèles</h4>
+                    <p>Aucune dépendance à un modèle, aucune boîte noire hébergée par le fournisseur. La plateforme tourne dans votre propre compte AWS, et vous choisissez le modèle derrière chaque agent.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Gouvernance intégrée</h4>
+                    <p>Piste d'audit, seuils de confiance et une spécification des seuils d'automatisation rédigée en fonction de la ligne directrice E-23 du BSIF, livrées sous forme de dossier de gouvernance des modèles.</p>
+                </div>
+                <div class="win-card">
+                    <h4>Sécurité</h4>
+                    <p>Le Groupe Cognitive détient son propre rapport SOC 2 Type 2. Il s'agit de notre audit, pas de celui de notre fournisseur cloud. SSO, MFA et contrôle d'accès par rôle, plus une intégration en production avec le core Fiserv DNA.</p>
+                </div>
+            </div>
+            <div class="footnotes">
+                <p id="fn-1">1. Groupe Cognitive, <a href="blog.html">« Beyond the Illusion of Generality »</a>, livre blanc préliminaire, janvier 2026. 20 dossiers de prêt notés par rapport à une décision de référence, comparant un adjudicateur senior (10 ans et plus) au système multi-agents. Non évalué par des pairs. Petit échantillon, marge d'erreur large.</p>
+                <p id="fn-2">2. Al Rahma, Sénégal, déploiement en production. Temps entre le début d'une demande et sa soumission sur la tablette terrain, et entre la demande et le décaissement, mesurés par Al Rahma.</p>
+            </div>
+            <p class="disclaimer">Ce que nous ne prétendons pas : être les meilleurs dans chaque créneau, comme l'évaluation immobilière commerciale, la notation de crédit à la consommation ou l'analyse forensique de documents. Là, nous travaillons avec des partenaires. Notre argument : l'étendue, la gouvernance et le contrôle, dans une seule plateforme.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 6 : RECHERCHE (défense, aérospatiale) -->
+    <section class="compact-section" id="research">
+        <div class="content">
+            <h2>Recherche</h2>
+            <h1>La Même Méthode, Hors de la Banque</h1>
+            <p class="description" style="margin-bottom: 0;">
+                La banque est notre métier. Notre groupe de recherche applique la même méthode de capture d'expertise et de vérification croisée à l'aérospatiale et à la défense, là où une erreur coûte cher et où chaque décision doit pouvoir s'expliquer après coup.
+            </p>
+            <div class="win-grid" style="margin-top: 40px;">
+                <div class="win-card">
+                    <h4>Sécurité aérienne : SymbIA</h4>
+                    <p>Collaboration humain-automatisation pour les opérations à pilote unique, là où le pilote et le système divergent.</p>
+                    <a href="../symbia.html" class="card-link">SymbIA (EN) &rarr;</a>
+                </div>
+                <div class="win-card">
+                    <h4>Cockpit cognitif : C-Pilot</h4>
+                    <p>Capter le raisonnement du pilote en temps réel et l'appuyer avec des compagnons IA en situation de forte charge.</p>
+                    <a href="../cpilot.html" class="card-link">C-Pilot (EN) &rarr;</a>
+                </div>
+                <div class="win-card">
+                    <h4>Défense : conscience situationnelle</h4>
+                    <p>Une démo publique qui classe le trafic aérien ADS-B en direct grâce à plusieurs agents qui se vérifient. La planification de mission en est au stade de la recherche.</p>
+                    <a href="../tactical.html" class="card-link">Démo tactique (EN) &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7 : COMMENT ACHETER -->
+    <section class="compact-section" id="how-you-buy">
+        <div class="content">
+            <h2>Comment Acheter</h2>
+            <h1>Commencer par un Pilote en Mode Fantôme</h1>
+            <p class="description" style="margin-bottom: 0;">
+                Pilote en mode fantôme de 10 à 12 semaines à prix fixe &rarr; décision go/no-go &rarr; AI Workbench en production sur votre flux existant &rarr; licence annuelle plus des frais par transaction approuvée &rarr; BusinessBANKER comme couche d'exécution là où le système de prêt ne suffit pas.
+            </p>
+            <div class="pilot-bar">
+                <div class="pilot-bar-item"><span class="val">12 sem.</span><span class="lbl">Durée du pilote</span></div>
+                <div class="pilot-bar-item"><span class="val">75 k$ CA</span><span class="lbl">Prix fixe</span></div>
+                <div class="pilot-bar-item"><span class="val">&ge;40 %</span><span class="lbl">Réduction visée</span></div>
+                <div class="pilot-bar-item"><span class="val">0</span><span class="lbl">Système remplacé</span></div>
+                <div class="pilot-bar-item"><span class="val">1</span><span class="lbl">Décision à la fin</span></div>
+            </div>
+            <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Notre Héritage</h4>
-                <!-- CORRECTION : "Fondé en 1995" supprimé -->
+                <h4 class="footer-h4">Notre Approche</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
+                    AI Workbench analyse. BusinessBANKER consigne et exécute. Les deux tournent sur l'infrastructure que votre banque contrôle déjà : superposés, pas remplacés.
                 </p>
             </div>
             <div>
                 <h4 class="footer-h4">Liens Institutionnels</h4>
-                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
-                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
+                <a href="product.html" class="footer-link">Aperçu de la Plateforme</a>
                 <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
+                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
             </div>
             <div>
                 <h4 class="footer-h4">Siège Mondial</h4>
@@ -376,10 +504,11 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Groupe Cognitive. Tous droits réservés.
+            &copy; 2026 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
+    <!-- MODALE DE RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -400,17 +529,40 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script>
+
+        // Supervision video: only shown once data-video-src is set.
+        (function() {
+            const box = document.getElementById('supervision-video');
+            const src = box && box.dataset.videoSrc;
+            if (!src) return;
+            if (/\.mp4($|\?)/i.test(src)) {
+                const v = document.createElement('video');
+                v.src = src; v.controls = true; v.preload = 'metadata';
+                box.appendChild(v);
+            } else {
+                const f = document.createElement('iframe');
+                f.src = src; f.title = 'La supervision IA en 90 secondes';
+                f.allow = 'fullscreen; picture-in-picture'; f.loading = 'lazy';
+                box.appendChild(f);
+            }
+            box.hidden = false;
+        })();
+
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+        
         function closeMenu() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
+
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -425,5 +577,6 @@
             closeModal();
         }
     </script>
+
 </body>
 </html>
