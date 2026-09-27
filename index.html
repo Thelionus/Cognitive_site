@@ -9,7 +9,7 @@
     <title>AI Workbench + BusinessBANKER | Cognitive Group</title>
 
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="Governed AI adjudication for commercial lending, on the systems your bank already runs. Model-agnostic, bank-controlled, audit-ready. 96% measured accuracy vs. 57% human baseline.">
+    <meta name="description" content="Governed AI adjudication for commercial lending, on the systems your bank already runs. Built from your credit experts' judgment, cross-checked by independent models, decided by your people. SOC 2 Type 2.">
     
     <!-- 4. SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/">
@@ -20,9 +20,6 @@
     
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <!-- 7. PERFORMANCE: Preload Hero Image for LCP -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,23 +151,33 @@
         .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-        #decision-systems {
+        #hero {
             background-color: var(--bg-body);
             background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.10) 39px, rgba(34,197,94,0.10) 40px),
-                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.10) 39px, rgba(34,197,94,0.10) 40px),
-                repeating-radial-gradient(circle at 78% 42%, transparent 0px, transparent 54px, rgba(34,197,94,0.24) 55px, rgba(34,197,94,0.24) 56px, transparent 57px, transparent 128px),
-                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.2) 0%, transparent 42%),
-                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%),
-                url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop');
-            background-position: center, center, center, center, center, center top;
-            background-size: 40px 40px, 40px 40px, auto, auto, auto, cover;
-            background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.18) 0%, transparent 42%),
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%);
+            background-size: 40px 40px, 40px 40px, auto, auto;
+            background-repeat: repeat, repeat, no-repeat, no-repeat;
         }
-        #decision-systems::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+        #hero::after { content: ''; position: absolute; inset:0; background: linear-gradient(to right, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 60%, rgba(2,6,23,0) 100%); z-index: 1; }
 
-        #hero { background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop'); background-position: center top; }
-        #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+        .trust-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-main); border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.08); padding: 8px 14px; border-radius: 4px; letter-spacing: 0.5px; }
+        .trust-badge strong { color: var(--accent); }
+
+        .method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; counter-reset: step; }
+        .method-step { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; position: relative; }
+        .method-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 2px; display: block; margin-bottom: 12px; }
+        .method-step h4 { font-size: 16px; margin-bottom: 10px; font-weight: 800; }
+        .method-step p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+        .footnotes { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); max-width: 820px; }
+        .footnotes p { font-size: 12.5px; color: #64748B; line-height: 1.6; margin-bottom: 8px; }
+        .footnotes a { color: var(--text-muted); }
+        sup a { color: var(--accent); text-decoration: none; font-size: 11px; }
 
         #foundry { background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); justify-content: flex-end; text-align: right; }
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
@@ -262,6 +269,7 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Products</a></li>
+                <li><a href="foundry.html" onclick="closeMenu()">Cognitive Foundry</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
@@ -272,166 +280,181 @@
         </nav>
     </header>
 
-    <!-- SECTION 1: DECISION SYSTEMS / DEFENSE -->
-    <section id="decision-systems">
-        <div class="content">
-            <h2>Decision Intelligence for Defense</h2>
-            <h1>AI for Decision Systems</h1>
-            <p class="description">
-                We capture human expertise through cognitive analysis and translate it into AI agents that support or automate decisions. Multiple agents check each other's outputs for higher reliability and predictability. Live in banking, aerospace and energy; mission command is next.
-            </p>
-            <a href="tactical.html" class="btn btn-outline">See It in Action</a>
-        </div>
-    </section>
-
-    <!-- SECTION 1B: HERO -->
+    <!-- SECTION 1: HERO (BANKING) -->
     <section id="hero">
         <div class="content">
             <h2>AI Workbench + BusinessBANKER</h2>
             <h1>AI Adjudication for Commercial Lending</h1>
             <p class="description">
-                Multi-agent adjudication built from your own credit experts' judgment — deployed on infrastructure you control, overlaid on the systems you already run. No model lock-in. No system replacement. Every recommendation audited before it becomes an action.
+                We capture how your best credit analysts decide, turn it into AI agents, and have independent models check each other before a person on your team makes the call. It runs on infrastructure you control, on top of the loan and core systems you already have.
             </p>
-            <a href="product.html" class="btn btn-outline">See the Two-Layer Architecture</a>
+            <div class="hero-actions">
+                <a href="#method" class="btn">See How It Works</a>
+                <a href="#" onclick="openModal()" class="btn btn-outline">Schedule a Briefing</a>
+            </div>
+
+            <div class="trust-badges">
+                <span class="trust-badge"><strong>SOC 2 Type 2</strong> &middot; Cognitive Group's own report, period ending Dec 2025</span>
+                <span class="trust-badge">SSO &middot; MFA &middot; RBAC</span>
+                <span class="trust-badge">Deployed in your cloud</span>
+            </div>
 
             <div class="logo-strip">
-                <span class="logo-label">Proven in production</span>
+                <span class="logo-label">Banks and credit unions using our software</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
                     <div class="client-logo">BNC</div>
                     <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
-                    <div class="client-logo">CMC</div>
+                    <div class="client-logo">AL RAHMA</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 1C: DECISION SYSTEMS DETAIL -->
-    <section class="compact-section" id="decision-systems-detail">
+    <!-- SECTION 2: THE METHOD -->
+    <section class="compact-section" id="method">
         <div class="content">
-            <h2>What's Next</h2>
-            <h1>Mission Planning &amp; Real-Time Threat Identification</h1>
-            <div class="win-grid" style="margin-top: 40px;">
-                <div class="win-card">
-                    <h4>Mission Planning AI — In Development</h4>
-                    <p>A system that pulls intelligence, logistics, terrain and unit-status feeds into a single operating picture, and lets AI draft, war-game and continuously update the mission plan itself — with commander approval built into every decision point, not a form filled out after the fact.</p>
+            <h2>The Method</h2>
+            <h1>Four Steps From Expert Judgment to a Decision</h1>
+            <p class="description" style="margin-bottom: 0;">
+                No single model is trusted on its own. Every recommendation passes through the same four steps, and the final decision always belongs to your people.
+            </p>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <h4>Expert observation</h4>
+                    <p>We sit with your senior analysts while they work real files and record how they reason: what they check, in what order, and what makes them stop. That becomes the agent's playbook.</p>
                 </div>
-                <div class="win-card">
-                    <h4>Real-Time Threat Identification — Live</h4>
-                    <p>Multi-agent fusion — kinematic, signature/IFF, and context — classifying tracks in real time against BLUE/RED/AMBER/GREEN NATO convention. Running today on our tactical radar demo.</p>
-                    <a href="tactical.html" class="card-link">View Tactical Demo &rarr;</a>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <h4>Two models check each other</h4>
+                    <p>At least two agents running on models from different vendors process the same file. Each must return a strict JSON output against the same schema, and the outputs are compared field by field. Any disagreement is flagged, never averaged away.</p>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <h4>AI supervisor</h4>
+                    <p>A supervising agent reviews the whole file and the flagged disagreements, and raises anything that needs a human's attention. It is live today at Al Rahma in Senegal.</p>
+                    <a href="case_study_alrahma.html" class="card-link">Al Rahma case study &rarr;</a>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <h4>The human decides</h4>
+                    <p>Your analyst sees the recommendation, the evidence behind it and every flag, then approves, changes or rejects it. That decision is recorded in BusinessBANKER.</p>
                 </div>
             </div>
+
+            <a href="foundry.html" class="btn btn-outline" style="margin-top: 40px;">How Cognitive Foundry Captures Expertise</a>
         </div>
     </section>
 
-    <!-- SECTION 2: FOUNDRY -->
+    <!-- SECTION 3: AI WORKBENCH -->
     <section id="foundry">
         <div class="content">
-            <h2>The Reasoning Layer</h2>
+            <h2>Where the Analysis Happens</h2>
             <h1>AI Workbench</h1>
             <p class="description">
-                Multi-agent adjudication — extraction, analysis, recommendation, human validation — built from your bank's own credit experts' judgment. Model-agnostic: swap any LLM per agent without rewriting the workflow. Source-accessible. Deployed in your cloud. Overlays your existing LOS and core; nothing is replaced.
+                The agents that extract, analyze and recommend, built from your own credit experts' judgment. You choose the model for each agent and can swap it without rewriting the workflow. Deployed in your cloud, on top of your existing loan and core systems; nothing is replaced.
             </p>
 
             <a href="workbench.html" class="btn btn-outline">Explore AI Workbench</a>
 
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-val">0%</span>
-                    <span class="stat-label">Black Box Risk</span>
+                    <span class="stat-val">2+</span>
+                    <span class="stat-label">Models per file</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-val">100%</span>
-                    <span class="stat-label">Audit Traceability</span>
+                    <span class="stat-val">JSON</span>
+                    <span class="stat-label">Strict output schema</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-val">Tier-1</span>
-                    <span class="stat-label">Validated</span>
+                    <span class="stat-val">Logged</span>
+                    <span class="stat-label">Every disagreement</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: WORKBENCH -->
+    <!-- SECTION 4: BUSINESSBANKER -->
     <section id="workbench">
         <div class="content">
-            <h2>The Execution Layer</h2>
+            <h2>Where the Decision Is Recorded</h2>
             <h1>BusinessBANKER</h1>
             <p class="description">
-                The governed system of record that captures, versions, reviews and audits what the agents produce — and executes the resulting actions where the incumbent LOS cannot. AI Workbench is to BusinessBANKER what Claude Code is to GitHub: one reasons and does the work; the other governs and records it.
+                AI Workbench prepares the analysis. BusinessBANKER is where your credit team reviews it, signs off and keeps the record: every version, every approval and every change, ready for audit. Where your current loan system can't carry out the resulting action, BusinessBANKER does.
             </p>
             <a href="case-study-businessbanker.html" class="btn btn-outline">See BusinessBANKER in the Field</a>
         </div>
     </section>
 
-    <!-- SECTION 4: WHY WE WIN -->
+    <!-- SECTION 5: EVIDENCE -->
     <section class="compact-section" id="why-we-win">
         <div class="content">
-            <h2>Why We Win</h2>
-            <h1>Measured, Not Promised</h1>
+            <h2>What We Can Show You</h2>
+            <h1>Evidence, With Its Limits Stated</h1>
             <div class="win-grid">
                 <div class="win-card">
-                    <h4>Measured, not promised</h4>
-                    <p>Published benchmark: 96% system accuracy vs. 57% for a senior human adjudicator. Every engagement starts in shadow mode against your own analysts.</p>
+                    <h4>Early benchmark, small sample</h4>
+                    <p>In a draft study of 10 loan files, the system reached the reference decision 96% of the time, against 57% for a senior human adjudicator.<sup><a href="#fn-1">1</a></sup> Ten files is a small sample, so the margin of error is wide. That is why every engagement starts in shadow mode on your own files.</p>
                 </div>
                 <div class="win-card">
-                    <h4>Control</h4>
-                    <p>No model lock-in, no vendor-hosted black box — runs in your own AWS. The objection nCino, Zest AI, Aloan and Kaaj cannot answer.</p>
+                    <h4>In production at Al Rahma</h4>
+                    <p>Loan applications that took hours to write up now take about 10 minutes on a tablet, and money reaches the borrower in under four hours.<sup><a href="#fn-2">2</a></sup></p>
+                    <a href="case_study_alrahma.html" class="card-link">Read the case study &rarr;</a>
+                </div>
+                <div class="win-card">
+                    <h4>Your cloud, your models</h4>
+                    <p>No model lock-in and no vendor-hosted black box. The platform runs in your own AWS account, and you pick the model behind each agent.</p>
                 </div>
                 <div class="win-card">
                     <h4>Governance built in</h4>
-                    <p>Audit trail, confidence thresholds, and an automation-threshold specification aligned with OSFI E-23 — delivered as a model-governance pack, not a roadmap item.</p>
+                    <p>Audit trail, confidence thresholds, and an automation-threshold specification written against OSFI E-23, delivered as a model-governance pack.</p>
                 </div>
                 <div class="win-card">
-                    <h4>Execution, not just insight</h4>
-                    <p>Recommendations become governed, auditable actions in a system of record — the gap every bolt-on AI tool leaves to the bank.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Proven in production</h4>
-                    <p>RBC, Desjardins, DUCA and eleven institutions across Canada; live Fiserv DNA integration; SOC 2 Type 2 hosting; SSO, MFA, RBAC.</p>
+                    <h4>Security</h4>
+                    <p>Cognitive Group holds its own SOC 2 Type 2 report, for the period ending 31 December 2025.<sup><a href="#fn-3">3</a></sup> This is our audit, not our cloud provider's. SSO, MFA and role-based access control, plus a live Fiserv DNA core integration.</p>
                 </div>
             </div>
-            <p class="disclaimer">What we don't claim: best-in-class depth in every point vertical — CRE valuation, consumer scoring, document forensics. Those are partners, not battles. The claim is breadth, governance and control in one platform, from one vendor.</p>
+            <div class="footnotes">
+                <p id="fn-1">1. Cognitive Group, <a href="blog.html">&ldquo;Beyond the Illusion of Generality&rdquo;</a>, draft white paper, January 2026. 10 loan files scored against a reference decision, comparing one senior adjudicator (10+ years) with the multi-agent system. Not peer reviewed. Small sample, wide margin of error.</p>
+                <p id="fn-2">2. Al Rahma, Senegal, production deployment. Time from starting an application to submitting it on the field tablet, and from request to disbursal, as measured by Al Rahma. Figures as of September 2026.</p>
+                <p id="fn-3">3. Service Organization Control 2 (SOC 2&reg;) Type 2 report issued to Cognitive Group, for the period ending 31 December 2025.</p>
+            </div>
+            <p class="disclaimer">What we don't claim: best-in-class depth in every niche, such as commercial real-estate valuation, consumer scoring or document forensics. We work with partners there. Our claim is breadth, governance and control in one platform.</p>
         </div>
     </section>
 
-    <!-- SECTION 4B: BEYOND BANKING -->
-    <section class="compact-section" id="beyond-banking">
+    <!-- SECTION 6: RESEARCH (defence, aerospace) -->
+    <section class="compact-section" id="research">
         <div class="content">
-            <h2>Beyond Banking</h2>
-            <h1>One Decision Engine, Built for High-Stakes Domains</h1>
+            <h2>Research</h2>
+            <h1>The Same Method Outside Banking</h1>
             <p class="description" style="margin-bottom: 0;">
-                Commercial lending is where the platform runs at scale today. The same governed, auditable reasoning engine — extraction, analysis, recommendation, human validation — is built to hold up anywhere a wrong call is expensive and every decision has to be explainable after the fact.
+                Banking is our business. Our research group applies the same expert-capture and cross-checking method in aerospace and defence, where a wrong call is expensive and every decision has to be explained afterwards.
             </p>
             <div class="win-grid" style="margin-top: 40px;">
                 <div class="win-card">
-                    <h4>Commercial Lending — Flagship</h4>
-                    <p>AI Workbench + BusinessBANKER. 96% measured accuracy vs. 57% for a senior human adjudicator, live at RBC, Desjardins, DUCA and eleven institutions across Canada.</p>
-                    <a href="product.html" class="card-link">See the Platform &rarr;</a>
+                    <h4>Aerospace safety: SymbIA</h4>
+                    <p>Human-automation teaming for single-pilot operations, where pilot and system disagree.</p>
+                    <a href="symbia.html" class="card-link">SymbIA &rarr;</a>
                 </div>
                 <div class="win-card">
-                    <h4>Microfinance &amp; Emerging Markets</h4>
-                    <p>Deterministic credit decisioning for the informal economy — first international deployment at BNDE (Senegal), now the foundation of our West Africa hub.</p>
-                    <a href="index-africa.html" class="card-link">West Africa Hub &rarr;</a>
+                    <h4>Cognitive cockpit: C-Pilot</h4>
+                    <p>Capturing pilot reasoning in real time and supporting it with AI companions under high workload.</p>
+                    <a href="cpilot.html" class="card-link">C-Pilot &rarr;</a>
                 </div>
                 <div class="win-card">
-                    <h4>Aerospace Safety</h4>
-                    <p>SymbIA: engineering symbiotic human-automation collaboration to close the gap where pilot and system disagree, before it becomes an incident.</p>
-                    <a href="symbia.html" class="card-link">Read the Case Study &rarr;</a>
-                </div>
-                <div class="win-card">
-                    <h4>Defense &amp; Situational Awareness</h4>
-                    <p>Real-time ADS-B threat classification cross-referencing FAA, FCC and ADSBexchange registries — live on our tactical radar and flight-tracking demos.</p>
-                    <a href="tactical.html" class="card-link">View Tactical Demo &rarr;</a>
+                    <h4>Defence: situational awareness</h4>
+                    <p>A public demo that classifies live ADS-B air traffic with several cross-checking agents. Mission-planning work is at the research stage.</p>
+                    <a href="tactical.html" class="card-link">Tactical demo &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: HOW YOU BUY -->
+    <!-- SECTION 7: HOW YOU BUY -->
     <section class="compact-section" id="how-you-buy">
         <div class="content">
             <h2>How You Buy</h2>
@@ -463,6 +486,7 @@
                 <h4 class="footer-h4">Institutional Links</h4>
                 <a href="workbench.html" class="footer-link">AI Workbench</a>
                 <a href="case-study-businessbanker.html" class="footer-link">BusinessBANKER</a>
+                <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
                 <a href="product.html" class="footer-link">Platform Overview</a>
                 <a href="success.html" class="footer-link">Case Study Archive</a>
                 <a href="blog.html" class="footer-link">Regulatory Research</a>
@@ -477,7 +501,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2026 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
 

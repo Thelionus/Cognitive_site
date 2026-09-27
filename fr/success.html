@@ -152,6 +152,7 @@
         .metric-row {
             display: flex; gap: 20px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
         }
+        .case-source { font-size: 11.5px; color: #64748B; line-height: 1.5; margin-top: 12px; }
         .mini-stat { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .mini-stat strong { display: block; color: var(--accent); font-size: 18px; margin-bottom: 3px; font-family: 'Manrope', sans-serif; }
 
@@ -220,6 +221,7 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="foundry.html" onclick="closeMenu()">Cognitive Foundry</a></li>
                 <li><a href="success.html" class="active-link" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
@@ -233,13 +235,13 @@
 
     <div class="hero-banner">
         <div class="hero-content">
-            <span class="mono-tag">Impact Mondial</span>
-            <h1>Déploiements Critiques</h1>
-            <p class="hero-lead">Des Institutions Financières de Premier Rang aux Marchés Émergents à Forte Croissance.</p>
+            <span class="mono-tag">Déploiements</span>
+            <h1>Là Où Tournent Nos Logiciels</h1>
+            <p class="hero-lead">Banques, coopératives de crédit et institutions de microfinance, au Canada et en Afrique de l'Ouest.</p>
             
             <div style="margin-top: 2rem;">
                 <a href="clients.html" style="color: var(--accent); font-family: 'JetBrains Mono'; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
-                    Voir notre liste de clients mondiaux
+                    Voir la liste des clients
                 </a>
             </div>
         </div>
@@ -248,8 +250,8 @@
     <section class="main-section">
         
         <div class="category-header">
-            <h2>Déploiements Entreprise Tier-1</h2>
-            <span class="category-badge">Institutionnel</span>
+            <h2>Déploiements Bancaires</h2>
+            <span class="category-badge">Canada</span>
         </div>
 
         <div class="grid-3">
@@ -259,11 +261,11 @@
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Décisions de Crédit</span>
-                    <h3>Adjudication Hypothécaire (RBC)</h3>
-                    <p class="case-p">Automatisation des décisions de crédit complexes en restructurant le flux cognitif des experts. Complexité de l'interface réduite de 50 pages à 2.</p>
+                    <h3>Adjudication Hypothécaire</h3>
+                    <p class="case-p">Capter la façon dont les adjudicateurs hypothécaires seniors vérifient l'identité, le revenu et la propriété, et la traduire en agents qui préparent le dossier pour une décision humaine.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>90%</strong> Gain de Temps</div>
-                        <div class="mini-stat"><strong>20M$</strong> Économies OpEx</div>
+                        <div class="mini-stat">Prêt hypothécaire</div>
+                        <div class="mini-stat">Banque canadienne (confidentiel)</div>
                     </div>
                     <a href="case-study-mortgage.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
@@ -276,10 +278,10 @@
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Origination Sans Friction</span>
                     <h3>Transformation Commerciale</h3>
-                    <p class="case-p">Réduction du temps de préparation des prêts de 92% en éliminant la friction Front/Back-office grâce à l'orchestration IA déterministe.</p>
+                    <p class="case-p">Structurer et valider les données des prêts commerciaux avant qu'elles ne quittent le directeur de compte, pour que les dossiers cessent de faire l'aller-retour entre le front-office, le crédit et la documentation.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>92%</strong> Plus Rapide</div>
-                        <div class="mini-stat"><strong>0%</strong> Taux de Reprise</div>
+                        <div class="mini-stat">Crédit commercial</div>
+                        <div class="mini-stat">Amérique du Nord</div>
                     </div>
                     <a href="case-study-commercial.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
@@ -292,10 +294,10 @@
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Opérations IA</span>
                     <h3>Automatisation des États Financiers</h3>
-                    <p class="case-p">Du PDF à Moody’s RiskCalc en quelques minutes. Les agents déterministes reclassent et valident les données financières sans hallucinations mathématiques.</p>
+                    <p class="case-p">Des états financiers PDF à Moody’s RiskCalc. Des agents sur des modèles différents reclassent les postes et se vérifient mutuellement ; un moteur de calcul classique, pas un LLM, fait l'arithmétique.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>98%</strong> Saisie Accélérée</div>
-                        <div class="mini-stat"><strong>100%</strong> Traçable</div>
+                        <div class="mini-stat">DUCA &middot; Al Rahma &middot; BSIC</div>
+                        <div class="mini-stat">Relié à la page source</div>
                     </div>
                     <a href="case-study-financial-capture.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
@@ -316,27 +318,28 @@
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Marchés Émergents</span>
-                    <h3>Révolution Micro-Finance</h3>
-                    <p class="case-p">Le Moteur Cognitif transforme l'information qualitative en données financières auditables, ouvrant l'accès au crédit pour les non-bancarisés.</p>
+                    <h3>Al Rahma : Microfinance au Sénégal</h3>
+                    <p class="case-p">Les agents de terrain saisissent des données indirectes structurées sur tablette ; le système en tire un compte de résultat, et un superviseur IA examine chaque dossier avant la décision de l'agent de crédit.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>50%</strong> Gain de Temps</div>
-                        <div class="mini-stat"><strong>10M</strong> Originations</div>
+                        <div class="mini-stat"><strong>~10 min</strong> Demande</div>
+                        <div class="mini-stat"><strong>&lt;4 h</strong> Jusqu'au décaissement</div>
                     </div>
+                    <p class="case-source">Source : déploiement en production chez Al Rahma, Sénégal. Mesuré par Al Rahma, du début de la demande à sa soumission, et de la demande au décaissement. Données en date de septembre 2026.</p>
                     <a href="case_study_alrahma.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
             </div>
 
             <div class="case-card">
                 <div class="case-image-box">
-                    <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs">
+                    <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Lab">
                 </div>
                 <div class="case-content">
                     <span class="mono-tag" style="margin-bottom:5px;">Inclusion Financière</span>
-                    <h3>Passage à l'Échelle (Impact Labs)</h3>
-                    <p class="case-p">Protéger les petites entreprises des prêteurs prédateurs en réduisant le temps d'origination de 6 heures à 15 minutes via des agents comportementaux.</p>
+                    <h3>Passage à l'Échelle (Impact Lab)</h3>
+                    <p class="case-p">Aider des emprunteurs à refinancer des prêts prédateurs, avec des agents qui recoupent talons de paie, relevés bancaires et données de crédit, pour que les agents de crédit consacrent leur temps à accompagner leurs clients.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>15 Min</strong> Origination</div>
-                        <div class="mini-stat"><strong>6x</strong> Échelle Rapide</div>
+                        <div class="mini-stat">Prêt à impact</div>
+                        <div class="mini-stat">Canada</div>
                     </div>
                     <a href="case-study-impact.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
@@ -351,8 +354,8 @@
                     <h3>Origination de Crédit WhatsApp</h3>
                     <p class="case-p">Une interface cognitive pour le prêt sécurisé par chat. Les clients postulent en langage naturel, et l'IA structure automatiquement la demande pour les comités.</p>
                     <div class="metric-row">
-                        <div class="mini-stat"><strong>Zéro</strong> Friction</div>
-                        <div class="mini-stat"><strong>Échelle</strong> Mondiale</div>
+                        <div class="mini-stat">Canal WhatsApp</div>
+                        <div class="mini-stat">Relais humain</div>
                     </div>
                     <a href="case-study-whatsapp.html" class="case-link">Voir l'Étude de Cas &rarr;</a>
                 </div>
@@ -366,7 +369,7 @@
                 <h4 class="footer-h4">Notre Héritage</h4>
                 <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
+                    Le Groupe Cognitive conçoit une IA gouvernée pour le crédit commercial et la microfinance. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
                 </p>
             </div>
             <div>
