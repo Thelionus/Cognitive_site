@@ -22,7 +22,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- 7. PERFORMANCE: Preload Hero Image -->
-    <link rel="preload" as="image" href="https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png">
+    <link rel="preload" as="image" href="/assets/img/bg-businessbanker.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,7 +93,7 @@
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
         /* --- CONTENT STYLES --- */
-        .workbench-hero { padding: 180px 10% 120px 10%; background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); background-size: cover; background-position: center; position: relative; }
+        .workbench-hero { padding: 180px 10% 120px 10%; background-image: url('/assets/img/bg-businessbanker.webp'); background-size: cover; background-position: center; position: relative; }
         .workbench-hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
         .hero-content { position: relative; z-index: 2; max-width: 850px; }
         
@@ -146,13 +146,14 @@
             .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
     <!-- NAV: EXACT SYNC WITH PRODUCT.HTML -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
@@ -175,11 +176,11 @@
 
     <div class="workbench-hero">
         <div class="hero-content">
-            <a href="product.html" class="back-link">← Back to Platform</a>
+            <a href="product.html" class="back-link">Back to Platform</a>
             <span class="label">Consensus-Based Orchestration</span>
             <h1>AI Workbench:<br><span>Models That Check Each Other</span></h1>
             <p class="hero-lead">
-                <strong>Multiple agents. One truth.</strong> We don't trust any single AI model. We make them check each other's work — and surface every discrepancy to your supervisors.
+                <strong>Multiple agents. One truth.</strong> We don't trust any single AI model. We make them check each other's work, and surface every discrepancy to your supervisors.
             </p>
         </div>
     </div>
@@ -188,10 +189,10 @@
         <div style="max-width: 1200px; margin: 0 auto;">
             <span class="label">The Consensus Engine</span>
             <h2 style="font-size: 42px; letter-spacing: -1.5px;">20 Matches. 1 Mismatch.<br>Zero Guesswork.</h2>
-            <p style="max-width: 700px;">Every data point runs through independent AI agents. When they agree, you get validated extraction. When they diverge — even on a single field — <strong>the system stops and escalates</strong>.</p>
+            <p style="max-width: 700px;">Every data point runs through independent AI agents. When they agree, you get validated extraction. When they diverge, even on a single field, <strong>the system stops and escalates</strong>.</p>
             
             <div class="consensus-showcase">
-                <img src="https://i.postimg.cc/VvKQK9b1/Screenshot-2025-12-27-at-8-47-06-AM.png" alt="Live validation interface">
+                <img src="/assets/img/shot-validation.webp" alt="Live validation interface">
                 <div class="showcase-caption">
                     <span class="label" style="margin-bottom:0; font-size:11px;">Live Validation Output</span>
                     <div class="status">
@@ -202,7 +203,7 @@
             </div>
 
             <div class="big-statement">
-                <p>Other vendors hide uncertainty behind confidence scores.<br><strong>We surface it — so your supervisors can act.</strong></p>
+                <p>Other vendors hide uncertainty behind confidence scores.<br><strong>We surface it, so your supervisors can act.</strong></p>
             </div>
         </div>
     </section>
@@ -212,7 +213,7 @@
             <div>
                 <span class="label">The Protocol</span>
                 <h2 style="font-size: 38px;">The 1% Exception Queue</h2>
-                <p>Legal liability lives in the edge cases. When our consensus engine detects ambiguity — a blurred scan or conflicting data — it doesn't guess. It routes the specific data point to your analyst's Exception Queue.</p>
+                <p>Legal liability lives in the edge cases. When our consensus engine detects ambiguity, a blurred scan or conflicting data, it doesn't guess. It routes the specific data point to your analyst's Exception Queue.</p>
                 <div class="feature-pills">
                     <span class="pill">Multi-Agent Validation</span>
                     <span class="pill">JSON Schema Comparison</span>
@@ -277,7 +278,7 @@
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
                 <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
                 <input type="text" id="g-org" class="form-input" required placeholder="Organization">
-                <button type="submit" style="width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer;">Schedule Briefing &rarr;</button>
+                <button type="submit" style="width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer;">Schedule Briefing</button>
             </form>
         </div>
     </div>

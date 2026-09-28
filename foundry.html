@@ -22,7 +22,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- 7. PERFORMANCE: Preload Hero Image (LCP Optimization) -->
-    <link rel="preload" as="image" href="https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png">
+    <link rel="preload" as="image" href="/assets/img/bg-workbench.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,7 +92,7 @@
         .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
 
         /* --- CONTENT STYLES --- */
-        .foundry-hero { padding: 180px 10% 100px 10%; background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); background-size: cover; background-position: center; position: relative; }
+        .foundry-hero { padding: 180px 10% 100px 10%; background-image: url('/assets/img/bg-workbench.webp'); background-size: cover; background-position: center; position: relative; }
         .foundry-hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
         .hero-content { position: relative; z-index: 2; max-width: 800px; }
         
@@ -149,13 +149,14 @@
             .risk-grid, .pipeline-steps, .checklist-grid, .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
     <header>
         <div class="logo">
             <!-- logo dimension preserved for aspect ratio -->
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo" width="184" height="30"></a>
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
         
         <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
@@ -179,11 +180,11 @@
 
     <div class="foundry-hero">
         <div class="hero-content">
-            <a href="product.html" class="back-link">← Back to Platform</a>
+            <a href="product.html" class="back-link">Back to Platform</a>
             <span class="label">Cognitive Foundry</span>
             <h1>Capturing Human Intelligence <br>Before It Leaves.</h1>
             <p class="hero-lead">
-                We do not train black-box models on your data. We use GenAI to capture your experts' "Think Aloud" reasoning, then turn it into explicit rules and agent instructions. Models can still make mistakes, so every agent's output is cross-checked by a second model and reviewed by a person before it counts.
+                We do not train black-box models on your data. We capture your experts' reasoning, then turn it into explicit knowledge and rules. Those serve as agent instructions. LLMs can make mistakes, so every agent's output is cross-checked by multiple models and reviewed.
             </p>
             <div class="quote-box">
                 "This is not model training.<br>
@@ -208,12 +209,12 @@
             <div class="step-card">
                 <span class="step-num">STEP 01</span>
                 <h3>Active Reasoning Capture</h3>
-                <p style="font-size:13px;">The system captures senior credit officers as they work. It prompts officers to "think aloud", capturing verbal reasoning, not just data inputs.</p>
+                <p style="font-size:13px;">The system captures experts as they work. It prompts experts to "think aloud", capturing verbal reasoning, not just data inputs.</p>
             </div>
             <div class="step-card">
                 <span class="step-num">STEP 02</span>
                 <h3>Cognitive Mapping</h3>
-                <p style="font-size:13px;">GenAI structures this unstructured reasoning into a Human Information Processing Map (Cognitive Task Analysis).</p>
+                <p style="font-size:13px;">Our systems structure this unstructured reasoning into a Human Information Processing Map (Cognitive Task Analysis).</p>
             </div>
             <div class="step-card">
                 <span class="step-num">STEP 03</span>
@@ -228,12 +229,12 @@
         </div>
 
         <div class="foundry-logos">
-            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo"> 
-            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
-            <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
-            <img src="https://i.imghippo.com/files/dSBI9595LU.png" alt="DUCA" class="client-logo">
-            <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD Bank" class="client-logo">
-            <img src="https://i.imghippo.com/files/ezLO8362EE.png" alt="BNDE" class="client-logo">
+            <img src="/assets/img/logo-rbc.webp" alt="RBC Royal Bank" class="client-logo"> 
+            <img src="/assets/img/logo-bnc.webp" alt="National Bank" class="client-logo">
+            <img src="/assets/img/logo-desjardins.webp" alt="Desjardins" class="client-logo">
+            <img src="/assets/img/logo-duca.webp" alt="DUCA" class="client-logo">
+            <img src="/assets/img/logo-td.webp" alt="TD Bank" class="client-logo">
+            <img src="/assets/img/logo-bnde.webp" alt="BNDE" class="client-logo">
         </div>
     </section>
 
@@ -260,7 +261,7 @@
     <section style="background: rgba(255,255,255,0.02);">
         <div class="risk-grid">
             <div>
-                <h2>Preserving Expertise — Permanently</h2>
+                <h2>Preserving Expertise: Permanently</h2>
                 <p>The Cognitive Foundry stops brain drain. Expert knowledge is no longer lost. Human intelligence becomes institutional infrastructure: Encapsulated, Auditable, and Scalable.</p>
             </div>
             <div>
@@ -281,7 +282,7 @@
                 <h4 class="footer-h4">Our Heritage</h4>
                 <!-- FIXED: Date removed -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Cognitive specializes in deterministic AI for mission-critical banking. Founded by CRIM, our expertise is built on decades of cognitive engineering.
                 </p>
             </div>
             <div>
@@ -316,7 +317,7 @@
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
                 <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
                 <input type="text" id="g-org" class="form-input" required placeholder="Organization">
-                <button type="submit" class="modal-btn">Schedule Briefing &rarr;</button>
+                <button type="submit" class="modal-btn">Schedule Briefing</button>
             </form>
         </div>
     </div>

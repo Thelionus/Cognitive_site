@@ -163,19 +163,19 @@
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
         #hero { 
-            background-image: url('https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png'); 
+            background-image: url('/assets/img/bg-dec25-0613.webp'); 
             background-position: center top; 
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
         #foundry { 
-            background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); 
+            background-image: url('/assets/img/bg-workbench.webp'); 
             justify-content: flex-end; text-align: right;
         }
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
-        #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
+        #workbench { background-image: url('/assets/img/bg-businessbanker.webp'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
         .stats-grid { 
@@ -258,12 +258,13 @@
             #hero { background-position: center top; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -344,7 +345,7 @@
                 <h4 class="footer-h4">Notre Héritage</h4>
                 <!-- CORRECTION : Mention 1995 supprimée -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques, avec un accent stratégique sur l'inclusion financière en Afrique de l'Ouest.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée par le CRIM, notre expertise repose sur des décennies d'ingénierie cognitive.
                 </p>
             </div>
             <div>
@@ -382,7 +383,7 @@
                 <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 <label class="form-label">Organisation</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier</button>
             </form>
         </div>
     </div>

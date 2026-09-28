@@ -156,12 +156,13 @@
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Cognitive Banking Logo"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -195,7 +196,7 @@
 
     <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
         <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <a href="blog.html" class="back-link">&larr; RETOUR AUX BRIEFINGS</a>
+            <a href="blog.html" class="back-link">RETOUR AUX BRIEFINGS</a>
             <span class="mono-tag" id="detail-category" style="color: var(--accent);">Catégorie</span>
             <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Titre</h1>
         </div>
@@ -216,7 +217,7 @@
                 <h4 class="footer-h4">Notre Héritage</h4>
                 <!-- 4. FOOTER FIX : 1995 supprimé -->
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Nous comblons le fossé entre l'innovation technologique et la régulation stricte.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée par le CRIM, notre expertise repose sur des décennies d'ingénierie cognitive.
                 </p>
             </div>
             <div>
@@ -239,7 +240,7 @@
             <form onsubmit="handleGlobalSubmit(event)">
                 <input type="text" id="g-name" class="form-input" required placeholder="Nom complet">
                 <input type="email" id="g-email" class="form-input" required placeholder="Email professionnel">
-                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
+                <button type="submit" class="modal-btn">Accéder au Calendrier</button>
             </form>
         </div>
     </div>
@@ -275,7 +276,7 @@
                             <span class="mono-tag">${post.category}</span>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
-                            <a href="blog.html?id=${post.id}" class="read-btn">Lire &rarr;</a>
+                            <a href="blog.html?id=${post.id}" class="read-btn">Lire</a>
                         </div>`;
                 });
             }
