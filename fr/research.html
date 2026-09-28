@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 2. SEO: Optimized Title (Under 60 chars) -->
-    <title>AI Workbench + BusinessBANKER | Groupe Cognitive</title>
+    <title>R&amp;D | Groupe Cognitive</title>
 
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="Adjudication IA pour le crédit commercial, sur les systèmes que votre banque exploite déjà. Construite à partir du jugement de vos experts, vérifiée par des modèles indépendants, décidée par vos équipes. SOC 2 Type 2.">
+    <meta name="description" content="Recherche et développement du Groupe Cognitive : Cognitive Foundry appliqué à la planification de mission, à l'identification des menaces et à la sécurité aérienne.">
     
     <!-- 4. SEO: Canonical Tag -->
-    <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/research.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
@@ -21,7 +21,6 @@
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=70&w=1920&auto=format&fit=crop">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -166,6 +165,8 @@
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
+        .rd-hero { padding-top: 180px; background: radial-gradient(circle at 80% 20%, rgba(34,197,94,0.12) 0%, transparent 45%), var(--bg-body); border-top: none; }
+        .rd-status { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
         .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
         .trust-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-main); border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.08); padding: 8px 14px; border-radius: 4px; letter-spacing: 0.5px; }
@@ -273,207 +274,105 @@
             <ul>
                 <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
                 <li><a href="foundry.html" onclick="closeMenu()">Cognitive Foundry</a></li>
-                <li><a href="research.html" onclick="closeMenu()">R&amp;D</a></li>
+                <li><a href="research.html" class="active-link" onclick="closeMenu()">R&amp;D</a></li>
                 <li><a href="success.html" onclick="closeMenu()">Références</a></li>
                 <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="../index.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li class="lang-item"><a href="../research.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
                 <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1 : HERO (BANQUE) -->
-    <section id="hero">
+    <!-- R&D HERO -->
+    <section class="compact-section rd-hero" id="rd">
         <div class="content">
-            <h2>AI Workbench + BusinessBANKER</h2>
-            <h1>Adjudication IA pour le Crédit Commercial</h1>
-            <p class="description">
-                Nous captons la façon dont vos meilleurs analystes de crédit décident, nous la traduisons en agents d'IA, et des modèles indépendants se vérifient mutuellement avant qu'une personne de votre équipe ne tranche. Le tout sur une infrastructure que vous contrôlez, par-dessus les systèmes de prêt et le core bancaire que vous avez déjà.
+            <h2>R&amp;D</h2>
+            <h1>Cognitive Foundry, Appliqué au-delà de la Banque</h1>
+            <p class="description" style="margin-bottom: 0;">
+                La méthode derrière nos produits bancaires vient de l'ingénierie cognitive : capter le raisonnement des experts, le traduire en agents, faire vérifier chaque résultat par des modèles indépendants, et laisser une personne décider. Notre groupe de R&amp;D applique cette même méthode partout où les décisions sont critiques : défense, aérospatiale et sécurité publique.
             </p>
-            <div class="hero-actions">
-                <a href="#method" class="btn">Voir la Méthode</a>
-                <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
-            </div>
-
-            <div class="trust-badges">
-                <span class="trust-badge"><strong>SOC 2 Type 2</strong></span>
-            </div>
-
-            <div class="logo-strip">
-                <span class="logo-label">Clients qui utilisent nos solutions</span>
-                <div class="logo-grid">
-                    <div class="client-logo">RBC</div>
-                    <div class="client-logo">DESJARDINS</div>
-                    <div class="client-logo">BNC</div>
-                    <div class="client-logo">DUCA</div>
-                    <div class="client-logo">BNDE</div>
-                    <div class="client-logo">BDA</div>
-                    <div class="client-logo">BDK</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- SECTION 2 : LA MÉTHODE -->
-    <section class="compact-section" id="method">
+    <!-- DÉFENSE -->
+    <section class="compact-section" id="mission-planning">
         <div class="content">
-            <h2>La Méthode</h2>
-            <h1>Quatre Étapes, du Jugement Expert à la Décision</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Aucun modèle n'est cru sur parole. Chaque recommandation franchit les mêmes quatre étapes, et la décision finale revient toujours à vos équipes.
-            </p>
+            <h2>Défense</h2>
+            <h1>Planification de Mission et Identification des Menaces en Temps Réel</h1>
+            <div class="win-grid" style="margin-top: 40px;">
+                <div class="win-card">
+                    <span class="rd-status">En développement</span>
+                    <h4>IA de planification de mission</h4>
+                    <p>Un système qui regroupe le renseignement, la logistique, le terrain et l'état des unités en une seule vue opérationnelle, et qui laisse l'IA rédiger, simuler et mettre à jour le plan de mission en continu. L'approbation du commandant est intégrée à chaque point de décision.</p>
+                </div>
+                <div class="win-card">
+                    <span class="rd-status">Démo en ligne</span>
+                    <h4>Identification des menaces en temps réel</h4>
+                    <p>Plusieurs agents fusionnent les données cinématiques, de signature/IFF et de contexte pour classer les pistes aériennes en temps réel selon la convention de couleurs de l'OTAN (bleu, rouge, ambre, vert).</p>
+                    <a href="../tactical.html" class="card-link">Ouvrir la démo tactique (EN)</a>
+                </div>
+                <div class="win-card">
+                    <span class="rd-status">Démo en ligne</span>
+                    <h4>Suivi des vols en direct</h4>
+                    <p>Le trafic ADS-B public, recoupé avec les registres d'aéronefs ; chaque appareil signalé affiche la raison du signalement.</p>
+                    <a href="../live-flights.html" class="card-link">Ouvrir le suivi des vols (EN)</a>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 60px; font-size: 18px;">Les mêmes quatre étapes, appliquées à la planification de mission</h4>
             <div class="method-steps">
                 <div class="method-step">
                     <span class="step-num">01</span>
                     <h4>Observation des experts</h4>
-                    <p>Nous captons le travail de vos analystes seniors sur de vrais dossiers et nous consignons leur raisonnement : ce qu'ils vérifient, dans quel ordre, et ce qui les fait s'arrêter. Cela devient le guide de l'agent.</p>
+                    <p>Nous captons le travail de planificateurs expérimentés sur de vrais plans et consignons leur raisonnement : quelles contraintes ils vérifient d'abord, et ce qui les fait changer de cap.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">02</span>
-                    <h4>Deux modèles se vérifient</h4>
-                    <p>Au moins deux agents, sur des modèles de laboratoires différents, traitent le même dossier. Chacun doit produire sa sortie dans un format strict (JSON) selon le même schéma, et les sorties sont comparées champ par champ. Tout désaccord est signalé, jamais lissé.</p>
+                    <h4>Des modèles se vérifient</h4>
+                    <p>Des agents sur des modèles de laboratoires différents rédigent et évaluent le plan dans le même format strict, et chaque désaccord est signalé.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">03</span>
                     <h4>Superviseur IA</h4>
-                    <p>Un agent superviseur examine le dossier complet et les désaccords signalés, et fait remonter ce qui exige l'attention d'une personne. Il est en production aujourd'hui chez Al Rahma, au Sénégal.</p>
-                    <a href="case_study_alrahma.html" class="card-link">Étude de cas Al Rahma</a>
+                    <p>Un agent superviseur suit l'ensemble du plan à mesure que les données changent et fait remonter ce qui exige l'attention d'une personne.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">04</span>
-                    <h4>L'humain décide</h4>
-                    <p>Votre analyste voit la recommandation, les éléments qui la justifient et chaque signalement, puis approuve, modifie ou rejette. Cette décision est consignée dans BusinessBANKER.</p>
-                </div>
-            </div>
-
-            <a href="foundry.html" class="btn btn-outline" style="margin-top: 40px;">Comment Cognitive Foundry Capte l'Expertise</a>
-        </div>
-    </section>
-
-    <!-- SECTION 3 : AI WORKBENCH -->
-    <section id="foundry">
-        <div class="content">
-            <h2>Là où se fait l'analyse</h2>
-            <h1>AI Workbench</h1>
-            <p class="description">
-                Les agents qui extraient, analysent et recommandent, construits à partir du jugement de vos propres experts crédit. Vous choisissez le modèle de chaque agent et pouvez le changer sans réécrire le flux. Déployé dans votre cloud, par-dessus vos systèmes de prêt et votre core bancaire ; rien n'est remplacé.
-            </p>
-
-            <a href="workbench.html" class="btn btn-outline">Découvrir AI Workbench</a>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-val">2+</span>
-                    <span class="stat-label">Modèles par dossier</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">JSON</span>
-                    <span class="stat-label">Schéma de sortie strict</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">Journalisé</span>
-                    <span class="stat-label">Chaque désaccord</span>
+                    <h4>Le commandant décide</h4>
+                    <p>Chaque point de décision attend une approbation, et chaque approbation est consignée.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4 : BUSINESSBANKER -->
-    <section id="workbench">
+    <!-- AÉROSPATIALE -->
+    <section class="compact-section" id="aerospace">
         <div class="content">
-            <h2>Là où la décision est consignée</h2>
-            <h1>BusinessBANKER</h1>
-            <p class="description">
-                AI Workbench prépare l'analyse. BusinessBANKER est l'endroit où votre équipe crédit la révise, l'approuve et en garde la trace : chaque version, chaque approbation, chaque modification, prêtes pour l'audit. Là où votre système de prêt actuel ne peut pas exécuter l'action qui en découle, BusinessBANKER s'en charge.
-            </p>
-            <a href="../case-study-businessbanker.html" class="btn btn-outline">BusinessBANKER sur le Terrain</a>
-        </div>
-    </section>
-
-    <!-- SECTION 5 : PREUVES -->
-    <section class="compact-section" id="why-we-win">
-        <div class="content">
-            <h2>Ce Que Nous Pouvons Montrer</h2>
-            <h1>Des Preuves, Avec Leurs Limites</h1>
-            <div class="win-grid">
-                <div class="win-card">
-                    <h4>Premier banc d'essai, petit échantillon</h4>
-                    <p>Dans une étude préliminaire portant sur 10 dossiers de prêt, le système a atteint la décision de référence dans 96 % des cas, contre 57 % pour un adjudicateur humain senior.<sup><a href="#fn-1">1</a></sup> Dix dossiers constituent un petit échantillon : la marge d'erreur est large. C'est pourquoi chaque mandat commence en mode fantôme, sur vos propres dossiers.</p>
-                </div>
-                <div class="win-card">
-                    <h4>En production chez Al Rahma</h4>
-                    <p>Les demandes de prêt qui prenaient des heures à rédiger se font maintenant en une dizaine de minutes sur tablette, et les fonds parviennent à l'emprunteur en moins de quatre heures.<sup><a href="#fn-2">2</a></sup></p>
-                    <a href="case_study_alrahma.html" class="card-link">Lire l'étude de cas</a>
-                </div>
-                <div class="win-card">
-                    <h4>Votre cloud, vos modèles</h4>
-                    <p>Aucune dépendance à un modèle, aucune boîte noire hébergée par le fournisseur. La plateforme tourne dans votre propre compte AWS, et vous choisissez le modèle derrière chaque agent.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Gouvernance intégrée</h4>
-                    <p>Piste d'audit, seuils de confiance et une spécification des seuils d'automatisation rédigée en fonction de la ligne directrice E-23 du BSIF, livrées sous forme de dossier de gouvernance des modèles.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Sécurité</h4>
-                    <p>Le Groupe Cognitive détient son propre rapport SOC 2 Type 2, pour la période se terminant le 31 décembre 2025.<sup><a href="#fn-3">3</a></sup> Il s'agit de notre audit, pas de celui de notre fournisseur cloud. SSO, MFA et contrôle d'accès par rôle, plus une intégration en production avec le core Fiserv DNA.</p>
-                </div>
-            </div>
-            <div class="footnotes">
-                <p id="fn-1">1. Groupe Cognitive, <a href="blog.html">« Beyond the Illusion of Generality »</a>, livre blanc préliminaire, janvier 2026. 10 dossiers de prêt notés par rapport à une décision de référence, comparant un adjudicateur senior (10 ans et plus) au système multi-agents. Non évalué par des pairs. Petit échantillon, marge d'erreur large.</p>
-                <p id="fn-2">2. Al Rahma, Sénégal, déploiement en production. Temps entre le début d'une demande et sa soumission sur la tablette terrain, et entre la demande et le décaissement, mesurés par Al Rahma. Données en date de septembre 2026.</p>
-                <p id="fn-3">3. Rapport Service Organization Control 2 (SOC 2&reg;) de type 2 émis au Groupe Cognitive, pour la période se terminant le 31 décembre 2025.</p>
-            </div>
-            <p class="disclaimer">Ce que nous ne prétendons pas : être les meilleurs dans chaque créneau, comme l'évaluation immobilière commerciale, la notation de crédit à la consommation ou l'analyse forensique de documents. Là, nous travaillons avec des partenaires. Notre argument : l'étendue, la gouvernance et le contrôle, dans une seule plateforme.</p>
-        </div>
-    </section>
-
-    <!-- SECTION 6 : RECHERCHE (défense, aérospatiale) -->
-    <section class="compact-section" id="research">
-        <div class="content">
-            <h2>Recherche</h2>
-            <h1>La Même Méthode, Hors de la Banque</h1>
-            <p class="description" style="margin-bottom: 0;">
-                La banque est notre métier. Notre groupe de recherche applique la même méthode de capture d'expertise et de vérification croisée à l'aérospatiale et à la défense, là où une erreur coûte cher et où chaque décision doit pouvoir s'expliquer après coup.
-            </p>
+            <h2>Aérospatiale</h2>
+            <h1>L'Humain et l'Automatisation, en Équipe</h1>
             <div class="win-grid" style="margin-top: 40px;">
                 <div class="win-card">
-                    <h4>Sécurité aérienne : SymbIA</h4>
-                    <p>Collaboration humain-automatisation pour les opérations à pilote unique, là où le pilote et le système divergent.</p>
-                    <a href="../symbia.html" class="card-link">SymbIA (EN)</a>
+                    <span class="rd-status">Recherche</span>
+                    <h4>SymbIA : sécurité aérienne</h4>
+                    <p>Collaboration humain-automatisation pour les opérations à pilote unique, centrée sur les moments où le pilote et le système divergent.</p>
+                    <a href="../symbia.html" class="card-link">Lire l'étude SymbIA (EN)</a>
                 </div>
                 <div class="win-card">
-                    <h4>Cockpit cognitif : C-Pilot</h4>
+                    <span class="rd-status">Recherche</span>
+                    <h4>C-Pilot : le cockpit cognitif</h4>
                     <p>Capter le raisonnement du pilote en temps réel et l'appuyer avec des compagnons IA en situation de forte charge.</p>
-                    <a href="../cpilot.html" class="card-link">C-Pilot (EN)</a>
+                    <a href="../cpilot.html" class="card-link">Découvrir C-Pilot (EN)</a>
                 </div>
                 <div class="win-card">
-                    <h4>Défense : conscience situationnelle</h4>
-                    <p>Une IA de planification de mission en développement, et une démo en ligne qui classe le trafic aérien grâce à plusieurs agents qui se vérifient.</p>
-                    <a href="research.html#mission-planning" class="card-link">Planification de mission et démos</a>
+                    <span class="rd-status">Article</span>
+                    <h4>Supervision assistée par l'IA</h4>
+                    <p>Comment l'IA peut aider à superviser des situations anormales qui échapperaient autrement à l'attention humaine, à partir du cambriolage du Louvre de 2025.</p>
+                    <a href="blog.html" class="card-link">Lire dans Insights</a>
                 </div>
             </div>
-            <a href="research.html" class="btn btn-outline" style="margin-top: 40px;">Toute la R&amp;D</a>
-        </div>
-    </section>
-
-    <!-- SECTION 7 : COMMENT ACHETER -->
-    <section class="compact-section" id="how-you-buy">
-        <div class="content">
-            <h2>Comment Acheter</h2>
-            <h1>Commencer par un Pilote en Mode Fantôme</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Commencez par un pilote en mode fantôme de 10 à 12 semaines à prix fixe, puis prenez une décision go/no-go. Si c'est un go, AI Workbench passe en production sur votre flux existant, avec une licence annuelle plus des frais par transaction approuvée, et BusinessBANKER ajoute la couche d'exécution là où votre système de prêt ne suffit pas.
-            </p>
-            <div class="pilot-bar">
-                <div class="pilot-bar-item"><span class="val">12 sem.</span><span class="lbl">Durée du pilote</span></div>
-                <div class="pilot-bar-item"><span class="val">75 k$ CA</span><span class="lbl">Prix fixe</span></div>
-                <div class="pilot-bar-item"><span class="val">&ge;40 %</span><span class="lbl">Réduction visée</span></div>
-                <div class="pilot-bar-item"><span class="val">0</span><span class="lbl">Système remplacé</span></div>
-                <div class="pilot-bar-item"><span class="val">1</span><span class="lbl">Décision à la fin</span></div>
-            </div>
-            <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
+            <a href="#" onclick="openModal()" class="btn btn-outline" style="margin-top: 50px;">Parler à l'équipe R&amp;D</a>
         </div>
     </section>
 
