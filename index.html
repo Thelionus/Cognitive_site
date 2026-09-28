@@ -250,6 +250,7 @@
             .pilot-bar-item { min-width: 45%; border-bottom: 1px solid rgba(255,255,255,0.08); }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
@@ -294,20 +295,19 @@
             </div>
 
             <div class="trust-badges">
-                <span class="trust-badge"><strong>SOC 2 Type 2</strong> &middot; Cognitive Group's own report, period ending Dec 2025</span>
-                <span class="trust-badge">SSO &middot; MFA &middot; RBAC</span>
-                <span class="trust-badge">Deployed in your cloud</span>
+                <span class="trust-badge"><strong>SOC 2 Type 2</strong></span>
             </div>
 
             <div class="logo-strip">
-                <span class="logo-label">Banks and credit unions using our software</span>
+                <span class="logo-label">Clients using our solutions</span>
                 <div class="logo-grid">
                     <div class="client-logo">RBC</div>
                     <div class="client-logo">DESJARDINS</div>
                     <div class="client-logo">BNC</div>
                     <div class="client-logo">DUCA</div>
                     <div class="client-logo">BNDE</div>
-                    <div class="client-logo">AL RAHMA</div>
+                    <div class="client-logo">BDA</div>
+                    <div class="client-logo">BDK</div>
                 </div>
             </div>
         </div>
@@ -325,18 +325,18 @@
                 <div class="method-step">
                     <span class="step-num">01</span>
                     <h4>Expert observation</h4>
-                    <p>We sit with your senior analysts while they work real files and record how they reason: what they check, in what order, and what makes them stop. That becomes the agent's playbook.</p>
+                    <p>We capture your senior analysts while they work on real files and record how they reason: what they check, in what order, and what makes them stop. That becomes the agent's playbook.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">02</span>
                     <h4>Two models check each other</h4>
-                    <p>At least two agents running on models from different vendors process the same file. Each must return a strict JSON output against the same schema, and the outputs are compared field by field. Any disagreement is flagged, never averaged away.</p>
+                    <p>At least two agents running on models from different labs process the same file. Each must return output in a strict format (JSON) against the same schema, and the outputs are compared field by field. Any disagreement is flagged, never averaged away.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">03</span>
                     <h4>AI supervisor</h4>
                     <p>A supervising agent reviews the whole file and the flagged disagreements, and raises anything that needs a human's attention. It is live today at Al Rahma in Senegal.</p>
-                    <a href="case_study_alrahma.html" class="card-link">Al Rahma case study &rarr;</a>
+                    <a href="case_study_alrahma.html" class="card-link">Al Rahma case study</a>
                 </div>
                 <div class="method-step">
                     <span class="step-num">04</span>
@@ -402,7 +402,7 @@
                 <div class="win-card">
                     <h4>In production at Al Rahma</h4>
                     <p>Loan applications that took hours to write up now take about 10 minutes on a tablet, and money reaches the borrower in under four hours.<sup><a href="#fn-2">2</a></sup></p>
-                    <a href="case_study_alrahma.html" class="card-link">Read the case study &rarr;</a>
+                    <a href="case_study_alrahma.html" class="card-link">Read the case study</a>
                 </div>
                 <div class="win-card">
                     <h4>Your cloud, your models</h4>
@@ -438,17 +438,17 @@
                 <div class="win-card">
                     <h4>Aerospace safety: SymbIA</h4>
                     <p>Human-automation teaming for single-pilot operations, where pilot and system disagree.</p>
-                    <a href="symbia.html" class="card-link">SymbIA &rarr;</a>
+                    <a href="symbia.html" class="card-link">SymbIA</a>
                 </div>
                 <div class="win-card">
                     <h4>Cognitive cockpit: C-Pilot</h4>
                     <p>Capturing pilot reasoning in real time and supporting it with AI companions under high workload.</p>
-                    <a href="cpilot.html" class="card-link">C-Pilot &rarr;</a>
+                    <a href="cpilot.html" class="card-link">C-Pilot</a>
                 </div>
                 <div class="win-card">
                     <h4>Defence: situational awareness</h4>
                     <p>A public demo that classifies live ADS-B air traffic with several cross-checking agents. Mission-planning work is at the research stage.</p>
-                    <a href="tactical.html" class="card-link">Tactical demo &rarr;</a>
+                    <a href="tactical.html" class="card-link">Tactical demo</a>
                 </div>
             </div>
         </div>
@@ -460,7 +460,7 @@
             <h2>How You Buy</h2>
             <h1>Start With a Shadow-Mode Pilot</h1>
             <p class="description" style="margin-bottom: 0;">
-                10–12-week fixed-fee shadow-mode pilot &rarr; go/no-go &rarr; AI Workbench in production on your existing workflow &rarr; annual platform fee plus a fee per approved transaction &rarr; BusinessBANKER execution layer where the LOS falls short.
+                Start with a fixed-fee shadow-mode pilot of 10 to 12 weeks, then make a go/no-go decision. If it's a go, AI Workbench runs in production on your existing workflow for an annual platform fee plus a fee per approved transaction, and BusinessBANKER adds the execution layer where your loan system falls short.
             </p>
             <div class="pilot-bar">
                 <div class="pilot-bar-item"><span class="val">12 wks</span><span class="lbl">Pilot duration</span></div>
@@ -479,7 +479,7 @@
             <div>
                 <h4 class="footer-h4">Our Approach</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    AI Workbench reasons. BusinessBANKER executes and governs. Both run on the infrastructure your bank already controls — overlaid, not replaced.
+                    AI Workbench reasons. BusinessBANKER executes and governs. Both run on the infrastructure your bank already controls, overlaid, not replaced.
                 </p>
             </div>
             <div>
@@ -524,7 +524,7 @@
                 <label class="form-label">Organization</label>
                 <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn">Continue to Calendar</button>
             </form>
         </div>
     </div>

@@ -8,19 +8,19 @@ const blogPosts = [
         content: `
             <p><strong>By: Francois Aubin</strong></p>
             <h3>Abstract</h3>
-            <p>Human vigilance deteriorates during prolonged, low-event monitoring tasks—a phenomenon well documented in engineering psychology and human-factors research. This paper explores how artificial intelligence (AI) can support human supervision by detecting deviations from normality that humans typically overlook. Drawing on Christopher D. Wickens’s Engineering Psychology and Human Performance and contemporary human-factors theory, it proposes a cognitive-engineered framework for AI-augmented vigilance. The October 2025 Louvre Museum burglary serves as a case study illustrating how contextual normality can conceal abnormality. Finally, the paper extends this framework to security and counterterrorism, showing how AI pattern-recognition can detect subtle precursors to violent or malicious acts.</p>
+            <p>Human vigilance deteriorates during prolonged, low-event monitoring tasks, a phenomenon well documented in engineering psychology and human-factors research. This paper explores how artificial intelligence (AI) can support human supervision by detecting deviations from normality that humans typically overlook. Drawing on Christopher D. Wickens’s Engineering Psychology and Human Performance and contemporary human-factors theory, it proposes a cognitive-engineered framework for AI-augmented vigilance. The October 2025 Louvre Museum burglary serves as a case study illustrating how contextual normality can conceal abnormality. Finally, the paper extends this framework to security and counterterrorism, showing how AI pattern-recognition can detect subtle precursors to violent or malicious acts.</p>
             
             <h3>1. Introduction</h3>
-            <p>Sustained human vigilance is subject to decline over time, particularly in predictable environments with few meaningful events. Wickens (2012) described this as the vigilance decrement—a loss of sensitivity and responsiveness in prolonged monitoring tasks. As the human brain economizes attention, it becomes less responsive to rare or ambiguous signals.</p>
-            <p>AI, in contrast, is not vulnerable to attentional fatigue. When designed using cognitive-engineering principles, AI can continuously model what constitutes “normal” in a given environment and identify deviations that humans may miss. This hybrid system—human intuition guided by AI vigilance—offers a path to resilient and adaptive supervision.</p>
+            <p>Sustained human vigilance is subject to decline over time, particularly in predictable environments with few meaningful events. Wickens (2012) described this as the vigilance decrement, a loss of sensitivity and responsiveness in prolonged monitoring tasks. As the human brain economizes attention, it becomes less responsive to rare or ambiguous signals.</p>
+            <p>AI, in contrast, is not vulnerable to attentional fatigue. When designed using cognitive-engineering principles, AI can continuously model what constitutes “normal” in a given environment and identify deviations that humans may miss. This hybrid system, human intuition guided by AI vigilance, offers a path to resilient and adaptive supervision.</p>
 
             <h3>2. Modeling Normality and Detecting Deviation</h3>
             <p>AI anomaly-detection systems rely on statistical normality modeling. By ingesting sensor data (video, motion, temperature, badge scans, etc.), the AI constructs a multidimensional model of what “ordinary” looks like in time and space. When real-time data diverges from these learned patterns, the system flags the deviation.</p>
-            <p>For example, in a museum or transport terminal, AI can track foot-traffic patterns, dwell times, entry frequencies, and behavioral rhythms. Deviations—such as a person repeatedly revisiting the same zone, loitering longer than statistical averages, or entering restricted areas—trigger alerts for human assessment.</p>
+            <p>For example, in a museum or transport terminal, AI can track foot-traffic patterns, dwell times, entry frequencies, and behavioral rhythms. Deviations, such as a person repeatedly revisiting the same zone, loitering longer than statistical averages, or entering restricted areas, trigger alerts for human assessment.</p>
             <p>Thus, the AI acts as an early signal detector, freeing humans from monotonous observation and re-engaging attention when something statistically improbable occurs.</p>
 
             <h3>3. Human Vigilance and the Paradox of Normality</h3>
-            <p>Wickens (2012) and Parasuraman & Manzey (2010) observed that when rare targets occur within largely predictable contexts, human detection performance deteriorates. In low-event-rate environments, operators unconsciously recalibrate their expectations toward normality—leading to false negatives when actual anomalies occur.</p>
+            <p>Wickens (2012) and Parasuraman & Manzey (2010) observed that when rare targets occur within largely predictable contexts, human detection performance deteriorates. In low-event-rate environments, operators unconsciously recalibrate their expectations toward normality, leading to false negatives when actual anomalies occur.</p>
             <p>This phenomenon is further compounded by response bias: the human tendency to interpret ambiguous cues as harmless when prior exposure to false alarms or routine signals is high. This cognitive pattern, sometimes termed “normalcy bias,” enables efficiency under normal conditions but creates blind spots in crisis scenarios.</p>
 
             <h3>4. Case Study: The Louvre Burglary (October 2025)</h3>
@@ -31,7 +31,7 @@ const blogPosts = [
             <h3>5. AI as a Vigilance Amplifier</h3>
             <p>Had an AI-based anomaly detection system been integrated into Louvre surveillance, it could have compared real-time activities against pre-established maintenance schedules, staff rosters, and authorized work zones.</p>
             <p>A system might have generated an alert such as:</p>
-            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Anomaly #2315 — Unscheduled personnel detected on façade B at 09:17 CEST; equipment type (vehicle lift) unregistered; high-value gallery proximity: Galerie d’Apollon.</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Anomaly #2315, Unscheduled personnel detected on façade B at 09:17 CEST; equipment type (vehicle lift) unregistered; high-value gallery proximity: Galerie d’Apollon.</blockquote>
             <p>Such context-aware analytics would not only flag the anomaly but provide interpretable reasoning, enabling human guards to intervene before the event escalated.</p>
             <p>In Wickens’s framework, AI functions as an external attentional cue, combating the vigilance decrement by drawing human focus precisely when cognitive disengagement is most likely. This synergy converts passive monitoring into active, data-driven supervision.</p>
 
@@ -44,20 +44,20 @@ const blogPosts = [
                 <li><strong>Cognitive Load Balancing:</strong> AI should offload low-level pattern tracking but retain human oversight for moral and situational judgment.</li>
                 <li><strong>Feedback Integration:</strong> Human responses (confirming or dismissing alerts) refine the AI model iteratively.</li>
             </ul>
-            <p>This architecture positions AI not as a replacement, but as a cognitive prosthesis—a perpetual attention system enhancing the operator’s situational awareness.</p>
+            <p>This architecture positions AI not as a replacement, but as a cognitive prosthesis, a perpetual attention system enhancing the operator’s situational awareness.</p>
 
             <h3>7. Broader Implications: From Cultural Heritage to Counterterrorism</h3>
             <p>The Louvre burglary underscores a universal vulnerability: when human perception defines normality, sophisticated adversaries can camouflage their actions within that very framework. This insight extends beyond art theft to terrorism prevention, public safety, and infrastructure protection.</p>
-            <p>Modern violent actors—such as active shooters or bombers—often exhibit precursor behavioral patterns: repeated reconnaissance visits, unnatural loitering near sensitive areas, concealed objects, or path deviations inconsistent with crowd flow. Yet these behaviors often appear superficially normal until hindsight reveals their significance.</p>
-            <p>AI systems equipped with behavioral analytics can identify such statistical outliers in real time—individuals pacing repeatedly near an entry point, carrying an object inconsistent with environmental norms, or moving counter to evacuation flows.</p>
+            <p>Modern violent actors, such as active shooters or bombers, often exhibit precursor behavioral patterns: repeated reconnaissance visits, unnatural loitering near sensitive areas, concealed objects, or path deviations inconsistent with crowd flow. Yet these behaviors often appear superficially normal until hindsight reveals their significance.</p>
+            <p>AI systems equipped with behavioral analytics can identify such statistical outliers in real time, individuals pacing repeatedly near an entry point, carrying an object inconsistent with environmental norms, or moving counter to evacuation flows.</p>
             <p>For instance:</p>
-            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Suspicious Pattern #5129 — Subject revisiting entrance gate three times within 12 minutes; dwell time exceeds 95th percentile baseline; object profile matches elongated metallic outline.</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Suspicious Pattern #5129, Subject revisiting entrance gate three times within 12 minutes; dwell time exceeds 95th percentile baseline; object profile matches elongated metallic outline.</blockquote>
             <p>Such alerts can trigger discreet law-enforcement verification, preventing escalation before a threat materializes. Importantly, AI achieves this without profiling individuals, relying instead on behavioral deviation models.</p>
             <p>The same vigilance logic applies to critical infrastructure, transport terminals, and public venues, where prolonged normality conditions dull human sensitivity. Integrating AI anomaly detection within security operations thus extends cognitive engineering from ergonomics to national resilience.</p>
 
             <h3>8. Conclusion</h3>
-            <p>The intersection of human-factors science and AI anomaly detection defines a new era of cognitive supervision. The 2025 Louvre burglary epitomizes how human vigilance can be deceived by contextual normality—how what appears ordinary can conceal the extraordinary. By embedding AI into supervisory architectures, we can counteract this vulnerability, maintaining alertness, consistency, and foresight in domains where monotony dulls perception.</p>
-            <p>From protecting art to preventing terror, the principle remains the same: AI preserves vigilance when humans cannot. In the words of Wickens (2012), engineering psychology seeks not to replace the human, but to re-engineer the conditions under which humans perform optimally. In this sense, AI becomes the modern guardian of attention—a tireless partner ensuring that the next abnormal act, however well disguised, does not pass unseen.</p>
+            <p>The intersection of human-factors science and AI anomaly detection defines a new era of cognitive supervision. The 2025 Louvre burglary epitomizes how human vigilance can be deceived by contextual normality, how what appears ordinary can conceal the extraordinary. By embedding AI into supervisory architectures, we can counteract this vulnerability, maintaining alertness, consistency, and foresight in domains where monotony dulls perception.</p>
+            <p>From protecting art to preventing terror, the principle remains the same: AI preserves vigilance when humans cannot. In the words of Wickens (2012), engineering psychology seeks not to replace the human, but to re-engineer the conditions under which humans perform optimally. In this sense, AI becomes the modern guardian of attention, a tireless partner ensuring that the next abnormal act, however well disguised, does not pass unseen.</p>
             
             <p style="font-size:0.8rem; margin-top:2rem;"><strong>References:</strong></p>
             <ul style="font-size:0.8rem; color: #94a3b8;">
@@ -120,7 +120,7 @@ const blogPosts = [
             <ol>
                 <li>Each screen must contain only and all information needed for its task.</li>
                 <li>The organization of screens must mirror the task structure.</li>
-                <li>Screens are organized by priority and frequency—secondary tasks go to secondary windows.</li>
+                <li>Screens are organized by priority and frequency, secondary tasks go to secondary windows.</li>
             </ol>
             <p>This phase supports early empirical usability testing.</p>
             <p><strong>(c) Detailed Design</strong></p>
@@ -154,7 +154,7 @@ const blogPosts = [
             <p>Aubin, F., Robert, J.-M., Engelberg, D. (1994). From Task Analysis to User Interface Design. Proceedings of the 12th Triennial Congress of the International Ergonomics Association, Toronto.</p>
             
             <h3>8. Key Takeaways</h3>
-            <p>The paper bridges the gap between task analysis and interface design through a cognitive-ergonomic mapping model. It formalizes what was previously intuitive—creating a traceable, semi-automatable pipeline from user tasks to interface specifications. This framework remains foundational in cognitive engineering, usability design, and model-based UI generation.</p>
+            <p>The paper bridges the gap between task analysis and interface design through a cognitive-ergonomic mapping model. It formalizes what was previously intuitive, creating a traceable, semi-automatable pipeline from user tasks to interface specifications. This framework remains foundational in cognitive engineering, usability design, and model-based UI generation.</p>
         `
     },
     {
@@ -166,7 +166,7 @@ const blogPosts = [
         content: `
             <p><strong>By: Francois Aubin</strong></p>
             <p>In the financial industry, especially in banking and lending, one of the most important questions is: how do we fairly and consistently judge the quality of a client?</p>
-            <p>For decades, lenders have relied on rating systems—structured ways of evaluating management, financial capacity, and industry context. These systems are not perfect, but they are always better than relying on pure human judgment. Let’s see why, referencing the work of Daniel Kahneman.</p>
+            <p>For decades, lenders have relied on rating systems, structured ways of evaluating management, financial capacity, and industry context. These systems are not perfect, but they are always better than relying on pure human judgment. Let’s see why, referencing the work of Daniel Kahneman.</p>
 
             <h3>Human Judgment: Strong on One Metric, Weak on Many</h3>
             <p>Humans are good at making isolated judgments. For example:</p>
@@ -176,10 +176,10 @@ const blogPosts = [
                 <li>Is the debt ratio below a certain threshold?</li>
             </ul>
             <p>On these questions, the answer is usually clear, factual, and consistent across evaluators.</p>
-            <p>But when asked to combine multiple unrelated metrics—say, strong financials but weak management—humans struggle. One account manager may emphasize the financials and approve the deal, while another may emphasize the management weakness and reject it. The result is inconsistency.</p>
+            <p>But when asked to combine multiple unrelated metrics, say, strong financials but weak management, humans struggle. One account manager may emphasize the financials and approve the deal, while another may emphasize the management weakness and reject it. The result is inconsistency.</p>
             <p>Kahneman’s research supports this:</p>
-            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“Wherever there is judgment, there is noise — and more of it than you think.” — Goodreads</blockquote>
-            <p>“One reason for the inferiority of expert judgment [compared with algorithms] is that humans are incorrigibly inconsistent in making summary judgements of complex information.” — Richard Smith’s non-medical blogs</p>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“Wherever there is judgment, there is noise, and more of it than you think.” Goodreads</blockquote>
+            <p>“One reason for the inferiority of expert judgment [compared with algorithms] is that humans are incorrigibly inconsistent in making summary judgements of complex information.” Richard Smith’s non-medical blogs</p>
 
             <h3>The Power of Weighting Systems</h3>
             <p>To solve this, scoring systems introduce weights for each dimension. Example weights might be:</p>
@@ -196,7 +196,7 @@ const blogPosts = [
                 <li>Creates a foundation for further statistical validation.</li>
             </ul>
             <p>Kahneman again:</p>
-            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“The important conclusion from this research is that an algorithm that is constructed on the back of an envelope is often good enough to compete with an optimally weighted formula, and certainly good enough to outdo expert judgment.” — QuoteFancy</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“The important conclusion from this research is that an algorithm that is constructed on the back of an envelope is often good enough to compete with an optimally weighted formula, and certainly good enough to outdo expert judgment.” QuoteFancy</blockquote>
 
             <h3>A Golf Analogy</h3>
             <p>Think of putting in golf. A skilled golfer evaluates two factors separately:</p>
@@ -213,11 +213,11 @@ const blogPosts = [
                 <li>See if the ranking matches actual client outcomes (repayment vs. default).</li>
                 <li>Adjust weights as needed.</li>
             </ul>
-            <p>Over time, lenders can build statistical models to estimate Probability of Default (PD) and Loss Given Default (LGD). At this point, the scoring system evolves into a predictive risk model—the backbone of modern banking risk management.</p>
+            <p>Over time, lenders can build statistical models to estimate Probability of Default (PD) and Loss Given Default (LGD). At this point, the scoring system evolves into a predictive risk model, the backbone of modern banking risk management.</p>
 
             <h3>Conclusion</h3>
-            <p>Human judgment is valuable, but it is not reliable for integrating multiple dimensions. Scoring systems—by forcing clarity, weighting, and consistency—outperform intuition. As Kahneman has shown, structured models routinely beat expert judgment when decisions involve multiple factors:</p>
-            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“If you can replace judgements by rules and algorithms, they’ll do better.” — Farnam Street</blockquote>
+            <p>Human judgment is valuable, but it is not reliable for integrating multiple dimensions. Scoring systems, by forcing clarity, weighting, and consistency, outperform intuition. As Kahneman has shown, structured models routinely beat expert judgment when decisions involve multiple factors:</p>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“If you can replace judgements by rules and algorithms, they’ll do better.” Farnam Street</blockquote>
             <p>That’s why in banking, sports, or even golf, a simple scoring system is always better than none.</p>
         `
     },
@@ -229,21 +229,21 @@ const blogPosts = [
         summary: "Andreessen famously said software is eating the world. Now, AI is eating software. This article explores the shift from software-as-a-tool to AI-as-an-interface.",
         content: `
             <p><strong>By: Francois Aubin</strong></p>
-            <p>Back in 2011, Marc Andreessen wrote his now-famous essay, <em>Why Software is Eating the World</em>. At the time, it was a bold prediction. Andreessen foresaw a future where software wouldn’t just support businesses — it would become the business. Traditional industries were being reimagined as software-driven platforms. And he was right.</p>
-            <p>Think about it: Blockbuster was devoured by Netflix, which turned video rental into a software service. Kodak collapsed under the rise of digital photography and photo-sharing apps. Even the smartphone became a software-first device. When Steve Jobs introduced the iPhone in 2007, he didn’t just embed an MP3 player into a phone like Nokia did — he wrapped powerful software around it, enabling a whole new app-driven ecosystem.</p>
-            <p>From ride-sharing and logistics to entertainment and finance, the past two decades have shown us that software can consume and reinvent entire industries. The apex of that transformation? Fully automated factories and self-driving cars like those made by Tesla — machines where software literally drives the world.</p>
+            <p>Back in 2011, Marc Andreessen wrote his now-famous essay, <em>Why Software is Eating the World</em>. At the time, it was a bold prediction. Andreessen foresaw a future where software wouldn’t just support businesses, it would become the business. Traditional industries were being reimagined as software-driven platforms. And he was right.</p>
+            <p>Think about it: Blockbuster was devoured by Netflix, which turned video rental into a software service. Kodak collapsed under the rise of digital photography and photo-sharing apps. Even the smartphone became a software-first device. When Steve Jobs introduced the iPhone in 2007, he didn’t just embed an MP3 player into a phone like Nokia did, he wrapped powerful software around it, enabling a whole new app-driven ecosystem.</p>
+            <p>From ride-sharing and logistics to entertainment and finance, the past two decades have shown us that software can consume and reinvent entire industries. The apex of that transformation? Fully automated factories and self-driving cars like those made by Tesla, machines where software literally drives the world.</p>
 
             <h3>But Now, Something New is Happening: AI is Eating Software.</h3>
-            <p>Today, we’re watching a second-level transformation unfold. If the first wave was software replacing analog systems, this new wave is AI replacing software — or more accurately, absorbing it.</p>
-            <p>Take the example of Customer Relationship Management (CRM) systems. Traditional CRMs like Salesforce or HubSpot provide structured interfaces for tracking leads, sales funnels, customer interactions, and so on. They are tools — complex, multi-screen environments that require teams to update fields, schedule reminders, and generate reports.</p>
-            <p>Now enter AI. Instead of manually interacting with a CRM through forms and dashboards, AI models like those from OpenAI, Anthropic, or Meta can now be used as natural language interfaces — a conversational layer between you and the data. The AI can parse emails, meetings, and messages to automatically populate and manage CRM fields. You can ask your CRM assistant questions like:</p>
+            <p>Today, we’re watching a second-level transformation unfold. If the first wave was software replacing analog systems, this new wave is AI replacing software, or more accurately, absorbing it.</p>
+            <p>Take the example of Customer Relationship Management (CRM) systems. Traditional CRMs like Salesforce or HubSpot provide structured interfaces for tracking leads, sales funnels, customer interactions, and so on. They are tools, complex, multi-screen environments that require teams to update fields, schedule reminders, and generate reports.</p>
+            <p>Now enter AI. Instead of manually interacting with a CRM through forms and dashboards, AI models like those from OpenAI, Anthropic, or Meta can now be used as natural language interfaces, a conversational layer between you and the data. The AI can parse emails, meetings, and messages to automatically populate and manage CRM fields. You can ask your CRM assistant questions like:</p>
             <ul>
                 <li>“Who are our top leads this month?”</li>
                 <li>“Summarize our last call with Acme Corp.”</li>
                 <li>“What’s my pipeline looking like this week?”</li>
             </ul>
             <p>Even more importantly, these models can connect directly to your calendar, email, contacts, and other tools, enabling autonomous updates and task creation. Tools like OpenAI’s ChatGPT with plugins and actions, or Anthropic’s Claude with integrations, make it possible to operate an entire sales workflow without traditional CRM interfaces.</p>
-            <p>This isn’t just automation. It’s absorption. The AI is doing the job that used to be spread across multiple apps, dashboards, and processes — and doing it in a way that feels natural and intelligent.</p>
+            <p>This isn’t just automation. It’s absorption. The AI is doing the job that used to be spread across multiple apps, dashboards, and processes, and doing it in a way that feels natural and intelligent.</p>
 
             <h3>What’s Next?</h3>
             <p>The logic is recursive:</p>
@@ -251,8 +251,8 @@ const blogPosts = [
                 <li>Software ate analog.</li>
                 <li>AI is now eating software.</li>
             </ul>
-            <p>What comes next may be AI autonomously constructing, refining, and replacing software itself — not just acting as a layer on top of it. As GitHub Copilot and GPT-4o already hint, AI is becoming an integral part of software development. The tools that used to require engineers to build may soon be conceived and assembled by models themselves.</p>
-            <p>We’re not at the end of this story. We’re in the middle of a new chapter — one where tools disappear and intelligent behavior emerges. The interface is no longer a window. It’s a conversation.</p>
+            <p>What comes next may be AI autonomously constructing, refining, and replacing software itself, not just acting as a layer on top of it. As GitHub Copilot and GPT-4o already hint, AI is becoming an integral part of software development. The tools that used to require engineers to build may soon be conceived and assembled by models themselves.</p>
+            <p>We’re not at the end of this story. We’re in the middle of a new chapter, one where tools disappear and intelligent behavior emerges. The interface is no longer a window. It’s a conversation.</p>
             
             <p style="font-size:0.8rem; margin-top:2rem;"><strong>References:</strong></p>
             <ul style="font-size:0.8rem; color: #94a3b8;">
@@ -272,7 +272,7 @@ const blogPosts = [
             <h3>Introduction</h3>
             <p>Consider the challenge of forecasting demand for parts in industries such as aerospace, where demand is often low-volume, sparse, and subject to sudden shifts. In a recent AI initiative conducted by our team in collaboration with McKinsey & Company for a leading aerospace company, the initial assumption by data scientists was to employ complex, sophisticated forecasting models. However, a cognitive analysis of expert planners revealed that accurate forecasting alone was not their central concern. Rather, their main challenge lay in effectively supervising inventory levels and adapting forecasts dynamically in response to events such as changes in market demand, economic conditions, or policy shifts.</p>
             <p>Consequently, our team proposed a novel approach focusing on user interface design that allows planners to integrate and supervise forecasts generated by various models. Ultimately, the project demonstrated that simpler forecasting models combined with expert supervision provided precise enough performance compared to highly precise, yet less interpretable deep learning models.</p>
-            <p>In demand forecasting, particularly in sparse-data scenarios characterized by low-volume demand (~100 units/year), limited historical data (~3 years monthly), and forecasting horizons of approximately 12 months, it is crucial to balance model complexity against data availability. Although advanced deep learning techniques such as Amazon’s DeepAR (a global RNN model) may appear attractive, classical exponential smoothing methods like Holt-Winters (ETS) frequently achieve better outcomes. Below, we examine five critical reasons—ranging from bias-variance tradeoffs to interpretability—highlighting why a simpler ETS model can outperform DeepAR in sparse-demand contexts.</p>
+            <p>In demand forecasting, particularly in sparse-data scenarios characterized by low-volume demand (~100 units/year), limited historical data (~3 years monthly), and forecasting horizons of approximately 12 months, it is crucial to balance model complexity against data availability. Although advanced deep learning techniques such as Amazon’s DeepAR (a global RNN model) may appear attractive, classical exponential smoothing methods like Holt-Winters (ETS) frequently achieve better outcomes. Below, we examine five critical reasons, ranging from bias-variance tradeoffs to interpretability, highlighting why a simpler ETS model can outperform DeepAR in sparse-demand contexts.</p>
 
             <h3>Bias-Variance Tradeoff with Sparse Data</h3>
             <p>Small datasets significantly increase the risk of overfitting with complex models. Deep learning methods like DeepAR, which have numerous parameters and high flexibility, often lead to overfitting noise or underfitting due to excessive regularization when constrained by limited data (~36 data points per series). Exponential smoothing methods, however, are structurally constrained with fewer parameters, resulting in higher bias but substantially lower variance and better generalization to sparse data. As forecasting expert Rob Hyndman states, “A model that best fits historical data does not necessarily forecast well.” Empirical evidence from Makridakis forecasting competitions also underscores that simpler models frequently outperform sophisticated methods due to their ability to capture dominant patterns without over-parameterization.</p>
@@ -284,7 +284,7 @@ const blogPosts = [
             <p>Operational forecasting requires interpretability. ETS models produce clearly decomposed outputs (level, trend, seasonal indices) easily understood by analysts, fostering trust and enabling structured human overrides based on domain insights. Deep learning models such as DeepAR, in contrast, operate as black boxes with opaque internal states, complicating human interventions. This lack of interpretability often undermines stakeholder confidence. Industry practice consistently favors ETS models for their interpretability and the ease with which planners can integrate expert judgment, scenario analyses, and overrides.</p>
 
             <h3>Challenges with Overfitting and Uncertainty Estimation in Deep Models</h3>
-            <p>Complex models like DeepAR risk significant overfitting in sparse scenarios, often capturing coincidental patterns or noise rather than genuine signals. This issue manifests through unrealistic forecasts, erroneous seasonal predictions, and unreliable uncertainty estimates—either overly narrow (misleadingly confident) or excessively broad (non-informative). ETS models, although simpler, provide heuristic-based intervals that planners can intuitively adjust during turbulent periods. Additionally, simpler methods inherently generalize better to unforeseen patterns and novel events, thereby mitigating the risk of large forecasting errors.</p>
+            <p>Complex models like DeepAR risk significant overfitting in sparse scenarios, often capturing coincidental patterns or noise rather than genuine signals. This issue manifests through unrealistic forecasts, erroneous seasonal predictions, and unreliable uncertainty estimates, either overly narrow (misleadingly confident) or excessively broad (non-informative). ETS models, although simpler, provide heuristic-based intervals that planners can intuitively adjust during turbulent periods. Additionally, simpler methods inherently generalize better to unforeseen patterns and novel events, thereby mitigating the risk of large forecasting errors.</p>
 
             <h3>Global vs. Local Modeling in Sparse and Irregular Series</h3>
             <p>DeepAR, as a global model, learns patterns across multiple time series to improve forecast accuracy. However, this strength diminishes when dealing with sparse, irregular, or highly individualized series. Global models require substantial homogeneous data to realize their advantages. In sparse-demand contexts, irregular events can lead global models to erroneously smooth out anomalies or mistakenly propagate series-specific anomalies across others. Local ETS models, in contrast, handle series independently, confining anomalies and enabling targeted adjustments based on local conditions and expert insights. Research emphasizes that global deep learning models are inherently data-intensive and can underperform in data-sparse environments where simpler, local models are better suited.</p>
@@ -303,14 +303,14 @@ const blogPosts = [
         category: "Cognitive Science",
         date: "Mar 24, 2025",
         title: "Cognitons: The Fundamental Elements of Cognitive Tasks",
-        summary: "This paper introduces the 'cogniton'—the smallest task element comprising an operator and an object—and explores how deconstructing tasks into cognitons facilitates AI training.",
+        summary: "This paper introduces the 'cogniton', the smallest task element comprising an operator and an object, and explores how deconstructing tasks into cognitons facilitates AI training.",
         content: `
             <p><strong>By: Francois Aubin</strong></p>
             <h3>Abstract</h3>
             <p>This paper introduces the term <strong>cogniton</strong> as a fundamental element of cognitive tasks. A cogniton is defined as the smallest task element, comprising an operator (the action performed) and an object (the information or stimulus acted upon). By examining scenarios from financial decision-making, medical diagnosis, and music reading, we illustrate how complex tasks are assembled from simple, discrete cognitons. We further explore how deconstructing tasks into cognitons facilitates the training of AI agents, making these atomic units as functional as data elements in building advanced AI systems.</p>
 
             <h3>1. Introduction</h3>
-            <p>Every complex task we perform—from reviewing loan requests to diagnosing health conditions or reading a musical score—can be deconstructed into elemental operations. Here, we define a cogniton as a basic cognitive task element that consists of:</p>
+            <p>Every complex task we perform, from reviewing loan requests to diagnosing health conditions or reading a musical score, can be deconstructed into elemental operations. Here, we define a cogniton as a basic cognitive task element that consists of:</p>
             <ul>
                 <li><strong>Operator:</strong> A basic task action (e.g., compare, discriminate, recognize, recall, judge).</li>
                 <li><strong>Object:</strong> The specific information or stimulus that the operator acts upon.</li>
@@ -322,7 +322,7 @@ const blogPosts = [
             <ul>
                 <li>Each cogniton is an atomic unit that, when combined with others, forms the architecture of any cognitive task.</li>
                 <li>The assembly of these cognitons follows an organized structure that mirrors how humans process and respond to information.</li>
-                <li>Cognitons not only perform specific operations but can also be instrumental in establishing trends over time—for instance, identifying gradual changes in financial data or biological measurements.</li>
+                <li>Cognitons not only perform specific operations but can also be instrumental in establishing trends over time, for instance, identifying gradual changes in financial data or biological measurements.</li>
             </ul>
 
             <h3>3. Analysis of Cognitive Task Elements Using Cognitons</h3>
@@ -343,7 +343,7 @@ const blogPosts = [
             <p>When a musician reads a score:</p>
             <ul>
                 <li><strong>Decoding the Score:</strong> The musician applies cognitons to recognize notes, key signatures, and rhythmic patterns.</li>
-                <li><strong>Execution and Integration:</strong> Each cognitons—whether it is “recognize” or “compare”—operates on elements of the musical notation, and their integration forms the basis for performance.</li>
+                <li><strong>Execution and Integration:</strong> Each cognitons, whether it is “recognize” or “compare”, operates on elements of the musical notation, and their integration forms the basis for performance.</li>
                 <li><strong>Contextual Assembly:</strong> Just as in financial or medical settings, the structured assembly of cognitons enables the musician to adjust performance based on the evolving context of the piece.</li>
             </ul>
 
@@ -367,13 +367,13 @@ const blogPosts = [
             <p>Adopting the concept of cognitons provides several advantages:</p>
             <ul>
                 <li><strong>Modularity:</strong> Complex tasks are deconstructed into simple, repeatable elements. This modular approach facilitates targeted analysis, training, and potential interventions.</li>
-                <li><strong>Cross-Domain Relevance:</strong> Whether in finance, medicine, or music, the same basic cognitons are at work. Their ability to establish trends—such as tracking changes in blood cell counts or evolving financial metrics—demonstrates the universality of these task elements.</li>
+                <li><strong>Cross-Domain Relevance:</strong> Whether in finance, medicine, or music, the same basic cognitons are at work. Their ability to establish trends, such as tracking changes in blood cell counts or evolving financial metrics, demonstrates the universality of these task elements.</li>
                 <li><strong>Enhanced Clarity:</strong> By isolating individual cognitons, researchers and practitioners can better understand the mechanics underlying task performance and decision-making.</li>
                 <li><strong>AI Integration:</strong> The cognitons framework not only illuminates human cognitive processing but also offers a novel method for constructing AI systems. By using cognitons as training elements, AI agents can be developed to perform and combine these basic operations into full-fledged cognitive task execution.</li>
             </ul>
 
             <h3>7. Conclusion</h3>
-            <p>The term cogniton provides a new vocabulary for describing the basic elements of cognitive tasks. By focusing on the operator-object structure, this framework allows for a detailed analysis of how complex tasks are built from simple, discrete components. Whether reviewing a loan request, diagnosing a patient, or interpreting a musical score, the assembly of cognitons underpins the process and enables the detection of trends across different contexts. Furthermore, by deconstructing cognitive tasks into their elemental cognitons, we open new avenues for training AI agents—using these atomic operations as functional data elements to build more modular and interpretable AI systems. This perspective offers fresh insights into the mechanics of human task performance and paves the way for advanced applications in AI and beyond.</p>
+            <p>The term cogniton provides a new vocabulary for describing the basic elements of cognitive tasks. By focusing on the operator-object structure, this framework allows for a detailed analysis of how complex tasks are built from simple, discrete components. Whether reviewing a loan request, diagnosing a patient, or interpreting a musical score, the assembly of cognitons underpins the process and enables the detection of trends across different contexts. Furthermore, by deconstructing cognitive tasks into their elemental cognitons, we open new avenues for training AI agents, using these atomic operations as functional data elements to build more modular and interpretable AI systems. This perspective offers fresh insights into the mechanics of human task performance and paves the way for advanced applications in AI and beyond.</p>
         `
     },
     {
@@ -384,23 +384,23 @@ const blogPosts = [
         summary: "From B-29 aircraft accidents to AI hallucinations, this article explores how Human Factors Engineering principles can be applied to build robust, trustworthy AI systems.",
         content: `
             <p><strong>By: Francois Aubin</strong></p>
-            <p>The story of human factors engineering begins in 1949, with a pioneering researcher named Alphonse Chapanis. Tasked with investigating a troubling trend—the high number of accidents involving B-29 aircraft—Chapanis uncovered a critical insight that would forever change how we design systems. At the time, the United States alone experienced about 30 incidents per year, a staggering number that demanded urgent attention. Determined to uncover the root cause, Chapanis decided to observe pilots during takeoff and landing. What he discovered was both simple and profound.</p>
+            <p>The story of human factors engineering begins in 1949, with a pioneering researcher named Alphonse Chapanis. Tasked with investigating a troubling trend, the high number of accidents involving B-29 aircraft, Chapanis uncovered a critical insight that would forever change how we design systems. At the time, the United States alone experienced about 30 incidents per year, a staggering number that demanded urgent attention. Determined to uncover the root cause, Chapanis decided to observe pilots during takeoff and landing. What he discovered was both simple and profound.</p>
 
             <h3>The Problem: Design Flaws Leading to Human Error</h3>
             <p>During his observations, Chapanis noticed a critical design flaw: the landing gear and flap controls were placed side by side, with identical shapes. Both controls were used frequently during critical phases of flight, such as landing and climbing. This design created a high likelihood of pilots selecting the wrong control, especially under pressure. The consequences were often catastrophic, leading to accidents that could have been avoided.</p>
-            <p>This wasn’t a failure of the pilots—it was a failure of design. Chapanis realized that the system wasn’t accounting for human limitations. Instead of blaming the operators, he focused on fixing the system itself.</p>
+            <p>This wasn’t a failure of the pilots, it was a failure of design. Chapanis realized that the system wasn’t accounting for human limitations. Instead of blaming the operators, he focused on fixing the system itself.</p>
 
             <h3>The Fix: Designing for Human Limitations</h3>
             <p>The solution was elegant yet revolutionary. Chapanis redesigned the controls, giving the landing gear lever a wheel-like shape and the flap control a wing-like shape. This small but significant change made it nearly impossible for pilots to confuse the two. The result? A dramatic reduction in accidents, from 30 incidents per year to just a handful.</p>
-            <p>This breakthrough marked the birth of human factors engineering—a field dedicated to designing systems that account for human limitations and prevent errors. It was no longer about expecting humans to adapt to flawed systems; it was about designing systems that adapted to humans.</p>
+            <p>This breakthrough marked the birth of human factors engineering, a field dedicated to designing systems that account for human limitations and prevent errors. It was no longer about expecting humans to adapt to flawed systems; it was about designing systems that adapted to humans.</p>
 
             <h3>The Birth of Human Factors Engineering</h3>
             <p>From this breakthrough, researchers began to study the full spectrum of human limitations: attention, memory, decision-making, and more. They realized that by understanding these constraints, they could design systems that not only prevented errors but also enhanced human performance. This led to the development of cognitive engineering, a discipline focused on aligning system design with human cognitive processes.</p>
             <p>The goal was clear: design systems that work with human nature, not against it.</p>
 
             <h3>Humans as Neural Networks: A Fascinating Parallel</h3>
-            <p>Humans, much like neural networks, are complex and sometimes unpredictable. Consider this: if four people witness a car accident, you’ll likely hear four different accounts of what happened. This phenomenon, known as false memory, highlights the fallibility of human perception and cognition. Similarly, neural networks—like humans—can experience hallucinations, memory limitations, and attention lapses. Both systems are, in essence, “black boxes” with inherent limitations.</p>
-            <p>This parallel between humans and AI is more than just a metaphor—it’s a framework for understanding how to design better systems for both.</p>
+            <p>Humans, much like neural networks, are complex and sometimes unpredictable. Consider this: if four people witness a car accident, you’ll likely hear four different accounts of what happened. This phenomenon, known as false memory, highlights the fallibility of human perception and cognition. Similarly, neural networks, like humans, can experience hallucinations, memory limitations, and attention lapses. Both systems are, in essence, “black boxes” with inherent limitations.</p>
+            <p>This parallel between humans and AI is more than just a metaphor, it’s a framework for understanding how to design better systems for both.</p>
 
             <h3>Managing Human Error: Lessons from Nuclear Power Plants</h3>
             <p>The principles of human factors engineering have been applied in high-stakes environments like nuclear power plants. For example, when operators need to transfer power from one grid to another, they create detailed plans. However, instead of relying on a single operator, multiple teams independently develop plans. If the plans match, the solution is likely correct. If they differ, it signals a potential error.</p>
@@ -408,15 +408,15 @@ const blogPosts = [
 
             <h3>AI and Human Factors: A Powerful Combination</h3>
             <p>At Cognitive Group, we’ve combined decades of expertise in human factors engineering with cutting-edge AI technology. Just as we’ve learned to manage human error, we now apply these principles to prevent AI errors and hallucinations. For instance, we use techniques like cross-checking calculations, comparing diagnoses across multiple regions, and ensuring consistent data formats to enhance the reliability of AI systems.</p>
-            <p>By treating AI systems as we would human operators—with an understanding of their limitations—we can design more robust and trustworthy technologies.</p>
+            <p>By treating AI systems as we would human operators, with an understanding of their limitations, we can design more robust and trustworthy technologies.</p>
 
             <h3>A Real-World Example: Financial Statements</h3>
             <p>One recent application involved financial statements. Banks often struggle with inconsistent formats when calculating assets, liabilities, and profits. Even when the labels are similar, the underlying data can vary significantly between companies. To address this, we developed an AI system that standardizes financial statements into a consistent format. We then added a second layer of AI to cross-check the calculations, ensuring accuracy and reliability.</p>
-            <p>This approach not only saves time but also reduces the risk of costly errors—proving that the principles of human factors engineering are just as relevant in the age of AI.</p>
+            <p>This approach not only saves time but also reduces the risk of costly errors, proving that the principles of human factors engineering are just as relevant in the age of AI.</p>
 
             <h3>The Future: Bridging AI and Human Factors</h3>
             <p>The intersection of AI and human factors engineering holds immense potential. By understanding the parallels between human cognition and neural networks, we can design systems that are not only intelligent but also resilient to errors. Whether it’s preventing pilot mistakes in aviation or ensuring the accuracy of financial calculations, the lessons of human factors engineering continue to shape the future of technology.</p>
-            <p>As we move forward, the key will be to design with empathy—for both humans and machines. After all, the best systems are those that understand and adapt to the limitations of their users, whether they’re made of flesh or code.</p>
+            <p>As we move forward, the key will be to design with empathy, for both humans and machines. After all, the best systems are those that understand and adapt to the limitations of their users, whether they’re made of flesh or code.</p>
         `
     },
     {
@@ -427,7 +427,7 @@ const blogPosts = [
         summary: "Generic AI is powerful, but AI trained on your internal expertise is a strategic lever. Here are 7 points on how custom AI propels business productivity.",
         content: `
             <p>Today, artificial intelligence is transforming the business landscape, but have you ever considered what an AI configured specifically to capture and fully leverage your organization’s internal employee expertise could do?</p>
-            <p>This is where its true potential lies—a potential that can propel your business to the next level. Let’s explore, in 7 key points, how a custom AI fueled by your internal knowledge can become a powerful strategic lever.</p>
+            <p>This is where its true potential lies, a potential that can propel your business to the next level. Let’s explore, in 7 key points, how a custom AI fueled by your internal knowledge can become a powerful strategic lever.</p>
 
             <h3>1. Leverage unique expertise</h3>
             <p>Every organization possesses a wealth of unique know-how, whether it’s technical knowledge, specific processes, or customer relationships. Imagine an AI capable of capturing this expertise and integrating it into your daily processes. This goes beyond automating certain tasks; it ensures that quality and precision are at their highest level.</p>
@@ -466,7 +466,7 @@ const blogPosts = [
             <p>User Interface (UI) design is an intricate discipline where numerous small elements come together to create a cohesive and functional whole. The effectiveness of a UI often hinges on seemingly minor details, such as font size, font type, alignment, spacing, borders, background, shape, grouping, and visuals. When one of these elements is altered without careful consideration, it can disrupt the balance of the entire design, akin to a house of cards collapsing from the removal of a single card. This paper explores the interconnectedness of UI design components and the potential consequences of modifying individual elements without accounting for their broader impact.</p>
 
             <h3>Introduction:</h3>
-            <p>In the realm of UI design, the adage “the whole is greater than the sum of its parts” aptly describes the delicate balance required to create effective interfaces. A well-designed UI seamlessly integrates various elements—typography, layout, spacing, shape, background, visual hierarchy, and visual elements—to provide users with a visually appealing and functional experience. Each component, no matter how trivial it may seem, contributes to the overall aesthetic and usability of the interface. Altering a single element can have cascading effects on the entire design, much like a house of cards collapsing when a single card is removed.</p>
+            <p>In the realm of UI design, the adage “the whole is greater than the sum of its parts” aptly describes the delicate balance required to create effective interfaces. A well-designed UI seamlessly integrates various elements, typography, layout, spacing, shape, background, visual hierarchy, and visual elements, to provide users with a visually appealing and functional experience. Each component, no matter how trivial it may seem, contributes to the overall aesthetic and usability of the interface. Altering a single element can have cascading effects on the entire design, much like a house of cards collapsing when a single card is removed.</p>
 
             <h3>The Interconnectedness of UI Elements:</h3>
             <p><strong>Typography:</strong><br>Typography, encompassing font size, type, and weight, is a cornerstone of UI design. It not only communicates content but also establishes visual hierarchy and mood. A change in font size can disrupt this hierarchy, leading to confusion and diminished readability. Similarly, switching to a different font type can alter the interface’s personality, affecting the user’s emotional response and perception.</p>
@@ -501,7 +501,7 @@ const blogPosts = [
         summary: "Cognitive engineering empowers system designers to understand how users make decisions. This article defines the field and its importance in system design.",
         content: `
             <p><strong>By: Francois Aubin</strong></p>
-            <p>Cognitive engineering surpasses the limitations of traditional process analysis. Consider the intellectual challenge of playing chess, the precision of making a medical diagnosis, or the strategy behind making an investment decision—these are all complex cognitive processes that require a deep understanding of how people think and make decisions.</p>
+            <p>Cognitive engineering surpasses the limitations of traditional process analysis. Consider the intellectual challenge of playing chess, the precision of making a medical diagnosis, or the strategy behind making an investment decision, these are all complex cognitive processes that require a deep understanding of how people think and make decisions.</p>
             <p>What makes cognitive engineering so exciting is its unique integration of system design and cognitive analysis. Instead of relying on two separate experts, cognitive engineering empowers the system designer to take on both roles. This approach involves thoroughly exploring how users make decisions, identifying the essential information needed for those decisions, and analyzing the cognitive processes involved in selecting actions.</p>
             <p>By merging these disciplines, system designers gain a holistic perspective that enhances their ability to create more intuitive and effective systems. This comprehensive approach ensures that the systems we design are not just functional but are also finely tuned to handle the complexities of real-world decision-making.</p>
         `
@@ -533,7 +533,7 @@ const blogPosts = [
             <h3>Implications for Education and Skill Development</h3>
             <p>Albert Einstein once said, <em>“Education is not the learning of facts, but the training of the mind to think.”</em></p>
             <p>This quote encapsulates the essence of skill acquisition: it is not merely about gathering knowledge but about developing the cognitive tools to apply that knowledge effectively. Skills are acquired through trial, error, and repetition. Basic skills, such as spatial awareness and sound localization, are developed at an extremely young age and are foundational for more complex learning. Spatial skills, for instance, are essential for understanding geometry, which in turn is fundamental for grasping concepts in calculus, vector analysis, and trigonometry. Once mastered, these foundational skills become the basis for higher-level mathematics or physics.</p>
-            <p>In education, the emphasis should be on building these foundational skills, enabling students to learn more efficiently and effectively. The goal is not merely to impart knowledge but to equip individuals with the tools to learn new skills and adapt to changing circumstances. For example, learning through trial and error—whether in mathematics, science, or any other subject—can be enhanced by incorporating games and interactive play where children are encouraged to try, make mistakes, receive feedback, and try again. This approach can be more effective than traditional methods of teaching, which often involve passive learning followed by exams.</p>
+            <p>In education, the emphasis should be on building these foundational skills, enabling students to learn more efficiently and effectively. The goal is not merely to impart knowledge but to equip individuals with the tools to learn new skills and adapt to changing circumstances. For example, learning through trial and error, whether in mathematics, science, or any other subject, can be enhanced by incorporating games and interactive play where children are encouraged to try, make mistakes, receive feedback, and try again. This approach can be more effective than traditional methods of teaching, which often involve passive learning followed by exams.</p>
 
             <h3>Fundamental Skill Development as a Catalyst for Economic Growth</h3>
             <p>André Leroi-Gourhan, a renowned anthropologist, explored the intricate relationship between hand use and brain development. He argued that the evolution of the hand, face, and brain were interconnected processes that developed simultaneously, highlighting that the history of tool use and the evolution of the human brain are parallel and inseparable. While Leroi-Gourhan’s insights primarily address human evolution, they also offer valuable perspectives on personal development.</p>
@@ -775,7 +775,7 @@ const blogPosts = [
                 <li>A hole among the negative energy states, akin to a hole in the closed shells of chemical elements, represents a region of positive energy due to the absence of negative energy. Such a hole will also behave as if it has a positive charge, making it appear as a reasonable physical particle with positive energy and charge.</li>
             </ol>
             <p>Observable phenomena include electrons in positive energy states and the holes, which possess both positive energy and charge. Initially, Dirac envisioned symmetry between the holes and the original electrons. However, this posed a significant challenge, as the only known positively charged particles at the time were protons. Initially labeling this concept as a theory of electrons and protons, Dirac faced reluctance from the scientific community to introduce new particles, given the established understanding of negative and positive electricity. The hesitation stemmed from a lack of willingness to propose new particles amidst the binary understanding of electricity.</p>
-            <p>Nonetheless, it was soon demonstrated that the holes must be symmetrical with electrons and share the same mass. Observations from radioactive sources often misled researchers to believe they were observing electrons moving back into the source, whereas these were actually positively charged particles—positrons—emerging from it. The scientific community’s initial reluctance to accept the notion of new particles was challenged by evidence from cosmic ray showers, which Blackett, working with Dirac in Cambridge, gathered. This evidence showed particles, ordinary electrons, curving in a magnetic field due to their negative charge, and other particles of the same mass curving in the opposite direction, indicative of a positive charge.</p>
+            <p>Nonetheless, it was soon demonstrated that the holes must be symmetrical with electrons and share the same mass. Observations from radioactive sources often misled researchers to believe they were observing electrons moving back into the source, whereas these were actually positively charged particles, positrons, emerging from it. The scientific community’s initial reluctance to accept the notion of new particles was challenged by evidence from cosmic ray showers, which Blackett, working with Dirac in Cambridge, gathered. This evidence showed particles, ordinary electrons, curving in a magnetic field due to their negative charge, and other particles of the same mass curving in the opposite direction, indicative of a positive charge.</p>
             <p>The prediction and discovery of the positron revolutionized the scientific world. The practical applications of positrons, as antiparticles of electrons, extend across various fields, showcasing their unique properties and potential for innovative technologies. From medical imaging and materials science to fundamental physics, the utility of positrons underscores the significance of antimatter in both theoretical and applied science.</p>
             
             <h3>Cognitive Analysis:</h3>
@@ -794,7 +794,7 @@ const blogPosts = [
         category: "Cognitive Analysis",
         date: "Feb 24, 2024",
         title: "Part 1: Albert Einstein’s Superior Reasoning Capacity",
-        summary: "A breakdown of the cognitive skills—pattern recognition, abstract thinking, and logical deduction—that allowed Einstein to revolutionize physics with the theory of relativity.",
+        summary: "A breakdown of the cognitive skills, pattern recognition, abstract thinking, and logical deduction, that allowed Einstein to revolutionize physics with the theory of relativity.",
         content: `
             <p><strong>By: Francois Aubin</strong></p>
             <p><strong>Summary:</strong> Cognitive Engineering examines individual interactions and decision-making in technological contexts, emphasizing human reasoning dimensions like information processing, judgment, and problem-solving. This study highlights cognitive skills fundamental to reasoning, including pattern recognition, memory, abstract thinking, and logic, using Albert Einstein’s theories as exemplary applications.</p>
@@ -830,7 +830,7 @@ const blogPosts = [
 
             <h3>Analysis of Albert Einstein’s Reasoning:</h3>
             <p>Albert Einstein’s reasoning is one of the greatest feats in human reasoning. His method addressed a crucial contradiction in the physics of his time: Maxwell’s theory, which implies that light travels at constant speed, conflicted with the implications of Newtonian classical physics. Understanding that both could not simultaneously be correct, Einstein embarked on an exploration of the logical consequences, assuming the constant speed of light as proposed in Maxwell’s theory.</p>
-            <p>Starting with the fact that light travels at a constant speed, Einstein used thought experiments where two observers, one stationary and the other on a moving train, observe lightning strikes. These strikes appear simultaneous to the observer on the station, but not to the one on the moving train. From this, he concluded that simultaneous events are relative to the observer. He then deduced that if the speed of light indeed remained constant across all frames of reference, time itself has to be redefined. It would necessitate a radical reevaluation of our understanding of space and time. This insight led to his groundbreaking conclusion that the passage of time could vary depending on one’s frame of reference—a concept that was truly revolutionary at the time.</p>
+            <p>Starting with the fact that light travels at a constant speed, Einstein used thought experiments where two observers, one stationary and the other on a moving train, observe lightning strikes. These strikes appear simultaneous to the observer on the station, but not to the one on the moving train. From this, he concluded that simultaneous events are relative to the observer. He then deduced that if the speed of light indeed remained constant across all frames of reference, time itself has to be redefined. It would necessitate a radical reevaluation of our understanding of space and time. This insight led to his groundbreaking conclusion that the passage of time could vary depending on one’s frame of reference, a concept that was truly revolutionary at the time.</p>
             <p>From this foundation, Einstein conceptualized a unified space-time continuum, laying the groundwork for a new theory of physics that would fundamentally alter our understanding of the universe.</p>
 
             <h3>Analysis:</h3>
@@ -867,7 +867,7 @@ const blogPosts = [
             <ul>
                 <li><strong>Buying Enterprise Solutions:</strong> This approach provides a sense of security, leveraging expertise and infrastructure that may address future business challenges. However, it often comes with high costs and unnecessary features. Specific, unaddressed functions might require additional development and integration.</li>
                 <li><strong>Developing In-House:</strong> Effective when software development is core to the business, this option allows for creating tailored solutions that can also be commercialized. However, it requires significant internal development and engineering capacity.</li>
-                <li><strong>Integrating Open Source Software:</strong> This could be the most cost-effective and efficient approach. It combines the best of both worlds – tailored to specific needs and cost-effective. However, it demands strong internal development and engineering capabilities, alongside a deep understanding of business needs.</li>
+                <li><strong>Integrating Open Source Software:</strong> This could be the most cost-effective and efficient approach. It combines the best of both worlds, tailored to specific needs and cost-effective. However, it demands strong internal development and engineering capabilities, alongside a deep understanding of business needs.</li>
             </ul>
 
             <h3>Cognitive Engineering Approach: A Strategic Solution</h3>
@@ -884,7 +884,7 @@ const blogPosts = [
         summary: "How to use Cognitive Task Analysis (CTA) to extract expert human knowledge and translate it into effective prompts for training Generative AI agents.",
         content: `
             <p>The introduction of AI systems, such as ChatGPT, marked a significant milestone in computer technology. Although it may not currently surpass human performance in all tasks, it is progressing at an incredible rate. GPT, or “Generative Pre-trained Transformer,” has the ability to produce new content based on the input it receives.</p>
-            <p>“Generative” refers to its content generation capabilities, while “pre-trained” signifies that the model has already been trained on a massive dataset (commonly known as the “corpus”), which consists of diverse text sources like books, articles, and websites – equivalent to the content of 37.5 million textbooks. This pre-training allows GPT to gain a broad understanding of language and context before being fine-tuned for specific tasks. The term “transformer” pertains to the underlying neural network architecture used in GPT models to efficiently handle long-range dependencies and better comprehend relationships between words within a given context.</p>
+            <p>“Generative” refers to its content generation capabilities, while “pre-trained” signifies that the model has already been trained on a massive dataset (commonly known as the “corpus”), which consists of diverse text sources like books, articles, and websites, equivalent to the content of 37.5 million textbooks. This pre-training allows GPT to gain a broad understanding of language and context before being fine-tuned for specific tasks. The term “transformer” pertains to the underlying neural network architecture used in GPT models to efficiently handle long-range dependencies and better comprehend relationships between words within a given context.</p>
             <p>ChatGPT continuously refines its predictions through a feedback loop incorporating backpropagation, allowing the model to adjust and improve its predictions by learning from discrepancies between predicted and actual outcomes.</p>
             <p>Unlike the human brain, which can learn a new subject like mathematics with just a few books and problem sets, pre-trained AI models require millions of pages of data to develop their predictive capabilities. Once the large language model (LLM) has accumulated a vast amount of knowledge equivalent to millions of books, it is equipped with an imprint that allows it to apply this extensive knowledge to perform specific tasks.</p>
             <p>There are significant parallels between AI systems and the human brain regarding information processing and learning. To excel in a particular domain, an AI model must be furnished with relevant and up-to-date data, similar to an individual acquiring knowledge by studying a subject to perform specialized tasks. The burgeoning field of “prompt engineering” can be compared to guiding a person in specialized domains.</p>

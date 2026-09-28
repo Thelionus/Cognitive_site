@@ -144,6 +144,7 @@
             .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
@@ -186,7 +187,7 @@
         <!-- HERO: Detail View Overlay -->
         <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
             <div class="container" style="max-width: 800px; margin: 0 auto;">
-                <a href="blog.html" style="color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono'; font-size: 12px;">&larr; BACK TO BRIEFINGS</a>
+                <a href="blog.html" style="color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono'; font-size: 12px;">BACK TO BRIEFINGS</a>
                 <span class="mono-tag" id="detail-category" style="color: var(--accent); margin-top: 2rem;">Category</span>
                 <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Article Title</h1>
                 <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
@@ -211,7 +212,7 @@
             <div>
                 <h4 class="footer-h4">Our Heritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking. We bridge the gap between technological innovation and strict banking regulations.
+                    Cognitive specializes in deterministic AI for mission-critical banking. Founded by CRIM, our expertise is built on decades of cognitive engineering.
                 </p>
             </div>
             <div>
@@ -247,7 +248,7 @@
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
                 <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
                 <input type="text" id="g-org" class="form-input" required placeholder="Organization">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn">Continue to Calendar</button>
             </form>
         </div>
     </div>
@@ -323,7 +324,7 @@
                         <span class="mono-tag">${post.category}</span>
                         <h2>${post.title}</h2>
                         <p>${post.summary}</p>
-                        <span class="read-btn">Read White Paper &rarr;</span>
+                        <span class="read-btn">Read White Paper</span>
                     </a>`;
             });
         }

@@ -4,7 +4,7 @@
     <script src="/assets/js/img-fallback.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From a Painful Process to a Guided Request — BusinessBANKER | Cognitive Group</title>
+    <title>From a Painful Process to a Guided Request | BusinessBANKER | Cognitive Group</title>
     <meta name="description" content="A cognitive task analysis of a major Canadian bank's commercial lending process found dozens of manual steps across several systems and frequent errors. BusinessBANKER puts it in one guided workflow.">
     <link rel="canonical" href="https://www.cognitivegroup.com/case-study-businessbanker.html">
 
@@ -266,7 +266,7 @@
             color: var(--text-muted);
             letter-spacing: 0.3px;
         }
-        .wf-arrow { color: rgba(255,255,255,0.2); font-size: 13px; }
+        .wf-arrow { display: inline-block; width: 7px; height: 7px; border-top: 2px solid rgba(255,255,255,0.25); border-right: 2px solid rgba(255,255,255,0.25); transform: rotate(45deg); margin: 0 4px; }
 
         /* COMPARISON TABLE */
         .compare-wrap {
@@ -416,6 +416,7 @@
             .hero-meta-row { gap: 25px; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
 
@@ -451,7 +452,7 @@
         </div>
         <span class="case-tag">Case Study · Commercial Banking</span>
         <h1>From <span>Dozens of Steps</span> to a<br>Guided Request</h1>
-        <p class="case-hero-sub">A cognitive task analysis of a major Canadian bank's commercial lending operations revealed a staggering truth: the biggest bottleneck in commercial credit isn't risk — it's friction. Here's how BusinessBANKER eliminates it.</p>
+        <p class="case-hero-sub">A cognitive task analysis of a major Canadian bank's commercial lending operations revealed a staggering truth: the biggest bottleneck in commercial credit isn't risk, it's friction. Here's how BusinessBANKER eliminates it.</p>
         <div class="hero-meta-row">
             <div class="hero-meta-item">
                 <label>Client</label>
@@ -489,7 +490,7 @@
             </div>
             <div class="stat-card gold">
                 <span class="num">Strong</span>
-                <span class="lbl">Approval rate — credit<br>quality was never the issue</span>
+                <span class="lbl">Approval rate, credit<br>quality was never the issue</span>
             </div>
         </div>
     </div>
@@ -497,7 +498,7 @@
     <!-- ARTICLE BODY -->
     <div class="article-body">
 
-        <p class="lead-para">When a seasoned account manager tells you they haven't submitted a single file in two full quarters — not because they lacked clients, but because the process was simply too painful — you're looking at a systemic failure, not a performance problem.</p>
+        <p class="lead-para">When a seasoned account manager tells you they haven't submitted a single file in two full quarters, not because they lacked clients, but because the process was simply too painful, you're looking at a systemic failure, not a performance problem.</p>
 
         <p>That quote, shared by a relationship director during a field study of a major Canadian bank's commercial lending operations, captures what cognitive task analysis (CTA) consistently surfaces: the human cost of process complexity is enormous, invisible in dashboards, and entirely solvable.</p>
 
@@ -507,36 +508,36 @@
 
         <h2>What the Field Study Found</h2>
 
-        <p>Cognitive task analysis doesn't just find process steps — it finds the hidden cost of those steps on the people who perform them. Files were regularly sent back from document preparation for corrections, and some new-client applications had to be restarted when errors surfaced downstream. These weren't edge cases — they were the norm.</p>
+        <p>Cognitive task analysis doesn't just find process steps, it finds the hidden cost of those steps on the people who perform them. Files were regularly sent back from document preparation for corrections, and some new-client applications had to be restarted when errors surfaced downstream. These weren't edge cases, they were the norm.</p>
 
         <div class="pull-quote">
             <p>"We have a program to reward account managers. It's called the 'approved as submitted' program. I think it's been two quarters since I last submitted a file."</p>
-            <cite>— Relationship Director, FlexAffaires / SAE (field study participant)</cite>
+            <cite>Relationship Director, FlexAffaires / SAE (field study participant)</cite>
         </div>
 
         <p>The approval rate itself was strong: most commercial credit applications were ultimately approved. The issue wasn't the credit decisions. The issue was everything surrounding them.</p>
 
         <hr class="section-divider">
 
-        <h2>The Standard Banking Workflow — and Where It Breaks Down</h2>
+        <h2>The Standard Banking Workflow: and Where It Breaks Down</h2>
 
         <p>The traditional commercial lending process follows a logical three-department structure that, on paper, makes complete sense:</p>
 
         <div class="workflow-row">
             <span class="wf-step">Discuss</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Qualify</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Prepare</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Auto Decision</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Risk Evaluation</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Disbursement Prep</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Doc Prep</span>
-            <span class="wf-arrow">→</span>
+            <span class="wf-arrow" aria-hidden="true"></span>
             <span class="wf-step">Disbursement</span>
         </div>
 
@@ -548,13 +549,13 @@
 
         <h2>What BusinessBANKER Changes</h2>
 
-        <p>BusinessBANKER was architected with a clear premise: every field is a variable, every step is configurable, and the workflow engine — not the user — should carry the cognitive burden of routing, validation, and escalation logic.</p>
+        <p>BusinessBANKER was architected with a clear premise: every field is a variable, every step is configurable, and the workflow engine, not the user, should carry the cognitive burden of routing, validation, and escalation logic.</p>
 
         <p><strong style="color: var(--text-main);">For Account Managers (Front Office):</strong> A loan request starts from the client's existing file and a configurable request structure, so account managers work within a single interface instead of switching between systems. The platform surfaces only the fields relevant to the current step, role, and product, which removes most of the room for comprehension errors.</p>
 
         <p><strong style="color: var(--text-main);">For Credit Teams (Middle Office):</strong> AI integration via the BusinessBANKER AI Workbench allows intelligent data extraction and preliminary risk scoring to run as a role participant in the workflow. This eliminates the clerical portion of credit work, freeing analysts to focus on judgment rather than data assembly.</p>
 
-        <p><strong style="color: var(--text-main);">For Legal, Doc Prep &amp; Operations (Back Office):</strong> Document generation is not a manual step — it is a workflow outcome. When a credit decision is recorded, the system triggers document production automatically, drawing from fields already captured upstream. Doc-prep returns drop when errors are validated at entry, not discovered at the end.</p>
+        <p><strong style="color: var(--text-main);">For Legal, Doc Prep &amp; Operations (Back Office):</strong> Document generation is not a manual step, it is a workflow outcome. When a credit decision is recorded, the system triggers document production automatically, drawing from fields already captured upstream. Doc-prep returns drop when errors are validated at entry, not discovered at the end.</p>
 
         <hr class="section-divider">
 
@@ -602,7 +603,7 @@
                     </tr>
                     <tr>
                         <td class="lbl">AI capability</td>
-                        <td class="legacy-col">None — all steps require human execution</td>
+                        <td class="legacy-col">None, all steps require human execution</td>
                         <td class="bb-col">AI acts as a role participant at any step in the workflow</td>
                     </tr>
                     <tr>
@@ -618,7 +619,7 @@
 
         <h2>The Market Opportunity This Unlocks</h2>
 
-        <p>The bank's credit quality was strong: low losses on small-business loans and a high approval rate. But process friction was suppressing volume: when account managers stop submitting files because the system is too painful, the bank leaves credit-worthy clients unserved — not because of risk appetite, but because of process.</p>
+        <p>The bank's credit quality was strong: low losses on small-business loans and a high approval rate. But process friction was suppressing volume: when account managers stop submitting files because the system is too painful, the bank leaves credit-worthy clients unserved, not because of risk appetite, but because of process.</p>
 
         <p>The analysis also showed that a meaningful share of routine, standardized decisions could be handled automatically under the right system conditions, with people keeping the decisions that need judgment.</p>
 
@@ -641,22 +642,22 @@
             </div>
             <div class="benefit-card">
                 <h4>Full automation readiness</h4>
-                <p>AI can act as a named role participant at any step — from data extraction to adjudication support to document generation.</p>
+                <p>AI can act as a named role participant at any step, from data extraction to adjudication support to document generation.</p>
             </div>
             <div class="benefit-card">
                 <h4>Regulatory auditability</h4>
-                <p>Every decision, every step, every actor — recorded, traceable, and explainable. Built for regulated financial environments from day one.</p>
+                <p>Every decision, every step, every actor, recorded, traceable, and explainable. Built for regulated financial environments from day one.</p>
             </div>
         </div>
 
-        <p style="margin-top: 40px;">The commercial banking institutions that will win the next decade are not necessarily the ones with the most sophisticated credit models. They are the ones whose people can actually use those models — quickly, confidently, and without losing hours to a form.</p>
+        <p style="margin-top: 40px;">The commercial banking institutions that will win the next decade are not necessarily the ones with the most sophisticated credit models. They are the ones whose people can actually use those models, quickly, confidently, and without losing hours to a form.</p>
 
         <p>A many-step, multi-system, error-prone process is not an industry inevitability. It is a solvable problem.</p>
 
         <div class="cta-block">
             <h3>Ready to see a guided loan request?</h3>
             <p>Schedule a demonstration to explore how BusinessBANKER can be configured for your institution's specific workflow, roles, and risk parameters.</p>
-            <a href="#" onclick="openModal(); return false;" class="cta-btn">Request a Demo &rarr;</a>
+            <a href="#" onclick="openModal(); return false;" class="cta-btn">Request a Demo</a>
         </div>
 
     </div>
@@ -704,7 +705,7 @@
                 <input type="text" id="g-name" class="form-input" required placeholder="Full Name">
                 <input type="email" id="g-email" class="form-input" required placeholder="Work Email">
                 <input type="text" id="g-org" class="form-input" required placeholder="Bank / Institution">
-                <button type="submit" style="width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">Book Your Demo &rarr;</button>
+                <button type="submit" style="width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">Book Your Demo</button>
             </form>
         </div>
     </div>
