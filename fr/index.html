@@ -21,6 +21,7 @@
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=70&w=1920&auto=format&fit=crop">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +34,7 @@
       "@type": "Organization",
       "name": "Cognitive Group",
       "url": "https://www.cognitivegroup.com",
-      "logo": "https://i.postimg.cc/x13mJnMs/Logo-cognitive.png",
+      "logo": "/assets/img/logo-cognitive.webp",
       "description": "Adjudication IA gouvernée pour le crédit commercial. AI Workbench analyse, BusinessBANKER consigne et exécute, sur une infrastructure contrôlée par la banque.",
       "address": {
         "@type": "PostalAddress",
@@ -147,7 +148,7 @@
 
         .logo-strip { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%; }
         .logo-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
-        .logo-grid { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .logo-grid { display: flex; align-items: center; gap: 16px 28px; flex-wrap: wrap; }
         .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
@@ -157,11 +158,13 @@
                 repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
                 repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
                 radial-gradient(circle at 78% 42%, rgba(34,197,94,0.18) 0%, transparent 42%),
-                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%);
-            background-size: 40px 40px, 40px 40px, auto, auto;
-            background-repeat: repeat, repeat, no-repeat, no-repeat;
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%),
+                url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=70&w=1920&auto=format&fit=crop');
+            background-size: 40px 40px, 40px 40px, auto, auto, cover;
+            background-position: center, center, center, center, center top;
+            background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
         }
-        #hero::after { content: ''; position: absolute; inset:0; background: linear-gradient(to right, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 60%, rgba(2,6,23,0) 100%); z-index: 1; }
+        #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
         .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -179,11 +182,11 @@
         .footnotes a { color: var(--text-muted); }
         sup a { color: var(--accent); text-decoration: none; font-size: 11px; }
 
-        #foundry { background-image: url('https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png'); justify-content: flex-end; text-align: right; }
+        #foundry { background-image: url('/assets/img/bg-workbench.webp'); justify-content: flex-end; text-align: right; }
         #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
         #foundry .content { margin-left: auto; }
 
-        #workbench { background-image: url('https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png'); }
+        #workbench { background-image: url('/assets/img/bg-businessbanker.webp'); }
         #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
         .stats-grid { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
@@ -257,7 +260,7 @@
     <!-- NAV -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Groupe Cognitive" width="184" height="30"></a>
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Logo Groupe Cognitive" width="184" height="30"></a>
         </div>
 
         <div class="hamburger" id="hamburger" aria-label="Menu">

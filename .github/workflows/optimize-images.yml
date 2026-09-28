@@ -30,36 +30,15 @@ jobs:
           # name | max width | source URL
           while IFS='|' read -r name width url; do
             [ -z "$name" ] && continue
-            curl -fsSL --retry 3 -o "tmpimg/$name.src" "$url"
+            curl -fsSL --retry 3 --max-time 120 -o "tmpimg/$name.src" "$url"
             convert "tmpimg/$name.src[0]" -resize "${width}x>" -strip "tmpimg/$name.png"
             cwebp -quiet -q 72 -alpha_q 90 -m 6 "tmpimg/$name.png" -o "assets/img/$name.webp"
             echo "$name: $(stat -c%s "tmpimg/$name.src") -> $(stat -c%s "assets/img/$name.webp") bytes"
           done <<'LIST'
-          logo-cognitive|400|https://i.postimg.cc/x13mJnMs/Logo-cognitive.png
-          bg-workbench|1920|https://i.postimg.cc/xjZq6BzM/Chat-GPT-Image-Dec-25-2025-07-44-32-PM.png
-          bg-businessbanker|1920|https://i.postimg.cc/tTxRw4P3/Chat-GPT-Image-Dec-25-2025-07-53-44-PM.png
-          bg-dec25-0613|1920|https://i.postimg.cc/x8zfF8vX/Chat-GPT-Image-Dec-25-2025-06-13-10-PM.png
-          card-mortgage|1100|https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png
-          card-commercial|1100|https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png
-          card-statements|1100|https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png
-          card-alrahma|1100|https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png
-          card-impact|1100|https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png
-          card-whatsapp|1100|https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png
-          card-symbia|1100|https://i.postimg.cc/26txFGhb/Chat-GPT-Image-Jan-7-2026-02-11-12-PM.png
-          card-cpilot|1100|https://i.postimg.cc/3xMYbHYg/Chat-GPT-Image-Jan-7-2026-02-22-42-PM.png
-          logo-rbc|300|https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png
-          logo-desjardins|600|https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png
-          logo-bnc|300|https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png
-          shot-validation|1400|https://i.postimg.cc/VvKQK9b1/Screenshot-2025-12-27-at-8-47-06-AM.png
-          shot-workflow|1400|https://i.postimg.cc/3NPpgK6V/Chat-GPT-Image-Dec-26-2025-03-38-06-PM.png
-          img-agent-capture|1400|https://i.postimg.cc/x8fMv2Zz/Agent-Capture.png
-          img-dec20-0345|1400|https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png
-          img-dec20-0626|1400|https://i.postimg.cc/cH0S0x6v/Chat-GPT-Image-Dec-20-2025-06-26-00-PM.png
-          img-dec20-0623-shot|1400|https://i.postimg.cc/TY7Y0D1P/Screenshot-2025-12-20-at-6-23-13-PM.png
-          img-dec20-0623|1400|https://i.postimg.cc/QxtjFdmQ/Chat-GPT-Image-Dec-20-2025-06-23-24-PM.png
-          img-workbench-legacy|1400|https://i.postimg.cc/Jz6cvdRg/imapge.jpg
-          img-mar15|1400|https://i.postimg.cc/50FFx9Ww/Screenshot-2026-03-15-at-10-42-40-AM.png
-          bg-decidr|1920|https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop
+          logo-duca|600|https://i.imghippo.com/files/dSBI9595LU.png
+          logo-td|300|https://i.imghippo.com/files/lO3106vbg.jpeg
+          logo-bnde|400|https://i.imghippo.com/files/ezLO8362EE.png
+          bg-success|1920|https://i.imghippo.com/files/hBJ5329Dsg.png
           LIST
 
       - name: Commit

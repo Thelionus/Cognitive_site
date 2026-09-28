@@ -34,7 +34,7 @@ const blogPosts = [
         </ul>
 
         <div style="text-align: center; margin: 30px 0;">
-            <img src="https://i.postimg.cc/50FFx9Ww/Screenshot-2026-03-15-at-10-42-40-AM.png"
+            <img src="/assets/img/img-mar15.webp"
                  alt="Conceptual Diagram: The Construct of Human Judgment, Decomposition into Micro-Tasks"
                  style="max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);" />
             <p style="font-size: 0.85em; color: #94a3b8; margin-top: 10px; font-style: italic;">
