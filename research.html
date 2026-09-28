@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <!-- 1. SEO: Mobile-First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 2. SEO: Optimized Title (Under 60 chars) -->
-    <title>AI Workbench + BusinessBANKER | Groupe Cognitive</title>
+    <title>R&amp;D | Cognitive Group</title>
 
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="Adjudication IA pour le crédit commercial, sur les systèmes que votre banque exploite déjà. Construite à partir du jugement de vos experts, vérifiée par des modèles indépendants, décidée par vos équipes. SOC 2 Type 2.">
+    <meta name="description" content="Cognitive Group R&D: Cognitive Foundry applied to mission planning, threat identification and aerospace safety.">
     
     <!-- 4. SEO: Canonical Tag -->
-    <link rel="canonical" href="https://www.cognitivegroup.com/fr/index.html">
+    <link rel="canonical" href="https://www.cognitivegroup.com/research.html">
 
     <!-- 5. SECURITY: Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
@@ -21,7 +21,6 @@
     <!-- 6. SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=70&w=1920&auto=format&fit=crop">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -35,7 +34,7 @@
       "name": "Cognitive Group",
       "url": "https://www.cognitivegroup.com",
       "logo": "/assets/img/logo-cognitive.webp",
-      "description": "Adjudication IA gouvernée pour le crédit commercial. AI Workbench analyse, BusinessBANKER consigne et exécute, sur une infrastructure contrôlée par la banque.",
+      "description": "Governed AI adjudication for commercial lending. AI Workbench reasons, BusinessBANKER executes and audits, on infrastructure the bank controls.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "1155 René-Lévesque Blvd West",
@@ -166,6 +165,8 @@
         }
         #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
 
+        .rd-hero { padding-top: 180px; background: radial-gradient(circle at 80% 20%, rgba(34,197,94,0.12) 0%, transparent 45%), var(--bg-body); border-top: none; }
+        .rd-status { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
         .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
         .trust-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-main); border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.08); padding: 8px 14px; border-radius: 4px; letter-spacing: 0.5px; }
@@ -260,10 +261,11 @@
     <!-- NAV -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Logo Groupe Cognitive" width="184" height="30"></a>
+            <!-- Added width and height attributes to satisfy CLS principles -->
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Cognitive Banking Logo" width="184" height="30"></a>
         </div>
-
-        <div class="hamburger" id="hamburger" aria-label="Menu">
+        
+        <div class="hamburger" id="hamburger" aria-label="Menu Toggle">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -271,231 +273,130 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
                 <li><a href="foundry.html" onclick="closeMenu()">Cognitive Foundry</a></li>
-                <li><a href="research.html" onclick="closeMenu()">R&amp;D</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Références</a></li>
-                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
+                <li><a href="research.html" class="active-link" onclick="closeMenu()">R&amp;D</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="../index.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
+                <li class="lang-item"><a href="fr/research.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Schedule Briefing</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- SECTION 1 : HERO (BANQUE) -->
-    <section id="hero">
+    <!-- R&D HERO -->
+    <section class="compact-section rd-hero" id="rd">
         <div class="content">
-            <h2>AI Workbench + BusinessBANKER</h2>
-            <h1>Adjudication IA pour le Crédit Commercial</h1>
-            <p class="description">
-                Nous captons la façon dont vos meilleurs analystes de crédit décident, nous la traduisons en agents d'IA, et des modèles indépendants se vérifient mutuellement avant qu'une personne de votre équipe ne tranche. Le tout sur une infrastructure que vous contrôlez, par-dessus les systèmes de prêt et le core bancaire que vous avez déjà.
+            <h2>R&amp;D</h2>
+            <h1>Cognitive Foundry, Applied Beyond Banking</h1>
+            <p class="description" style="margin-bottom: 0;">
+                The method behind our banking products comes from cognitive engineering: capture how experts reason, turn it into agents, have independent models check each other, and keep a person in charge of the decision. Our R&amp;D group applies the same method wherever decisions are high-stakes, in defence, aerospace and public safety.
             </p>
-            <div class="hero-actions">
-                <a href="#method" class="btn">Voir la Méthode</a>
-                <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
-            </div>
-
-            <div class="trust-badges">
-                <span class="trust-badge"><strong>SOC 2 Type 2</strong></span>
-            </div>
-
-            <div class="logo-strip">
-                <span class="logo-label">Clients qui utilisent nos solutions</span>
-                <div class="logo-grid">
-                    <div class="client-logo">RBC</div>
-                    <div class="client-logo">DESJARDINS</div>
-                    <div class="client-logo">BNC</div>
-                    <div class="client-logo">DUCA</div>
-                    <div class="client-logo">BNDE</div>
-                    <div class="client-logo">BDA</div>
-                    <div class="client-logo">BDK</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- SECTION 2 : LA MÉTHODE -->
-    <section class="compact-section" id="method">
+    <!-- DEFENCE -->
+    <section class="compact-section" id="mission-planning">
         <div class="content">
-            <h2>La Méthode</h2>
-            <h1>Quatre Étapes, du Jugement Expert à la Décision</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Aucun modèle n'est cru sur parole. Chaque recommandation franchit les mêmes quatre étapes, et la décision finale revient toujours à vos équipes.
-            </p>
+            <h2>Defence</h2>
+            <h1>Mission Planning and Real-Time Threat Identification</h1>
+            <div class="win-grid" style="margin-top: 40px;">
+                <div class="win-card">
+                    <span class="rd-status">In development</span>
+                    <h4>Mission Planning AI</h4>
+                    <p>A system that pulls intelligence, logistics, terrain and unit-status feeds into a single operating picture, and lets AI draft, war-game and continuously update the mission plan itself. Commander approval is built into every decision point, not a form filled out after the fact.</p>
+                </div>
+                <div class="win-card">
+                    <span class="rd-status">Live demo</span>
+                    <h4>Real-Time Threat Identification</h4>
+                    <p>Several agents fuse kinematic, signature/IFF and context data to classify air tracks in real time using the NATO colour convention (blue, red, amber, green).</p>
+                    <a href="tactical.html" class="card-link">Open the tactical demo</a>
+                </div>
+                <div class="win-card">
+                    <span class="rd-status">Live demo</span>
+                    <h4>Live Flight Tracking</h4>
+                    <p>Public ADS-B traffic cross-referenced against aircraft registries, with each flagged aircraft showing the reason it was flagged.</p>
+                    <a href="live-flights.html" class="card-link">Open the flight tracker</a>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 60px; font-size: 18px;">The same four steps, applied to mission planning</h4>
             <div class="method-steps">
                 <div class="method-step">
                     <span class="step-num">01</span>
-                    <h4>Observation des experts</h4>
-                    <p>Nous captons le travail de vos analystes seniors sur de vrais dossiers et nous consignons leur raisonnement : ce qu'ils vérifient, dans quel ordre, et ce qui les fait s'arrêter. Cela devient le guide de l'agent.</p>
+                    <h4>Expert observation</h4>
+                    <p>We capture experienced planners while they build real plans and record how they reason: which constraints they check first, and what makes them change course.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">02</span>
-                    <h4>Deux modèles se vérifient</h4>
-                    <p>Au moins deux agents, sur des modèles de laboratoires différents, traitent le même dossier. Chacun doit produire sa sortie dans un format strict (JSON) selon le même schéma, et les sorties sont comparées champ par champ. Tout désaccord est signalé, jamais lissé.</p>
+                    <h4>Models check each other</h4>
+                    <p>Agents on models from different labs draft and assess the plan in the same strict format, and every disagreement is flagged.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">03</span>
-                    <h4>Superviseur IA</h4>
-                    <p>Un agent superviseur examine le dossier complet et les désaccords signalés, et fait remonter ce qui exige l'attention d'une personne. Il est en production aujourd'hui chez Al Rahma, au Sénégal.</p>
-                    <a href="case_study_alrahma.html" class="card-link">Étude de cas Al Rahma</a>
+                    <h4>AI supervisor</h4>
+                    <p>A supervising agent watches the whole plan as feeds change and raises what needs a human's attention.</p>
                 </div>
                 <div class="method-step">
                     <span class="step-num">04</span>
-                    <h4>L'humain décide</h4>
-                    <p>Votre analyste voit la recommandation, les éléments qui la justifient et chaque signalement, puis approuve, modifie ou rejette. Cette décision est consignée dans BusinessBANKER.</p>
-                </div>
-            </div>
-
-            <a href="foundry.html" class="btn btn-outline" style="margin-top: 40px;">Comment Cognitive Foundry Capte l'Expertise</a>
-        </div>
-    </section>
-
-    <!-- SECTION 3 : AI WORKBENCH -->
-    <section id="foundry">
-        <div class="content">
-            <h2>Là où se fait l'analyse</h2>
-            <h1>AI Workbench</h1>
-            <p class="description">
-                Les agents qui extraient, analysent et recommandent, construits à partir du jugement de vos propres experts crédit. Vous choisissez le modèle de chaque agent et pouvez le changer sans réécrire le flux. Déployé dans votre cloud, par-dessus vos systèmes de prêt et votre core bancaire ; rien n'est remplacé.
-            </p>
-
-            <a href="workbench.html" class="btn btn-outline">Découvrir AI Workbench</a>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-val">2+</span>
-                    <span class="stat-label">Modèles par dossier</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">JSON</span>
-                    <span class="stat-label">Schéma de sortie strict</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">Journalisé</span>
-                    <span class="stat-label">Chaque désaccord</span>
+                    <h4>The commander decides</h4>
+                    <p>Every decision point waits for approval, and each approval is recorded.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4 : BUSINESSBANKER -->
-    <section id="workbench">
+    <!-- AEROSPACE -->
+    <section class="compact-section" id="aerospace">
         <div class="content">
-            <h2>Là où la décision est consignée</h2>
-            <h1>BusinessBANKER</h1>
-            <p class="description">
-                AI Workbench prépare l'analyse. BusinessBANKER est l'endroit où votre équipe crédit la révise, l'approuve et en garde la trace : chaque version, chaque approbation, chaque modification, prêtes pour l'audit. Là où votre système de prêt actuel ne peut pas exécuter l'action qui en découle, BusinessBANKER s'en charge.
-            </p>
-            <a href="../case-study-businessbanker.html" class="btn btn-outline">BusinessBANKER sur le Terrain</a>
-        </div>
-    </section>
-
-    <!-- SECTION 5 : PREUVES -->
-    <section class="compact-section" id="why-we-win">
-        <div class="content">
-            <h2>Ce Que Nous Pouvons Montrer</h2>
-            <h1>Des Preuves, Avec Leurs Limites</h1>
-            <div class="win-grid">
-                <div class="win-card">
-                    <h4>Premier banc d'essai, petit échantillon</h4>
-                    <p>Dans une étude préliminaire portant sur 10 dossiers de prêt, le système a atteint la décision de référence dans 96 % des cas, contre 57 % pour un adjudicateur humain senior.<sup><a href="#fn-1">1</a></sup> Dix dossiers constituent un petit échantillon : la marge d'erreur est large. C'est pourquoi chaque mandat commence en mode fantôme, sur vos propres dossiers.</p>
-                </div>
-                <div class="win-card">
-                    <h4>En production chez Al Rahma</h4>
-                    <p>Les demandes de prêt qui prenaient des heures à rédiger se font maintenant en une dizaine de minutes sur tablette, et les fonds parviennent à l'emprunteur en moins de quatre heures.<sup><a href="#fn-2">2</a></sup></p>
-                    <a href="case_study_alrahma.html" class="card-link">Lire l'étude de cas</a>
-                </div>
-                <div class="win-card">
-                    <h4>Votre cloud, vos modèles</h4>
-                    <p>Aucune dépendance à un modèle, aucune boîte noire hébergée par le fournisseur. La plateforme tourne dans votre propre compte AWS, et vous choisissez le modèle derrière chaque agent.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Gouvernance intégrée</h4>
-                    <p>Piste d'audit, seuils de confiance et une spécification des seuils d'automatisation rédigée en fonction de la ligne directrice E-23 du BSIF, livrées sous forme de dossier de gouvernance des modèles.</p>
-                </div>
-                <div class="win-card">
-                    <h4>Sécurité</h4>
-                    <p>Le Groupe Cognitive détient son propre rapport SOC 2 Type 2, pour la période se terminant le 31 décembre 2025.<sup><a href="#fn-3">3</a></sup> Il s'agit de notre audit, pas de celui de notre fournisseur cloud. SSO, MFA et contrôle d'accès par rôle, plus une intégration en production avec le core Fiserv DNA.</p>
-                </div>
-            </div>
-            <div class="footnotes">
-                <p id="fn-1">1. Groupe Cognitive, <a href="blog.html">« Beyond the Illusion of Generality »</a>, livre blanc préliminaire, janvier 2026. 10 dossiers de prêt notés par rapport à une décision de référence, comparant un adjudicateur senior (10 ans et plus) au système multi-agents. Non évalué par des pairs. Petit échantillon, marge d'erreur large.</p>
-                <p id="fn-2">2. Al Rahma, Sénégal, déploiement en production. Temps entre le début d'une demande et sa soumission sur la tablette terrain, et entre la demande et le décaissement, mesurés par Al Rahma. Données en date de septembre 2026.</p>
-                <p id="fn-3">3. Rapport Service Organization Control 2 (SOC 2&reg;) de type 2 émis au Groupe Cognitive, pour la période se terminant le 31 décembre 2025.</p>
-            </div>
-            <p class="disclaimer">Ce que nous ne prétendons pas : être les meilleurs dans chaque créneau, comme l'évaluation immobilière commerciale, la notation de crédit à la consommation ou l'analyse forensique de documents. Là, nous travaillons avec des partenaires. Notre argument : l'étendue, la gouvernance et le contrôle, dans une seule plateforme.</p>
-        </div>
-    </section>
-
-    <!-- SECTION 6 : RECHERCHE (défense, aérospatiale) -->
-    <section class="compact-section" id="research">
-        <div class="content">
-            <h2>Recherche</h2>
-            <h1>La Même Méthode, Hors de la Banque</h1>
-            <p class="description" style="margin-bottom: 0;">
-                La banque est notre métier. Notre groupe de recherche applique la même méthode de capture d'expertise et de vérification croisée à l'aérospatiale et à la défense, là où une erreur coûte cher et où chaque décision doit pouvoir s'expliquer après coup.
-            </p>
+            <h2>Aerospace</h2>
+            <h1>Human and Automation, Working as a Team</h1>
             <div class="win-grid" style="margin-top: 40px;">
                 <div class="win-card">
-                    <h4>Sécurité aérienne : SymbIA</h4>
-                    <p>Collaboration humain-automatisation pour les opérations à pilote unique, là où le pilote et le système divergent.</p>
-                    <a href="../symbia.html" class="card-link">SymbIA (EN)</a>
+                    <span class="rd-status">Research</span>
+                    <h4>SymbIA: aviation safety</h4>
+                    <p>Human-automation teaming for single-pilot operations, focused on the moments where pilot and system disagree.</p>
+                    <a href="symbia.html" class="card-link">Read the SymbIA case study</a>
                 </div>
                 <div class="win-card">
-                    <h4>Cockpit cognitif : C-Pilot</h4>
-                    <p>Capter le raisonnement du pilote en temps réel et l'appuyer avec des compagnons IA en situation de forte charge.</p>
-                    <a href="../cpilot.html" class="card-link">C-Pilot (EN)</a>
+                    <span class="rd-status">Research</span>
+                    <h4>C-Pilot: the cognitive cockpit</h4>
+                    <p>Capturing pilot reasoning in real time and supporting it with AI companions under high workload.</p>
+                    <a href="cpilot.html" class="card-link">Explore C-Pilot</a>
                 </div>
                 <div class="win-card">
-                    <h4>Défense : conscience situationnelle</h4>
-                    <p>Une IA de planification de mission en développement, et une démo en ligne qui classe le trafic aérien grâce à plusieurs agents qui se vérifient.</p>
-                    <a href="research.html#mission-planning" class="card-link">Planification de mission et démos</a>
+                    <span class="rd-status">Paper</span>
+                    <h4>AI-assisted supervision</h4>
+                    <p>How AI can help people supervise abnormal situations they would otherwise miss, using the 2025 Louvre burglary as a case study.</p>
+                    <a href="blog.html" class="card-link">Read on Insights</a>
                 </div>
             </div>
-            <a href="research.html" class="btn btn-outline" style="margin-top: 40px;">Toute la R&amp;D</a>
+            <a href="#" onclick="openModal()" class="btn btn-outline" style="margin-top: 50px;">Talk to the R&amp;D Team</a>
         </div>
     </section>
 
-    <!-- SECTION 7 : COMMENT ACHETER -->
-    <section class="compact-section" id="how-you-buy">
-        <div class="content">
-            <h2>Comment Acheter</h2>
-            <h1>Commencer par un Pilote en Mode Fantôme</h1>
-            <p class="description" style="margin-bottom: 0;">
-                Commencez par un pilote en mode fantôme de 10 à 12 semaines à prix fixe, puis prenez une décision go/no-go. Si c'est un go, AI Workbench passe en production sur votre flux existant, avec une licence annuelle plus des frais par transaction approuvée, et BusinessBANKER ajoute la couche d'exécution là où votre système de prêt ne suffit pas.
-            </p>
-            <div class="pilot-bar">
-                <div class="pilot-bar-item"><span class="val">12 sem.</span><span class="lbl">Durée du pilote</span></div>
-                <div class="pilot-bar-item"><span class="val">75 k$ CA</span><span class="lbl">Prix fixe</span></div>
-                <div class="pilot-bar-item"><span class="val">&ge;40 %</span><span class="lbl">Réduction visée</span></div>
-                <div class="pilot-bar-item"><span class="val">0</span><span class="lbl">Système remplacé</span></div>
-                <div class="pilot-bar-item"><span class="val">1</span><span class="lbl">Décision à la fin</span></div>
-            </div>
-            <a href="#" onclick="openModal()" class="btn btn-outline">Réserver un Briefing</a>
-        </div>
-    </section>
-
-    <!-- PIED DE PAGE -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Notre Approche</h4>
+                <h4 class="footer-h4">Our Approach</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    AI Workbench analyse. BusinessBANKER consigne et exécute. Les deux tournent sur l'infrastructure que votre banque contrôle déjà : superposés, pas remplacés.
+                    AI Workbench reasons. BusinessBANKER executes and governs. Both run on the infrastructure your bank already controls, overlaid, not replaced.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <h4 class="footer-h4">Institutional Links</h4>
                 <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="case-study-businessbanker.html" class="footer-link">BusinessBANKER</a>
                 <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
-                <a href="product.html" class="footer-link">Aperçu de la Plateforme</a>
-                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
-                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
+                <a href="product.html" class="footer-link">Platform Overview</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <a href="blog.html" class="footer-link">Regulatory Research</a>
             </div>
             <div>
-                <h4 class="footer-h4">Siège Mondial</h4>
+                <h4 class="footer-h4">Global Headquarters</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
                     1155 René-Lévesque Blvd West<br>
                     Montréal, QC H3B 2K4<br><br>
@@ -504,27 +405,30 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 Groupe Cognitive. Tous droits réservés.
+            &copy; 2026 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
 
-    <!-- MODALE DE RÉSERVATION -->
+    <!-- BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Nom Complet</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
-                <label class="form-label">Email Professionnel</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
-                <label class="form-label">Organisation</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
-                <button type="submit" class="modal-btn">Accéder au Calendrier</button>
+                <label class="form-label">Full Name</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                
+                <label class="form-label">Work Email</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                
+                <label class="form-label">Organization</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                
+                <button type="submit" class="modal-btn">Continue to Calendar</button>
             </form>
         </div>
     </div>

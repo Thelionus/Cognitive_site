@@ -194,4 +194,14 @@
 </url>
 
 
+<url>
+  <loc>https://cognitivegroup.com/research.html</loc>
+  <lastmod>2026-09-28T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cognitivegroup.com/fr/research.html</loc>
+  <lastmod>2026-09-28T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 </urlset>

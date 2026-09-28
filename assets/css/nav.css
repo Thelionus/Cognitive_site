@@ -1,12 +1,12 @@
 /* Shared header and menu layout, loaded after each page's own styles so the
-   menu behaves the same everywhere. The full menu needs about 1300px; below
+   menu behaves the same everywhere. The full menu needs about 1400px; below
    that it collapses into the hamburger instead of squeezing against the logo. */
 header .logo { flex-shrink: 0; margin-right: 40px; }
 header .logo img { height: 30px; width: auto; display: block; }
 nav ul { flex-wrap: nowrap; gap: clamp(18px, 2vw, 36px); }
 nav a, .btn-header { white-space: nowrap; }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
     header { height: 80px; }
     .hamburger { display: block; }
     nav {
