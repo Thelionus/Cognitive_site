@@ -483,15 +483,15 @@
         // Stripe Payment Links, one per agent. An agent without a link opens
         // the briefing form instead, so no button ever leads nowhere.
         const STRIPE_LINKS = {
-            'mortgage': '',
-            'investment-loan': '',
-            'restructure': '',
-            'debt-consolidation': '',
-            'investment-property': '',
-            'informal-economy': '',
-            'small-business': '',
-            'corporate': '',
-            'financial-analyst': ''
+            'mortgage': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'investment-loan': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'restructure': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'debt-consolidation': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'investment-property': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'informal-economy': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'small-business': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'corporate': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'financial-analyst': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03'
         };
         document.querySelectorAll('.agent-btn').forEach(function (btn) {
             var link = STRIPE_LINKS[btn.dataset.agent];
