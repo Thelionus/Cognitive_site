@@ -176,10 +176,10 @@
         .agent-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
         .agent-body h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
         .agent-body p { font-size: 14px; color: var(--text-muted); line-height: 1.6; flex: 1; }
-        .agent-buy { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .agent-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
         .agent-price { font-size: 22px; font-weight: 800; }
         .agent-price small { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-left: 4px; }
-        .agent-btn { background: var(--accent); color: #020617; font-weight: 800; font-size: 13px; text-decoration: none; padding: 11px 18px; border-radius: 6px; white-space: nowrap; transition: 0.2s; }
+        .agent-btn { background: var(--accent); color: #020617; font-weight: 800; font-size: 13px; text-decoration: none; padding: 11px 16px; text-align: center; border-radius: 6px; white-space: nowrap; transition: 0.2s; }
         .agent-btn:hover { background: #fff; }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
         .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -316,7 +316,7 @@
                         <p>Institutional workflow for residential underwriting. Handles LTV calculations, GDSR/TDSR ratios, and document validation automatically.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="mortgage">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="mortgage">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
                         <p>Evaluates leverage scenarios for liquid asset portfolios. Calculates margin requirements and projects ROI based on real-time market data.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="investment-loan">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="investment-loan">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
                         <p>Identifies predatory terms in distressed debt. Automates the creation of legal defense frameworks and settlement proposals.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="restructure">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="restructure">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -352,7 +352,7 @@
                         <p>Analyzes revolving credit exposure. Creates payoff strategies and enforces spending discipline through behavioral restriction models.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="debt-consolidation">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="debt-consolidation">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -364,7 +364,7 @@
                         <p>Multi-unit cash flow simulation. Models rental income, vacancy rates, and cap rates to determine maximum loan eligibility.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="investment-property">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="investment-property">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -376,7 +376,7 @@
                         <p>Underwriting logic for cash-based businesses. Reconstructs income statements using alternative data points and lifestyle analysis.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="informal-economy">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="informal-economy">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -388,7 +388,7 @@
                         <p>Automated adjudication for loans under $1M. Rapid risk scoring based on bank statement analysis and industry benchmarks.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="small-business">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="small-business">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -400,7 +400,7 @@
                         <p>For complex borrowing structures. Handles multi-entity covenants, syndicated loans, and cross-collateralization logic.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="corporate">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="corporate">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
@@ -412,12 +412,12 @@
                         <p>Extracts data from PDF balance sheets and income statements, and spreads the numbers into normalized JSON.</p>
                         <div class="agent-buy">
                             <span class="agent-price">995<small>USD</small></span>
-                            <a href="#" class="agent-btn" data-agent="financial-analyst">Buy now</a>
+                            <a href="#" class="agent-btn" data-agent="financial-analyst">Contact us for procurement</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="disclaimer">Questions before you buy? <a href="#" onclick="openModal(); return false;" style="color: var(--accent);">Book a briefing</a>.</p>
+            <p class="disclaimer">Ready to procure an agent? <a href="#" onclick="openModal(); return false;" style="color: var(--accent);">Book a briefing</a>.</p>
         </div>
     </section>
 
@@ -480,18 +480,18 @@
     <!-- SCRIPTS -->
     <script>
 
-        // Stripe Payment Links, one per agent. An agent without a link opens
-        // the briefing form instead, so no button ever leads nowhere.
+        // Stripe Payment Links, one per agent. Empty for now: procurement goes
+        // through a briefing, so every button opens the scheduling form.
         const STRIPE_LINKS = {
-            'mortgage': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'investment-loan': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'restructure': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'debt-consolidation': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'investment-property': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'informal-economy': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'small-business': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'corporate': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
-            'financial-analyst': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03'
+            'mortgage': '',
+            'investment-loan': '',
+            'restructure': '',
+            'debt-consolidation': '',
+            'investment-property': '',
+            'informal-economy': '',
+            'small-business': '',
+            'corporate': '',
+            'financial-analyst': ''
         };
         document.querySelectorAll('.agent-btn').forEach(function (btn) {
             var link = STRIPE_LINKS[btn.dataset.agent];
