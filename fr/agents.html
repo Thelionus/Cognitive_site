@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- 1. SEO: Mobile-First -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 2. SEO: Optimized Title (Under 60 chars) -->
+    <title>Agents experts | Cognitive Foundry</title>
+
+    <!-- 3. SEO: Unique Description (150-160 chars) -->
+    <meta name="description" content="Agents experts Cognitive Foundry prêts à déployer pour le crédit : hypothécaire, PME, corporatif, analyse financière et plus. 995 USD par agent.">
+    
+    <!-- 4. SEO: Canonical Tag -->
+    <link rel="canonical" href="https://www.cognitivegroup.com/fr/agents.html">
+
+    <!-- 5. SECURITY: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ipapi.co https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://ipapi.co;">
+    <script src="/assets/js/img-fallback.js"></script>
+    
+    <!-- 6. SECURITY: Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 8. SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cognitive Group",
+      "url": "https://www.cognitivegroup.com",
+      "logo": "/assets/img/logo-cognitive.webp",
+      "description": "Adjudication IA gouvernée pour le crédit commercial. AI Workbench analyse, BusinessBANKER consigne et exécute, sur une infrastructure contrôlée par la banque.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1155 René-Lévesque Blvd West",
+        "addressLocality": "Montréal",
+        "addressRegion": "QC",
+        "postalCode": "H3B 2K4",
+        "addressCountry": "CA"
+      }
+    }
+    </script>
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L9N7RPQDDB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L9N7RPQDDB');
+</script>
+
+    <style>
+        :root {
+            /* DARK EXECUTIVE THEME */
+            --bg-body: #020617;     
+            --text-main: #FFFFFF;   
+            --text-muted: #94A3B8;  
+            --accent: #22C55E;      
+            
+            /* Overlays */
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.75) 50%, rgba(2,6,23,0.1) 100%);
+            --overlay-dark-reverse: linear-gradient(to left, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            --overlay-mobile: linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.95) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; color: var(--text-main); background-color: var(--bg-body); overflow-x: hidden; width: 100%; }
+
+        header {
+            position: fixed; top: 0; width: 100%; 
+            height: 90px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo img { 
+            height: 30px;
+            width: auto; display: block; 
+        }
+
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; flex-wrap: nowrap; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; white-space: nowrap; }
+        nav a:hover { color: var(--text-main); }
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+        .btn-header {
+            background-color: #FFFFFF;
+            color: #020617 !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            text-transform: none !important;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        section {
+            min-height: 100vh; 
+            width: 100%;
+            position: relative;
+            display: flex; 
+            align-items: center;
+            padding: 120px 10%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content { position: relative; z-index: 2; max-width: 650px; }
+        #agents .content { max-width: 1200px; }
+
+        h2 { 
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px; 
+            margin-bottom: 20px; color: var(--accent); font-weight: 700; 
+            background: rgba(34, 197, 94, 0.1); display: inline-block;
+            padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; color: var(--text-main); letter-spacing: -1.5px; }
+        .description { font-size: 18px; margin-bottom: 35px; font-weight: 400; color: var(--text-muted); line-height: 1.7; }
+
+        .btn, .btn-outline {
+            display: inline-block; padding: 18px 45px;
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            border-radius: 4px; transition: all 0.3s ease;
+        }
+        .btn { background: var(--text-main); color: var(--bg-body); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.3); }
+        .btn:hover, .btn-outline:hover { transform: translateY(-3px); background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        .logo-strip { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; width: 100%; }
+        .logo-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
+        .logo-grid { display: flex; align-items: center; gap: 16px 28px; flex-wrap: wrap; }
+        .client-logo { font-weight: 800; font-size: 15px; color: #FFFFFF; opacity: 0.9; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
+        .client-logo::before { content:''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+        #hero {
+            background-color: var(--bg-body);
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(34,197,94,0.08) 39px, rgba(34,197,94,0.08) 40px),
+                radial-gradient(circle at 78% 42%, rgba(34,197,94,0.18) 0%, transparent 42%),
+                radial-gradient(circle at 8% 92%, rgba(59,130,246,0.16) 0%, transparent 45%),
+                url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=70&w=1920&auto=format&fit=crop');
+            background-size: 40px 40px, 40px 40px, auto, auto, cover;
+            background-position: center, center, center, center, center top;
+            background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
+        }
+        #hero::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+
+        .rd-hero { padding-top: 180px; background: radial-gradient(circle at 80% 20%, rgba(34,197,94,0.12) 0%, transparent 45%), var(--bg-body); border-top: none; }
+        .rd-status { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+        .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; }
+        .agent-card { position: relative; display: flex; flex-direction: column; background: var(--card-bg); border: var(--card-border); border-radius: 12px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+        .agent-card:hover { border-color: rgba(34,197,94,0.5); transform: translateY(-4px); }
+        .agent-img { width: 100%; height: 190px; object-fit: cover; display: block; }
+        .agent-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+        .agent-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+        .agent-body h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+        .agent-body p { font-size: 14px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+        .agent-buy { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .agent-price { font-size: 22px; font-weight: 800; }
+        .agent-price small { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-left: 4px; }
+        .agent-btn { background: var(--accent); color: #020617; font-weight: 800; font-size: 13px; text-decoration: none; padding: 11px 18px; border-radius: 6px; white-space: nowrap; transition: 0.2s; }
+        .agent-btn:hover { background: #fff; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+        .trust-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-main); border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.08); padding: 8px 14px; border-radius: 4px; letter-spacing: 0.5px; }
+        .trust-badge strong { color: var(--accent); }
+
+        .method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; counter-reset: step; }
+        .method-step { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; position: relative; }
+        .method-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 2px; display: block; margin-bottom: 12px; }
+        .method-step h4 { font-size: 16px; margin-bottom: 10px; font-weight: 800; }
+        .method-step p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+        .footnotes { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); max-width: 820px; }
+        .footnotes p { font-size: 12.5px; color: #64748B; line-height: 1.6; margin-bottom: 8px; }
+        .footnotes a { color: var(--text-muted); }
+        sup a { color: var(--accent); text-decoration: none; font-size: 11px; }
+
+        #foundry { background-image: url('/assets/img/bg-workbench.webp'); justify-content: flex-end; text-align: right; }
+        #foundry::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark-reverse); z-index: 1; }
+        #foundry .content { margin-left: auto; }
+
+        #workbench { background-image: url('/assets/img/bg-businessbanker.webp'); }
+        #workbench::after { content: ''; position: absolute; inset:0; background: var(--overlay-dark); z-index: 1; }
+
+        .stats-grid { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+        #foundry .stats-grid { justify-content: flex-end; }
+        .stat-val { font-size: 36px; font-weight: 800; display: block; color: var(--text-main); line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-size: 11px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
+
+        footer { padding: 6rem 10%; min-height: 60vh; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: var(--text-main); margin-bottom: 1.5rem; font-weight: 800; font-size: 14px; letter-spacing: 1px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .footer-link:hover { color: var(--accent); }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+
+        .compact-section {
+            min-height: auto; flex-direction: column; align-items: flex-start;
+            padding: 110px 10%; background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .compact-section .content { max-width: 980px; }
+        .compact-section h1 { font-size: 40px; }
+
+        .win-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; }
+        .win-card { background: var(--card-bg); border: var(--card-border); border-radius: 8px; padding: 28px; }
+        .win-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.2px; }
+        .win-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+        .disclaimer { font-size: 13px; color: #64748B; margin-top: 30px; line-height: 1.6; max-width: 700px; }
+
+        .card-link { display: inline-block; margin-top: 14px; color: var(--accent); font-size: 12.5px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; }
+        .card-link:hover { text-decoration: underline; }
+
+        .pilot-bar { display: flex; flex-wrap: wrap; border: var(--card-border); border-radius: 8px; overflow: hidden; margin: 40px 0 30px; width: 100%; }
+        .pilot-bar-item { flex: 1; min-width: 150px; text-align: center; padding: 26px 12px; border-right: 1px solid rgba(255,255,255,0.08); }
+        .pilot-bar-item:last-child { border-right: none; }
+        .pilot-bar-item .val { font-size: 26px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .pilot-bar-item .lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 1300px) {
+            header { height: 80px; }
+            .hamburger { display: block; }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav a { font-size: 20px; }
+            section { padding: 80px 5%; text-align: left !important; justify-content: flex-start !important; }
+            section::after { background: var(--overlay-mobile); }
+            .content { padding-top: 20px; }
+            h1 { font-size: 38px; }
+            .logo-strip { margin-top: 40px; padding-bottom: 40px;}
+            .logo-grid { gap: 20px 30px; }
+            #foundry { justify-content: flex-start; }
+            #foundry .stats-grid { justify-content: flex-start; flex-wrap: wrap; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .compact-section { padding: 80px 5%; }
+            .compact-section h1 { font-size: 30px; }
+            .pilot-bar-item { min-width: 45%; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/nav.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="/assets/img/logo-cognitive.webp" alt="Logo Groupe Cognitive" width="184" height="30"></a>
+        </div>
+
+        <div class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="foundry.html" class="active-link" onclick="closeMenu()">Cognitive Foundry</a></li>
+                <li><a href="research.html" onclick="closeMenu()">R&amp;D</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Références</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <li class="lang-item"><a href="../agents.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Réserver un briefing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="compact-section rd-hero" id="agents">
+        <div class="content">
+            <h2>Cognitive Foundry</h2>
+            <h1>Choisissez Votre Agent</h1>
+            <p class="description" style="margin-bottom: 0;">
+                Des modules cognitifs préentraînés, construits à partir du raisonnement d'analystes seniors et prêts à déployer dans AI Workbench. 995 USD par agent.
+            </p>
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur hypothécaire" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Origination</span>
+                        <h3>Adjudicateur hypothécaire</h3>
+                        <p>Flux institutionnel pour la souscription résidentielle. Calcule le ratio prêt-valeur, les ratios ABD/ATD et valide les documents automatiquement.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="mortgage">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=70&w=800" alt="Analyste de prêt à l'investissement" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Patrimoine</span>
+                        <h3>Analyste de prêt à l'investissement</h3>
+                        <p>Évalue les scénarios d'effet de levier sur des portefeuilles d'actifs liquides. Calcule les exigences de marge et projette le rendement à partir des données de marché.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="investment-loan">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur de restructuration" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Résolution</span>
+                        <h3>Adjudicateur de restructuration</h3>
+                        <p>Repère les clauses abusives dans les dettes en difficulté. Automatise la préparation des argumentaires juridiques et des propositions de règlement.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="restructure">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="/assets/img/card-impact.webp" alt="Consolidation de dettes" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Consommation</span>
+                        <h3>Consolidation de dettes</h3>
+                        <p>Analyse l'exposition au crédit renouvelable. Établit des stratégies de remboursement et encadre les dépenses grâce à des modèles comportementaux.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="debt-consolidation">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=70&w=800" alt="Immeuble à revenus" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Immobilier</span>
+                        <h3>Immeuble à revenus</h3>
+                        <p>Simulation des flux de trésorerie multilogements. Modélise les loyers, les taux d'inoccupation et de capitalisation pour établir le montant de prêt maximal.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="investment-property">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="/assets/img/bg-dec25-0613.webp" alt="Prêt à l'économie informelle" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Données alternatives</span>
+                        <h3>Prêt à l'économie informelle</h3>
+                        <p>Logique de souscription pour les entreprises payées en espèces. Reconstitue le compte de résultat à partir de données alternatives et du mode de vie.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="informal-economy">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=70&w=800" alt="Prêt aux petites entreprises" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">PME</span>
+                        <h3>Prêt aux petites entreprises</h3>
+                        <p>Adjudication automatisée des prêts de moins de 1 M$. Cotation rapide du risque à partir des relevés bancaires et des repères sectoriels.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="small-business">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur corporatif" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Entreprise</span>
+                        <h3>Adjudicateur corporatif</h3>
+                        <p>Pour les structures d'emprunt complexes. Gère les clauses multientités, les prêts syndiqués et les garanties croisées.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="corporate">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img class="agent-img" src="/assets/img/card-statements.webp" alt="Analyste financier" loading="lazy" decoding="async">
+                    <div class="agent-body">
+                        <span class="agent-tag">Utilitaire</span>
+                        <h3>Analyste financier</h3>
+                        <p>Extrait les données des bilans et des états des résultats en PDF, et les répartit dans un format JSON normalisé.</p>
+                        <div class="agent-buy">
+                            <span class="agent-price">995<small>USD</small></span>
+                            <a href="#" class="agent-btn" data-agent="financial-analyst">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="disclaimer">Des questions avant d'acheter ? <a href="#" onclick="openModal(); return false;" style="color: var(--accent);">Réservez un briefing</a>.</p>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Notre Approche</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    AI Workbench analyse. BusinessBANKER consigne et exécute. Les deux tournent sur l'infrastructure que votre banque contrôle déjà : superposés, pas remplacés.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="workbench.html" class="footer-link">AI Workbench</a>
+                <a href="foundry.html" class="footer-link">Cognitive Foundry</a>
+                <a href="product.html" class="footer-link">Aperçu de la Plateforme</a>
+                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
+                <a href="blog.html" class="footer-link">Recherche Réglementaire</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Siège Mondial</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    1155 René-Lévesque Blvd West<br>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: var(--accent); text-decoration: none; font-weight:700;">info@cognitivegroup.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Groupe Cognitive. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- MODALE DE RÉSERVATION -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <button type="submit" class="modal-btn">Accéder au Calendrier</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+
+        // Stripe Payment Links, one per agent. An agent without a link opens
+        // the briefing form instead, so no button ever leads nowhere.
+        const STRIPE_LINKS = {
+            'mortgage': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'investment-loan': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'restructure': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'debt-consolidation': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'investment-property': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'informal-economy': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'small-business': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'corporate': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03',
+            'financial-analyst': 'https://buy.stripe.com/eVq6oJ4vKdy5ed22wU0Fi03'
+        };
+        document.querySelectorAll('.agent-btn').forEach(function (btn) {
+            var link = STRIPE_LINKS[btn.dataset.agent];
+            if (link) {
+                btn.href = link;
+            } else {
+                btn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>
