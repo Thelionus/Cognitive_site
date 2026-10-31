@@ -9,7 +9,7 @@
     <title>Agents experts | Cognitive Foundry</title>
 
     <!-- 3. SEO: Unique Description (150-160 chars) -->
-    <meta name="description" content="Agents experts Cognitive Foundry prêts à déployer pour le crédit : hypothécaire, PME, corporatif, analyse financière et plus. 995 USD par agent.">
+    <meta name="description" content="Agents experts Cognitive Foundry prêts à déployer pour le crédit : hypothécaire, PME, corporatif, analyse financière et plus.">
     
     <!-- 4. SEO: Canonical Tag -->
     <link rel="canonical" href="https://www.cognitivegroup.com/fr/agents.html">
@@ -176,7 +176,7 @@
         .agent-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
         .agent-body h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
         .agent-body p { font-size: 14px; color: var(--text-muted); line-height: 1.6; flex: 1; }
-        .agent-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .agent-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
         .agent-price { font-size: 22px; font-weight: 800; }
         .agent-price small { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-left: 4px; }
         .agent-btn { background: var(--accent); color: #020617; font-weight: 800; font-size: 13px; text-decoration: none; padding: 11px 16px; text-align: center; border-radius: 6px; white-space: nowrap; transition: 0.2s; }
@@ -304,113 +304,104 @@
             <h2>Cognitive Foundry</h2>
             <h1>Choisissez Votre Agent</h1>
             <p class="description" style="margin-bottom: 0;">
-                Des modules cognitifs préentraînés, construits à partir du raisonnement d'analystes seniors et prêts à déployer dans AI Workbench. 995 USD par agent.
+                Des modules cognitifs préentraînés, construits à partir du raisonnement d'analystes seniors et prêts à déployer dans AI Workbench.
             </p>
             <div class="agent-grid">
-                <div class="agent-card">
+                <div class="agent-card" id="agent-mortgage">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur hypothécaire" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Origination</span>
                         <h3>Adjudicateur hypothécaire</h3>
                         <p>Flux institutionnel pour la souscription résidentielle. Calcule le ratio prêt-valeur, les ratios ABD/ATD et valide les documents automatiquement.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="mortgage">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-investment-loan">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=70&w=800" alt="Analyste de prêt à l'investissement" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Patrimoine</span>
                         <h3>Analyste de prêt à l'investissement</h3>
                         <p>Évalue les scénarios d'effet de levier sur des portefeuilles d'actifs liquides. Calcule les exigences de marge et projette le rendement à partir des données de marché.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="investment-loan">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-restructure">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur de restructuration" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Résolution</span>
                         <h3>Adjudicateur de restructuration</h3>
                         <p>Repère les clauses abusives dans les dettes en difficulté. Automatise la préparation des argumentaires juridiques et des propositions de règlement.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="restructure">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-debt-consolidation">
                     <img class="agent-img" src="/assets/img/card-impact.webp" alt="Consolidation de dettes" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Consommation</span>
                         <h3>Consolidation de dettes</h3>
                         <p>Analyse l'exposition au crédit renouvelable. Établit des stratégies de remboursement et encadre les dépenses grâce à des modèles comportementaux.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="debt-consolidation">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-investment-property">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=70&w=800" alt="Immeuble à revenus" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Immobilier</span>
                         <h3>Immeuble à revenus</h3>
                         <p>Simulation des flux de trésorerie multilogements. Modélise les loyers, les taux d'inoccupation et de capitalisation pour établir le montant de prêt maximal.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="investment-property">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-informal-economy">
                     <img class="agent-img" src="/assets/img/bg-dec25-0613.webp" alt="Prêt à l'économie informelle" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Données alternatives</span>
                         <h3>Prêt à l'économie informelle</h3>
                         <p>Logique de souscription pour les entreprises payées en espèces. Reconstitue le compte de résultat à partir de données alternatives et du mode de vie.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="informal-economy">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-small-business">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=70&w=800" alt="Prêt aux petites entreprises" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">PME</span>
                         <h3>Prêt aux petites entreprises</h3>
                         <p>Adjudication automatisée des prêts de moins de 1 M$. Cotation rapide du risque à partir des relevés bancaires et des repères sectoriels.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="small-business">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-corporate">
                     <img class="agent-img" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=70&w=800" alt="Adjudicateur corporatif" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Entreprise</span>
                         <h3>Adjudicateur corporatif</h3>
                         <p>Pour les structures d'emprunt complexes. Gère les clauses multientités, les prêts syndiqués et les garanties croisées.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="corporate">Nous contacter pour l'achat</a>
                         </div>
                     </div>
                 </div>
-                <div class="agent-card">
+                <div class="agent-card" id="agent-financial-analyst">
                     <img class="agent-img" src="/assets/img/card-statements.webp" alt="Analyste financier" loading="lazy" decoding="async">
                     <div class="agent-body">
                         <span class="agent-tag">Utilitaire</span>
                         <h3>Analyste financier</h3>
                         <p>Extrait les données des bilans et des états des résultats en PDF, et les répartit dans un format JSON normalisé.</p>
                         <div class="agent-buy">
-                            <span class="agent-price">995<small>USD</small></span>
                             <a href="#" class="agent-btn" data-agent="financial-analyst">Nous contacter pour l'achat</a>
                         </div>
                     </div>
